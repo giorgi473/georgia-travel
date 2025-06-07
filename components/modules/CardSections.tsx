@@ -40,7 +40,7 @@ function CardSections() {
               იდუმალ მთებში სათხილამურო ტური დაგეგმო ან მდინარე არაგვზე
               საჯომარდო მარშრუტით დაუვიწყარი გამოცდილება მიიღო.`;
   return (
-    <div className="mb-[100px]">
+    <div>
       <div className="container mx-auto w-full">
         <div className="flex flex-col md:flex-col lg:flex-row items-center justify-between px-4 md:px-20 mb-10 md:mb-20">
           <h1 className="text-3xl md:text-5xl font-semibold mb-4 md:mb-0 whitespace-pre-line">
