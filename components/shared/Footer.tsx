@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <div className="bg-gray-300 py-5">
+    <div className="py-5 border-t-1">
       <div className="container mx-auto">
         <div>bllasas</div>
       </div>

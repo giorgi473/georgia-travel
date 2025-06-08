@@ -3,9 +3,11 @@ import Blogs from "@/components/modules/Blogs";
 import CardSections from "@/components/modules/CardSections";
 import CardSwiperSlider from "@/components/modules/CardSwiperSlider";
 import DishesCard from "@/components/modules/DishesCard";
+import GeorgiaTravelMoments from "@/components/modules/GeorgiaTravelMoments";
 import Gzispar from "@/components/modules/Gzispar";
 import MapOfGeorgia from "@/components/modules/MapOfGeorgia";
 import SlideCard from "@/components/modules/SlideCard";
+import SlideCardBottom from "@/components/modules/SlideCardBottom";
 import SwiperSliderImage from "@/components/modules/SwiperSliderImage";
 import VineCard from "@/components/modules/VineCard";
 
@@ -41,6 +43,13 @@ export default function Home() {
       </section>
       <section className="mb-[120px]">
         <Banner />
+      </section>
+      <section className="mb-[120px]">
+        <SlideCardBottom />
+      </section>
+      <hr className="mb-[50px]"/>
+      <section className="mb-[120px]">
+        <GeorgiaTravelMoments />
       </section>
     </div>
   );

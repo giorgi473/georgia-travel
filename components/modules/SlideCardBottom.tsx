@@ -17,7 +17,7 @@ interface EventCard {
   href: string;
 }
 
-function SlideCard() {
+function SlideCardBottom() {
   const events: EventCard[] = [
     {
       id: 1,
@@ -167,7 +167,9 @@ function SlideCard() {
             className="flex items-center gap-3"
             variants={textVariants}
           >
-            <h4 className="text-md font-semibold">მიმდინარე ღონისძიებები</h4>
+            <h4 className="text-md font-semibold">
+              აღმოაჩინე საუკეთესო ადგილები საქართველოში
+            </h4>
             <button className="text-md font-semibold text-red-500 cursor-pointer">
               ყველას ნახვა
             </button>
@@ -275,4 +277,4 @@ function SlideCard() {
   );
 }
 
-export default SlideCard;
+export default SlideCardBottom;
