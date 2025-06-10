@@ -47,7 +47,7 @@ export default function Home() {
       <section className="mb-[120px]">
         <SlideCardBottom />
       </section>
-      <hr className="mb-[50px]"/>
+      <hr className="mb-[50px]" />
       <section className="mb-[120px]">
         <GeorgiaTravelMoments />
       </section>
