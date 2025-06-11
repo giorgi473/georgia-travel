@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 
 interface FooterItem {
   text: string;
@@ -16,7 +17,6 @@ interface FooterColumn {
 }
 
 function Footer() {
-  // სოციალური ქსელების მასივი
   const socialLinks: FooterItem[] = [
     { text: "Facebook", href: "https://www.facebook.com/GeorgiaTravel" },
     { text: "Instagram", href: "https://www.instagram.com/GeorgiaTravel" },
@@ -28,7 +28,6 @@ function Footer() {
     },
   ];
 
-  // ფუტერის სვეტები
   const footerColumns: FooterColumn[] = [
     {
       title: "სანახაობები",
@@ -96,39 +95,120 @@ function Footer() {
   ];
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const isLogoInView = useInView(logoRef, { once: true, margin: "-50px" });
+  const isFooterInView = useInView(footerRef, { once: true, margin: "-50px" });
+  const isBottomInView = useInView(bottomRef, { once: true, margin: "-50px" });
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15, filter: "blur(5px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        type: "spring",
+        stiffness: 120,
+        damping: 15,
+        duration: 0.5,
+      },
+    },
+  };
+
+  const bottomItemVariants = {
+    hidden: (index: number) => ({
+      opacity: 0,
+      x: index % 2 === 0 ? -20 : 20, // Slide from left for even, right for odd
+      filter: "blur(5px)",
+    }),
+    visible: {
+      opacity: 1,
+      x: 0,
+      filter: "blur(0px)",
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    <div className="py-5 border-t-1 bg-gray-100">
+    <div className="py-5 border-t-1">
       <div className="container mx-auto px-4">
-        <div className="mb-6">
+        <motion.div
+          ref={logoRef}
+          initial={{ opacity: 0, scale: 0.7, filter: "blur(5px)" }}
+          animate={
+            isLogoInView ? { opacity: 1, scale: 1, filter: "blur(0px)" } : {}
+          }
+          transition={{ type: "spring", stiffness: 150, damping: 15 }}
+          className="mb-6"
+        >
           <Image
             src="/logo/logo.svg"
             alt="Georgia Travel Logo"
             width={100}
             height={50}
-            className="object-contain"
+            className="object-contain w-[63px] sm:w-[80px] md:ml-2 md:w-[80px] lg:ml-3 lg:w-[100px] xl:ml-3 xl:w-[100px]"
           />
-        </div>
-        <div className="flex flex-col lg:flex-row lg:justify-between gap-4 lg:gap-4">
+        </motion.div>
+        <motion.div
+          ref={footerRef}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isFooterInView ? "visible" : "hidden"}
+          className="flex flex-col lg:flex-row lg:justify-between gap-4 lg:gap-4"
+        >
           {footerColumns.map((column, index) => (
-            <div key={index} className="w-full lg:w-1/4">
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="w-full lg:w-1/4"
+            >
               <div className="lg:hidden border-b border-gray-300 pb-2 mb-2">
-                <button
+                <motion.button
                   onClick={() => toggleAccordion(index)}
                   className="flex justify-between items-center w-full text-lg font-semibold text-gray-800 hover:text-red-600 mb-3"
+                  whileHover={{
+                    scale: 1.05,
+                    textShadow: "0px 0px 8px rgba(255,0,0,0.3)",
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  variants={itemVariants}
                 >
-                  <Link href={column.titleHref}>{column.title}</Link>
-                  <svg
-                    className={`w-4 h-4 transform transition-transform text-gray-500 ${
-                      openIndex === index ? "rotate-180" : ""
-                    }`}
+                  <motion.div variants={itemVariants}>
+                    <Link href={column.titleHref}>{column.title}</Link>
+                  </motion.div>
+                  <motion.svg
+                    className="w-4 h-4 text-gray-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
+                    animate={{ rotate: openIndex === index ? 180 : 0 }}
+                    transition={{ type: "spring", stiffness: 150, damping: 15 }}
+                    variants={itemVariants}
                   >
                     <path
                       strokeLinecap="round"
@@ -136,155 +216,303 @@ function Footer() {
                       strokeWidth="2"
                       d="M19 9l-7 7-7-7"
                     />
-                  </svg>
-                </button>
-                <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openIndex === index ? "max-h-96" : "max-h-0"
-                  }`}
+                  </motion.svg>
+                </motion.button>
+                <AnimatePresence>
+                  {openIndex === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0, filter: "blur(5px)" }}
+                      animate={{
+                        height: "auto",
+                        opacity: 1,
+                        filter: "blur(0px)",
+                      }}
+                      exit={{ height: 0, opacity: 0, filter: "blur(5px)" }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 120,
+                        damping: 15,
+                      }}
+                      className="overflow-hidden"
+                    >
+                      <motion.ul
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                        className="space-y-2 pl-4"
+                      >
+                        {column.items.map((item, itemIndex) => (
+                          <motion.li key={itemIndex} variants={itemVariants}>
+                            {item.href.startsWith("http") ||
+                            item.href.startsWith("tel") ||
+                            item.href.startsWith("mailto") ? (
+                              <motion.a
+                                href={item.href}
+                                className="text-sm text-gray-600 hover:text-red-600"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{
+                                  x: 5,
+                                  scale: 1.05,
+                                  textShadow: "0px 0px 8px rgba(255,0,0,0.3)",
+                                }}
+                                transition={{ duration: 0.2 }}
+                                variants={itemVariants}
+                              >
+                                {item.text}
+                              </motion.a>
+                            ) : (
+                              <motion.div
+                                whileHover={{
+                                  x: 5,
+                                  scale: 1.05,
+                                  textShadow: "0px 0px 8px rgba(255,0,0,0.3)",
+                                }}
+                                transition={{ duration: 0.2 }}
+                                variants={itemVariants}
+                              >
+                                <Link
+                                  href={item.href}
+                                  className="text-sm text-gray-600 hover:text-red-600"
+                                >
+                                  {item.text}
+                                </Link>
+                              </motion.div>
+                            )}
+                          </motion.li>
+                        ))}
+                        {column.title === "საკონტაქტო ინფორმაცია" && (
+                          <motion.li variants={itemVariants} className="mt-4">
+                            <motion.h6
+                              className="text-base font-semibold mb-2"
+                              variants={itemVariants}
+                            >
+                              <motion.div
+                                whileHover={{
+                                  x: 5,
+                                  scale: 1.05,
+                                  textShadow: "0px 0px 8px rgba(255,0,0,0.3)",
+                                }}
+                                transition={{ duration: 0.2 }}
+                                variants={itemVariants}
+                              >
+                                <Link
+                                  href="/social"
+                                  className="text-gray-800 hover:text-red-600"
+                                >
+                                  სოციალური ქსელები
+                                </Link>
+                              </motion.div>
+                            </motion.h6>
+                            <motion.ul
+                              variants={containerVariants}
+                              initial="hidden"
+                              animate="visible"
+                              className="space-y-1"
+                            >
+                              {socialLinks.map((social, socialIndex) => (
+                                <motion.li
+                                  key={socialIndex}
+                                  variants={itemVariants}
+                                >
+                                  <motion.a
+                                    href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-sm text-gray-600 hover:text-red-600"
+                                    whileHover={{
+                                      x: 5,
+                                      scale: 1.05,
+                                      textShadow:
+                                        "0px 0px 8px rgba(255,0,0,0.3)",
+                                    }}
+                                    transition={{ duration: 0.2 }}
+                                    variants={itemVariants}
+                                  >
+                                    {social.text}
+                                  </motion.a>
+                                </motion.li>
+                              ))}
+                            </motion.ul>
+                          </motion.li>
+                        )}
+                      </motion.ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+              <div className="hidden lg:block">
+                <motion.h6
+                  className="text-lg font-semibold mb-3"
+                  variants={itemVariants}
                 >
-                  <ul className="space-y-2 pl-4">
-                    {column.items.map((item, itemIndex) => (
-                      <li key={itemIndex}>
-                        {item.href.startsWith("http") ||
-                        item.href.startsWith("tel") ||
-                        item.href.startsWith("mailto") ? (
-                          <a
-                            href={item.href}
-                            className="text-sm text-gray-600 hover:text-red-600"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {item.text}
-                          </a>
-                        ) : (
+                  <motion.div
+                    whileHover={{
+                      x: 5,
+                      scale: 1.05,
+                      textShadow: "0px 0px 8px rgba(255,0,0,0.3)",
+                    }}
+                    transition={{ duration: 0.2 }}
+                    variants={itemVariants}
+                  >
+                    <Link
+                      href={column.titleHref}
+                      className="text-gray-800 hover:text-gray-800"
+                    >
+                      {column.title}
+                    </Link>
+                  </motion.div>
+                </motion.h6>
+                <motion.ul
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="space-y-2"
+                >
+                  {column.items.map((item, itemIndex) => (
+                    <motion.li key={itemIndex} variants={itemVariants}>
+                      {item.href.startsWith("http") ||
+                      item.href.startsWith("tel") ||
+                      item.href.startsWith("mailto") ? (
+                        <motion.a
+                          href={item.href}
+                          className="text-sm text-gray-600 hover:text-red-600"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{
+                            x: 5,
+                            scale: 1.05,
+                            textShadow: "0px 0px 8px rgba(255,0,0,0.3)",
+                          }}
+                          transition={{ duration: 0.2 }}
+                          variants={itemVariants}
+                        >
+                          {item.text}
+                        </motion.a>
+                      ) : (
+                        <motion.div
+                          whileHover={{
+                            x: 5,
+                            scale: 1.05,
+                            textShadow: "0px 0px 8px rgba(255,0,0,0.3)",
+                          }}
+                          transition={{ duration: 0.2 }}
+                          variants={itemVariants}
+                        >
                           <Link
                             href={item.href}
                             className="text-sm text-gray-600 hover:text-red-600"
                           >
                             {item.text}
                           </Link>
-                        )}
-                      </li>
-                    ))}
-                    {/* სოციალური ქსელები საკონტაქტო ინფორმაციისთვის */}
-                    {column.title === "საკონტაქტო ინფორმაცია" && (
-                      <li className="mt-4">
-                        <h6 className="text-base font-semibold mb-2">
+                        </motion.div>
+                      )}
+                    </motion.li>
+                  ))}
+                  {column.title === "საკონტაქტო ინფორმაცია" && (
+                    <motion.li variants={itemVariants} className="mt-4">
+                      <motion.h6
+                        className="text-base font-semibold mb-2"
+                        variants={itemVariants}
+                      >
+                        <motion.div
+                          whileHover={{
+                            x: 5,
+                            scale: 1.05,
+                            textShadow: "0px 0px 8px rgba(255,0,0,0.3)",
+                          }}
+                          transition={{ duration: 0.2 }}
+                          variants={itemVariants}
+                        >
                           <Link
                             href="/social"
                             className="text-gray-800 hover:text-red-600"
                           >
                             სოციალური ქსელები
                           </Link>
-                        </h6>
-                        <ul className="space-y-1">
-                          {socialLinks.map((social, socialIndex) => (
-                            <li key={socialIndex}>
-                              <a
-                                href={social.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-sm text-gray-600 hover:text-red-600"
-                              >
-                                {social.text}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </li>
-                    )}
-                  </ul>
-                </div>
-              </div>
-              <div className="hidden lg:block">
-                <h6 className="text-lg font-semibold mb-3">
-                  <Link
-                    href={column.titleHref}
-                    className="text-gray-800 hover:text-gray-800"
-                  >
-                    {column.title}
-                  </Link>
-                </h6>
-                <ul className="space-y-2">
-                  {column.items.map((item, itemIndex) => (
-                    <li key={itemIndex}>
-                      {item.href.startsWith("http") ||
-                      item.href.startsWith("tel") ||
-                      item.href.startsWith("mailto") ? (
-                        <a
-                          href={item.href}
-                          className="text-sm text-gray-600 hover:text-red-600"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {item.text}
-                        </a>
-                      ) : (
-                        <Link
-                          href={item.href}
-                          className="text-sm text-gray-600 hover:text-red-600"
-                        >
-                          {item.text}
-                        </Link>
-                      )}
-                    </li>
-                  ))}
-                  {/* სოციალური ქსელები საკონტაქტო ინფორმაციისთვის */}
-                  {column.title === "საკონტაქტო ინფორმაცია" && (
-                    <li className="mt-4">
-                      <h6 className="text-base font-semibold mb-2">
-                        <Link
-                          href="/social"
-                          className="text-gray-800 hover:text-red-600"
-                        >
-                          სოციალური ქსელები
-                        </Link>
-                      </h6>
-                      <ul className="space-y-1">
+                        </motion.div>
+                      </motion.h6>
+                      <motion.ul
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                        className="space-y-1"
+                      >
                         {socialLinks.map((social, socialIndex) => (
-                          <li key={socialIndex}>
-                            <a
+                          <motion.li key={socialIndex} variants={itemVariants}>
+                            <motion.a
                               href={social.href}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-sm text-gray-600 hover:text-red-600"
+                              whileHover={{
+                                x: 5,
+                                scale: 1.05,
+                                textShadow: "0px 0px 8px rgba(255,0,0,0.3)",
+                              }}
+                              transition={{ duration: 0.2 }}
+                              variants={itemVariants}
                             >
                               {social.text}
-                            </a>
-                          </li>
+                            </motion.a>
+                          </motion.li>
                         ))}
-                      </ul>
-                    </li>
+                      </motion.ul>
+                    </motion.li>
                   )}
-                </ul>
+                </motion.ul>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
       <hr className="border-gray-300 my-6" />
-      <div className="flex flex-col md:flex-row justify-between container mx-auto items-start md:items-center gap-4 text-sm text-gray-600">
-        <div className="flex flex-col md:flex-row gap-10">
-          <span>
-            <Link href={""} className="hover:text-red-600">
-              კონფიდენციალურობის პოლიტიკა
-            </Link>
-          </span>
-          <span>
-            <Link href={""}>Cookie პოლიტიკა</Link>
-          </span>
-          <span>
-            <Link href={""}>წესები და პირობები</Link>
-          </span>
-          <span>
-            <Link href={""}>Text to Speech</Link>
-          </span>
-        </div>
-        <span className="text-right">
+      <motion.div
+        ref={bottomRef}
+        variants={containerVariants}
+        initial="hidden"
+        animate={isBottomInView ? "visible" : "hidden"}
+        className="flex flex-col md:flex-row justify-between py-5 px-4 container mx-auto items-start md:items-center gap-4 text-sm text-gray-600"
+      >
+        <motion.div
+          className="flex flex-col md:flex-row gap-10"
+          variants={containerVariants}
+        >
+          {[
+            "კონფიდენციალურობის პოლიტიკა",
+            "Cookie პოლიტიკა",
+            "წესები და პირობები",
+            "Text to Speech",
+          ].map((text, index) => (
+            <motion.span
+              key={index}
+              custom={index}
+              variants={bottomItemVariants}
+            >
+              <motion.div
+                whileHover={{
+                  x: 5,
+                  scale: 1.05,
+                  textShadow: "0px 0px 8px rgba(255,0,0,0.3)",
+                }}
+                transition={{ duration: 0.2 }}
+                variants={bottomItemVariants}
+              >
+                <Link href={""} className="hover:text-red-600 font-semibold">
+                  {text}
+                </Link>
+              </motion.div>
+            </motion.span>
+          ))}
+        </motion.div>
+        <motion.span
+          variants={bottomItemVariants}
+          custom={4}
+          className="text-right font-medium"
+        >
           © Georgian National Tourism Administration
-        </span>
-      </div>
+        </motion.span>
+      </motion.div>
     </div>
   );
 }
