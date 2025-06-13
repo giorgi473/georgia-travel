@@ -155,7 +155,7 @@ function Footer() {
   };
 
   return (
-    <div className="py-5 border-t-1">
+    <div className="py-5 border-t-1 mt-20">
       <div className="container mx-auto px-4">
         <motion.div
           ref={logoRef}
