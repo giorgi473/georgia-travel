@@ -12,20 +12,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-
-interface NavItemDetail {
-  title: string;
-  image?: string;
-  images?: string[];
-  items: { text: string; href: string }[];
-}
-
-interface NavItem {
-  name?: string;
-  natureName?: string;
-  href: string;
-  details: NavItemDetail[];
-}
+import { NavItemDetail, navItems } from "@/constants/data/data";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -60,250 +47,6 @@ function Header() {
     setIsSearchOpen(!isSearchOpen);
     setIsMenuOpen(false);
   };
-
-  const navItems: NavItem[] = [
-    {
-      name: "რატომ საქართველო",
-      href: "/why-georgia",
-      details: [
-        {
-          title: "",
-          items: [
-            {
-              text: "უნიკალური ქართული ფოლკლორი",
-              href: "/why-georgia/history",
-            },
-            {
-              text: "მსოფლიო მნიშვნელობის მემკვიდრეობა",
-              href: "/why-georgia/culture",
-            },
-            {
-              text: "უნიკალური ქართული ანბანი",
-              href: "/why-georgia/tourist-spots",
-            },
-            {
-              text: "შავი ზღვის სანაპიროები",
-              href: "/why-georgia/family-travel",
-            },
-            { text: "საქართველოს ისტორია", href: "/why-georgia/food-wine" },
-            {
-              text: "ტურიზმის სტატისტიკა საქართველოში",
-              href: "/why-georgia/nature",
-            },
-          ],
-        },
-        {
-          title: "",
-          items: [
-            { text: "ქართული კულტურა", href: "/why-georgia/food-wine" },
-            { text: "ქართული ლიტერატურა", href: "/why-georgia/nature" },
-            { text: "ქართული ცეკვა", href: "/why-georgia/music" },
-            {
-              text: "უგემრიელესი ქართული სამზარეულო",
-              href: "/why-georgia/dances",
-            },
-            { text: "საქართველოს ბუნება", href: "/why-georgia/nature" },
-            {
-              text: "საქართველოს მთავარი ქალაქები",
-              href: "/why-georgia/music",
-            },
-          ],
-        },
-        {
-          title: "",
-          items: [
-            {
-              text: "საქართველო როგორც ღვინის აკვანი",
-              href: "/why-georgia/economy",
-            },
-            {
-              text: "პირველი ევროპული ცივილიზაცია",
-              href: "/why-georgia/education",
-            },
-            {
-              text: "თავგადასავლები საქართველოში",
-              href: "/why-georgia/sports",
-            },
-            {
-              text: "ევროპის ყველაზე მაღალი დასახლებული პუნქტი...",
-              href: "/why-georgia/health",
-            },
-            { text: "სეზონურობა საქართველოში", href: "/why-georgia/sports" },
-            { text: "საქართველოს გეოგრაფია", href: "/why-georgia/sports" },
-          ],
-        },
-        {
-          title: "აღმოაჩინე საქართველო",
-          image: "/flags/ph.jpg",
-          items: [],
-        },
-      ],
-    },
-    {
-      name: "ადგილები",
-      href: "/places",
-      details: [
-        {
-          title: "ტოპ რეგიონები",
-          items: [
-            { text: "კახეთი", href: "/places/tbilisi" },
-            { text: "იმერეთი", href: "/places/batumi" },
-            { text: "აჭარა", href: "/places/kutaisi" },
-            { text: "მცხეთა-მთიანეთი", href: "/places/signagi" },
-            { text: "რაჭა-ლეჩხუმი და ქვემო სვანეთი", href: "/places/mestia" },
-            { text: "შიდა ქართლი", href: "/places/gudauri" },
-            { text: "სამეგრელო-ზემო სვანეთი", href: "/places/gudauri" },
-          ],
-        },
-        {
-          title: "ტოპ ქალაქები",
-          items: [
-            { text: "ქუთაისი", href: "/places/rustavi" },
-            { text: "ბათუმი", href: "/places/zugdidi" },
-            { text: "თბილისი", href: "/places/telavi" },
-            { text: "სტეფაწმინდა", href: "/places/poti" },
-            { text: "მესტია", href: "/places/akhaltsikhe" },
-            { text: "მცხეთა", href: "/places/ambrolauri" },
-            { text: "ბორჯომი", href: "/places/ambrolauri" },
-          ],
-        },
-        {
-          title: "რეგიონები",
-          items: [],
-        },
-      ],
-    },
-    {
-      name: "სანახაობები",
-      href: "/sights",
-      details: [
-        {
-          title: "ტოპ კატეგორიები",
-          items: [
-            { text: "ხელოვნება და კულტურა", href: "/sights/jvari" },
-            { text: "კულტურული ძეგლები", href: "/sights/svetitskhoveli" },
-            { text: "სამზარეულო და ღვინო", href: "/sights/ushguli" },
-            { text: "გამაჯანსაღებელი პროცედურები", href: "/sights/gelati" },
-            { text: "საოჯახო სანახაობები", href: "/sights/david-gareji" },
-            { text: "დასვენება ქალაქში", href: "/sights/bridge-of-peace" },
-          ],
-        },
-        {
-          title: "ტოპ სანახაობები",
-          items: [
-            { text: "გერგეთის სამება", href: "/sights/bagrati" },
-            { text: "ილია ჭავჭავაძის სახლ-მუზეუმი", href: "/sights/samtskhe" },
-            { text: "ხერთვისის ციხე", href: "/sights/paravani" },
-            {
-              text: "საქართველოს ეროვნული მუზეუმი",
-              href: "/sights/chkhorotsku",
-            },
-            { text: "დავითგარეჯი", href: "/sights/batumi-forest" },
-            { text: "ბოლნისის სიონი", href: "/sights/alaverdi" },
-          ],
-        },
-        {
-          title: "თვის სანახაობები",
-          images: ["/flags/ph.jpg", "/flags/ph.jpg"],
-          items: [],
-        },
-      ],
-    },
-    {
-      natureName: "ბუნება და თავგადასავლები",
-      href: "/nature-adventures",
-      details: [
-        {
-          title: "ტოპ კატეგორიები",
-          items: [
-            { text: "სვანეთის მთები", href: "/nature/svaneti" },
-            { text: "ტრუსოს ხეობა", href: "/nature/truso" },
-            { text: "მარტვილის კანიონი", href: "/nature/martvili-canyon" },
-            { text: "ქინძღის ეროვნული პარკი", href: "/nature/kinchkha" },
-            {
-              text: "დედოფლისწყაროს ჩანჩქერი",
-              href: "/nature/dedoflis-tsqaro",
-            },
-            { text: "ხადის ხეობა", href: "/nature/khadi" },
-          ],
-        },
-        {
-          title: "",
-          items: [
-            {
-              text: "ბორჯომ-ხარაგაულის ეროვნული პარკი",
-              href: "/nature/borjomi",
-            },
-            { text: "ლაგოდეხის დაცული ტერიტორია", href: "/nature/lagodekhi" },
-            { text: "ოკაცეს კანიონი", href: "/nature/okace" },
-            { text: "ჩხოროწყუს ეროვნული პარკი", href: "/nature/chkhorotsku" },
-            { text: "აბასთუმნის ხეივანი", href: "/nature/abastumani" },
-            { text: "სამწუხარო-ჯავახეთის მთები", href: "/nature/samtskhe" },
-          ],
-        },
-        {
-          title: "",
-          items: [
-            { text: "ტუშეთის ეროვნული პარკი", href: "/nature/tusheti" },
-            { text: "რაჭის მთები", href: "/nature/racha" },
-            { text: "გომარეთის ტყე", href: "/nature/gomareti" },
-            { text: "ფშავ-ხევსურეთი", href: "/nature/pshavi" },
-            { text: "ჩაქვის ტბა", href: "/nature/chakvi" },
-            { text: "ლეჩხუმის ბორცვები", href: "/nature/lechkhumi" },
-          ],
-        },
-        {
-          title: "აღმოაჩინე ბუნება",
-          image: "/images/nature.jpg",
-          items: [],
-        },
-      ],
-    },
-    {
-      name: "სასარგებლო ინფორმაცია",
-      href: "/info",
-      details: [
-        {
-          title: "",
-          items: [
-            { text: "ვიზის მოთხოვნები", href: "/info/visa" },
-            { text: "ტრანსპორტი", href: "/info/transport" },
-            { text: "სასტუმროები", href: "/info/hotels" },
-            { text: "საბიუჯეტო მოგზაურობა", href: "/info/budget" },
-            { text: "ჯანმრთელობა და უსაფრთხოება", href: "/info/health" },
-            { text: "კონტაქტი", href: "/info/contact" },
-          ],
-        },
-        {
-          title: "",
-          items: [
-            { text: "სეზონური ამინდი", href: "/info/weather" },
-            { text: "ტურისტული რუკა", href: "/info/map" },
-            { text: "ღირსშესანიშნაობები", href: "/info/attractions" },
-            { text: "ლოკალური კვება", href: "/info/food" },
-            { text: "ღამის ცხოვრება", href: "/info/nightlife" },
-            { text: "ფესტივალები", href: "/info/festivals" },
-          ],
-        },
-        {
-          title: "",
-          items: [
-            { text: "საფრენი დრო", href: "/info/flight" },
-            { text: "საბანკო მომსახურება", href: "/info/banking" },
-            { text: "ინტერნეტი და Wi-Fi", href: "/info/internet" },
-            { text: "ტურისტული აგენტები", href: "/info/agencies" },
-            { text: "გზამკვლევი", href: "/info/guide" },
-            { text: "საგადასახადო ინფორმაცია", href: "/info/tax" },
-          ],
-        },
-        {
-          title: "აღმოაჩინე ინფორმაცია",
-          image: "/images/info.jpg",
-          items: [],
-        },
-      ],
-    },
-  ];
 
   const handleMouseEnter = (name: string, index: number) => {
     if (leaveTimeout) {
@@ -375,7 +118,6 @@ function Header() {
               />
             </Link>
 
-            {/* ნავიგაციის მენიუ (დესკტოპ) */}
             <nav className="hidden xl:flex">
               <ul className="flex flex-wrap gap-2 sm:gap-4 text-xs sm:text-sm font-medium">
                 {navItems.map((item, index) => (
@@ -460,7 +202,6 @@ function Header() {
             </motion.button>
           </div>
 
-          {/* ბურგერ მენიუს ღილაკი */}
           <motion.button
             className="xl:hidden text-xl sm:text-2xl"
             onClick={toggleMenu}
@@ -480,7 +221,6 @@ function Header() {
           </motion.button>
         </div>
 
-        {/* აკორდიონი ბურგერ მენიუში */}
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
@@ -512,12 +252,14 @@ function Header() {
                           {colIndex === 2 &&
                             column.images &&
                             column.images.length === 2 &&
-                            item.name === "სანახაობები" && (
+                            (item.name === "სანახაობები" ||
+                              item.natureName === "ბუნება და თავგადასავლები" ||
+                              item.name === "სასარგებლო ინფორმაცია") && (
                               <div className="flex gap-4">
                                 {column.images.map((image, imgIndex) => (
                                   <div
                                     key={imgIndex}
-                                    className="relative flex-1 h-60 overflow-hidden rounded-lg"
+                                    className="relative flex-1 h-72 overflow-hidden rounded-lg"
                                   >
                                     <MotionImage
                                       src={image}
@@ -527,12 +269,31 @@ function Header() {
                                       whileHover={{ scale: 1.1 }}
                                       transition={{ duration: 0.3 }}
                                     />
-                                    <p className="absolute bottom-[5px] left-[5px] font-semibold text-white bg-opacity-50 px-2 py-1 rounded">
-                                      {imgIndex === 0
-                                        ? "აღმოაჩინე სანახაობა 1"
-                                        : "აღმოაჩინე სანახაობა 2"}
+                                    <p className="absolute bottom-5 left-3 font-bold w-[220px] text-white text-md bg-opacity-50 px-2 py-1 rounded">
+                                      {item.name === "სანახაობები"
+                                        ? imgIndex === 0
+                                          ? "სვეტიცხოველი მსოპლიო ხელოვნების საგანძური"
+                                          : "ალავერდი"
+                                        : item.natureName ===
+                                          "ბუნება და თავგადასავლები"
+                                        ? imgIndex === 0
+                                          ? "აღმოაჩინე თავგადასავალი 1"
+                                          : "აღმოაჩინე თავგადასავალი 2"
+                                        : imgIndex === 0
+                                        ? "აღმოაჩინე ინფორმაცია 1"
+                                        : "აღმოაჩინე ინფორმაცია 2"}
                                     </p>
-                                    <Heart className="text-red-500" size={20} />
+                                    {(item.name === "სანახაობები" ||
+                                      (item.natureName ===
+                                        "ბუნება და თავგადასავლები" &&
+                                        imgIndex === 1)) && (
+                                      <div className="absolute top-1 right-2">
+                                        <Heart
+                                          className="text-red-500"
+                                          size={20}
+                                        />
+                                      </div>
+                                    )}
                                   </div>
                                 ))}
                               </div>
@@ -644,11 +405,9 @@ function Header() {
                 {colIndex === 2 &&
                   column.images &&
                   column.images.length === 2 &&
-                  navItems.find(
-                    (item) =>
-                      item.name === hoveredItem ||
-                      item.natureName === hoveredItem
-                  )?.name === "სანახაობები" && (
+                  (hoveredItem === "სანახაობები" ||
+                    hoveredItem === "ბუნება და თავგადასავლები" ||
+                    hoveredItem === "სასარგებლო ინფორმაცია") && (
                     <div className="flex gap-4 w-[570px] select-none cursor-pointer">
                       {column.images.map((image, imgIndex) => (
                         <div
@@ -664,13 +423,25 @@ function Header() {
                             transition={{ duration: 0.3 }}
                           />
                           <p className="absolute bottom-5 left-3 font-bold w-[220px] text-white text-md bg-opacity-50 px-2 py-1 rounded">
-                            {imgIndex === 0
-                              ? "სვეტიცხოველი მსოპლიო ხელოვნების საგანძური"
-                              : "ალავერდი"}
+                            {hoveredItem === "სანახაობები"
+                              ? imgIndex === 0
+                                ? "სვეტიცხოველი მსოპლიო ხელოვნების საგანძური"
+                                : "ალავერდი"
+                              : hoveredItem === "ბუნება და თავგადასავლები"
+                              ? imgIndex === 0
+                                ? "აღმოაჩინე თავგადასავალი 1"
+                                : "აღმოაჩინე თავგადასავალი 2"
+                              : imgIndex === 0
+                              ? "აღმოაჩინე ინფორმაცია 1"
+                              : "აღმოაჩინე ინფორმაცია 2"}
                           </p>
-                          <div className="mt-2 flex justify-center absolute top-1 right-2">
-                            <Heart className="text-red-500" size={20} />
-                          </div>
+                          {(hoveredItem === "სანახაობები" ||
+                            (hoveredItem === "ბუნება და თავგადასავლები" &&
+                              imgIndex === 1)) && (
+                            <div className="absolute top-1 right-2">
+                              <Heart className="text-red-500" size={20} />
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>
