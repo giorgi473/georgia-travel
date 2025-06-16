@@ -117,7 +117,6 @@ function Header() {
                 className="object-contain w-16 sm:w-20 xl:w-24 mr-10"
               />
             </Link>
-
             <nav className="hidden xl:flex">
               <ul className="flex flex-wrap gap-2 sm:gap-4 text-xs sm:text-sm font-medium">
                 {navItems.map((item, index) => (
@@ -132,7 +131,7 @@ function Header() {
                         (item.name === "რატომ საქართველო" ||
                           item.natureName === "ბუნება და თავგადასავლები") &&
                         hoveredItem === (item.name || item.natureName)
-                          ? "#ffffff"
+                          ? ""
                           : "transparent",
                     }}
                     animate={{
@@ -201,7 +200,6 @@ function Header() {
               />
             </motion.button>
           </div>
-
           <motion.button
             className="xl:hidden text-xl sm:text-2xl"
             onClick={toggleMenu}
@@ -220,7 +218,6 @@ function Header() {
             </span>
           </motion.button>
         </div>
-
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
