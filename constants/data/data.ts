@@ -12,6 +12,54 @@ export interface NavItem {
   details: NavItemDetail[];
 }
 
+export interface Section {
+  id: string;
+  content: string;
+  image?: string;
+  image1?: string;
+  image2?: string;
+  image3?: string;
+  title?: string;
+  description?: string;
+  buttonText?: string;
+}
+
+export const sections: Section[] = [
+  {
+    id: "start",
+    content: "აქ არის Start სექცია",
+    image1: "/flags/image1.webp",
+    image2: "/flags/image2.webp",
+    image3: "/flags/clouds.webp",
+  },
+  {
+    id: "section-01",
+    content: "აქ არის 01 სექცია",
+    image1: "/flags/image2.webp",
+    image2: "/flags/image3.webp",
+    image3: "/flags/clouds.webp",
+    title: "საქართველოს \n გეოგრაფია",
+    description:
+      "საქართველო ევროპისა და აზიის გზაგასაყარზე, კავკასიაში, შავი ზღვის სანაპიროზე მდებარეობს. ის საუკუნეების განმავლობაში ასრულებდა ცივილიზაციების დამაკავშირებელ ფუნქციას და სწორედ აქ გადიოდა „აბრეშუმის გზაც“ - მსოფლიოს უმსხვილესი სავაჭრო არტერია.",
+    buttonText: "გაიგე მეტი",
+  },
+  {
+    id: "section-02",
+    content: "აქ არის 02 სექცია",
+    image: "/flags/clouds.webp",
+  },
+  {
+    id: "section-03",
+    content: "აქ არის 03 სექცია",
+    image: "/flags/image1.webp",
+  },
+  {
+    id: "section-04",
+    content: "აქ არის 04 სექცია",
+    image: "/flags/image2.webp",
+  },
+];
+
 export const navItems: NavItem[] = [
   {
     name: "რატომ საქართველო",

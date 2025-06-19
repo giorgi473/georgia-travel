@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import Image from "next/image";
 import "swiper/css";
-import "./why-georgia.css";
 
 interface Section {
   id: string;
@@ -102,6 +101,327 @@ const Page: React.FC = () => {
 
   return (
     <>
+      <style jsx global>{`
+        @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;700&display=swap");
+
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          height: 100vh;
+          width: 100vw;
+          font-family: "Noto Sans Georgian", sans-serif;
+        }
+
+        .content-container {
+          height: 500vh;
+          position: relative;
+          width: 100%;
+          transition: transform 0.5s ease;
+        }
+
+        .section {
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: clamp(1.5rem, 4vw, 2rem);
+          color: white;
+          width: 100%;
+          position: relative;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        .start-section {
+          background: none;
+        }
+
+        .black-fill {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 70%;
+          background-color: black;
+          z-index: 5;
+        }
+
+        .start-text {
+          will-change: transform, opacity;
+          font-size: clamp(2rem, 8vw, 4rem);
+          line-height: 1.2;
+        }
+
+        .custom-button {
+          position: relative;
+          overflow: hidden;
+          z-index: 1;
+          font-size: clamp(0.75rem, 2vw, 1rem);
+          padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+        }
+        .custom-button::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: #ef4444;
+          transition: left 0.3s ease;
+          z-index: -1;
+        }
+        .custom-button:hover::before {
+          left: 0;
+        }
+
+        .slide-nav-text {
+          cursor: pointer;
+          transition: transform 0.3s ease, color 0.3s ease;
+          font-size: clamp(0.75rem, 2vw, 1rem);
+        }
+        .slide-nav-text.active {
+          transform: scale(1.3);
+          color: #ffffff;
+        }
+
+        .slide-nav-text.section-02 {
+          padding: clamp(0.25rem, 1vw, 0.5rem) clamp(0.5rem, 2vw, 1rem);
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 8px;
+          backdrop-filter: blur(5px);
+          position: relative;
+          color: white;
+          font-size: clamp(0.65rem, 1.8vw, 0.875rem);
+          transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
+        }
+        .slide-nav-text.section-02.active {
+          transform: scale(1.2);
+          color: #000000;
+        }
+        .slide-nav-text.section-02.active::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: clamp(2rem, 5vw, 2.5rem);
+          height: clamp(2rem, 5vw, 2.5rem);
+          border-radius: 50%;
+          z-index: -1;
+        }
+
+        .slide-nav-container {
+          margin-top: 1rem;
+          margin-left: 1rem;
+          display: flex;
+          gap: clamp(0.5rem, 2vw, 1rem);
+          font-size: clamp(0.75rem, 2vw, 1rem);
+        }
+        .slide-nav-container.section-02 {
+          margin-top: 0;
+          justify-content: center;
+          position: absolute;
+          bottom: clamp(1rem, 3vw, 2rem);
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 50;
+          gap: clamp(0.25rem, 1vw, 0.5rem);
+        }
+
+        @media (max-width: 767px) {
+          .section {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+          }
+          .black-fill {
+            height: 55%;
+            background: linear-gradient(
+              180deg,
+              transparent,
+              rgba(0, 0, 0, 0.95)
+            );
+          }
+          .start-image2 {
+            top: auto !important;
+            bottom: 0 !important;
+            width: 100% !important;
+            height: 300px !important;
+            overflow: hidden !important;
+            object-fit: cover !important;
+          }
+          .start-image3 {
+            top: auto !important;
+            bottom: -150px !important;
+            width: 100% !important;
+            height: 300px !important;
+            overflow: hidden !important;
+            object-fit: cover !important;
+          }
+          .black-section-container {
+            align-items: flex-start !important;
+            padding-top: 50px !important;
+          }
+          .black-section-text {
+            margin-top: 150px !important;
+            transform: translateY(50px) !important;
+            flex-direction: column-reverse;
+          }
+          .swiper-container {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2.5rem;
+            max-width: 90%;
+            width: 100%;
+          }
+          .swiper-container.section-02 {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+          }
+          .swiper-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+          }
+          .swiper-slide.section-02 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .slide-nav-container {
+            font-size: 0.875rem;
+          }
+          .slide-nav-container.section-02 {
+            font-size: 0.75rem;
+            gap: 0.25rem;
+          }
+          .vertical-nav {
+            right: 2px !important;
+            font-size: 0.75rem !important;
+          }
+          .vertical-nav-line {
+            right: 1px !important;
+            height: 120px !important;
+          }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .section {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+          }
+          .black-section-container {
+            align-items: flex-start !important;
+            padding-top: 50px !important;
+          }
+          .black-section-text {
+            margin-top: 100px !important;
+            transform: translateY(50px) !important;
+            flex-direction: column-reverse;
+            padding-right: 2rem;
+          }
+          .text-content h5 {
+            white-space: nowrap;
+          }
+          .swiper-container {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2rem;
+            max-width: 600px;
+            width: 100%;
+          }
+          .swiper-container.section-02 {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+          }
+          .swiper-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+          }
+          .swiper-slide.section-02 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .slide-nav-container {
+            font-size: 1rem;
+          }
+          .slide-nav-container.section-02 {
+            font-size: 0.875rem;
+            gap: 0.5rem;
+          }
+          .vertical-nav {
+            right: 8px !important;
+            font-size: 1rem !important;
+          }
+          .vertical-nav-line {
+            right: 4px !important;
+            height: 160px !important;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .start-image3 {
+            top: 40% !important;
+            bottom: auto !important;
+            width: auto !important;
+            height: auto !important;
+            max-width: none !important;
+          }
+          .black-section-container {
+            align-items: flex-end !important;
+            padding-bottom: 2rem !important;
+          }
+          .black-section-text {
+            margin-top: 0 !important;
+            transform: none !important;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+          }
+          .text-content {
+            max-width: 40%;
+          }
+          .swiper-container {
+            max-width: 65%;
+            margin-top: 3rem;
+          }
+          .swiper-container.section-02 {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+          }
+          .swiper-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+          }
+          .swiper-slide.section-02 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .slide-nav-container {
+            font-size: 1.125rem;
+          }
+          .slide-nav-container.section-02 {
+            font-size: 1rem;
+            gap: 0.75rem;
+          }
+          .vertical-nav {
+            right: 16px !important;
+            font-size: 1.25rem !important;
+          }
+          .vertical-nav-line {
+            right: 8px !important;
+            height: 200px !important;
+          }
+        }
+      `}</style>
       <div className="relative h-screen overflow-hidden select-none">
         {/* Start სექციის სურათები */}
         {activeSection === 0 && sections[0].image1 && (
