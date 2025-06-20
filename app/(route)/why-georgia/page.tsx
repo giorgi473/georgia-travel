@@ -84,14 +84,14 @@ const Page: React.FC = () => {
       section02Images: [
         { src: "/flags/spring.webp", alt: "Slide 1", text: "გაზაფხული" },
         { src: "/flags/summer.webp", alt: "Slide 2", text: "ზაფხული" },
-        { src: "/flags/autumn.webp", alt: "Slide 4", text: "შემოდგობა" },
+        { src: "/flags/autumn.webp", alt: "Slide 4", text: "შემოდგომა" },
         { src: "/flags/winter.webp", alt: "Slide 3", text: "ზამთარი" },
       ],
     },
     {
       id: "section-03",
       content: "აქ არის 03 სექცია",
-      image: "/flags/image1.webp",
+      image: "/flags/doqi.png",
     },
     {
       id: "section-04",
@@ -272,7 +272,7 @@ const Page: React.FC = () => {
             className="absolute top-0 left-0 w-full h-full z-20"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="swiper-container section-02">
               <Swiper
@@ -289,7 +289,7 @@ const Page: React.FC = () => {
                   <SwiperSlide key={index} className="section-02">
                     {index === 1 ? (
                       <motion.div
-                        initial={{ y: "20%", opacity: 0 }}
+                        initial={{ y: "20%", opacity: 1 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                       >
@@ -318,7 +318,6 @@ const Page: React.FC = () => {
               </Swiper>
               <div className="slide-nav-container section-02 space-x-5 flex items-center">
                 {sections[2].section02Images?.map((item, index) => {
-                  // ცენტრში აქტიური სლაიდი, მარცხნივ წინა, მარჯვნივ შემდეგი
                   if (
                     index === activeSection02Slide ||
                     index === activeSection02Slide - 1 ||
@@ -347,6 +346,175 @@ const Page: React.FC = () => {
             </div>
           </motion.div>
         )}
+        {/* Section 03 */}
+        {activeSection === 3 && (
+          <motion.div
+            className="absolute top-0 left-0 w-full h-full z-20 bg-[#131212]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <div className="mx-4 sm:mx-8 lg:mx-10 lg:px-0 h-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+              {/* Desktop Layout */}
+              <div className="hidden lg:flex flex-row items-center justify-between gap-12 w-full">
+                {/* მარცხენა სვეტი - სურათი */}
+                <motion.div
+                  className="w-1/3 mb-0"
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                >
+                  <Image
+                    src={sections[3].image || "/flags/doqi.png"}
+                    alt="Section 03 Image"
+                    width={200}
+                    height={200}
+                    className="w-3/4 h-auto object-cover rounded-lg mx-auto lg:mx-0"
+                    sizes="(max-width: 767px) 60vw, (max-width: 1023px) 200px, 200px"
+                  />
+                </motion.div>
+                {/* შუა სვეტი - ტექსტი */}
+                <motion.div
+                  className="w-1/3 text-white px-4 lg:pl-8"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+                >
+                  <h3 className="flex items-center gap-4 text-3xl mb-8 tracking-widest">
+                    <span className="flex w-14 h-0.5 bg-white" />
+                    კულტურული <br /> მემკვიდრეობა
+                  </h3>
+                  <p className="text-md mb-10 leading-7">
+                    ქართული ღვინო 8000 წლისაა
+                  </p>
+                  <div className="pl-8">
+                    <h4 className="flex items-center gap-4 text-2xl mb-6">
+                      <span className="flex w-14 h-0.5 bg-white" />
+                      ქვევრის <br /> ღვინო
+                    </h4>
+                    <p className="text-base leading-8 max-w-md">
+                      ქვევრის ღვინის დაყენების უძველესი ქართული ტრადიციული
+                      მეთოდი იუნესკოს არამატერიალური კულტურული მემკვიდრეობის
+                      წარმომადგენლობით სიაშია შეტანილი.
+                    </p>
+                  </div>
+                </motion.div>
+                {/* მარჯვენა სვეტი - ტექსტი */}
+                <motion.div
+                  className="w-1/3 text-white px-4 lg:pl-8"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+                >
+                  <div>
+                    <figure className="relative">
+                      <figcaption className="text-8xl font-semibold text-gray-300 opacity-25">
+                        03
+                      </figcaption>
+                      <p className="absolute bottom-5 left-14 flex items-center gap-4 text-red-500 text-base tracking-widest">
+                        <span className="w-14 h-0.5 bg-red-500" />
+                        აღმოაჩინე საქართველო
+                      </p>
+                    </figure>
+                  </div>
+                  <div className="pl-8">
+                    <h5 className="text-4xl font-bold mb-6">ღვინის აკვანი</h5>
+                    <p className="text-base mb-8 leading-8 max-w-md">
+                      8000 წლის წინ ქართველებმა უკვე იცოდნენ ქვევრის უნიკალური
+                      ტექნოლოგია, რომელიც დღეს მსოფლიოს ერთ-ერთ მოწინავე მეთოდად
+                      იქცა. თიხისა და ვაზის ასეთი ხანგრძლივი და ჰარომონიული
+                      თანაცხოვრება ადასტურებს თუ რამდენად საინტერესო და
+                      გამორჩეულია ქართული ღვინის გზა.
+                    </p>
+                    <button className="border border-red-500 px-8 py-2 rounded-md text-red-500 text-base transition-all duration-300 ease-in-out hover:text-white hover:border-white cursor-pointer">
+                      გაიგე მეტი
+                    </button>
+                  </div>
+                </motion.div>
+              </div>
+              {/* Mobile Layout */}
+              <div className="flex lg:hidden flex-col items-center gap-6 w-full px-4 sm:px-8">
+                {/* სურათი და მის გვერდით ტექსტი */}
+                <div className="flex flex-col sm:flex-row items-center justify-center sm:items-center gap-4 sm:gap-6 w-full">
+                  <motion.div
+                    className="w-full sm:w-1/2 max-w-[150px] sm:max-w-[200px]"
+                    initial={{ y: "100%", opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                  >
+                    <Image
+                      src={sections[3].image || "/flags/doqi.png"}
+                      alt="Section 03 Image"
+                      width={150}
+                      height={150}
+                      className="w-full h-auto object-cover rounded-lg"
+                      sizes="(max-width: 640px) 75vw, 200px"
+                    />
+                  </motion.div>
+                  <motion.div
+                    className="w-full sm:w-1/2 text-white text-center sm:text-left"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+                  >
+                    <h3 className="flex items-center justify-center sm:justify-start gap-4 text-lg sm:text-xl mb-4 tracking-widest">
+                      <span className="flex w-10 h-0.5 bg-white" />
+                      კულტურული მემკვიდრეობა
+                    </h3>
+                    <p className="text-xs sm:text-sm leading-6">
+                      ქართული ღვინო 8000 წლისაა
+                    </p>
+                  </motion.div>
+                </div>
+                {/* ქვევრის ღვინის სექცია */}
+                <motion.div
+                  className="w-full text-white text-center sm:text-left flex flex-col items-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+                >
+                  <h4 className="flex items-center justify-center sm:justify-start gap-4 text-base sm:text-lg mb-4">
+                    <span className="flex w-10 h-0.5 bg-white" />
+                    ქვევრის ღვინო
+                  </h4>
+                  <p className="text-xs sm:text-sm leading-6 max-w-[520px] mx-auto sm:mx-0">
+                    ქვევრის ღვინის დაყენების უძველესი ქართული ტრადიციული მეთოდი
+                    იუნესკოს არამატერიალური კულტურული მემკვიდრეობის
+                    წარმომადგენლობით სიაშია შეტანილი.
+                  </p>
+                </motion.div>
+                {/* ღვინის აკვანის სექცია */}
+                <motion.div
+                  className="w-full text-white text-center sm:text-left flex flex-col items-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+                >
+                  <div className="relative mb-4">
+                    <figcaption className="text-4xl sm:text-5xl font-semibold text-gray-300 opacity-25 text-center sm:text-left">
+                      03
+                    </figcaption>
+                    <p className="absolute bottom-2 sm:bottom-3 left-0 sm:left-10 flex items-center justify-center sm:justify-start gap-4 text-red-500 text-xs tracking-widest">
+                      <span className="w-10 h-0.5 bg-red-500" />
+                      აღმოაჩინე საქართველო
+                    </p>
+                  </div>
+                  <h5 className="text-lg sm:text-xl font-bold mb-4">
+                    ღვინის აკვანი
+                  </h5>
+                  <p className="text-xs sm:text-sm leading-6 mb-4 max-w-[520px] mx-auto sm:mx-0">
+                    8000 წლის წინ ცქართველებმა უკვე იცოდნენ ქვევრის უნიკალური
+                    ტექნოლოგია, რომელიც დღეს მსოფლიოს ერთ-ერთ მოწინავე მეთოდად
+                    იქცა. თიხისა და ვაზის.
+                  </p>
+                  <button className="border border-red-500 px-4 sm:px-6 py-2 rounded-md text-red-500 text-xs transition-all duration-300 ease-in-out hover:text-white hover:border-white cursor-pointer">
+                    გაიგე მეტი
+                  </button>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        )}
         {/* Start სექციის ცენტრირებული ტექსტი */}
         {activeSection === 0 && (
           <motion.div
@@ -359,7 +527,8 @@ const Page: React.FC = () => {
               delay: 0.5,
             }}
           >
-            რატომ <br />
+            რატომ
+            <br />
             საქართველო
           </motion.div>
         )}
@@ -372,7 +541,7 @@ const Page: React.FC = () => {
             transition={{ duration: 1, ease: "easeOut" }}
           />
         )}
-        {/* ვერტიკალური ნავიგაცია */}
+        {/* ვერტიკალური נסיעות */}
         <motion.div
           className="absolute top-1/2 transform -translate-y-1/2 flex flex-col justify-center items-center z-50 select-none vertical-nav"
           initial={{ opacity: 0, x: 20 }}
