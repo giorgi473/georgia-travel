@@ -7,21 +7,11 @@ import { Swiper as SwiperType } from "swiper";
 import Image from "next/image";
 import "swiper/css";
 import "./why-georgia.css";
-
-interface Section {
-  id: string;
-  content: string;
-  image?: string;
-  image1?: string;
-  image2?: string;
-  image3?: string;
-  title?: string;
-  description?: string;
-  buttonText?: string;
-  section02Images?: { src: string; alt: string; text: string }[];
-}
+import { sections } from "@/constants/data/data";
+import { useRouter } from "next/navigation";
 
 const Page: React.FC = () => {
+  const router = useRouter();
   const contentRef = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<SwiperType | null>(null);
   const section02SwiperRef = useRef<SwiperType | null>(null);
@@ -59,46 +49,9 @@ const Page: React.FC = () => {
     }
   };
 
-  const sections: Section[] = [
-    {
-      id: "start",
-      content: "აქ არის Start სექცია",
-      image1: "/flags/image1.webp",
-      image2: "/flags/image2.webp",
-      image3: "/flags/clouds.webp",
-    },
-    {
-      id: "section-01",
-      content: "აქ არის 01 სექცია",
-      image1: "/flags/image2.webp",
-      image2: "/flags/image3.webp",
-      image3: "/flags/clouds.webp",
-      title: "საქართველოს \n გეოგრაფია",
-      description:
-        "საქართველო ევროპისა და აზიის გზაგასაყარზე, კავკასიაში, შავი ზღვის სანაპიროზე მდებარეობს. ის საუკუნეების განმავლობაში ასრულებდა ცივილიზაციების დამაკავშირებელ ფუნქციას და სწორედ აქ გადიოდა „აბრეშუმის გზაც“ - მსოფლიოს უმსხვილესი სავაჭრო არტერია.",
-      buttonText: "გაიგე მეტი",
-    },
-    {
-      id: "section-02",
-      content: "აქ არის 02 სექცია",
-      section02Images: [
-        { src: "/flags/spring.webp", alt: "Slide 1", text: "გაზაფხული" },
-        { src: "/flags/summer.webp", alt: "Slide 2", text: "ზაფხული" },
-        { src: "/flags/autumn.webp", alt: "Slide 4", text: "შემოდგომა" },
-        { src: "/flags/winter.webp", alt: "Slide 3", text: "ზამთარი" },
-      ],
-    },
-    {
-      id: "section-03",
-      content: "აქ არის 03 სექცია",
-      image: "/flags/doqi.png",
-    },
-    {
-      id: "section-04",
-      content: "აქ არის 04 სექცია",
-      image: "/flags/image2.webp",
-    },
-  ];
+  const handleClickRoute = () => {
+    router.push(`geography-of-georgia`);
+  };
 
   return (
     <>
@@ -176,12 +129,13 @@ const Page: React.FC = () => {
                     {sections[1].description}
                   </p>
                   <motion.button
-                    className="custom-button text-red-500 text-xs md:text-sm lg:text-base font-semibold border border-red-400 rounded-lg px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-3 w-fit bg-transparent hover:text-white hover:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-300 transition-all duration-300"
+                    className="custom-button text-red-500 text-xs cursor-pointer md:text-sm lg:text-base font-semibold border border-red-400 rounded-lg px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-3 w-fit bg-transparent hover:text-white hover:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-300 transition-all duration-300"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
+                    onClick={() => handleClickRoute()}
                   >
                     {sections[1].buttonText}
                   </motion.button>
@@ -543,8 +497,8 @@ const Page: React.FC = () => {
         )}
         {/* ვერტიკალური נסיעות */}
         <motion.div
-          className="absolute top-1/2 transform -translate-y-1/2 flex flex-col justify-center items-center z-50 select-none vertical-nav"
-          initial={{ opacity: 0, x: 20 }}
+          className="absolute top-1/2 transform -translate-y-1/2 flex flex-col justify-center items-center z-40 select-none vertical-nav"
+          initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
@@ -565,10 +519,10 @@ const Page: React.FC = () => {
           ))}
         </motion.div>
         <motion.div
-          className="absolute top-1/2 transform -translate-y-1/2 w-0.5 bg-gray-300 z-50 vertical-nav-line"
-          initial={{ opacity: 0, x: 20 }}
+          className="absolute top-1/2 transform -translate-y-1/2 z-40"
+          initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ duration: 2, ease: "easeOut" }}
         />
         <div ref={contentRef} className="content-container">
           {sections.map((section) => (
