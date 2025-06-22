@@ -293,8 +293,11 @@ const Page: React.FC = () => {
                   }
                   return null;
                 })}
-                <button className="bg-red-400 py-1.5 hidden lg:block rounded-md px-4 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer hover:text-white hover:bg-red-600">
-                  გადასვლა
+                <button
+                  onClick={() => router.push(`seasen-georgia`)}
+                  className="bg-red-400 py-1.5 hidden lg:block rounded-md px-4 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer hover:text-white hover:bg-red-600"
+                >
+                  გაიგე მეტი
                 </button>
               </div>
             </div>
@@ -380,7 +383,10 @@ const Page: React.FC = () => {
                       თანაცხოვრება ადასტურებს თუ რამდენად საინტერესო და
                       გამორჩეულია ქართული ღვინის გზა.
                     </p>
-                    <button className="border border-red-500 px-8 py-2 rounded-md text-red-500 text-base transition-all duration-300 ease-in-out hover:text-white hover:border-white cursor-pointer">
+                    <button
+                      onClick={() => router.push(`georgia-cradle-wine`)}
+                      className="border border-red-500 px-8 py-2 rounded-md text-red-500 text-base transition-all duration-300 ease-in-out hover:text-white hover:border-white cursor-pointer"
+                    >
                       გაიგე მეტი
                     </button>
                   </div>

@@ -17,6 +17,7 @@ export default function CardPage({
   const card = cardSliderImages.find(
     (item) => item.title === decodeURIComponent(params.title)
   );
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (!card) {
