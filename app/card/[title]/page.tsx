@@ -28,7 +28,6 @@ export default function CardPage({
     setIsModalOpen(!isModalOpen);
   };
 
-  // Disable background scrolling when modal is open
   useEffect(() => {
     if (isModalOpen) {
       document.body.classList.add("overflow-hidden");

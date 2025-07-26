@@ -30,9 +30,10 @@ const Page: React.FC = () => {
 
   const handleScrollToSection = (title: string) => {
     const index = contentItems.findIndex((item) => item.title === title);
+
     if (index !== -1 && contentRefs.current[index]) {
       setActiveSection(title);
-      const offset = 120; // Offset to account for sticky sidebar (top-30 = 120px)
+      const offset = 120;
       const elementPosition =
         contentRefs.current[index]!.getBoundingClientRect().top +
         window.scrollY;
