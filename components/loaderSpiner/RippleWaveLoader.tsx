@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export function RippleWaveLoader() {
   return (
-    <div className="flex items-center justify-center space-x-1">
+    <div className="flex items-center justify-center space-x-1 min-h-screen">
       {[...Array(7)].map((_, index) => (
         <motion.div
           key={index}
