@@ -10,6 +10,7 @@ import DestinationCard from "./DestinationCard";
 import HeroSection from "./HeroSection";
 import PopularDestinationsSection from "./PopularDestinationsSection";
 import HotelGallerySection from "./HotelGallerySection";
+import FeaturedServicesCarousel from "./FeaturedServicesCarousel";
 
 interface SmallImage {
   src: string;
@@ -27,13 +28,11 @@ interface Place {
     images: SmallImage[];
   };
 }
-
 function PlacesPage() {
   const router = useRouter();
   const places: Place[] = [
     {
-      image:
-        "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=",
+      image: `/space/backImage.webp`,
       title: "ადგილმდებარეობები საქართველოში",
       description:
         "აქ ნახავ თოვლიან მთებს, შავი ზღვის სანაპიროებს, აღმოაჩენ უძველეს არქიტექტურულ ძეგლებსა და თანამედროვე, ურბანულ სანახაობებს - ეს მრავალფეროვანი პეიზაჟები და უდიდესი ისტორიის მქონე კულტურა 11 რეგიონსა და სხვადასხვა უნიკალურ ქალაქშია თავმოყრილი, სადაც უამრავ საინტერესო და განსხვავებულ ადგილს შეგიძლია ესტუმრო.",
@@ -43,24 +42,24 @@ function PlacesPage() {
           "ჩრდილოეთით - კავკასიონი, დასავლეთით - შავი ზღვა, სამხრეთით - მთები, აღმოსავლეთით კი გაშლილი ველ-მინდვრები, მdinarეები, ჩანჩქერები, ულამაზესი ხეობები, ტბები, მღვიმეები, გამოქვაბულები და იდუმალი ტყეები. ეს საქართველოა, ულამაზესი და უძველესი ქვეყანა დედამიწაზე, სადაც წელიწადის ნებისმიერ დროს შეძლებ შენთვის საინტერესო მოგზაურობა ექსტრემალური ტურებითა თუ მსუბუქი სათავგადასავლო დასვენებით დაგეგმო.",
         images: [
           {
-            src: "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=",
+            src: "/space/gnta.webp",
             alt: "Small Image 1",
-            title: "კავკასიონის მთები",
+            title: "ბახმარო",
           },
           {
-            src: "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=",
+            src: "/space/mestia.webp",
             alt: "Small Image 2",
-            title: "შავი ზღვის სანაპირო",
+            title: "მესტია",
           },
           {
-            src: "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=",
+            src: "/space/gudauri.webp",
             alt: "Small Image 3",
-            title: "უძველესი ძეგლები",
+            title: "გუდაური",
           },
           {
-            src: "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=",
+            src: "/space/bakuriani.webp",
             alt: "Small Image 4",
-            title: "თანამედროვე ქალაქები",
+            title: "ბაკურიანი",
           },
         ],
       },
@@ -79,7 +78,7 @@ function PlacesPage() {
     <div className="m-0 p-0 min-h-screen">
       {places.map((place, index) => (
         <div key={index}>
-          <div className="relative w-full h-[100vh] sm:h-[100vh] md:h-[100vh] lg:h-screen">
+          <div className="relative w-full h-[100vh] sm:h-[100vh] md:h-[100vh] lg:h-screen mb-[50px]">
             <Image
               src={place.image}
               alt={place.title}
@@ -153,7 +152,7 @@ function PlacesPage() {
           </section>
           <section className="mb-[120px]">
             <HeroSection
-              imageUrl="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8="
+              imageUrl="/space/back-batumi.webp"
               title="აი, ამიტომ უნდა ესტუმრო ბათუმს"
               description="აქაური სუბტროპიკული კლიმატი, ეკოლოგიურად სუფთა ზღვა, მთები და კარგად განვითარებულ ტურისტული ინფრასტრუქტურა წელიწადის ნებისმიერ დროს გამორჩეულად გიმასპინძლებს და ენერგიის სრულ აღდგენაში დაგეხმარება."
               buttonText="გაიგე მეტი"
@@ -169,6 +168,9 @@ function PlacesPage() {
           </section>
           <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-[120px]">
             <HotelGallerySection />
+          </section>
+          <section>
+            <FeaturedServicesCarousel />
           </section>
         </div>
       ))}

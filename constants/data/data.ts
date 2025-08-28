@@ -378,3 +378,87 @@ export const navItems: NavItem[] = [
     ],
   },
 ];
+
+// space page
+
+export interface ServiceItem {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+}
+
+export const servicesData: ServiceItem[] = [
+  {
+    id: 1,
+    title: "კრაფტ ჰაუსი",
+    description: "ღვინო და გასტრონომია",
+    image: "/space/craft.webp",
+  },
+  {
+    id: 2,
+    title: "ტაბერნე გურიაში-აცანა",
+    description: "ღვნო და გასწორისოთნია",
+    image: "/space/acana.webp",
+  },
+  {
+    id: 3,
+    title: "სასტუმრო პანორამა ლისი",
+    description: "განთავსების ობიექტები",
+    image: "/space/lisi.webp",
+  },
+  {
+    id: 4,
+    title: "ლელო ინნ",
+    description: "განთავსების ობიექტები",
+    image: "/space/inn.webp",
+  },
+  {
+    id: 5,
+    title: "1740 სასტუმრო",
+    description: "განთავსების ობიექტები",
+    image: "/space/1740.webp",
+  },
+  {
+    id: 6,
+    title: "იპოდრუმი",
+    description: "განთავსების ობიექტები",
+    image: "/space/opodrumi.webp",
+  },
+  {
+    id: 7,
+    title: "ლუხუმიჩის მარანი",
+    description: "ღვინო და გასტრონომია",
+    image: "/space/mariani.webp",
+  },
+  {
+    id: 8,
+    title: "როშე დუდაური",
+    description: "განთავსების ობიექტები",
+    image: "/space/rose.webp",
+  },
+  {
+    id: 9,
+    title: "ვინერა კახეთი",
+    description: "ღვინო და გასტრონომია",
+    image: "/space/vineria.webp",
+  },
+  {
+    id: 10,
+    title: "მარანი ნატურალისტი",
+    description: "ღვინი და გასტრონომია",
+    image: "/space/marani.webp",
+  },
+  {
+    id: 11,
+    title: "სასტუმრო ლოპტი ბაკურიანში",
+    description: "განთავსების ობიექტები",
+    image: "/space/sastumro.webp",
+  },
+  {
+    id: 12,
+    title: "სასტუმრო თელა და მეღვინეობა მარელი",
+    description: "განთავსების ობიექტები",
+    image: "/space/mareli.webp",
+  },
+];

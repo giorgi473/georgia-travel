@@ -5,27 +5,27 @@ import React from "react";
 function DestinationCard() {
   const images = [
     {
-      src: "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=",
+      src: "/space/mtsketa.webp",
       alt: "აბგზანა-აბგზანა",
       title: "მცხეთა-მთიანეთი",
     },
     {
-      src: "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=",
+      src: "/space/imereti.webp",
       alt: "მთები 1",
       title: "იმერეთი",
     },
     {
-      src: "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=",
+      src: "/space/kaxeti.webp",
       alt: "მთები 2",
       title: "კახეთი",
     },
     {
-      src: "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=",
+      src: "/space/zemo-svaneti.webp",
       alt: "ჭაობი",
       title: "სამეგრელო-ზემო სვანეთი",
     },
     {
-      src: "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=",
+      src: "/space/kvemo-sva.webp",
       alt: "პატარა სურათი",
       title: "რაჭა-ლეჩხუმი და ქვემო სვანეთი",
     },
@@ -34,13 +34,10 @@ function DestinationCard() {
   return (
     <React.Fragment>
       <h1 className="flex items-center justify-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium mb-8 sm:mb-12 md:mb-16 lg:mb-20 px-4 text-center">
-        და განსაკუთრებული ადგილები
+        აქ აუცილებლად უნდა იმოგზაურო
       </h1>
-
-      {/* Desktop layout (lg and above) */}
       <div className="hidden lg:block">
         <div className="grid grid-cols-3 gap-6">
-          {/* მარცხნივ განიერი სურათი */}
           <div className="col-span-1 relative h-[400px] overflow-hidden rounded-lg cursor-pointer">
             <motion.div
               className="relative h-full rounded-lg"
@@ -58,7 +55,6 @@ function DestinationCard() {
               <h2 className="text-2xl font-bold">{images[0].title}</h2>
             </div>
           </div>
-          {/* მარჯვნივ ორი თანაბარი სურათი */}
           <div className="col-span-2 grid grid-cols-2 gap-6">
             <div className="relative h-[400px] overflow-hidden rounded-lg cursor-pointer">
               <motion.div
@@ -95,7 +91,6 @@ function DestinationCard() {
               </div>
             </div>
           </div>
-          {/* ქვემოთ განიერი და პატარა სურათი */}
           <div className="col-span-3 grid grid-cols-3 gap-6 mt-4">
             <div className="col-span-2 relative h-[400px] overflow-hidden rounded-lg cursor-pointer">
               <motion.div
@@ -134,8 +129,6 @@ function DestinationCard() {
           </div>
         </div>
       </div>
-
-      {/* Tablet layout (md to lg) */}
       <div className="hidden md:block lg:hidden">
         <div className="grid grid-cols-2 gap-4">
           {images.map((image, index) => (
@@ -164,8 +157,6 @@ function DestinationCard() {
           ))}
         </div>
       </div>
-
-      {/* Mobile layout */}
       <div className="block md:hidden">
         <div className="space-y-4">
           {images.map((image, index) => (
