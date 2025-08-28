@@ -1,7 +1,13 @@
-import React from "react";
+import PlacesPage from "./_components/PlacesPage";
 
 function page() {
-  return <div>page</div>;
+  return (
+    <div>
+      <section className="mb-[100px]">
+        <PlacesPage />
+      </section>
+    </div>
+  );
 }
 
 export default page;

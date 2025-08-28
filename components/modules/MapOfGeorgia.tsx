@@ -83,7 +83,7 @@ const MapOfGeorgia: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 sm:px-8 md:px-12">
+    <div className="container mx-auto px-4 sm:px-8 md:px-7">
       <h2 className="max-w-[630px] text-3xl sm:text-4xl font-semibold md:text-5xl pb-12 md:pb-[110px] text-gray-800">
         <TextAnimate animation="blurInUp" by="character">
           ესტუმრე 11 რეგიონს და სხვადასხვა უნიკალურ ქალაქს
@@ -120,7 +120,7 @@ const MapOfGeorgia: React.FC = () => {
                     onClick={() => handleImageClick(image.region)}
                   />
                 </div>
-                <div className="px-8 py-5 bg-white rounded-b-lg">
+                <div className="px-8 py-5 bg-gray-50 rounded-b-lg">
                   {image.title.map((titleItem) => (
                     <div key={titleItem.id}>
                       <h3 className="text-2xl font-semibold text-gray-800 mb-2">
@@ -165,7 +165,7 @@ const MapOfGeorgia: React.FC = () => {
             <ArrowBigRightDash size={20} className="text-red-500" />
           </div>
         </div>
-        <div className="w-full md:w-1/2 relative mt-8 lg:mt-0">
+        <div className="w-full md:w-1/2 relative mt-10 lg:mt-24">
           <svg
             ref={svgRef}
             viewBox="0 0 900 500"
