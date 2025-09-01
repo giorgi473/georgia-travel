@@ -13,19 +13,19 @@ import VineCard from "@/components/modules/VineCard";
 
 export default function Home() {
   return (
-    <div>
-      <div className="mb-[120px]">
+    <>
+      <section className="mb-[120px]">
         <SwiperSliderImage />
-      </div>
-      <div className="mb-[120px]">
+      </section>
+      <section className="mb-[120px]">
         <CardSwiperSlider />
-      </div>
-      <div className="mb-[120px]">
+      </section>
+      <section className="mb-[120px]">
         <MapOfGeorgia />
-      </div>
-      <div className="mb-[120px]">
+      </section>
+      <section className="mb-[120px]">
         <CardSections />
-      </div>
+      </section>
       <section className="mb-[120px]">
         <DishesCard />
       </section>
@@ -51,6 +51,6 @@ export default function Home() {
       <section className="mb-[120px]">
         <GeorgiaTravelMoments />
       </section>
-    </div>
+    </>
   );
 }

@@ -90,7 +90,7 @@ function Header() {
   return (
     <motion.header
       ref={headerRef}
-      className="fixed top-0 w-full z-50 transition-all duration-300 shadow"
+      className="fixed top-0 w-full z-[1000] transition-all duration-300 shadow"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false);

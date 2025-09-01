@@ -1,7 +1,10 @@
+import HeroSection from "@/components/HeroSection";
 import Carusel from "./_components/Carusel";
 import GeorgianAttractionsGrid from "./_components/GeorgianAttractionsGrid";
 import HotelGallerySection from "./_components/hottel-gallery-section";
 import TextSection from "./_components/TextSection";
+import SwiperSlideCard from "@/components/SwipwrSlideSights";
+import { GeorgianMap } from "./_components/Georgian-map";
 
 const georgianPlaces = [
   {
@@ -90,7 +93,7 @@ function page() {
   ];
 
   return (
-    <div>
+    <>
       <section className="mb-[80px]">
         <TextSection
           title="სანახაობები"
@@ -110,14 +113,28 @@ function page() {
           galleryData={galleryData}
         />
       </section>
-      <section>
+      <section className="mb-[80px]">
         <Carusel
           title="აღმოაჩინე საუკეთესო ადგილები საქართველოში"
           viewAllText="ყველას ნახვა"
           places={georgianPlaces}
         />
       </section>
-    </div>
+      <section className="mb-[80px]">
+        <HeroSection
+          imageUrl="/sights/lake.webp"
+          title="აი, ამიტომ უნდა ესტუმრო ბათუმს"
+          description="აქაური სუბტროპიკული კლიმატი, ეკოლოგიურად სუფთა ზღვა, მთები და კარგად განვითარებულ ტურისტული ინფრასტრუქტურა წელიწადის ნებისმიერ დროს გამორჩეულად გიმასპინძლებს და ენერგიის სრულ აღდგენაში დაგეხმარება."
+          buttonText="გაიგე მეტი"
+        />
+      </section>
+      <section className="mb-[100px]">
+        <SwiperSlideCard />
+      </section>
+      <section className="mb-[100px]">
+        <GeorgianMap />
+      </section>
+    </>
   );
 }
 

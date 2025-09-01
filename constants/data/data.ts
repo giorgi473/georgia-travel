@@ -271,7 +271,12 @@ export const navItems: NavItem[] = [
       },
       {
         title: "რეგიონები",
-        items: [],
+        items: [
+          {
+            text: "sdsd",
+            href: "",
+          },
+        ],
       },
     ],
   },
