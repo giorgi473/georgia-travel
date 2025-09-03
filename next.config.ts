@@ -5,7 +5,11 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "media.istockphoto.com",
+        hostname: "cdn-icons-png.flaticon.com",
+        protocol: "https",
+      },
+      {
+        hostname: "storage.georgia.travel",
         protocol: "https",
       },
     ],
