@@ -14,6 +14,10 @@ export default function Sidebar() {
       href: "/info/local-vehicle-rental",
       label: "ადგილობრივი ტრანსპორტის გაქირავება",
     },
+    {
+      href: "/info/weather-local-climate",
+      label: "ამინდი და ადგილობრივი კლიმატი",
+    },
   ];
 
   const isActive = (href: string) => {

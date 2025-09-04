@@ -14,7 +14,7 @@ export function HeroSection({
   overlay = "bg-black/30",
 }: HeroSectionProps) {
   return (
-    <section className="relative w-full h-[500px] overflow-hidden">
+    <section className="relative w-full h-[500px] overflow-hidden select-none">
       <Image
         src={image || "/placeholder.svg"}
         alt={title}
