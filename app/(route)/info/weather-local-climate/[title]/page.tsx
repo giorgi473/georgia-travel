@@ -2,14 +2,14 @@
 
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import { services } from "@/constants/data/data";
+import { climateData } from "@/constants/data/data";
 
 function DetailsPage() {
   const { title } = useParams();
   const decodedTitle = decodeURIComponent(title as string);
 
-  const currentService = services.find(
-    (service) => service.title === decodedTitle
+  const currentService = climateData.find(
+    (climate) => climate.title === decodedTitle
   );
 
   return (
@@ -40,16 +40,17 @@ function DetailsPage() {
                   <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-5">
                     {info.title}
                   </h3>
-                  <div className="text-gray-600 text-sm sm:text-base space-y-4">
+                  <div className="space-y-4 mb-8 text-sm sm:text-base text-gray-600">
                     {info.additionalDescription
                       .split("\n\n")
-                      .map((paragraph, idx) => (
+                      .map((paragraph, index) => (
                         <p
-                          key={idx}
-                          className="text-gray-600 text-sm sm:text-base"
-                        >
-                          {paragraph.trim()}
-                        </p>
+                          key={index}
+                          className="text-sm sm:text-base text-gray-600"
+                          dangerouslySetInnerHTML={{
+                            __html: paragraph.trim(),
+                          }}
+                        />
                       ))}
                   </div>
                 </div>

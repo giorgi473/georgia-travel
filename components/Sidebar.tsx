@@ -18,17 +18,29 @@ export default function Sidebar() {
       href: "/info/weather-local-climate",
       label: "ამინდი და ადგილობრივი კლიმატი",
     },
+    {
+      href: "/info/frequently-asked-questions",
+      label: "ხშირად დასმული კითხვები",
+    },
   ];
 
   const isActive = (href: string) => {
+    // Exact match takes precedence
+    if (pathname === href) {
+      return true;
+    }
+    // For /info, active if pathname is /info or a subpath not matching other navItems
     if (href === "/info") {
       return (
         pathname === "/info" ||
         (pathname.startsWith("/info/") &&
-          !navItems.slice(1).some((item) => pathname === item.href))
+          !navItems.some(
+            (item) => item.href !== "/info" && pathname.startsWith(item.href)
+          ))
       );
     }
-    return pathname === href;
+    // For other routes, active if pathname starts with href
+    return pathname.startsWith(href);
   };
 
   return (
