@@ -314,13 +314,20 @@ function Header() {
                             </div>
                           )}
                           {column.items.map((item, textIndex) => (
-                            <Link
-                              key={textIndex}
-                              href={item.href}
-                              className="text-sm font-semibold block hover:text-red-500 py-2 w-[230px]"
-                            >
-                              {item.text}
-                            </Link>
+                            <div key={textIndex}>
+                              {item.renderComponent ? (
+                                <div className="mb-2 w-full">
+                                  {item.renderComponent()}
+                                </div>
+                              ) : (
+                                <Link
+                                  href={item.href}
+                                  className="text-sm font-semibold block hover:text-red-500  w-[230px]"
+                                >
+                                  {item.text}
+                                </Link>
+                              )}
+                            </div>
                           ))}
                         </div>
                       ))}
@@ -388,14 +395,27 @@ function Header() {
             setUnderlineStyle({ width: 0, left: 0 });
           }}
         >
-          <div className="grid grid-cols-4 gap-4 container mx-auto w-full px-10">
+          <div
+            className={`${
+              hoveredItem === "ადგილები"
+                ? "grid grid-cols-[1fr_1fr_2fr] gap-2"
+                : "grid grid-cols-4 gap-4"
+            } container mx-auto w-full px-8`}
+          >
             {getColumnTexts(
               navItems.find(
                 (item) =>
                   item.name === hoveredItem || item.natureName === hoveredItem
               )?.details
             ).map((column, colIndex) => (
-              <div key={colIndex} className="text-gray-500">
+              <div
+                key={colIndex}
+                className={`text-gray-500 ${
+                  hoveredItem === "ადგილები" && colIndex === 2
+                    ? "col-span-1"
+                    : ""
+                }`}
+              >
                 <h3 className="text-md font-bold text-black mb-3">
                   {column.title}
                 </h3>
@@ -462,13 +482,18 @@ function Header() {
                   </div>
                 )}
                 {column.items.map((item, textIndex) => (
-                  <Link
-                    key={textIndex}
-                    href={item.href}
-                    className="text-sm font-semibold block hover:text-red-500 py-2 w-[230px]"
-                  >
-                    {item.text}
-                  </Link>
+                  <div key={textIndex}>
+                    {item.renderComponent ? (
+                      <div className="mb-2">{item.renderComponent()}</div>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className="text-sm font-semibold block hover:text-red-500 py-2 w-[230px]"
+                      >
+                        {item.text}
+                      </Link>
+                    )}
+                  </div>
                 ))}
               </div>
             ))}

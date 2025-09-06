@@ -1,8 +1,14 @@
+import GeorgianMap from "@/components/GeorgianMap";
+
 export interface NavItemDetail {
   title: string;
   image?: string;
   images?: string[];
-  items: { text: string; href: string }[];
+  items: {
+    text: string;
+    href: string;
+    renderComponent?: () => React.ReactNode;
+  }[];
 }
 
 export interface NavItem {
@@ -248,13 +254,16 @@ export const navItems: NavItem[] = [
       {
         title: "ტოპ რეგიონები",
         items: [
-          { text: "კახეთი", href: "/places/tbilisi" },
-          { text: "იმერეთი", href: "/places/batumi" },
-          { text: "აჭარა", href: "/places/kutaisi" },
-          { text: "მცხეთა-მთიანეთი", href: "/places/signagi" },
-          { text: "რაჭა-ლეჩხუმი და ქვემო სვანეთი", href: "/places/mestia" },
-          { text: "შიდა ქართლი", href: "/places/gudauri" },
-          { text: "სამეგრელო-ზემო სვანეთი", href: "/places/gudauri" },
+          { text: "კახეთი", href: "/region/კახეთი" },
+          { text: "იმერეთი", href: "/region/იმერეთი" },
+          { text: "აჭარა", href: "/region/აჭარა" },
+          { text: "მცხეთა-მთიანეთი", href: "/region/მცხეთა-მთიანეთი" },
+          { text: "რაჭა-ლეჩხუმი და ქვემო სვანეთი", href: "/region/რაჭა" },
+          { text: "შიდა ქართლი", href: "/region/შიდა%20ქართლი" },
+          {
+            text: "სამეგრელო-ზემო სვანეთი",
+            href: "/region/სამეგრელო-ზემო%20სვანეთი",
+          },
         ],
       },
       {
@@ -275,6 +284,7 @@ export const navItems: NavItem[] = [
           {
             text: "sdsd",
             href: "",
+            renderComponent: () => <GeorgianMap />,
           },
         ],
       },
@@ -356,15 +366,21 @@ export const navItems: NavItem[] = [
       {
         title: "",
         items: [
-          { text: "საქართველოში ვიზიტი", href: "/info/visa" },
-          { text: "ადგილობრივი ტრანსპორტი", href: "/info/transport" },
-          { text: "რეგიონალური ტრანსპორტი", href: "/info/hotels" },
+          { text: "საქართველოში ვიზიტი", href: "/info" },
+          { text: "ადგილობრივი ტრანსპორტი", href: "/info/local-transport" },
+          { text: "რეგიონალური ტრანსპორტი", href: "/info/regional-transport" },
           {
             text: "ადგილობრივი ტრანსპორტის გაქირავება",
-            href: "/info/budget",
+            href: "/info/local-vehicle-rental",
           },
-          { text: "ამინდი და ადგილობრივი კლიმატი", href: "/info/health" },
-          { text: "ხშირად დასმული კითხვები", href: "/info/contact" },
+          {
+            text: "ამინდი და ადგილობრივი კლიმატი",
+            href: "/info/weather-local-climate",
+          },
+          {
+            text: "ხშირად დასმული კითხვები",
+            href: "/info/frequently-asked-questions",
+          },
         ],
       },
       {
