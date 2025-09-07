@@ -94,11 +94,12 @@ function page() {
 
   return (
     <>
-      <section className="mb-[80px]">
+      <section className="mb-[40px]">
         <TextSection
           title="სანახაობები"
           description="საქართველო განსაკუთრებული ქვეყანაა, რომელიც განთქმულია გეოგრაფიული და ბიოლოგიური მრავალფეროვნებით, მდიდარია ფლორისა და ფაუნის თვალსაზრისით და მიუხედავად ტერიტორიის სიმცირისა, აქ გავრცელებულია დედამიწის ზედაპირზე არსებული ჰავის თითქმის ყველა ტიპი."
           buttonText="აღმოაჩინე შენი თავგადასავალი"
+          image="/sights/lake.webp"
         />
       </section>
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-[100px]">

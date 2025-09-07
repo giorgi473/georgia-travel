@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+interface GeorgianMapProps {
+  activeRegion: string | null;
+}
 
-const GeorgianMap: React.FC = () => {
+const GeorgianMap: React.FC<GeorgianMapProps> = ({ activeRegion }) => {
   const router = useRouter();
 
   const svgRef = useRef<SVGSVGElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
-  const [activeRegion, setActiveRegion] = useState<string | null>(null);
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -30,13 +32,11 @@ const GeorgianMap: React.FC = () => {
           const region = target.getAttribute("data-title") || "";
           tooltip.textContent = region;
           tooltip.style.display = "block";
-          setActiveRegion(region);
         }
       };
 
       const handleMouseOut = () => {
         if (tooltip) tooltip.style.display = "none";
-        setActiveRegion(null);
       };
 
       svg.addEventListener("mousemove", handleMouseMove);

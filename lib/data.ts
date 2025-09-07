@@ -853,3 +853,30 @@ export const images: SlideImage[] = [
     ],
   },
 ];
+
+// sviper slide images array
+
+export const sliderImages: {
+  src: string;
+  title: string;
+  description: string;
+}[] = [
+  {
+    src: "/image/discover.webp",
+    title: "აღმოაჩინე საქართველო",
+    description:
+      "უძველესი კულტურის, ულამაზესი ბუნებისა და მრავალპეროვანი თავგადასავლების ქვეყანა!",
+  },
+  {
+    src: "/image/tbilisi.webp",
+    title: "თბილისი - საქართველოს დედაქალაქი",
+    description:
+      "აქ ნახავ უძველეს ეკლესიებს, ულამაზეს არქიტექტურას და თვალისმომჭრელი ხედებით დატკბები",
+  },
+  {
+    src: "/image/kaceti.webp",
+    title: "კახეთი - რეგიონი აღმოსავლეთ საქართველოში",
+    description:
+      "ალპურ ტბებს, მარადმწვანე ტყეებს და გამორჩეულ ციხე-კოშკებს აუცილებლად უნდა ესტუმრო",
+  },
+];

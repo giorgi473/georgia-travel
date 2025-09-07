@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import { sliderImages } from "@/lib/data";
+
 interface ThumbnailProps {
   src: string;
   index: number;
@@ -66,26 +68,6 @@ const SwiperSliderImage = forwardRef(() => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const swiperRef = useRef<SwiperRef>(null);
-  const sliderImages: { src: string; title: string; description: string }[] = [
-    {
-      src: "/image/discover.webp",
-      title: "აღმოაჩინე საქართველო",
-      description:
-        "უძველესი კულტურის, ულამაზესი ბუნებისა და მრავალპეროვანი თავგადასავლების ქვეყანა!",
-    },
-    {
-      src: "/image/tbilisi.webp",
-      title: "თბილისი - საქართველოს დედაქალაქი",
-      description:
-        "აქ ნახავ უძველეს ეკლესიებს, ულამაზეს არქიტექტურას და თვალისმომჭრელი ხედებით დატკბები",
-    },
-    {
-      src: "/image/kaceti.webp",
-      title: "კახეთი - რეგიონი აღმოსავლეთ საქართველოში",
-      description:
-        "ალპურ ტბებს, მარადმწვანე ტყეებს და გამორჩეულ ციხე-კოშკებს აუცილებლად უნდა ესტუმრო",
-    },
-  ];
 
   const handleThumbnailClick = (index: number, pause: boolean) => {
     if (swiperRef.current) {
@@ -128,6 +110,7 @@ const SwiperSliderImage = forwardRef(() => {
                 priority={index === 0}
                 quality={85}
               />
+              <div className="absolute inset-0 bg-black opacity-45"></div>
               <div className="absolute left-4 sm:left-8 md:left-20 lg:left-40 top-1/2 transform -translate-y-1/2 text-white text-left max-w-full sm:max-w-3xl md:max-w-5xl lg:max-w-5xl select-none">
                 <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl lg:pr-4 font-bold mb-4 sm:mb-6 md:mb-8 lg:mb-10 mt-0 sm:mt-12 md:mt-16 lg:mt-[100px]">
                   {item.title}

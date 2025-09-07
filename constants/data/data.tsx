@@ -258,7 +258,7 @@ export const navItems: NavItem[] = [
           { text: "იმერეთი", href: "/region/იმერეთი" },
           { text: "აჭარა", href: "/region/აჭარა" },
           { text: "მცხეთა-მთიანეთი", href: "/region/მცხეთა-მთიანეთი" },
-          { text: "რაჭა-ლეჩხუმი და ქვემო სვანეთი", href: "/region/რაჭა" },
+          { text: "რაჭა", href: "/region/რაჭა" },
           { text: "შიდა ქართლი", href: "/region/შიდა%20ქართლი" },
           {
             text: "სამეგრელო-ზემო სვანეთი",
@@ -284,7 +284,7 @@ export const navItems: NavItem[] = [
           {
             text: "sdsd",
             href: "",
-            renderComponent: () => <GeorgianMap />,
+            renderComponent: () => <GeorgianMap activeRegion={""} />,
           },
         ],
       },

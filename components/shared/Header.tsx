@@ -13,6 +13,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { NavItemDetail, navItems } from "@/constants/data/data";
+import GeorgianMap from "@/components/GeorgianMap";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,6 +22,7 @@ function Header() {
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isPanelHovered, setIsPanelHovered] = useState(false);
+  const [activeRegion, setActiveRegion] = useState<string | null>(null);
   const navRefs = useRef<(HTMLLIElement | null)[]>(Array(5).fill(null));
   const [underlineStyle, setUnderlineStyle] = useState<{
     width: number;
@@ -74,6 +76,7 @@ function Header() {
       if (!isPanelHovered) {
         setHoveredItem(null);
         setUnderlineStyle({ width: 0, left: 0 });
+        setActiveRegion(null);
       }
     }, 200);
   };
@@ -97,6 +100,7 @@ function Header() {
         setHoveredItem(null);
         setIsPanelHovered(false);
         setUnderlineStyle({ width: 0, left: 0 });
+        setActiveRegion(null);
       }}
       animate={{
         backgroundColor:
@@ -322,7 +326,17 @@ function Header() {
                               ) : (
                                 <Link
                                   href={item.href}
-                                  className="text-sm font-semibold block hover:text-red-500  w-[230px]"
+                                  className="text-sm font-semibold block hover:text-red-500 w-[230px]"
+                                  onMouseEnter={() => {
+                                    if (column.title === "ტოპ რეგიონები") {
+                                      setActiveRegion(item.text);
+                                    }
+                                  }}
+                                  onMouseLeave={() => {
+                                    if (column.title === "ტოპ რეგიონები") {
+                                      setActiveRegion(null);
+                                    }
+                                  }}
                                 >
                                   {item.text}
                                 </Link>
@@ -393,6 +407,7 @@ function Header() {
             setIsPanelHovered(false);
             setHoveredItem(null);
             setUnderlineStyle({ width: 0, left: 0 });
+            setActiveRegion(null);
           }}
         >
           <div
@@ -484,11 +499,27 @@ function Header() {
                 {column.items.map((item, textIndex) => (
                   <div key={textIndex}>
                     {item.renderComponent ? (
-                      <div className="mb-2">{item.renderComponent()}</div>
+                      <div className="mb-2">
+                        {hoveredItem === "ადგილები" && (
+                          <div className="col-span-1">
+                            <GeorgianMap activeRegion={activeRegion} />
+                          </div>
+                        )}
+                      </div>
                     ) : (
                       <Link
                         href={item.href}
                         className="text-sm font-semibold block hover:text-red-500 py-2 w-[230px]"
+                        onMouseEnter={() => {
+                          if (column.title === "ტოპ რეგიონები") {
+                            setActiveRegion(item.text);
+                          }
+                        }}
+                        onMouseLeave={() => {
+                          if (column.title === "ტოპ რეგიონები") {
+                            setActiveRegion(null);
+                          }
+                        }}
                       >
                         {item.text}
                       </Link>
