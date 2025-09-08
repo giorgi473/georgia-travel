@@ -1,9 +1,9 @@
 "use client";
 
-import { Button } from "../ui/button";
-import Image from "next/image";
-import { motion, useInView, useAnimation } from "framer-motion";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
+import { Button } from "../ui/button";
+import { motion, useInView, useAnimation } from "framer-motion";
 
 interface Array {
   image: string;
@@ -99,13 +99,13 @@ function DishesCard() {
             variants={containerVariants}
           >
             <motion.h2
-              className="font-semibold text-xl mb-2"
+              className="font-semibold text-md lg:text-xl mb-2"
               variants={textVariants}
             >
               აღმოაჩინე ქართული გასტრონომია
             </motion.h2>
             <motion.h3
-              className="text-2xl font-bold mb-4"
+              className="text-xl sm:text-3xl md:text-4xl lg:text-4xl font-semibold mb-4"
               variants={textVariants}
             >
               აქ ყველა კერძს <br /> დაუვიწყარი გემო აქვს
@@ -127,7 +127,7 @@ function DishesCard() {
             </motion.div>
           </motion.div>
           <motion.div
-            className="xl:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 gap-6"
+            className="xl:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 gap-5"
             variants={containerVariants}
           >
             {array.map((item, index) => (

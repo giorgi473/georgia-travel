@@ -1,31 +1,28 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import { Heart } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Heart } from "lucide-react";
-import Link from "next/link";
 import { cardSliderImages } from "@/lib/data";
 
 export default function CardSwiperSlider() {
   return (
     <>
-      <div className="max-w-7xl mx-auto px-4 lg:pr-8 lg:pl-10">
+      <div className="container mx-auto px-4 lg:pr-8 lg:pl-10">
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-2">
-            <h3 className="text-xs sm:text-md md:text-xl">
+            <h3 className="text-sm sm:text-lg md:text-xl font-semibold">
               აღმოაჩინე პოპულარული სანახაობები
             </h3>
-            <button className="text-red-500 font-semibold cursor-pointer select-none text-xs sm:text-base md:text-md">
-              ყველას ნახვა
-            </button>
           </div>
           <div className="flex gap-2">
             <button className="custom-prev-button cursor-pointer">
               <svg
-                className="w-5 h-5"
+                className="w-4 h-4 sm:w-5 sm:h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -40,7 +37,7 @@ export default function CardSwiperSlider() {
             </button>
             <button className="custom-next-button cursor-pointer">
               <svg
-                className="w-5 h-5"
+                className="w-4 h-4 sm:w-5 sm:h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -56,10 +53,10 @@ export default function CardSwiperSlider() {
           </div>
         </div>
       </div>
-      <div className="px-4 sm:px-4 md:px-6">
+      <div className="px-4">
         <Swiper
           modules={[Navigation]}
-          spaceBetween={35}
+          spaceBetween={20}
           slidesPerView={1}
           breakpoints={{
             640: { slidesPerView: 2 },

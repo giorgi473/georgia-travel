@@ -1,7 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
-import { TextAnimate } from "../magicui/text-animate";
-
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 interface CardSections {
   id: number;
   image: string;
@@ -42,18 +40,16 @@ function CardSections() {
   return (
     <div>
       <div className="container mx-auto w-full">
-        <div className="flex flex-col md:flex-col lg:flex-row items-center justify-between px-4 md:px-20 mb-10 md:mb-20">
-          <h1 className="text-3xl md:text-5xl font-semibold mb-4 md:mb-0 whitespace-pre-line">
+        <div className="flex flex-col md:flex-col lg:flex-row items-center justify-between px-5 sm:px-8 md:px-8 lg:pl-10 lg:pr-8 mb-10 md:mb-20">
+          <h1 className="text-xl w-full sm:text-3xl md:text-4xl mt-2 font-semibold mb-4 md:mb-5 whitespace-pre-line">
             {text}
           </h1>
-          <div className="w-full lg:w-1/2 text-gray-400 text-sm md:text-base">
-            <TextAnimate animation="slideLeft" by="character">
-              {description}
-            </TextAnimate>
+          <div className="w-full text-gray-400 text-sm md:text-base">
+            {description}
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4 md:px-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 px-4">
         {cardDescription.map((itemCard) => (
           <Card
             key={itemCard.id}

@@ -83,14 +83,12 @@ const MapOfGeorgia: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 sm:px-8 md:px-7">
-      <h2 className="max-w-[630px] text-3xl sm:text-4xl font-semibold md:text-5xl pb-12 md:pb-[110px] text-gray-800">
-        <TextAnimate animation="blurInUp" by="character">
-          ესტუმრე 11 რეგიონს და სხვადასხვა უნიკალურ ქალაქს
-        </TextAnimate>
+    <div className="container mx-auto px-4 sm:px-8 md:px-8 lg:px-10">
+      <h2 className="max-w-[630px] text-2xl sm:text-3xl font-semibold md:text-4xl pb-12 md:pb-[70px] text-gray-800">
+        ესტუმრე 11 რეგიონს და სხვადასხვა უნიკალურ ქალაქს
       </h2>
-      <div className="flex flex-col md:flex-row gap-10 items-center justify-center">
-        <div className="w-full md:w-1/2 rounded-lg relative select-none">
+      <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row gap-10 items-center justify-center">
+        <div className="w-full lg:w-1/2 rounded-lg relative select-none">
           <Swiper
             modules={[Navigation]}
             spaceBetween={10}
@@ -165,7 +163,7 @@ const MapOfGeorgia: React.FC = () => {
             <ArrowBigRightDash size={20} className="text-red-500" />
           </div>
         </div>
-        <div className="w-full md:w-1/2 relative mt-10 lg:mt-24">
+        <div className="w-full relative mt-10 lg:mt-24 ml-8 sm:ml-10 md:ml-12">
           <svg
             ref={svgRef}
             viewBox="0 0 900 500"

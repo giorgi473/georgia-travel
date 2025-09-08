@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView, useAnimation } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -161,16 +161,15 @@ function SlideCard() {
       animate={controls}
       className="mb-5 select-none"
     >
-      <div className="container mx-auto px-4 mb-10 select-none">
+      <div className="container mx-auto pl-6 pr-2 sm:pl-8 sm:pr-2 md:pl-8 md:pr-2 lg:pl-10 lg:pr-5 mb-5 select-none">
         <div className="flex items-center justify-between">
           <motion.div
             className="flex items-center gap-3"
             variants={textVariants}
           >
-            <h4 className="text-md font-semibold">მიმდინარე ღონისძიებები</h4>
-            <button className="text-md font-semibold text-red-500 cursor-pointer">
-              ყველას ნახვა
-            </button>
+            <h4 className="text-md font-semibold sm:text-lg md:text-xl lg:text-xl">
+              მიმდინარე ღონისძიებები
+            </h4>
           </motion.div>
           <motion.div
             variants={textVariants}
@@ -178,7 +177,7 @@ function SlideCard() {
           >
             <button className="swiper-button-prev custom-nav-button pt-6 text-black hover:text-gray-800 cursor-pointer">
               <svg
-                className="w-5 h-5"
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -194,7 +193,7 @@ function SlideCard() {
             </button>
             <button className="swiper-button-next custom-nav-button pt-6 text-black hover:text-gray-800 cursor-pointer">
               <svg
-                className="w-5 h-5"
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -218,7 +217,7 @@ function SlideCard() {
         <Swiper
           modules={[Navigation]}
           spaceBetween={10}
-          slidesPerView={1.2}
+          slidesPerView={1}
           breakpoints={{
             640: { slidesPerView: 2.2, spaceBetween: 15 },
             768: { slidesPerView: 3.2, spaceBetween: 20 },

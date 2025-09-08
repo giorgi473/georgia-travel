@@ -110,7 +110,7 @@ const SwiperSliderImage = forwardRef(() => {
                 priority={index === 0}
                 quality={85}
               />
-              <div className="absolute inset-0 bg-black opacity-45"></div>
+              <div className="absolute inset-0 bg-black opacity-50"></div>
               <div className="absolute left-4 sm:left-8 md:left-20 lg:left-40 top-1/2 transform -translate-y-1/2 text-white text-left max-w-full sm:max-w-3xl md:max-w-5xl lg:max-w-5xl select-none">
                 <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl lg:pr-4 font-bold mb-4 sm:mb-6 md:mb-8 lg:mb-10 mt-0 sm:mt-12 md:mt-16 lg:mt-[100px]">
                   {item.title}

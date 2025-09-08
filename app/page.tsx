@@ -1,15 +1,13 @@
-import Banner from "@/components/modules/Banner";
-import Blogs from "@/components/modules/Blogs";
+import SwiperSliderImage from "@/components/modules/SwiperSliderImage";
+import CardSwiperSlider from "@/components/CardSwiperSlider";
+import MapOfGeorgia from "@/components/modules/MapOfGeorgia";
 import CardSections from "@/components/modules/CardSections";
-import CardSwiperSlider from "@/components/modules/CardSwiperSlider";
 import DishesCard from "@/components/modules/DishesCard";
 import GeorgiaTravelMoments from "@/components/modules/GeorgiaTravelMoments";
 import Gzispar from "@/components/modules/Gzispar";
-import MapOfGeorgia from "@/components/modules/MapOfGeorgia";
+import Blogs from "@/components/modules/Blogs";
 import SlideCard from "@/components/modules/SlideCard";
 import SlideCardBottom from "@/components/modules/SlideCardBottom";
-import SwiperSliderImage from "@/components/modules/SwiperSliderImage";
-import VineCard from "@/components/modules/VineCard";
 
 export default function Home() {
   return (
@@ -20,7 +18,7 @@ export default function Home() {
       <section className="mb-[120px]">
         <CardSwiperSlider />
       </section>
-      <section className="mb-[120px]">
+      <section className="mb-[100px]">
         <MapOfGeorgia />
       </section>
       <section className="mb-[120px]">
@@ -30,25 +28,37 @@ export default function Home() {
         <DishesCard />
       </section>
       <section className="mb-[120px]">
-        <VineCard />
+        <Gzispar
+          imageSrc="/image/vine.webp"
+          title="გაგისინჯავს ქართული ღვინო?"
+          description="ღვინო პირველად 8000 წლის წინ, საქართველოში დააყენეს. ღვინის დამზადების მსოფლიოში არსებული ორი ტექნოლოგიიდან კი ერთი - ღვინის ქვევრში დაყენების ტექნოლოგია, სწორედ ქართულია."
+        />
       </section>
       <section className="mb-[120px]">
         <Blogs />
       </section>
       <section className="mb-[120px]">
-        <Gzispar />
+        <Gzispar
+          imageSrc="/cardImage/gza.jpg"
+          title="გასტრონომიული თავგადასავალი ოჯახურ მასპინძლებთან ერთად"
+          description="მზიკარი - აერთიანებს ქვეყნის მასშტაბით ოჯახურ მასპინძლებს, რომლებიც სთავაზობენ ადგილობრივ/რეგიონისთვის დამახასიათებელ გასტრონომიულ გამოცდილებას. ქართული მასპინძლობის ტრადიცია რომელიც ყველაზე საინტერესო გამოცდილებაა მოგზაურისთვის, არსად იგრძნობა ისე როგორც ოჯახურ გარემოში."
+        />
       </section>
       <section className="mb-[120px]">
         <SlideCard />
       </section>
       <section className="mb-[120px]">
-        <Banner />
+        <Gzispar
+          imageSrc="/cardImage/banner.jpg"
+          title="გასტრონომიული თავგადასავალი ოჯახურ მასპინძლებთან ერთად"
+          description="მზიკარი - აერთიანებს ქვეყნის მასშტაბით ოჯახურ მასპინძლებს, რომლებიც სთავაზობენ ადგილობრივ/რეგიონისთვის დამახასიათებელ გასტრონომიულ გამოცდილებას. ქართული მასპინძლობის ტრადიცია რომელიც ყველაზე საინტერესო გამოცდილებაა მოგზაურისთვის, არსად იგრძნობა ისე როგორც ოჯახურ გარემოში."
+        />
       </section>
       <section className="mb-[120px]">
         <SlideCardBottom />
       </section>
       <hr className="mb-[50px]" />
-      <section className="mb-[120px]">
+      <section className="mb-[100px]">
         <GeorgiaTravelMoments />
       </section>
     </>
