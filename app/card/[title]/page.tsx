@@ -17,6 +17,7 @@ import {
 import { Heart, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { cardSliderImages } from "@/lib/data";
+import { Map } from "@/components/Map";
 
 export default function CardPage({
   params: paramsPromise,
@@ -405,7 +406,11 @@ export default function CardPage({
           </Swiper>
         </div>
       </section>
-
+      <section>
+        <div className="px-5 lg:px-0">
+          <Map />
+        </div>
+      </section>
       <section>
         <div className="container mx-auto px-4 sm:px-8 md:px-8 lg:px-10">
           <div className="flex items-center justify-between gap-4 mb-5">
@@ -440,7 +445,7 @@ export default function CardPage({
                     <div className="absolute bottom-4 left-4 pointer-events-none">
                       <CardContent className="p-0">
                         <CardTitle
-                          className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-2 w-60 md:w-full lg:w-80"
+                          className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-2 w-60 md:w-full lg:w-80 line-clamp-2"
                           style={{
                             textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)",
                           }}
