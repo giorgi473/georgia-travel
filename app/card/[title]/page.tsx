@@ -142,7 +142,6 @@ export default function CardPage({
             </button>
           </div>
         </div>
-
         {isModalOpen && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
             <motion.div
@@ -303,7 +302,6 @@ export default function CardPage({
           </div>
         </div>
       </section>
-
       <section>
         <div className="container mx-auto pr-4 pl-5 sm:pr-5 sm:pl-8 md:pr-5 md:pl-8 lg:pr-7 lg:pl-10">
           <div className="flex items-center justify-between mb-5">
@@ -368,7 +366,6 @@ export default function CardPage({
               if (!item.src || item.src === "") {
                 return null;
               }
-
               return (
                 <SwiperSlide key={index}>
                   <Link

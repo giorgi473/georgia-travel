@@ -54,7 +54,7 @@ export interface Card {
   website: string;
   workingHours: WorkingHours;
   anotherSection: AnotherSection;
-  slideCard: SlideCard[];
+  slideCard?: SlideCard[];
   blogs: Blogs[];
 }
 
@@ -569,7 +569,7 @@ export const cardSliderImages: Card[] = [
     src: "/home/vardzia-gnta.webp",
     modalSrc: "/home/vardzia-gnta.webp",
     additionalDescription:
-      "სვანეთი ცნობილია თავისი უნიკალური კოშკებითა და მთიანი პეიზაჟებით.",
+      "რამდენჯერაც არ უნდა ესტუმრო საქართველოს, ეს ქვეყანა ყოველ ჯერზე თავიდან გაგაოცებს, მოგხიბლავს და დროში მოგზაურობას მოგანდომებს - საუკუნეების წინანდელი განუმეორებელი ძეგლები შენს წინ გადაშლის მთელ ისტორიას და მოგიყვება ამბებს, რომლებსაც სხვაგან ვერსად მოისმენ. სწორედ ერთ-ერთი ასეთი ქმნილებაა ვარძია - შუა საუკუნეების კლდის ხუროთმოძღვრების დიდებული ანსამბლი და ერთ-ერთი ყველაზე პოპულარული ძეგლი საქართველოში.",
     region: "სვანეთი",
     city: "მესტია",
     description: "კულტურული ძეგლები",
@@ -586,13 +586,204 @@ export const cardSliderImages: Card[] = [
       saturday: "08:00 - 22:00",
       sunday: "08:00 - 22:00",
     },
-    anotherSection: [
+    anotherSection: {
+      name1: "სად მდებარეობს ვარძია",
+      description:
+        "ვარძია თბილისიდან 300 კილომეტრის დაშორებით, სამხრეთ საქართველოში, ისტორიულ მესხეთში მდებარეობს, ზღვის დონიდან 1300 მეტრზე. კლდეში ნაკვეთი  ქალაქის საერთო ფართობი 40 ათასი კვ.მ-ია. \n\n ვარძიას ეროვნული მნიშვნელობის კულტურის უძრავი ძეგლის სტატუსი აქვს მინიჭებული. დღეს აქ მამათა მონასტერი ფუნქციონირებს.",
+      image: "https://storage.georgia.travel/images/saqartvelo-vardzia.webp",
+      name2: "ვარძიის ისტორია",
+      name3: "ვარძიის ნაქალაქარის სტრუქტურა",
+      description2:
+        "ის ძირითადად XII საუკუნეში აშენდა და ორი მეფის - გიორგი მესამისა და მისი ასულის, მეფე თამარის მეფობის ხანას უკავშირდება. მაშინ ვარძია ქვეყნის პოლიტიკური, კულტურული და სასულიერო ცხოვრების ცენტრი იყო და საუკუნეების წინათ არსებული ცივილიზაციისა და კულტურის კვალს დღემდე ინახავს.",
+      description3:
+        "ვარძია კლდეში ნაკვეთი ციხე-ქალაქია, მისი სიგრძე 900 მეტრია, სიმაღლეში სართულებად არის დაყოფილი, რომლებიც ერთმანეთს გვირაბებით უკავშირდება. ამ კლდოვან ქალაქს 900 წლის წინათ თანამედროვე ქალაქის ინფრასტრუქტურა ჰქონდა, მათ შორის - საკუთარი წყალსადენის სისტემაც. \n\n საუკუნეებმა, გამუდმებულმა ომებმა და მიწისძვრებმა მნიშვნელოვნად დააზიანა ეს უნიკალური ნაგებობა. დღეს 10 სართული და 15 კლდოვანი ეკლესიაა შემორჩენილი. კომპლექსის შუაგულში მთავარი ძეგლია - ფრესკებით მოხატული ღვთისმშობლის მიძინების ტაძარი. \n\n ამასთანავე, აქ შემონახულია 28 მარანი, სადაც 235 ქვევრი იყო განთავსებული. მთლიანად ან ნაწილობრივ გადარჩენილია 242 გამოქვაბული ოთახი.",
+      name4: "",
+      name5: "",
+      description4: "",
+      description5: "",
+    },
+    slideCard: [
       {
-        name1: "xcxc",
-        description: "xcxcc",
-        image: "xcs",
-        name2: "xcxc",
-        name3: "xcxc",
+        title: "პრომეთეს მღვიმე",
+        src: "/slidecard/javakheti-national-park-gnta.webp",
+        modalSrc: "/slidecard/javakheti-national-park-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        text: "აღმოაჩინეთ ტოპ სანახაობები",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "პრომეთეს მღვიმე",
+        src: "/slidecard/agara-monastery-gnta.webp",
+        modalSrc: "/slidecard/agara-monastery-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "პრომეთეს მღვიმე",
+        src: "/slidecard/khertvisi-fortress-gnta.webp",
+        modalSrc: "/slidecard/khertvisi-fortress-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "პრომეთეს მღვიმე",
+        src: "/slidecard/kartsakhi-managed-reserve-gnta-m.webp",
+        modalSrc: "/slidecard/kartsakhi-managed-reserve-gnta-m.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "პრომეთეს მღვიმე",
+        src: "/slidecard/kartsakhi-lake-hiking-gnta.webp",
+        modalSrc: "/slidecard/kartsakhi-lake-hiking-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "პრომეთეს მღვიმე",
+        src: "/slidecard/tavkvetula-cave-church-gnta-m.webp",
+        modalSrc: "/slidecard/tavkvetula-cave-church-gnta-m.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "პრომეთეს მღვიმე",
+        src: "/slidecard/vanis-kvabebi-gnta-m.webp",
+        modalSrc: "/slidecard/vanis-kvabebi-gnta-m.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+    ],
+    blogs: [
+      {
+        img: "/cardImage/10-dzegli-romelits-autsileblad-unda-nakho-saqartveloshi-gremi-1.webp",
+        title: "10 ისტორიული ძეგლი, რომელიც საქართველოში უნდა ნახო",
+        blogText: "მიიღეთ შთაგონება",
+        desc: "საქართველოს ისტორიული ძეგლები ქვეყნის უძველესი და მდიდარი ისტორიის შესახებ მეტყველებს. მათგან რამდენიმეს ამორჩევა სუბიექტური ამბავია, მაგრამ ვეცდებით, უმნიშვნელოვანესი ძეგლებიდან 10 შევარჩიოთ.",
+      },
+      {
+        img: "/cardImage/adjara.webp",
+        title: "9 გამორჩეული სანახაობა აჭარაში",
+        blogText: "",
+        desc: "აჭარა ძალიან ლამაზია, როცა ბათუმს უახლოვდები, უზარმაზარი, მწვანედ მოლივლივე ზღვა და ქალაქის ზოლი, სანაპიროს რომ მიუყვება, მაღლიდან ხელისგულზე გავლებული სიცოცხლის ხაზივით ჩანს; მაღალმთიანი აჭარა კი ზაფხულში მწვანეში ჩაფლული, ზამთარში კი სახურავებამდე",
+      },
+      {
+        img: "/cardImage/khertvisi-fortress-gnta.webp",
+        title: "საქართველოს ისტორია",
+        blogText: "",
+        desc: "„საქართველოს ისტორიას რომ გაეცნობი, ნამდვილად ღმერთს იწამებ, რადგან არანაირი ობიექტური საფუძველი იმისა, რომ ამ ერს აქამდე მოეღწია, უბრალოდ არ არსებობს“, - ამბობდა ინგლისელი მწერალი და მთარგმნელი დევიდ ლანგი საქართველოს შესახებ.",
       },
     ],
   },
@@ -601,14 +792,15 @@ export const cardSliderImages: Card[] = [
     src: "/home/sataplia-cave-and-nature-reserve-gnta.webp",
     modalSrc: "/home/sataplia-cave-and-nature-reserve-gnta.webp",
     additionalDescription:
-      "სვანეთი ცნობილია თავისი უნიკალური კოშკებითა და მთიანი პეიზაჟებით.",
-    region: "სვანეთი",
-    city: "მესტია",
+      "თუ დიადი ისტორიული ამბები გხიბლავს, მაშინ საქართველოში სათაფლიის მღვიმესა და ნაკრძალს აუცილებლად უნდა ესტუმრო, რადგან ეს ადგილი 120 მილიონი წლის წინანდელი დინოზავრის - Satapliazaurus-ის ნაკვალევით არის ცნობილი.",
+    region: "იმერეთი",
+    city: "ქუთაისი",
     description: "ბუნების ძეგლები",
-    name: "სვანეთი",
+    name: "სათაფლიის ნაკრძალი",
     address: "მესტია, სვანეთის რეგიონი",
     phone: "+995 577 789 012",
-    website: "",
+    website:
+      "http://www.apa.gov.ge/en/eco-tourism/servisebi-da-tarifebi/sataflia",
     workingHours: {
       monday: "08:00 - 20:00",
       tuesday: "08:00 - 20:00",
@@ -618,13 +810,182 @@ export const cardSliderImages: Card[] = [
       saturday: "08:00 - 22:00",
       sunday: "08:00 - 22:00",
     },
-    anotherSection: [
+    anotherSection: {
+      name1: "სად მდებარეობს სათაფლია?",
+      description:
+        "სათაფლიის კარსტული მღვიმეები და სახელმწიფო ნაკრძალი იმერეთში, ქუთაისიდან 7 კმ-ში მდებარეობს. იქ აღმოჩენილი გაქვავებული ნაფეხურები კი მოწმობს, რომ ამ ადგილზე მილიონობით წლის წინათ დინოზავრები ცხოვრობდნენ. ეს გასაოცარი აღმოჩენა 1925 წელს ქუთაისელმა პედაგოგმა, ნატურალისტმა პეტრე ჭაბუკიანმა პირველყოფილი ადამიანის სადგომის ძიებისას გააკეთა. 1935 წელს აქ უკვე დაარსდა კომპლექსური ნაკრძალი, რომელიც გეოლოგიურ, პალეონტოლოგიურ, სპელეოლოგიურ, ზოოლოგიურ და ბოტანიკურ ძეგლებს მოიცავს.",
+      image:
+        "https://storage.georgia.travel/images/caving-in-sataplia-cave.webp",
+      name2: "რით არის გამორჩეული სათაფლიის ნაკრძალი?",
+      name3: "რას ნახავ სათაფლიაში?",
+      description2:
+        "სათაფლიის ნაკრძალში მდებარეობს გამორჩეული კარსტული მღვიმე, რომელიც მდინარე ოღასკურის მიერ 30 მილიონი წლის განმავლობაში იქმნებოდა.",
+      description3:
+        "სათაფლია დამთვალიერებლებისთვის მაქსიმალურად კეთილმოწყობილია. დინოზავრის ნაკვალევის გარდა, აქ შეგიძლია ნახო კოლხური ტყე, პანორამული გადასახედები, ზღაპრული სილამაზის კარსტული მღვიმე და დატკბე სტალაქტიტების, სტალაგმიტების, სტალაგნატების საოცარი ფორმებით. \n\n დღეისთვის სათაფლიის ინფრასტრუქტურა მოიცავს: კელითმოწყობილ მღვიმეს, დინოზავრთა ნაკვალევების საკონსერვაციო ნაგებობას, საგამოფენო დარბაზს, საფეხმავლო ბილიკებს, შუშის პანორამულ გადასახედს, კაფეებს და სუვენირების მაღაზიებს. ნაკრძალს სახელი მთის მიხედვით დაერქვა, რომელიც უძველესი დროიდან დღემდე ფუტკრების სამყოფელია. თაფლის სიჭარბის გამო, მას „სათაფლიას“, ანუ „თაფლის მთას“ ეძახიან.",
+      name4: "",
+      name5: "",
+      description4: "",
+      description5: "",
+    },
+    slideCard: [
       {
-        name1: "xcxc",
-        description: "xcxcc",
-        image: "xcs",
-        name2: "xcxc",
-        name3: "xcxc",
+        title: "ბაგრატის ტაძარი",
+        src: "/slidecard/bagrati-cathedral-gnta.webp",
+        modalSrc: "/slidecard/bagrati-cathedral-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        text: "აღმოაჩინეთ ტოპ სანახაობები",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "მოწამეთას მონასტერი",
+        src: "/slidecard/motsameta-monastery-gnta.webp",
+        modalSrc: "/slidecard/motsameta-monastery-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "ქუთაისის სპორტის მუზეუმი",
+        src: "/slidecard/sport-museum-gnta.webp",
+        modalSrc: "/slidecard/sport-museum-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "თეთრა მღვიმე - ბუნების ძეგლი იმერეთში",
+        src: "/slidecard/tetra-cave-natural-monument-gnta.webp",
+        modalSrc: "/slidecard/tetra-cave-natural-monument-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "გაბაშვილის პარკი ქუთაისში",
+        src: "/slidecard/kutaisi-gabashvili-park-gnta.webp",
+        modalSrc: "/slidecard/kutaisi-gabashvili-park-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "ქუთაისის ბოტანიკური ბაღი",
+        src: "/slidecard/kutaisi-botanical-park-gnta.webp",
+        modalSrc: "/slidecard/kutaisi-botanical-park-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+    ],
+    blogs: [
+      {
+        img: "/cardImage/georgia-europe-georgraphy.webp",
+        title: "საქართველოს გეოგრაფია",
+        blogText: "მიიღეთ შთაგონება",
+        desc: "საქართველო პატარა, ლამაზი ქვეყანაა, მრავალფეროვანი ბუნებითა და რბილი კლიმატით, რასაც საინტერესო გეოგრაფიული მდებარეობა განაპირობებს. ჩრდილოეთიდან და სამხრეთიდან ოროგრაფიული საზღვრები იცავს – ჩრდილოეთით დიდი კავკასიონის ქედი თავისი მყინვარებით.",
+      },
+      {
+        img: "/cardImage/why-georgia-nature.webp",
+        title: "საქართველოს ბუნება",
+        blogText: "",
+        desc: "ჩრდილოეთით - აზიდული დიდი კავკასიონი, დასავლეთით - შემორკალული შავი ზღვა, სამხრეთით - მცირე კავკასიონის მთები, აღმოსავლეთით - გაშლილი ველ-მინდვრები, მდინარეები, ჩანჩქერები, ულამაზესი ხეობები, მწვერვალები, წყაროები, ტბები და წყალსაცავები, ნაკადულები, ტყეები,",
+      },
+      {
+        img: "/cardImage/vardzia-in-samtskhe-javakheti.webp",
+        title: "9 გამორჩეული სანახაობა სამცხე-ჯავახეთში",
+        blogText: "",
+        desc: "დღევანდელი სამცხე-ჯავახეთი, რომელსაც ოდესღაც მესხეთი ეწოდებოდა, იმდენად მდიდარია ღირსშესანიშნაობებით, რომ შეგიძლია, აქ ყოველ წელს საინტერესო და განსხვავებული მოგზაურობა მოიწყო. ამ მხარეში აღმოაჩენ ერთმანეთისგან კონტრასტულ ლანდშაფტებს, მთებს,",
       },
     ],
   },
@@ -633,7 +994,7 @@ export const cardSliderImages: Card[] = [
     src: "/home/svetitskhoveli-cathedral-gnta.webp",
     modalSrc: "/home/svetitskhoveli-cathedral-gnta.webp",
     additionalDescription:
-      "სვანეთი ცნობილია თავისი უნიკალური კოშკებითა და მთიანი პეიზაჟებით.",
+      "სვეტიცხოველი საქართველოში დღემდე მოღწეულ უძველეს ტაძართა შორის ყველაზე დიდი საეკლესიო ნაგებობაა და ქართული ხუროთმოძღვრების ერთ-ერთი ურთულესი ძეგლია. არსებობის დღიდან ის ქართული მართლმადიდებელი სარწმუნოების უმთავრესი ტაძარია.",
     region: "სვანეთი",
     city: "მესტია",
     description: "კულტურული ძეგლები",
@@ -650,13 +1011,182 @@ export const cardSliderImages: Card[] = [
       saturday: "08:00 - 22:00",
       sunday: "08:00 - 22:00",
     },
-    anotherSection: [
+    anotherSection: {
+      name1: "სვეტიცხოვლის ისტორიული წარსული",
+      description:
+        "საქართველოს უძველეს დედაქალაქ მცხეთაში, ამ ადგილას, სადაც დღეს სვეტიცხოველი დგას, ხის ეკლესია IV საუკუნეში საქართველოს პირველ ქრისტიან მეფეს მირიან III-ს აუგია. დღევანდელი საკათედრო ტაძარი კი 1010-1029 წლებშია აშენებული, მეფე გიორგი I-ის მმართველობის ხანაში.",
+      image:
+        "https://storage.georgia.travel/images/mtskheta-svetitskhoveli.webp",
+      name2: "რით არის გამორჩეული სვეტიცხოველი?",
+      name3: "ლეგენდა სვეტიცხოვლის შესახებ",
+      description2:
+        "სვეტიცხოვლის ტაძარი იუნესკოს მსოფლიო ხელოვნების საგანძურთა ნუსხაშია შეტანილი. \n\n თუმცა, ტაძარი უნიკალურია არა მხოლოდ თავისი მხატვრული ღირსებით, არამედ მიჩნეულია იმ ადგილად, სადაც ინახება მართლმადიდებელი სამყაროს ერთ-ერთი მთავარი სიწმინდე - უფლის კვართი. \n\n საქართველოში ეკლესიების მშენებლის ვინაობა ხშირად დაკარგულია. სვეტიცხოველი კი ამ მხრივაც გამორჩეულია - აღმოსავლეთის ფასადზე გაკეთებული წარწერის თანახმად, XI საუკუნეში სვეტიცხოვლის ახალი ტაძარი მელქისედეკ კათალიკოსმა ააშენა - 1010-33 წლებში სრულიად საქართველოს კათალიკოს-პატრიარქმა, ტაძრის ხუროთმოძღვრის გვარი კი არსუკისძე ყოფილა.",
+      description3:
+        "სვეტიცხოვლის შესახებ პირველივე ლეგენდამ ჯერ არარსებულ ეკლესიას სახელი განუსაზღვრა. ლეგენდის თანახმად, ქრისტეს პერანგის დაკრძალვის ადგილას ლიბანის კედარი ამოსულა. IV საუკუნეში, წმ. ნინოს მითითებით, აქ ეკლესიის მშენებლობა დაუწყიათ და კედრისგან 7 სვეტი დაუმზადებიათ. ერთი სვეტი ჰაერში აღმართულა და მხოლოდ წმ. ნინოს ლოცვის შემდეგ დაშვებულა მიწაზე. სვეტისგან საკურნებელი მირონი გადმოსულა, რომელიც ავადმყოფებს კურნავდა. აქედან წარმოიშვა ტაძრის სახელწოდებაც - „სვეტი ცხოველი“ ანუ „სვეტი სიცოცხლის მიმნიჭებელი“. ",
+      name4: "",
+      name5: "",
+      description4: "",
+      description5: "",
+    },
+    slideCard: [
       {
-        name1: "xcxc",
-        description: "xcxcc",
-        image: "xcs",
-        name2: "xcxc",
-        name3: "xcxc",
+        title: "ჯვრის მონასტერი",
+        src: "/slidecard/jvari-monastery-gnta.webp",
+        modalSrc: "/slidecard/jvari-monastery-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        text: "აღმოაჩინეთ ტოპ სანახაობები",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "ბებრის ციხე",
+        src: "/slidecard/bebris-tsikhe-fortress-gnta.webp",
+        modalSrc: "/slidecard/bebris-tsikhe-fortress-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "სამთავროს მონასტერი - იუნესკოს მსოფლიო მემკვიდრეობა",
+        src: "/slidecard/samtavro-church-gnta.webp",
+        modalSrc: "/slidecard/samtavro-church-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "ანტიოქიის ეკლესია",
+        src: "/slidecard/antioquia-church-gnta.webp",
+        modalSrc: "/slidecard/antioquia-church-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "არმაზის ხევი",
+        src: "/slidecard/armazis-khevi-gnta.webp",
+        modalSrc: "/slidecard/armazis-khevi-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "სამთავროს სამაროვანი",
+        src: "/slidecard/samtavro-archeological-site-gnta.webp",
+        modalSrc: "/slidecard/samtavro-archeological-site-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+    ],
+    blogs: [
+      {
+        img: "/cardImage/10-dzegli-romelits-autsileblad-unda-nakho-saqartveloshi-gremi-1.webp",
+        title: "10 ისტორიული ძეგლი, რომელიც საქართველოში უნდა ნახო",
+        blogText: "მიიღეთ შთაგონება",
+        desc: "საქართველოს ისტორიული ძეგლები ქვეყნის უძველესი და მდიდარი ისტორიის შესახებ მეტყველებს. მათგან რამდენიმეს ამორჩევა სუბიექტური ამბავია, მაგრამ ვეცდებით, უმნიშვნელოვანესი ძეგლებიდან 10 შევარჩიოთ.",
+      },
+      {
+        img: "/cardImage/adjara.webp",
+        title: "9 გამორჩეული სანახაობა აჭარაში",
+        blogText: "",
+        desc: "აჭარა ძალიან ლამაზია, როცა ბათუმს უახლოვდები, უზარმაზარი, მწვანედ მოლივლივე ზღვა და ქალაქის ზოლი, სანაპიროს რომ მიუყვება, მაღლიდან ხელისგულზე გავლებული სიცოცხლის ხაზივით ჩანს; მაღალმთიანი აჭარა კი ზაფხულში მწვანეში ჩაფლული, ზამთარში კი სახურავებამდე",
+      },
+      {
+        img: "/cardImage/khertvisi-fortress-gnta.webp",
+        title: "საქართველოს ისტორია",
+        blogText: "",
+        desc: "„საქართველოს ისტორიას რომ გაეცნობი, ნამდვილად ღმერთს იწამებ, რადგან არანაირი ობიექტური საფუძველი იმისა, რომ ამ ერს აქამდე მოეღწია, უბრალოდ არ არსებობს“, - ამბობდა ინგლისელი მწერალი და მთარგმნელი დევიდ ლანგი საქართველოს შესახებ.",
       },
     ],
   },

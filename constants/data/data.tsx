@@ -179,11 +179,11 @@ export const navItems: NavItem[] = [
         items: [
           {
             text: "უნიკალური ქართული ფოლკლორი",
-            href: "/why-georgia/history",
+            href: "/why-georgia/georgian-folklore",
           },
           {
             text: "მსოფლიო მნიშვნელობის მემკვიდრეობა",
-            href: "/why-georgia/culture",
+            href: "/why-georgia/heritage-world-importance",
           },
           {
             text: "უნიკალური ქართული ანბანი",
