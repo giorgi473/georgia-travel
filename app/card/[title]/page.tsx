@@ -1,12 +1,22 @@
 "use client";
 
-import { notFound } from "next/navigation";
 import { useState, useEffect, use } from "react";
 import Image from "next/image";
-import { cardSliderImages } from "@/lib/data";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from "@/components/ui/card";
 import { Heart, X } from "lucide-react";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { cardSliderImages } from "@/lib/data";
 
 export default function CardPage({
   params: paramsPromise,
@@ -19,6 +29,7 @@ export default function CardPage({
   );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   if (!card) {
     notFound();
@@ -28,19 +39,26 @@ export default function CardPage({
     setIsModalOpen(!isModalOpen);
   };
 
+  const handleClick = () => {
+    setIsActive(!isActive);
+  };
+
   useEffect(() => {
     if (isModalOpen) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
     }
-    // Cleanup on component unmount
+
     return () => {
       document.body.classList.remove("overflow-hidden");
     };
   }, [isModalOpen]);
 
-  // Modal animation variants
+  if (!card || !Array.isArray(card.slideCard) || card.slideCard.length === 0) {
+    return null;
+  }
+
   const modalVariants = {
     hidden: { scale: 0.5, opacity: 0 },
     visible: {
@@ -55,7 +73,6 @@ export default function CardPage({
     },
   };
 
-  // Working hours mapping for display
   const workingHoursDisplay = [
     { day: "ორშაბათი", hours: card.workingHours.monday },
     { day: "სამშაბათი", hours: card.workingHours.tuesday },
@@ -67,122 +84,380 @@ export default function CardPage({
   ];
 
   return (
-    <div className="relative w-full h-screen">
-      <Image
-        src={card.src}
-        alt={card.title}
-        fill
-        className="object-cover"
-        // quality={100}
-        priority={true}
-      />
-      <div className="absolute inset-0 flex flex-col justify-start p-4 sm:p-8 container mx-auto">
-        <h1 className="text-3xl sm:text-5xl font-bold text-white mt-[200px] mb-10">
-          {card.title}
-        </h1>
-        <p className="text-base mb-4 max-w-2xl text-gray-300 sm:mt-4">
-          {card.additionalDescription}
-        </p>
-        <div className="text-white sm:flex sm:space-x-24 mb-10">
-          <div className="font-semibold">
-            <div className="text-gray-300 text-lg">რეგიონი</div> {card.region}
+    <div className="space-y-14">
+      <div className="relative w-full h-screen">
+        <Image
+          src={card.src}
+          alt={card.title}
+          fill
+          className="object-cover"
+          priority={true}
+        />
+        <div className="absolute inset-0 bg-black/50 z-10" />
+        <div className="absolute inset-0 flex flex-col justify-start p-4 sm:p-6 lg:px-8 container mx-auto z-20">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mt-[150px] sm:mt-[180px] mb-8">
+            {card.title}
+          </h1>
+          <p className="text-sm sm:text-base max-w-xl text-gray-300 mt-4 mb-10">
+            {card.additionalDescription}
+          </p>
+          <div className="text-white flex space-x-14 sm:flex sm:space-x-16 mb-8">
+            <div className="font-semibold">
+              <div className="text-sm sm:text-base text-gray-300">რეგიონი</div>
+              {card.region}
+            </div>
+            <div className="font-semibold">
+              <div className="text-sm sm:text-base text-gray-300">ქალაქი</div>
+              <h1 className="text-sm sm:text-base">{card.city}</h1>
+            </div>
           </div>
-          <div className="font-semibold">
-            <div className="text-gray-300 text-lg">ქალაქი</div>
-            <h1 className="text-md">{card.city}</h1>
-          </div>
-        </div>
-        <div className="mb-6">
-          <button className="flex items-center gap-2 cursor-pointer">
-            <span className="flex items-center justify-center w-10 h-10 border rounded-full">
-              <Heart size={20} />
-            </span>
-            <h3 className="text-md font-semibold text-white">
-              მარშრუტებში დამატება
-            </h3>
-          </button>
-        </div>
-        <div className="absolute bottom-10 right-32 bg-white px-2 py-2 rounded-lg">
-          <button
-            className="cursor-pointer text-black font-semibold"
-            onClick={toggleModal}
-          >
-            ინფორმაცია
-          </button>
-        </div>
-      </div>
-
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <motion.div
-            className="bg-white rounded-lg shadow-lg max-w-2xl w-full mx-4 relative min-h-[700px] max-h-[50vh] overflow-y-scroll"
-            variants={modalVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
+          <div className="mb-5">
             <button
-              className="absolute top-3 right-3 text-gray-600 hover:text-gray-800 z-10 float-right"
+              className="flex items-center gap-3 cursor-pointer group"
+              onClick={handleClick}
+            >
+              <span
+                className={`flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 border-2 rounded-full group-hover:bg-red-500 group-hover:border-red-500 transition-colors duration-300 ${
+                  isActive ? "bg-red-500 border-red-500" : ""
+                }`}
+              >
+                <Heart size={16} className="text-white" />
+              </span>
+              <h3
+                className={`text-sm sm:text-base font-semibold transition-colors duration-300 ${
+                  isActive ? "text-red-500" : "text-white"
+                } group-hover:text-red-500`}
+              >
+                მარშრუტებში დამატება
+              </h3>
+            </button>
+          </div>
+          <div className="absolute bottom-10">
+            <button
+              className="cursor-pointer border border-red-500 px-4 py-2 text-white hover:bg-red-500 rounded-lg transition-all duration-200 ease-in-out font-semibold text-sm sm:text-base"
               onClick={toggleModal}
             >
-              <X
-                size={24}
-                className="bg-gray-100 rounded-full px-1 cursor-pointer"
-              />
+              ინფორმაცია
             </button>
-            <div className="relative w-full h-80 mb-8">
-              <Image
-                src={card.modalSrc}
-                alt={`${card.title} modal`}
-                fill
-                className="object-cover rounded-tl-lg"
-                quality={100}
-              />
-            </div>
-            <div className="px-10">
-              <h2 className="text-2xl font-bold mb-8">{card.name}</h2>
-              <div className="text-base mb-4">
-                <p className="mb-3">
-                  <span className="font-semibold mr-1">დასახელება:</span>
+          </div>
+        </div>
+
+        {isModalOpen && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <motion.div
+              className="bg-white rounded-sm shadow-lg max-w-xl w-full mx-4 relative min-h-[500px] max-h-[40vh] overflow-y-scroll"
+              variants={modalVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <button
+                className="absolute top-2 right-2 text-gray-600 hover:text-gray-800 z-10 float-right"
+                onClick={toggleModal}
+              >
+                <X className="bg-gray-100 rounded-sm px-1 cursor-pointer hover:text-red-500 ease-in-out duration-200 transition-all" />
+              </button>
+              <div className="relative w-full h-64 sm:h-72 mb-6">
+                <Image
+                  src={card.modalSrc}
+                  alt={`${card.title} modal`}
+                  fill
+                  className="object-cover rounded-tl-sm"
+                  quality={100}
+                />
+              </div>
+              <div className="px-6 sm:px-8">
+                <h2 className="text-xl sm:text-2xl font-bold mb-6">
                   {card.name}
-                </p>
-                <p className="mb-3">
-                  <span className="font-semibold mr-2">მისამართი:</span>
-                  {card.address}
-                </p>
-                <p className="mb-3">
-                  <span className="font-semibold mr-2">ტელეფონი:</span>
-                  {card.phone}
-                </p>
-                <p className="mb-3">
-                  <span className="font-semibold mr-2">ვებგვერდი:</span>
-                  <Link
-                    href={card.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className=""
-                  >
-                    {card.website}
-                  </Link>
-                </p>
-                <h3 className=" font-medium mt-4 mb-2 text-center text-xl">
-                  სამუშაო საათები:
-                </h3>
-                <div className="list-disc list-inside">
-                  {workingHoursDisplay.map(({ day, hours }) => (
-                    <div key={day} className="flex items-center gap-2 mb-2">
-                      <h1 className="text-lg font-semibold text-gray-600">
-                        {day}:
-                      </h1>
-                      {hours}
-                    </div>
-                  ))}
+                </h2>
+                <div className="text-sm sm:text-base mb-4">
+                  <p className="mb-2">
+                    <span className="font-semibold mr-1">Nmae:</span>
+                    {card.name}
+                  </p>
+                  <p className="mb-2">
+                    <span className="font-semibold mr-2">Address:</span>
+                    {card.address}
+                  </p>
+                  <p className="mb-2">
+                    <span className="font-semibold mr-2">Phone Number:</span>
+                    {card.phone}
+                  </p>
+                  <p className="mb-2">
+                    <span className="font-semibold mr-2">Web:</span>
+                    <Link
+                      href={card.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {card.website}
+                    </Link>
+                  </p>
+                  <h3 className="mt-3 mb-2 text-center font-bold text-base sm:text-lg">
+                    Working Schedule:
+                  </h3>
+                  <div className="list-disc list-inside">
+                    {workingHoursDisplay.map(({ day, hours }) => (
+                      <div key={day} className="flex items-center gap-2 mb-3">
+                        <h1 className="text-sm sm:text-base font-semibold text-gray-800 tracking-wider">
+                          {day}:
+                        </h1>
+                        {hours}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
+        )}
+      </div>
+      <section>
+        <div className="mx-auto space-y-4 px-5 sm:container sm:px-8 lg:max-w-4xl">
+          <div>
+            <h3 className="text-3xl font-bold">{card.anotherSection.name1}</h3>
+          </div>
+          <div className="space-y-4 text-gray-800">
+            {card.anotherSection.description
+              ?.split("\n\n")
+              .map((paragraph, idx) => (
+                <p key={idx} className="text-gray-800">
+                  {paragraph.trim()}
+                </p>
+              ))}
+          </div>
+          <div>
+            <p className="text-3xl font-bold">{card.anotherSection.name2}</p>
+          </div>
+          <div>
+            {Array.isArray(card.anotherSection.image) ? (
+              card.anotherSection.image.map(
+                (img, idx) =>
+                  img && (
+                    <Image
+                      key={idx}
+                      src={img}
+                      alt={`image-${idx}`}
+                      width={600}
+                      height={500}
+                      className="rounded-md"
+                    />
+                  )
+              )
+            ) : card.anotherSection.image &&
+              card.anotherSection.image !== "" ? (
+              <Image
+                src={card.anotherSection.image}
+                alt="section image"
+                width={1000}
+                height={500}
+                className="rounded-md"
+              />
+            ) : null}
+          </div>
+          <div className="space-y-4 text-gray-800">
+            {card.anotherSection.description2
+              ?.split("\n\n")
+              .map((paragraph, idx) => (
+                <p key={idx} className="text-gray-800">
+                  {paragraph.trim()}
+                </p>
+              ))}
+          </div>
+          <div>
+            <p className="text-3xl font-bold">{card.anotherSection.name3}</p>
+          </div>
+          <div className="space-y-4 text-gray-800">
+            {card.anotherSection.description3
+              ?.split("\n\n")
+              .map((paragraph, idx) => (
+                <p key={idx} className="text-gray-800">
+                  {paragraph.trim()}
+                </p>
+              ))}
+          </div>
+          <div>
+            <p className="text-3xl font-bold">{card.anotherSection.name4}</p>
+          </div>
+          <div className="space-y-4 text-gray-800">
+            {card.anotherSection.description4
+              ?.split("\n\n")
+              .map((paragraph, idx) => (
+                <p key={idx} className="text-gray-800">
+                  {paragraph.trim()}
+                </p>
+              ))}
+          </div>
+          <div>
+            <p className="text-3xl font-bold">{card.anotherSection.name5}</p>
+          </div>
+          <div className="space-y-4 text-gray-800">
+            {card.anotherSection.description5
+              ?.split("\n\n")
+              .map((paragraph, idx) => (
+                <p key={idx} className="text-gray-800">
+                  {paragraph.trim()}
+                </p>
+              ))}
+          </div>
         </div>
-      )}
+      </section>
+
+      <section>
+        <div className="container mx-auto pr-4 pl-5 sm:pr-5 sm:pl-8 md:pr-5 md:pl-8 lg:pr-7 lg:pl-10">
+          <div className="flex items-center justify-between mb-5">
+            <div className="flex items-center">
+              <h3 className="text-sm sm:text-lg md:text-xl font-semibold">
+                {card.slideCard.map((item, index) => (
+                  <p key={item.text || index}>{item.text || ""}</p>
+                ))}
+              </h3>
+            </div>
+            <div className="flex gap-2">
+              <button className="custom-prev-button cursor-pointer">
+                <svg
+                  className="w-4 h-4 sm:w-5 sm:h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
+              <button className="custom-next-button cursor-pointer">
+                <svg
+                  className="w-4 h-4 sm:w-5 sm:h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="px-4">
+          <Swiper
+            modules={[Navigation]}
+            spaceBetween={20}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 2 },
+              768: { slidesPerView: 3 },
+              1024: { slidesPerView: 4 },
+            }}
+            navigation={{
+              nextEl: ".custom-next-button",
+              prevEl: ".custom-prev-button",
+            }}
+            className="w-full"
+          >
+            {card.slideCard.map((item, index) => {
+              if (!item.src || item.src === "") {
+                return null;
+              }
+
+              return (
+                <SwiperSlide key={index}>
+                  <Link
+                    href={`/card/${encodeURIComponent(item.name || "unnamed")}`}
+                  >
+                    <div className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer select-none">
+                      <div className="relative w-full h-80 sm:h-96 md:h-96 group">
+                        <div className="relative w-full h-full overflow-hidden">
+                          <Image
+                            src={item.src}
+                            alt={item.title || "Slide image"}
+                            fill
+                            className="object-cover group-hover:scale-110 transition-all duration-300 ease-in-out z-0"
+                            quality={75}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
+                        </div>
+                        <div className="absolute top-5 right-5 z-20">
+                          <Heart
+                            size={16}
+                            className="text-white hover:text-red-500 transition-all duration-200 ease-in-out"
+                          />
+                        </div>
+                        <div className="p-4 absolute bottom-2 text-white z-20">
+                          <h4 className="text-sm sm:text-lg font-semibold mb-2">
+                            {item.title || "No title"}
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
+      </section>
+
+      <section>
+        <div className="container mx-auto px-4 sm:px-8 md:px-8 lg:px-10">
+          <div className="flex items-center justify-between gap-4 mb-5">
+            <h2 className="text-sm sm:text-lg md:text-xl font-semibold text-black pl-1">
+              {card.blogs
+                .filter((blog) => blog.blogText?.trim())
+                .map((blog, blogIndex) => (
+                  <p key={blog.blogText || blogIndex}>{blog.blogText}</p>
+                ))}
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {card.blogs
+              .filter(
+                (blog) =>
+                  blog.title?.trim() && blog.img?.trim() && blog.desc?.trim()
+              )
+              .map((blog, index) => (
+                <Card
+                  key={blog.title || index}
+                  className="relative bg-white rounded-lg shadow-lg overflow-hidden flex flex-col h-[500px]"
+                >
+                  <div className="relative flex-grow">
+                    <Image
+                      src={blog.img}
+                      alt={blog.title as string}
+                      layout="fill"
+                      className="object-cover hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out"
+                      priority={index < 3}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                    <div className="absolute bottom-4 left-4 pointer-events-none">
+                      <CardContent className="p-0">
+                        <CardTitle
+                          className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-2 w-60 md:w-full lg:w-80"
+                          style={{
+                            textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)",
+                          }}
+                        >
+                          {blog.title}
+                        </CardTitle>
+                        <CardDescription className="text-sm sm:text-base text-gray-200 line-clamp-2">
+                          {blog.desc}
+                        </CardDescription>
+                      </CardContent>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

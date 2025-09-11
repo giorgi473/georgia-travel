@@ -7,7 +7,39 @@ export interface WorkingHours {
   saturday: string;
   sunday: string;
 }
-
+export interface AnotherSection {
+  name1?: string | null;
+  description?: string | null;
+  image?: string | null;
+  name2?: string | null;
+  name3?: string | null;
+  name4?: string;
+  name5?: string;
+  description2?: string;
+  description3?: string;
+  description4?: string;
+  description5?: string;
+}
+export interface SlideCard {
+  title: string;
+  src: string;
+  modalSrc: string;
+  additionalDescription: string;
+  text?: string;
+  region: string;
+  city: string;
+  name: string;
+  address: string;
+  phone: string;
+  website: string;
+  workingHours: WorkingHours;
+}
+export interface Blogs {
+  img: string;
+  title: string;
+  desc: string;
+  blogText?: string;
+}
 export interface Card {
   title: string;
   src: string;
@@ -21,48 +53,133 @@ export interface Card {
   phone: string;
   website: string;
   workingHours: WorkingHours;
+  anotherSection: AnotherSection;
+  slideCard: SlideCard[];
+  blogs: Blogs[];
 }
 
 export const cardSliderImages: Card[] = [
   {
     title: "მარტვილის კანიონი",
-    src: "/image/card1.webp",
-    modalSrc: "/modal/modal1.webp",
+    src: "/home/bla.webp",
+    modalSrc: "/home/bla.webp",
     additionalDescription:
       "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
     region: "სამეგრელო",
     city: "მარტვილი",
-    description:
-      "მარტვილის კანიონი გთავაზობთ ნავით გასეირნებას, ლაშქრობას და ბუნების სილამაზის დატკბობას.",
+    description: "ბუნების ძეგლები",
     name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
     address: "FG4G+7XV, Окаце, საქართველო",
     phone: "595 03 60 47",
     website:
       "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
     workingHours: {
-      monday: "10:00 - 18:00",
-      tuesday: "10:00 - 18:00",
-      wednesday: "10:00 - 18:00",
-      thursday: "10:00 - 18:00",
-      friday: "10:00 - 18:00",
-      saturday: "09:00 - 19:00",
-      sunday: "09:00 - 19:00",
+      monday: "10:00 AM – 5:30 PM",
+      tuesday: "10:00 AM – 5:30 PM",
+      wednesday: "10:00 AM – 5:30 PM",
+      thursday: "10:00 AM – 5:30 PM",
+      friday: "10:00 AM – 5:30 PM",
+      saturday: "10:00 AM – 5:30 PM",
+      sunday: "10:00 AM – 5:30 PM",
     },
+    anotherSection: {
+      name1: "სად მდებარეობს ოკაცეს კანიონი?",
+      description:
+        "ოკაცეს კანიონი ჩვენი ქვეყნის გასაოცარი ადგილებიდან ერთ-ერთია და იქამდე მისვლას საკმაოდ ადვილად შეძლებ. კანიონი იმერეთში, ქუთაისიდან 50 კმ-ში, ხონის მუნიციპალიტეტში, სოფელ ზედა გორდთან მდებარეობს. სამეგრელოს მმართველმა დადიანებმა ეს სოფელი საზაფხულო რეზიდენციად სწორედ უნიკალური კლიმატის გამო აირჩიეს. სანახაობებით სავსე გზა სწორედ გორდიდან იწყება. \n\n ვიზიტორთა ცენტრიდან კანიონის კიდულ ბილიკამდე 2 კილომეტრზე მეტია. იქამდე მანქანითაც შეიძლება მისვლა, მაგრამ, თუ სურვილი გაქვს, ფეხით წასვლასაც შეძლებ. ქვაფენილი გადის უძველესი ხეებით სავსე დაბურულ ტყეში, რომელიც დადიანების საზაფხულო სასახლეს ესაზღვრებოდა.",
+      image: "",
+      name2: "რა უნდა იცოდე ოკაცეს კანიონზე?",
+      name3: "",
+      description2:
+        "ოკაცეს კანიონი 2 კმ სიგრძისაა. მისი სიგანე ცვალებადია - ზოგან 15-20 მეტრს აღწევს, ზოგან კი 3-6 მეტრია. რაც შეეხება მის სიღრმეს, ის 20-დან 100 მეტრამდე მერყეობს. მდინარის, მაღალი მთებისა და სიმწვანის გარდა, აქ წყალუხვი ჩანჩქერები და ულამაზესი ტბებიც შეგხვდება. \n\n მთელ ამ სილამაზეს კანიონის გამჭვირვალესაფარიანი კიდული ბილიკიდან დაათვალიერებ. ბილიკის სიგრძე 780 მეტრია, ის ციცაბო კლდეს მიუყვება, მაგრამ ძალიან კომფორტულია. \n\n ბილიკის ბოლოს პანორამული გადასახედია. აქვეა დამონტაჟებული სმარტ-სელფის აპარატი, რომელიც საუცხოო მომენტების დაფიქსირებაში დაგეხმარება.",
+      description3: "",
+      name4: "",
+      name5: "",
+      description4: "",
+      description5: "",
+    },
+    slideCard: [
+      {
+        title: "მoწამეთას მონასტერი",
+        src: "/slidecard/motsameta-monastery-gnta.webp",
+        modalSrc: "/slidecard/motsameta-monastery-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        text: "აღმოაჩინე პოპულალური სანახაობები",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "დავით კლდიაშვილის სახლ-მუზეუმი",
+        src: "/slidecard/davit-kldiashvili-house-museum-gnta.webp",
+        modalSrc: "/slidecard/davit-kldiashvili-house-museum-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+    ],
+    blogs: [
+      {
+        img: "/cardImage/georgia-europe-georgraphy.webp",
+        title: "საქართველოს გეოგრაფია",
+        blogText: "მიიღეთ შთაგონება",
+        desc: "საქართველო პატარა, ლამაზი ქვეყანაა, მრავალფეროვანი ბუნებითა და რბილი კლიმატით, რასაც საინტერესო გეოგრაფიული მდებარეობა განაპირობებს. ჩრდილოეთიდან და სამხრეთიდან ოროგრაფიული საზღვრები იცავს – ჩრდილოეთით დიდი კავკასიონის ქედი თავისი მყინვარებით.",
+      },
+      {
+        img: "/cardImage/why-georgia-nature.webp",
+        title: "საქართველოს ბუნება",
+        blogText: "",
+        desc: "ჩრდილოეთით - აზიდული დიდი კავკასიონი, დასავლეთით - შემორკალული შავი ზღვა, სამხრეთით - მცირე კავკასიონის მთები, აღმოსავლეთით - გაშლილი ველ-მინდვრები, მდინარეები, ჩანჩქერები, ულამაზესი ხეობები, მწვერვალები, წყაროები, ტბები და წყალსაცავები, ნაკადულები, ტყეები,",
+      },
+      {
+        img: "/cardImage/adjara.webp",
+        title: "9 გამორჩეული სანახაობა აჭარაში",
+        blogText: "",
+        desc: "აჭარა ძალიან ლამაზია, როცა ბათუმს უახლოვდები, უზარმაზარი, მწვანედ მოლივლივე ზღვა და ქალაქის ზოლი, სანაპიროს რომ მიუყვება, მაღლიდან ხელისგულზე გავლებული სიცოცხლის ხაზივით ჩანს; მაღალმთიანი აჭარა კი ზაფხულში მწვანეში ჩაფლული, ზამთარში კი სახურავებამდე",
+      },
+    ],
   },
   {
-    title: "სვანეთი",
-    src: "/image/card2.webp",
-    modalSrc: "/image/modal/card2_modal.webp",
+    title: "აბუდელაურის ფერადი ტბები",
+    src: "/home/abudelauri-lake-georgia.webp",
+    modalSrc: "/home/abudelauri-lake-georgia.webp",
     additionalDescription:
       "სვანეთი ცნობილია თავისი უნიკალური კოშკებითა და მთიანი პეიზაჟებით.",
     region: "სვანეთი",
     city: "მესტია",
-    description:
-      "სვანეთი გთავაზობთ ლაშქრობას, სათხილამურო სპორტს და კულტურულ გამოცდილებას.",
     name: "სვანეთი",
+    description: "ბუნების ძეგლები",
     address: "მესტია, სვანეთის რეგიონი",
     phone: "+995 577 789 012",
-    website: "https://svaneti.travel",
+    website: "",
     workingHours: {
       monday: "08:00 - 20:00",
       tuesday: "08:00 - 20:00",
@@ -72,21 +189,81 @@ export const cardSliderImages: Card[] = [
       saturday: "08:00 - 22:00",
       sunday: "08:00 - 22:00",
     },
+    anotherSection: {
+      name1: "აბუდელაურის ფერადი ტბების საიდუმლო",
+      description:
+        "მაღალმთიან ხევსურეთში, სოფელ როშკის თავზე და ჭიუხის (ჭაუხის) მასივის ძირში ჯერ მწვანე  , შემდგომ ლურჯი და ბოლოს თეთრი ტბა გელოდებათ. \n\n აბუდელაურის ტბების ეს განსაკუთრებული ფერები ერთი შეხედვით ჯადოსნურია, თუმცა სინამდვილეში, მათ შეფერილობაზე რამდენიმე ფაქტორი მოქმედებს: თეთრი ტბა კარბონატებს შეიცავს, რომლებიც ტემპერატურის მატების დროს იხსნება და წყალს თეთრ შეფერილობას აძლევს, ხოლო ლურჯი და მწვანე ტბების ფერები მყინვართანაა დაკავშირებული, რომელიც მუდმივად კაწრავს ქანებს, ნაკაწრი „მტვერი“ კი ტბების წყალში ჩადის, დიდხანს არ იძირება და მზის სხივებზე ლურჯ და მწვანე ფერებად ირეკლება.",
+      image: "https://storage.georgia.travel/images/abudelauri-lakes.webp",
+      name2: "როგორ მოხვდები აბუდელაურის ფერად ტბებთან?",
+      name3: "სად შეძლებ ღამის გათენებას?",
+      description2:
+        "მწვანე და ლურჯი ტბები ერთმანეთთან ახლოს მდებარეობს, თეთრი ტბა კი ოდნავ მოშორებით, პირდაპირ მყინვარის ძირშია და მასთან მისასვლელი გზა ლოდნარზე გადის და  შედარებით რთულია. \n\n ტბებისკენ საუკეთესო მარშრუტი სოფელ როშკადან (1990 მ) იწყება. სწორედ აქ მთავრდება სამანქანო გზა, რის შემდეგაც 7 კილომეტრის გავლა მხოლოდ საფეხმავლო გზითაა შესაძლებელი. \n\n არ გაგიკვირდეს, თუ გზად ამინდი რამდენჯერმე შეიცვლება, ამიტომ აჯობებს, თუ შესაბამისად აღჭურვილი წახვალ და მზად იქნები წვიმისთვის, რაც აქ არცთუ ისე იშვიათია. ",
+      description3:
+        "სოფელ როშკაში რამდენიმე საოჯახო სასტუმროა, სადაც ადგილობრივი კერძებით გაგიმასპინძლდებიან, მაგრამ, თუ ღამის გათევას კარვებში გადაწყვეტ, ეს ადგილი კემპინგისთვისაც იდეალურია. ",
+      name4: "როდის უნდა ესტუმრო აბუდელაურის ტბებს?",
+      description4:
+        "აბუდელაურის ტბები გაზაფხულის ბოლომდე თოვლითაა დაფარული, აგვისტოში კი წყლის დონე შედარებით იკლებს, ამიტომ მათ სანახავად საუკეთესო დრო ივნისი და ივლისია",
+      name5: "კიდევ რა გზით მოხვდები აბუდელაურის ტბებთან?",
+      description5:
+        "ტბებთან მისვლა ალტერნატიული მარშრუტითაც შესაძლებელია. სალაშქრო ბილიკი სოფელ ჯუთაში, ყაზბეგის მუნიციპალიტეტში იწყება და ჭიუხის უღელტეხილით გადმოდის აბუდელაურის ტბებთან. მის გავლას როგორც წესი ორი დღე სჭირდება და გამოცდილი მოლაშქრეებისთვისაა რეკომენდებული.",
+    },
+    slideCard: [
+      {
+        title: "",
+        src: "",
+        modalSrc: "",
+        additionalDescription: "",
+        region: "",
+        city: "",
+        name: "",
+        address: "",
+        phone: "",
+        website: "",
+        workingHours: {
+          monday: "",
+          tuesday: "",
+          wednesday: "",
+          thursday: "",
+          friday: "",
+          saturday: "",
+          sunday: "",
+        },
+      },
+    ],
+    blogs: [
+      {
+        img: "/cardImage/georgia-europe-georgraphy.webp",
+        title: "საქართველოს გეოგრაფია",
+        blogText: "გაეცანი ბლოგს",
+        desc: "საქართველო პატარა, ლამაზი ქვეყანაა, მრავალფეროვანი ბუნებითა და რბილი კლიმატით, რასაც საინტერესო გეოგრაფიული მდებარეობა განაპირობებს. ჩრდილოეთიდან და სამხრეთიდან ოროგრაფიული საზღვრები იცავს – ჩრდილოეთით დიდი კავკასიონის ქედი თავისი მყინვარებით.",
+      },
+      {
+        img: "/cardImage/why-georgia-nature.webp",
+        title: "საქართველოს ბუნება",
+        blogText: "",
+        desc: "ჩრდილოეთით - აზიდული დიდი კავკასიონი, დასავლეთით - შემორკალული შავი ზღვა, სამხრეთით - მცირე კავკასიონის მთები, აღმოსავლეთით - გაშლილი ველ-მინდვრები, მდინარეები, ჩანჩქერები, ულამაზესი ხეობები, მწვერვალები, წყაროები, ტბები და წყალსაცავები, ნაკადულები, ტყეები,",
+      },
+      {
+        img: "/cardImage/vardzia-in-samtskhe-javakheti.webp",
+        title: "9 გამორჩეული სანახაობა სამცხე-ჯავახეთში",
+        blogText: "",
+        desc: "დღევანდელი სამცხე-ჯავახეთი, რომელსაც ოდესღაც მესხეთი ეწოდებოდა, იმდენად მდიდარია ღირსშესანიშნაობებით, რომ შეგიძლია, აქ ყოველ წელს საინტერესო და განსხვავებული მოგზაურობა მოიწყო. ამ მხარეში აღმოაჩენ ერთმანეთისგან კონტრასტულ ლანდშაფტებს, მთებს,",
+      },
+    ],
   },
   {
-    title: "სვანეთი",
-    src: "/image/card3.jpg",
-    modalSrc: "/image/modal/card2_modal.webp",
+    title: "გოგნის წმ. გიორგის ეკლესია",
+    src: "/home/gogni-church.webp",
+    modalSrc: "/home/gogni-church.webp",
     additionalDescription:
-      "სვანეთი ცნობილია თავისი უნიკალური კოშკებითა და მთიანი პეიზაჟებით.",
+      "ლეგენდის თანახმად, სოფელ გოგნში მცხოვრებ დავრდომილ მოხუცს წმინდა გიორგიმ პატარა ჩიტის საშუალებით სალოცავის აშენების ადგილი მიანიშნა. სოფელმა სალოცავი ააგო და კარიც ჩამოჰკიდა, მაგრამ ყოველღამე კარი თავისით ვარდებოდა. ამის გამო, სალოცავს „კარუგდებელი“ უწოდეს.",
     region: "სვანეთი",
     city: "მესტია",
-    description:
-      "სვანეთი გთავაზობთ ლაშქრობას, სათხილამურო სპორტს და კულტურულ გამოცდილებას.",
+    description: "კულტურული ძეგლები",
     name: "სვანეთი",
     address: "მესტია, სვანეთის რეგიონი",
     phone: "+995 577 789 012",
-    website: "https://svaneti.travel",
+    website: "",
     workingHours: {
       monday: "08:00 - 20:00",
       tuesday: "08:00 - 20:00",
@@ -96,21 +273,103 @@ export const cardSliderImages: Card[] = [
       saturday: "08:00 - 22:00",
       sunday: "08:00 - 22:00",
     },
+    anotherSection: {
+      name1: "გოგნის წმინდა გიორგის სახელობის ეკლესიის შესახებ",
+      description:
+        "ეს საქართველოში ერთადერთი ეკლესიაა, რომელსაც კარი არ აქვს. ის არასდროს იკეტება და ადამიანებს სალოცავში შესვლა ნებისმიერ დროს შეუძლიათ. \n\n გოგნის წინდა გიორგის ეკლესია რეგიონ იმერეთში, თერჯოლიდან 12 კილომეტრში, ულამაზესი ურთხლის ტყეში, მაღალ გორაზე დგას. ეს პატარა ერთნავიანი სალოცავი VII-VIII საუკუნეებში ქვითკირითაა აშენებული. წელიწადში ორჯერ, გიორგობას, ამ ადგილს უამრავი მომლოცველი სტუმრობს და წმინდა გიორგის სურვილების ასრულებას სთხოვს. \n\n წმინდა გიორგი საქართველოში გამორჩეული წმინდანია. მის სახელზე ქვეყანაში 365 ეკლესიაა აგებული. ქართველები გიორგობას წელიწადში ორჯერ აღნიშნავენ: 6 მაისს - წმინდანის დაბადების დღეს და 23 ნოემბერს - როცა ის ბორბალზე აწამეს.  \n\n გადმოცემის თანახმად, ვინც ამ დღეებში ტაძარს სამჯერ შემოუვლის, ყველა სურვილი აუსრულდება. თუ გოგნის სალოცავს გიორგობას ეწვევით, თავად იხილავთ ტაძრისკენ მიმავალ ათასობით ადამიანს, რომელთა უმეტესობა გზას ფეხშიშველი მიუყვება.",
+      image: "",
+      name2: "",
+      name3: "",
+      description2: "",
+      description3: "",
+      name4: "",
+      name5: "",
+      description4: "",
+      description5: "",
+    },
+    slideCard: [
+      {
+        title: "მoწამეთას მონასტერი",
+        src: "/slidecard/motsameta-monastery-gnta.webp",
+        modalSrc: "/slidecard/motsameta-monastery-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        text: "აღმოაჩინე პოპულალური სანახაობები",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+      {
+        title: "დავით კლდიაშვილის სახლ-მუზეუმი",
+        src: "/slidecard/davit-kldiashvili-house-museum-gnta.webp",
+        modalSrc: "/slidecard/davit-kldiashvili-house-museum-gnta.webp",
+        additionalDescription:
+          "მარტვილის კანიონი არის ბუნებრივი საოცრება სამეგრელოში, ცნობილი თავისი ფირუზისფერი წყლებით.",
+        region: "სამეგრელო",
+        city: "მარტვილი",
+        name: "ოკაცეს კანიონის ვიზიტორთა ცენტრი",
+        address: "FG4G+7XV, Окаце, საქართველო",
+        phone: "595 03 60 47",
+        website:
+          "https://apa.gov.ge/en/eco-tourism/Trails/okaces-kanionis-turistuli-bilkebi/okaces-kanionis-biliki",
+        workingHours: {
+          monday: "10:00 AM – 5:30 PM",
+          tuesday: "10:00 AM – 5:30 PM",
+          wednesday: "10:00 AM – 5:30 PM",
+          thursday: "10:00 AM – 5:30 PM",
+          friday: "10:00 AM – 5:30 PM",
+          saturday: "10:00 AM – 5:30 PM",
+          sunday: "10:00 AM – 5:30 PM",
+        },
+      },
+    ],
+    blogs: [
+      {
+        img: "",
+        title: "",
+        blogText: "",
+        desc: "",
+      },
+      {
+        img: "",
+        title: "",
+        blogText: "",
+        desc: "",
+      },
+      {
+        img: "",
+        title: "",
+        blogText: "",
+        desc: "",
+      },
+    ],
   },
   {
-    title: "სვანეთი",
-    src: "/image/card2.webp",
-    modalSrc: "/image/modal/card2_modal.webp",
+    title: "ვარძია",
+    src: "/home/vardzia-gnta.webp",
+    modalSrc: "/home/vardzia-gnta.webp",
     additionalDescription:
       "სვანეთი ცნობილია თავისი უნიკალური კოშკებითა და მთიანი პეიზაჟებით.",
     region: "სვანეთი",
     city: "მესტია",
-    description:
-      "სვანეთი გთავაზობთ ლაშქრობას, სათხილამურო სპორტს და კულტურულ გამოცდილებას.",
+    description: "კულტურული ძეგლები",
     name: "სვანეთი",
     address: "მესტია, სვანეთის რეგიონი",
     phone: "+995 577 789 012",
-    website: "https://svaneti.travel",
+    website: "",
     workingHours: {
       monday: "08:00 - 20:00",
       tuesday: "08:00 - 20:00",
@@ -120,21 +379,29 @@ export const cardSliderImages: Card[] = [
       saturday: "08:00 - 22:00",
       sunday: "08:00 - 22:00",
     },
+    anotherSection: [
+      {
+        name1: "xcxc",
+        description: "xcxcc",
+        image: "xcs",
+        name2: "xcxc",
+        name3: "xcxc",
+      },
+    ],
   },
   {
-    title: "სვანეთი",
-    src: "/image/card2.webp",
-    modalSrc: "/image/modal/card2_modal.webp",
+    title: "სათაფლიის მღვიმე და ნაკრძალი",
+    src: "/home/sataplia-cave-and-nature-reserve-gnta.webp",
+    modalSrc: "/home/sataplia-cave-and-nature-reserve-gnta.webp",
     additionalDescription:
       "სვანეთი ცნობილია თავისი უნიკალური კოშკებითა და მთიანი პეიზაჟებით.",
     region: "სვანეთი",
     city: "მესტია",
-    description:
-      "სვანეთი გთავაზობთ ლაშქრობას, სათხილამურო სპორტს და კულტურულ გამოცდილებას.",
+    description: "ბუნების ძეგლები",
     name: "სვანეთი",
     address: "მესტია, სვანეთის რეგიონი",
     phone: "+995 577 789 012",
-    website: "https://svaneti.travel",
+    website: "",
     workingHours: {
       monday: "08:00 - 20:00",
       tuesday: "08:00 - 20:00",
@@ -144,21 +411,29 @@ export const cardSliderImages: Card[] = [
       saturday: "08:00 - 22:00",
       sunday: "08:00 - 22:00",
     },
+    anotherSection: [
+      {
+        name1: "xcxc",
+        description: "xcxcc",
+        image: "xcs",
+        name2: "xcxc",
+        name3: "xcxc",
+      },
+    ],
   },
   {
-    title: "სვანეთი",
-    src: "/image/card2.webp",
-    modalSrc: "/image/modal/card2_modal.webp",
+    title: "სვეტიცხოველი - მსოფლიო ხელოვნების საგანძური",
+    src: "/home/svetitskhoveli-cathedral-gnta.webp",
+    modalSrc: "/home/svetitskhoveli-cathedral-gnta.webp",
     additionalDescription:
       "სვანეთი ცნობილია თავისი უნიკალური კოშკებითა და მთიანი პეიზაჟებით.",
     region: "სვანეთი",
     city: "მესტია",
-    description:
-      "სვანეთი გთავაზობთ ლაშქრობას, სათხილამურო სპორტს და კულტურულ გამოცდილებას.",
+    description: "კულტურული ძეგლები",
     name: "სვანეთი",
     address: "მესტია, სვანეთის რეგიონი",
     phone: "+995 577 789 012",
-    website: "https://svaneti.travel",
+    website: "",
     workingHours: {
       monday: "08:00 - 20:00",
       tuesday: "08:00 - 20:00",
@@ -168,21 +443,29 @@ export const cardSliderImages: Card[] = [
       saturday: "08:00 - 22:00",
       sunday: "08:00 - 22:00",
     },
+    anotherSection: [
+      {
+        name1: "xcxc",
+        description: "xcxcc",
+        image: "xcs",
+        name2: "xcxc",
+        name3: "xcxc",
+      },
+    ],
   },
   {
-    title: "სვანეთი",
-    src: "/image/card2.webp",
-    modalSrc: "/image/modal/card2_modal.webp",
+    title: "ძამას ხეობა",
+    src: "/home/dzama-valley-gnta.webp",
+    modalSrc: "/home/dzama-valley-gnta.webp",
     additionalDescription:
       "სვანეთი ცნობილია თავისი უნიკალური კოშკებითა და მთიანი პეიზაჟებით.",
     region: "სვანეთი",
     city: "მესტია",
-    description:
-      "სვანეთი გთავაზობთ ლაშქრობას, სათხილამურო სპორტს და კულტურულ გამოცდილებას.",
+    description: "ბუნების ძეგლები",
     name: "სვანეთი",
     address: "მესტია, სვანეთის რეგიონი",
     phone: "+995 577 789 012",
-    website: "https://svaneti.travel",
+    website: "",
     workingHours: {
       monday: "08:00 - 20:00",
       tuesday: "08:00 - 20:00",
@@ -192,21 +475,29 @@ export const cardSliderImages: Card[] = [
       saturday: "08:00 - 22:00",
       sunday: "08:00 - 22:00",
     },
+    anotherSection: [
+      {
+        name1: "xcxc",
+        description: "xcxcc",
+        image: "xcs",
+        name2: "xcxc",
+        name3: "xcxc",
+      },
+    ],
   },
   {
-    title: "სვანეთი",
-    src: "/image/card2.webp",
-    modalSrc: "/image/modal/card2_modal.webp",
+    title: "ხვამლის მთა",
+    src: "/home/khvamli-mountain-gnta.webp",
+    modalSrc: "/home/khvamli-mountain-gnta.webp",
     additionalDescription:
       "სვანეთი ცნობილია თავისი უნიკალური კოშკებითა და მთიანი პეიზაჟებით.",
     region: "სვანეთი",
     city: "მესტია",
-    description:
-      "სვანეთი გთავაზობთ ლაშქრობას, სათხილამურო სპორტს და კულტურულ გამოცდილებას.",
+    description: "ბუნების ძეგლები",
     name: "სვანეთი",
     address: "მესტია, სვანეთის რეგიონი",
     phone: "+995 577 789 012",
-    website: "https://svaneti.travel",
+    website: "",
     workingHours: {
       monday: "08:00 - 20:00",
       tuesday: "08:00 - 20:00",
@@ -216,21 +507,29 @@ export const cardSliderImages: Card[] = [
       saturday: "08:00 - 22:00",
       sunday: "08:00 - 22:00",
     },
+    anotherSection: [
+      {
+        name1: "xcxc",
+        description: "xcxcc",
+        image: "xcs",
+        name2: "xcxc",
+        name3: "xcxc",
+      },
+    ],
   },
   {
-    title: "სვანეთი",
-    src: "/image/card2.webp",
-    modalSrc: "/image/modal/card2_modal.webp",
+    title: "თრუსოს ხეობა",
+    src: "/home/trusso-valley-gnta.webp",
+    modalSrc: "/home/trusso-valley-gnta.webp",
     additionalDescription:
       "სვანეთი ცნობილია თავისი უნიკალური კოშკებითა და მთიანი პეიზაჟებით.",
     region: "სვანეთი",
     city: "მესტია",
-    description:
-      "სვანეთი გთავაზობთ ლაშქრობას, სათხილამურო სპორტს და კულტურულ გამოცდილებას.",
+    description: "ბუნების ძეგლები",
     name: "სვანეთი",
     address: "მესტია, სვანეთის რეგიონი",
     phone: "+995 577 789 012",
-    website: "https://svaneti.travel",
+    website: "",
     workingHours: {
       monday: "08:00 - 20:00",
       tuesday: "08:00 - 20:00",
@@ -240,21 +539,29 @@ export const cardSliderImages: Card[] = [
       saturday: "08:00 - 22:00",
       sunday: "08:00 - 22:00",
     },
+    anotherSection: [
+      {
+        name1: "xcxc",
+        description: "xcxcc",
+        image: "xcs",
+        name2: "xcxc",
+        name3: "xcxc",
+      },
+    ],
   },
   {
-    title: "სვანეთი",
-    src: "/image/card2.webp",
-    modalSrc: "/image/modal/card2_modal.webp",
+    title: "თრიალეთის ყორღავი",
+    src: "/home/trialeti-petroglyps.webp",
+    modalSrc: "/home/trialeti-petroglyps.webp",
     additionalDescription:
       "სვანეთი ცნობილია თავისი უნიკალური კოშკებითა და მთიანი პეიზაჟებით.",
     region: "სვანეთი",
     city: "მესტია",
-    description:
-      "სვანეთი გთავაზობთ ლაშქრობას, სათხილამურო სპორტს და კულტურულ გამოცდილებას.",
+    description: "კულტურული ძეგლები",
     name: "სვანეთი",
     address: "მესტია, სვანეთის რეგიონი",
     phone: "+995 577 789 012",
-    website: "https://svaneti.travel",
+    website: "",
     workingHours: {
       monday: "08:00 - 20:00",
       tuesday: "08:00 - 20:00",
@@ -264,21 +571,29 @@ export const cardSliderImages: Card[] = [
       saturday: "08:00 - 22:00",
       sunday: "08:00 - 22:00",
     },
+    anotherSection: [
+      {
+        name1: "xcxc",
+        description: "xcxcc",
+        image: "xcs",
+        name2: "xcxc",
+        name3: "xcxc",
+      },
+    ],
   },
   {
-    title: "სვანეთი",
-    src: "/image/card2.webp",
-    modalSrc: "/image/modal/card2_modal.webp",
+    title: "თუშეთი",
+    src: "/home/tusheti-georgia.webp",
+    modalSrc: "/home/tusheti-georgia.webp",
     additionalDescription:
       "სვანეთი ცნობილია თავისი უნიკალური კოშკებითა და მთიანი პეიზაჟებით.",
     region: "სვანეთი",
     city: "მესტია",
-    description:
-      "სვანეთი გთავაზობთ ლაშქრობას, სათხილამურო სპორტს და კულტურულ გამოცდილებას.",
+    description: "ბუნების ძეგლები",
     name: "სვანეთი",
     address: "მესტია, სვანეთის რეგიონი",
     phone: "+995 577 789 012",
-    website: "https://svaneti.travel",
+    website: "",
     workingHours: {
       monday: "08:00 - 20:00",
       tuesday: "08:00 - 20:00",
@@ -288,21 +603,29 @@ export const cardSliderImages: Card[] = [
       saturday: "08:00 - 22:00",
       sunday: "08:00 - 22:00",
     },
+    anotherSection: [
+      {
+        name1: "xcxc",
+        description: "xcxcc",
+        image: "xcs",
+        name2: "xcxc",
+        name3: "xcxc",
+      },
+    ],
   },
   {
-    title: "სვანეთი",
-    src: "/image/card2.webp",
-    modalSrc: "/image/modal/card2_modal.webp",
+    title: "ლომისის წმინდა გიორგის სახელობის ეკლესია",
+    src: "/home/lomisi-church-gnta.webp",
+    modalSrc: "/home/lomisi-church-gnta.webp",
     additionalDescription:
       "სვანეთი ცნობილია თავისი უნიკალური კოშკებითა და მთიანი პეიზაჟებით.",
     region: "სვანეთი",
     city: "მესტია",
-    description:
-      "სვანეთი გთავაზობთ ლაშქრობას, სათხილამურო სპორტს და კულტურულ გამოცდილებას.",
+    description: "კულტურული ძეგლები",
     name: "სვანეთი",
     address: "მესტია, სვანეთის რეგიონი",
     phone: "+995 577 789 012",
-    website: "https://svaneti.travel",
+    website: "",
     workingHours: {
       monday: "08:00 - 20:00",
       tuesday: "08:00 - 20:00",
@@ -312,6 +635,15 @@ export const cardSliderImages: Card[] = [
       saturday: "08:00 - 22:00",
       sunday: "08:00 - 22:00",
     },
+    anotherSection: [
+      {
+        name1: "xcxc",
+        description: "xcxcc",
+        image: "xcs",
+        name2: "xcxc",
+        name3: "xcxc",
+      },
+    ],
   },
 ];
 

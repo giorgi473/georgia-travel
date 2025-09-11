@@ -120,3 +120,24 @@
     @apply bg-background text-foreground;
   }
 }
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: whitesmoke;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#7f7c7c);
+  z-index: 50px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  cursor: pointer;
+}
+@media (max-width: 1178px) {
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+}

@@ -20,7 +20,7 @@ function Gzispar({ imageSrc, title, description }: GzisparProps) {
           className="w-full h-full object-center"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className="absolute inset-0 bg-black/50" />
       </div>
       <div className="relative z-10 w-full h-full flex flex-col justify-center text-white px-4 sm:px-6 md:px-8 lg:px-12">
         <div className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl font-semibold mb-4 sm:mb-6 md:mb-8 px-4 pl-2 sm:pl-16 md:pl-28 lg:pl-28 py-2 max-w-[90%] sm:max-w-[80%] md:max-w-[90%] lg:max-w-[60%]">

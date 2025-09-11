@@ -12,7 +12,7 @@ import { cardSliderImages } from "@/lib/data";
 export default function CardSwiperSlider() {
   return (
     <>
-      <div className="container mx-auto px-4 lg:pr-8 lg:pl-10">
+      <div className="container mx-auto pr-4 pl-5 sm:pr-5 sm:pl-8 md:pr-5 md:pl-8 lg:pr-7 lg:pl-10">
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-2">
             <h3 className="text-sm sm:text-lg md:text-xl font-semibold">
@@ -73,26 +73,29 @@ export default function CardSwiperSlider() {
             <SwiperSlide key={index}>
               <Link href={`/card/${encodeURIComponent(item.title)}`}>
                 <div className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer select-none">
-                  <div className="relative w-full h-80 sm:h-96 md:h-96">
-                    <Image
-                      src={item.src}
-                      alt={item.title}
-                      fill
-                      className="object-cover hover:scale-110 transition-all duration-300 ease-in-out"
-                      quality={75}
-                    />
-                  </div>
-                  <div className="absolute top-5 right-5">
-                    <Heart
-                      size={16}
-                      className="text-white hover:text-red-500 transition-all duration-200 ease-in-out"
-                    />
-                  </div>
-                  <div className="p-4 absolute bottom-2 text-white">
-                    <h4 className="text-sm sm:text-lg font-semibold mb-2">
-                      {item.title}
-                    </h4>
-                    <div className="text-sm">{item.description}</div>
+                  <div className="relative w-full h-80 sm:h-96 md:h-96 group">
+                    <div className="relative w-full h-full overflow-hidden">
+                      <Image
+                        src={item.src}
+                        alt={item.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-all duration-300 ease-in-out z-0"
+                        quality={75}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
+                    </div>
+                    <div className="absolute top-5 right-5 z-20">
+                      <Heart
+                        size={16}
+                        className="text-white hover:text-red-500 transition-all duration-200 ease-in-out"
+                      />
+                    </div>
+                    <div className="p-4 absolute bottom-2 text-white z-20">
+                      <h4 className="text-sm sm:text-lg font-semibold mb-2">
+                        {item.title}
+                      </h4>
+                      <div className="text-sm">{item.description}</div>
+                    </div>
                   </div>
                 </div>
               </Link>
