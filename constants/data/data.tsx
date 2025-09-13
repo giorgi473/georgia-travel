@@ -231,28 +231,34 @@ export const navItems: NavItem[] = [
         items: [
           {
             text: "საქართველო როგორც ღვინის აკვანი",
-            href: "/why-georgia/economy",
+            href: "/why-georgia/georgia-as-the-cradle-of-wine",
           },
           {
             text: "პირველი ევროპული ცივილიზაცია",
-            href: "/why-georgia/education",
+            href: "/why-georgia/first-european-civilization",
           },
           {
             text: "თავგადასავლები საქართველოში",
-            href: "/why-georgia/sports",
+            href: "/why-georgia/adventures-in-georgia",
           },
           {
             text: "ევროპის ყველაზე მაღალი დასახლებული პუნქტი...",
-            href: "/why-georgia/health",
+            href: "/why-georgia/high-altitude-settlement",
           },
-          { text: "სეზონურობა საქართველოში", href: "/why-georgia/sports" },
-          { text: "საქართველოს გეოგრაფია", href: "/why-georgia/sports" },
+          {
+            text: "სეზონურობა საქართველოში",
+            href: "/why-georgia/seasonality-in-georgia",
+          },
+          {
+            text: "საქართველოს გეოგრაფია",
+            href: "/why-georgia/geography-of-georgia",
+          },
         ],
       },
       {
         title: "აღმოაჩინე საქართველო",
-        image: "/flags/ph.jpg",
-        items: [],
+        image: "/flags/why-georgia-nature.webp",
+        items: [{ text: "", href: "/why-georgia" }],
       },
     ],
   },
@@ -278,7 +284,7 @@ export const navItems: NavItem[] = [
       {
         title: "ტოპ ქალაქები",
         items: [
-          { text: "ქუთაისი", href: "/places/rustavi" },
+          { text: "ქუთაისი", href: "/places/kutaisi" },
           { text: "ბათუმი", href: "/places/zugdidi" },
           { text: "თბილისი", href: "/places/telavi" },
           { text: "სტეფაწმინდა", href: "/places/poti" },

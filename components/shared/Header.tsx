@@ -479,13 +479,15 @@ function Header() {
                     </div>
                   )}
                 {colIndex === 3 && column.image && (
-                  <div className="relative h-60">
-                    <Image
-                      src={column.image}
-                      alt={column.title}
-                      fill
-                      className="object-cover rounded-lg"
-                    />
+                  <div className="relative h-72 overflow-hidden rounded-lg">
+                    <Link href={column.items[0].href}>
+                      <Image
+                        src={column.image}
+                        alt={column.title}
+                        fill
+                        className="object-cover rounded-lg hover:scale-110 transition-all duration-200 ease-in-out"
+                      />
+                    </Link>
                     <p
                       className="absolute bottom-4 left-4 font-semibold"
                       style={{ color: "white" }}
@@ -509,7 +511,7 @@ function Header() {
                     ) : (
                       <Link
                         href={item.href}
-                        className="text-sm font-semibold block hover:text-red-500 py-2 w-[230px]"
+                        className="text-sm font-semibold block hover:text-red-500 py-3 w-[230px]"
                         onMouseEnter={() => {
                           if (column.title === "ტოპ რეგიონები") {
                             setActiveRegion(item.text);
