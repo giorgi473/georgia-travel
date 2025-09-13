@@ -187,33 +187,42 @@ export const navItems: NavItem[] = [
           },
           {
             text: "უნიკალური ქართული ანბანი",
-            href: "/why-georgia/tourist-spots",
+            href: "/why-georgia/unique-georgian-alphabet",
           },
           {
             text: "შავი ზღვის სანაპიროები",
-            href: "/why-georgia/family-travel",
+            href: "/why-georgia/black-sea-coast",
           },
-          { text: "საქართველოს ისტორია", href: "/why-georgia/food-wine" },
+          {
+            text: "საქართველოს ისტორია",
+            href: "/why-georgia/history-of-georgia",
+          },
           {
             text: "ტურიზმის სტატისტიკა საქართველოში",
-            href: "/why-georgia/nature",
+            href: "/why-georgia/tourism-statistics-in-georgia",
           },
         ],
       },
       {
         title: "",
         items: [
-          { text: "ქართული კულტურა", href: "/why-georgia/food-wine" },
-          { text: "ქართული ლიტერატურა", href: "/why-georgia/nature" },
-          { text: "ქართული ცეკვა", href: "/why-georgia/music" },
+          { text: "ქართული კულტურა", href: "/why-georgia/georgian-culture" },
+          {
+            text: "ქართული ლიტერატურა",
+            href: "/why-georgia/georgian-literature",
+          },
+          { text: "ქართული ცეკვა", href: "/why-georgia/georgian-dance" },
           {
             text: "უგემრიელესი ქართული სამზარეულო",
-            href: "/why-georgia/dances",
+            href: "/why-georgia/delicious-eorgian-cuisine",
           },
-          { text: "საქართველოს ბუნება", href: "/why-georgia/nature" },
+          {
+            text: "საქართველოს ბუნება",
+            href: "/why-georgia/nature-of-georgia",
+          },
           {
             text: "საქართველოს მთავარი ქალაქები",
-            href: "/why-georgia/music",
+            href: "/why-georgia/georgias-major-cities",
           },
         ],
       },

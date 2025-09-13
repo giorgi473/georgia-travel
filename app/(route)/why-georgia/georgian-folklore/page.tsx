@@ -107,7 +107,9 @@ const Page: React.FC = () => {
           ))}
         </motion.ul>
         <div className="col-span-1 sm:col-span-3 mt-6 sm:mt-0">
-          <ParagraphText />
+          <ParagraphText
+            anotherDescription={contentItems[0].anotherDescription}
+          />
           {contentItems.map((item, index) => (
             <motion.div
               key={index}

@@ -8,14 +8,14 @@ import { ArrowRight } from "lucide-react";
 import ParagraphText from "@/components/TextContent";
 import SocialList from "@/components/SocialList";
 import {
-  contentItems2,
-  sections2,
-  sidebarItems2,
+  contentItems8,
+  sections8,
+  sidebarItems8,
 } from "@/constants/data/whyGeorgiaData";
 
 const Page: React.FC = () => {
   const router = useRouter();
-  const section01 = sections2.find((section) => section.id === "section-01");
+  const section01 = sections8.find((section) => section.id === "section-01");
   const geographyItem = section01?.geographyOfGeorgia?.[0];
 
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -30,11 +30,11 @@ const Page: React.FC = () => {
   };
 
   const contentRefs = useRef<(HTMLDivElement | null)[]>(
-    new Array(contentItems2.length).fill(null)
+    new Array(contentItems8.length).fill(null)
   );
 
   const handleScrollToSection = (title: string) => {
-    const index = contentItems2.findIndex((item) => item.title === title);
+    const index = contentItems8.findIndex((item) => item.title === title);
     if (index !== -1 && contentRefs.current[index]) {
       setActiveSection(title);
       const offset = 120; // Offset to account for sticky sidebar (top-30 = 120px)
@@ -93,7 +93,7 @@ const Page: React.FC = () => {
           <div className="mb-4 text-black font-bold select-none text-lg sm:text-lg lg:text-2xl">
             სარჩევი
           </div>
-          {sidebarItems2.map((item, index) => (
+          {sidebarItems8.map((item, index) => (
             <motion.li
               key={index}
               variants={textVariants}
@@ -108,9 +108,9 @@ const Page: React.FC = () => {
         </motion.ul>
         <div className="col-span-1 sm:col-span-3 mt-6 sm:mt-0">
           <ParagraphText
-            anotherDescription={contentItems2[0].anotherDescription}
+            anotherDescription={contentItems8[0].anotherDescription}
           />
-          {contentItems2.map((item, index) => (
+          {contentItems8.map((item, index) => (
             <motion.div
               key={index}
               ref={(el) => {

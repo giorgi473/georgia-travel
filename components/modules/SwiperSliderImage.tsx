@@ -24,7 +24,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
 }) => {
   return (
     <div
-      className={`relative w-12 h-8 sm:w-16 sm:h-12 md:w-20 md:h-14 lg:w-28 lg:h-16 cursor-pointer transition-all flex items-center justify-center ${
+      className={`relative w-14 h-10 sm:w-16 sm:h-12 md:w-20 md:h-14 lg:w-28 lg:h-16 cursor-pointer transition-all flex items-center justify-center ${
         activeIndex === index ? "opacity-100" : "opacity-80 hover:opacity-100"
       }`}
       onClick={() => onClick(index, activeIndex === index ? !isPaused : false)}
@@ -111,14 +111,18 @@ const SwiperSliderImage = forwardRef(() => {
                 quality={85}
               />
               <div className="absolute inset-0 bg-black opacity-50"></div>
-              <div className="absolute left-4 sm:left-8 md:left-20 lg:left-40 top-1/2 transform -translate-y-1/2 text-white text-left max-w-full sm:max-w-3xl md:max-w-5xl lg:max-w-5xl select-none">
-                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl lg:pr-4 font-bold mb-4 sm:mb-6 md:mb-8 lg:mb-10 mt-0 sm:mt-12 md:mt-16 lg:mt-[100px]">
-                  {item.title}
-                </h3>
-                <p className="text-sm pr-1.5 sm:text-base sm:pr-5 md:text-lg lg:text-lg mb-4 sm:mb-6 md:mb-8 lg:mb-6 max-w-full sm:max-w-md md:max-w-lg lg:max-w-2xl text-gray-300">
+              <div className="absolute inset-0 flex flex-col justify-center px-5 sm:px-8 md:px-8 lg:px-10 container mx-auto z-50 text-white">
+                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl lg:pr-4 font-bold mb-4 sm:mb-6 md:mb-8 lg:mb-10">
+                  <div className="space-y-1 sm:space-y-2">
+                    {item.title.split("\n\n").map((paragraph, idx) => (
+                      <p key={idx}>{paragraph.trim()}</p>
+                    ))}
+                  </div>
+                </div>
+                <p className="text-sm pr-1.5 sm:text-base sm:pr-5 md:text-lg lg:text-lg mb-5 sm:mb-5 md:mb-5 lg:mb-1 max-w-full sm:max-w-md md:max-w-lg lg:max-w-2xl text-gray-300">
                   {item.description}
                 </p>
-                <div className="flex flex-row gap-3 sm:gap-4 mt-8 sm:mt-12 md:mt-20 lg:mt-28">
+                <div className="flex flex-row gap-3 sm:gap-4 mt-8 sm:mt-12 md:mt-20 lg:mt-20">
                   <button className="bg-red-500 text-white px-4 sm:px-5 md:px-6 lg:px-6 py-1.5 sm:py-2 rounded hover:bg-red-600 cursor-pointer text-sm sm:text-base md:text-lg lg:text-lg">
                     დაგეგმე მოგზაურობა
                   </button>
@@ -131,7 +135,7 @@ const SwiperSliderImage = forwardRef(() => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="absolute bottom-10 sm:bottom-4 md:bottom-20 lg:bottom-40 right-5 sm:right-5 md:right-20 lg:right-40 z-10 flex gap-1 sm:gap-2 md:gap-3 lg:gap-3 items-center justify-start lg:hidden xl:flex md:hidden sm:hidden">
+      <div className="absolute container inset-0 mx-auto flex items-end justify-end bottom-10 sm:bottom-10 md:bottom-10 lg:bottom-20 px-5 sm:px-7 md:px-7 lg:px-9 z-10 gap-2 sm:gap-2 md:gap-3 lg:gap-3 select-none">
         {sliderImages.map((item, index) => (
           <Thumbnail
             key={index}
