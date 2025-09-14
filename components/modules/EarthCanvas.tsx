@@ -13,7 +13,7 @@ const Earth = () => {
 const EarthCanvas = () => {
   return (
     <Canvas
-      style={{ width: "500px", height: "500px" }}
+      style={{ width: "300px", height: "300px" }}
       shadows
       frameloop="demand"
       dpr={[1, 2]}

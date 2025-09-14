@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, Search } from "lucide-react";
@@ -14,6 +15,7 @@ import {
 } from "@/components/ui/accordion";
 import { NavItemDetail, navItems } from "@/constants/data/data";
 import GeorgianMap from "@/components/GeorgianMap";
+import EarthCanvas from "../modules/EarthCanvas";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,6 +31,7 @@ function Header() {
     left: number;
   }>({ width: 0, left: 0 });
   const headerRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
   let leaveTimeout: NodeJS.Timeout | null = null;
 
   useEffect(() => {
@@ -478,7 +481,7 @@ function Header() {
                       ))}
                     </div>
                   )}
-                {colIndex === 3 && column.image && (
+                {/* {colIndex === 3 && column.image && (
                   <div className="relative h-72 overflow-hidden rounded-lg">
                     <Link href={column.items[0].href}>
                       <Image
@@ -496,6 +499,14 @@ function Header() {
                         ? "დაგეგმე მოგზაურობა"
                         : ""}
                     </p>
+                  </div>
+                )} */}
+                {colIndex === 3 && column.image && (
+                  <div
+                    className="-ml-11 cursor-pointer"
+                    onClick={() => router.push(column.items[0].href)}
+                  >
+                    <EarthCanvas />
                   </div>
                 )}
                 {column.items.map((item, textIndex) => (
