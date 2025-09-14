@@ -2,14 +2,16 @@ import SwiperSliderImage from "@/components/modules/SwiperSliderImage";
 import CardSwiperSlider from "@/components/CardSwiperSlider";
 import MapOfGeorgia from "@/components/modules/MapOfGeorgia";
 import CardSections from "@/components/modules/CardSections";
-import DishesCard from "@/components/modules/DishesCard";
+import RecipeGallery from "@/components/RecipeGallery";
 import GeorgiaTravelMoments from "@/components/modules/GeorgiaTravelMoments";
 import Gzispar from "@/components/modules/Gzispar";
 import Blogs from "@/components/modules/Blogs";
 import SlideCard from "@/components/modules/SlideCard";
 import SlideCardBottom from "@/components/modules/SlideCardBottom";
+import { Card, card1 } from "@/constants/data/data";
 
 export default function Home() {
+  const card: Card = card1[0];
   return (
     <>
       <section className="mb-[120px]">
@@ -25,7 +27,7 @@ export default function Home() {
         <CardSections />
       </section>
       <section className="mb-[120px]">
-        <DishesCard />
+        <RecipeGallery items={card.array} />
       </section>
       <section className="mb-[120px]">
         <Gzispar

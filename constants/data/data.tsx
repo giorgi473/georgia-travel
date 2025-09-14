@@ -1773,3 +1773,37 @@ export const travelMoments: TravelMoment[] = [
     link: "https://www.instagram.com/p/CkxdXoYj52Q/",
   },
 ];
+
+export interface CardItem {
+  image: string;
+  header: string;
+  title?: string;
+  text?: string;
+  description?: string;
+}
+
+export interface Card {
+  id: string;
+  title: string;
+  array: CardItem[];
+}
+export const card1: Card[] = [
+  {
+    id: "",
+    title: "",
+    array: [
+      {
+        image: "/cardImage/ach.webp",
+        header: "აჭარული ხაჭაპური",
+        title: "აღმოაჩინე ქართული გასტრონომია",
+        text: "აქ ყველა კერძს დაუვიწყარი გემო აქვს",
+        description:
+          "ქართული სამზარეულო საუკუნეების განმავლობაში იზიარებდა ევროპისა და ახლო აღმოსავლეთის საუკეთესო ტექნიკებს, ტრადიციებს და ქმნიდა თავის ინდივიდუალურ, დახვეწილ გემოებს. აქაურობა გურმანებს დაუვიწყარ თავგადასავალს ჰპირდება.",
+      },
+      {
+        image: "/cardImage/mt.webp",
+        header: "მწვადი",
+      },
+    ],
+  },
+];

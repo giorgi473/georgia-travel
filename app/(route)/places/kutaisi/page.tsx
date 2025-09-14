@@ -5,9 +5,68 @@ import Image from "next/image";
 import { Heart, Layers2, Map } from "lucide-react";
 import Link from "next/link";
 import { DestinationCard } from "@/components/DestinationCard";
+import RecipeGallery from "@/components/RecipeGallery";
+
+// Define interfaces for the data structures
+interface RegionTime {
+  city: string;
+  time: string;
+}
+
+interface AnotherSection {
+  name1: string;
+  description: string;
+  image: string | string[];
+  name2: string;
+  name3: string;
+  image2: string | string[];
+  description2: string;
+  description3: string;
+  name4: string;
+  name5: string;
+  description4: string;
+  description5: string;
+}
+
+interface RangeItem {
+  min?: string;
+  max?: string;
+}
+
+interface Destination {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  duration: string;
+  activities: string;
+  currency: string;
+}
+
+interface ArrayItem {
+  image: string;
+  header: string;
+  text?: string;
+  title?: string;
+  description?: string;
+}
+
+interface Card {
+  title: string;
+  src: string;
+  additionalDescription: string;
+  region: string;
+  city: string;
+  link: string;
+  regionTime: RegionTime[];
+  anotherSection: AnotherSection;
+  range: RangeItem[];
+  destinations: Destination[];
+  array: ArrayItem[];
+}
 
 export default function CardPage() {
-  const cardSliderImages = [
+  const cardSliderImages: Card[] = [
     {
       title: "ქუთაისი",
       src: "/places/kutaisi-gnta.webp",
@@ -41,45 +100,57 @@ export default function CardPage() {
         description2:
           "ქუთაისში საუკუნე-ნახევარზე მეტი ხნის ბაღს - ბულვარს შეხვდები, რომელიც ქალაქის ცენტრალურ მოედანს უერთდება. დიდ ქართველ პოეტს, აკაკი წერეთელს ბულვარისთვის „ქუთაისის პარლამენტი“ უწოდებია, რადგან ინტელიგენცია აქ მნიშვნელოვან საკითხებზე სამსჯელოდ იკრიბებოდა. ტრადიცია დღესაც გრძელდება. \n\n აქვე, მოედანზე კოლხური შადრევანი დაგხვდება, რომელიც გაფორმებულია საქართველოში ვანის გათხრებისას აღმოჩენილი არტეფაქტების შესატყვისი 30 მოოქროვილი ფიგურით.",
         description3:
-          "ასევე უნდა ნახო ქუთაისის დრამატული თეატრის უნიკალური შენობა, რომელსაც ეროვნული კულტურის ძეგლის სტატუსი აქვს მინიჭებული. \n\n აღსანიშნავია, რომ ბულვარის ბოლოში ქუთაისის ოპერისა და ბალეტის თეატრი დგას, რომლის სახურავზეც ქუთაისელი მოქანდაკის მიერ გაკეთებულ 13 რომაულ ფიგურას შენიშნავ. შედარებით ქვევით, მდინარე რიონის პირზე, იმერეთის მეფეთა რეზიდენცია „ოქროს ჩარდახია“; მაღლა, გორაზე, 1003 წელს ერთიანი საქართველოს სიმბოლოდ აგებული ბაგრატის ტაძარი მოჩანს. ისინი აუცილებლად უნდა იხილო, ისევე, როგორც UNESCO-ს მსოფლიო მემკვიდრეობის ძეგლი - გელათის სამონასტრო კომპლექსი და მოწამეთას არაჩვეულებრივი მონასტერი, რომლებთანაც ზამთარ-ზაფხულ წითელი მდინარე ჩამოედინება.",
+          "ასევე უნდა ნახო ქუთაისის დრამატული თეატ Hawkinsეატრის უნიკალური შენობა, რომელსაც ეროვნული კულტურის ძეგლის სტატუსი აქვს მინიჭებული. \n\n აღსანიშნავია, რომ ბულვარის ბოლოში ქუთაისის ოპერისა და ბალეტის თეატრი დგას, რომლის სახურავზეც ქუთაისელი მოქანდაკის მიერ გაკეთებულ 13 რომაულ ფიგურას შენიშნავ. შედარებით ქვევით, მდინარე რიონის პირზე, იმერეთის მეფეთა რეზიდენცია „ოქროს ჩარდახია“; მაღლა, გორაზე, 1003 წელს ერთიანი საქართველოს სიმბოლოდ აგებული ბაგრატის ტაძარი მოჩანს. ისინი აუცილებლად უნდა იხილო, ისევე, როგორც UNESCO-ს მსოფლიო მემკვიდრეობის ძეგლი - გელათის სამონასტრო კომპლექსი და მოწამეთას არაჩვეულებრივი მონასტერი, რომლებთანაც ზამთარ-ზაფხულ წითელი მდინარე ჩამოედინება.",
         name4: "",
         name5: "",
         description4:
-          "Როდესაც ამ ქალაქში მოხვდები აუცილებლად ეწვიე ქალაქის უბნებს, შეიარე ბოტანიკურ ბაღში და რიონის სიოსაც მიეგებე - ქუთაისის უძველეს „ჯაჭვის ხიდზე“, 1872 წელს საფრანგეთში დაპროექტებულ „თეთრ ხიდზე“ და „წითელ ხიდზე“, რომელიც პირველი რკინისგან აგებული ხიდია მთელ ამიერკავკასიაში. ამ ხიდებიდან რიონის კალაპოტში წამოწოლილ თეთრ ქვებს გადახედე. Სწორედ ამ დროს მიხვდები თუ როგორი ქალაქია ქუთაისი, რომელიც თავის მკვიდრ ღვაწლმოსილ ფოტოგრაფს ძეგლს უდგამს.",
+          "როდესაც ამ ქალაქში მოხვდები აუცილებლად ეწვიე ქალაქის უბნებს, შეიარე ბოტანიკურ ბაღში და რიონის სიოსაც მიეგებე - ქუთაისის უძველეს „ჯაჭვის ხიდზე“, 1872 წელს საფრანგეთში დაპროექტებულ „თეთრ ხიდზე“ და „წითელ ხიდზე“, რომელიც პირველი რკინისგან აგებული ხიდია მთელ ამიერკავკასიაში. ამ ხიდებიდან რიონის კალაპოტში წამოწოლილ თეთრ ქვებს გადახედე. სწორედ ამ დროს მიხვდები თუ როგორი ქალაქია ქუთაისი, რომელიც თავის მკვიდრ ღვაწლმოსილ ფოტოგრაფს ძეგლს უდგამს.",
         description5: "",
       },
       range: [{ min: "30" }, { max: "3" }],
       destinations: [
         {
           id: "1",
-          title: "კანიონების ერთდღიანი ტური",
+          title: "ერთდღიანი ტური ქუთაისში",
           description:
-            "აღმოაჩინე დასავლეთ საქართველოს გეგრაფიული და ბიოლოგიური მრავალფეროვნება, მოიარე უდამბეს რკალისა და მარტვილის კანიონი და იხილე ქუდაფის კუდები - მარტვილის მონასტერი. ტურის ფარგლებში ასევე შეგვიძლია სანოვნის რეზიდენციას და საუკეთესო მოთხოვნილებით ათხოვნა.",
+            "ამ ერთდღიანი ტურის ფარგლებში, უდიდესი ისტორიული და კულტურული მნიშვნელობის ხუროთმოძღვრების ძეგლს - გეთალის მონასტერს იხილავ, იმერეთის სიმწვანეში ჩაფლულ ბუნებას დაათვალიერებ და უნიკალური გამოცდილების მისაღებად, მოწამეთას სამონასტრო კომპექსსაც ესტუმრები.",
           image: "/places/kutaisi-view-with-birds.webp",
-          duration: "8-12სთ",
-          activities: "18 საათამდე • 3 აქტივობა",
-          price: "100",
-          currency: "₾",
+          duration: "30კმ",
+          activities: "12 სანახაობა",
+          currency: "30კმ",
         },
         {
           id: "2",
-          title: "ტბების ტური ჯავახეთში",
+          title: "კანიონების ერთდღიანი ტური",
           description:
-            "შენი მოგზაურობა ფუდკარ-ბეშეთნიკურ ტბამს ტბიდან დაიწყება, საქართველოში ქრისტიანობის გამავრცელებლები, ნაცია ნინო კაბადოკიელის ხსელობის ფერის მონასტერში გაგრძელდება, გბაძ უდიდესი სადღესასწაულო ხუცესი და სოფელი გონიოკა შეხვდება, დასახსრებს აღ კი შენ ნის ზღაპრული მადლიანი ტბის ტბიდან გადაიღებს.",
+            "აღმოაჩინე დასავლეთ საქართველოს გეოგრაფიური და ბიოლოგიური მრავალფეროვნება, მოიარე ულამაზესი ოკაცესა და მარტვილის კანიონი და იხილე ძირძველი კულტურის მშვენიერი დანატოვარი - მარტვილის მონასტერი. ტურის ფარგლებში ასევე შეხვდები სახლინოს რეზიდენციას და საუკეთესო შთაბეჭდილებებით აივსები.",
           image: "/places/martvili-canyon.webp",
           duration: "8-12სთ",
-          activities: "15 საათამდე • 3 აქტივობა",
-          price: "55",
-          currency: "₾",
+          activities: "18 სანახაობა 3 აქტივობა",
+          currency: "100კმ",
+        },
+      ],
+      array: [
+        {
+          image: "/places/khachapuri-gnta.webp",
+          header: "იმერული ხაჭაპური",
+          title: "დააგემოვნე",
+          text: "მრავალფეროვანი ქართული კერძები",
+          description:
+            "იმერული სამზარეულო განსაკუთრებულია არა მხოლოდ საქართველოში, არამედ მთელ კავკასიაში. აქ მთავარი კერძი იმერული ხაჭაპურია, რომლის საიდუმლოც იმერულ ყველშია. ეს მხარე ვეგეტარიანული კერძების მრავალფეროვნებითაც გამოირჩევა: ნიგვზიანი ფხალი, იმერული ლობიო… თუმცა იმერელი დიასახლისები ხორცით მომზადებული კერძების ოსტატებიც არიან: საცივის იმერული ვერსია, რომელიც ქათმის ხორცისგან მზადდება, ახალი წლის მთავარი კერძია",
+        },
+        {
+          image: "/places/imeruli-cheese-gnta.webp",
+          header: "იმერული ყველი",
         },
       ],
     },
   ];
 
-  const card = cardSliderImages[0]; // Use the first card for static display
-  const [isActive, setIsActive] = useState(false);
+  const card: Card = cardSliderImages[0]; // Use the first card for static display
+  const [isActive, setIsActive] = useState<boolean>(false);
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     setIsActive(!isActive);
   };
 
@@ -105,24 +176,14 @@ export default function CardPage() {
             რა დრო სჭირდება მგზავრობას:
           </p>
           <div className="text-white flex space-x-8 sm:flex sm:space-x-16 space-y-8">
-            <div className="font-semibold">
-              <div className="text-sm sm:text-base text-gray-300 mb-1">
-                {card.regionTime[0].city}
+            {card.regionTime.map((region, index: number) => (
+              <div key={index} className="font-semibold">
+                <div className="text-sm sm:text-base text-gray-300 mb-1">
+                  {region.city}
+                </div>
+                <h1 className="text-sm">{region.time}</h1>
               </div>
-              <h1 className="text-sm">{card.regionTime[0].time}</h1>
-            </div>
-            <div className="font-semibold">
-              <div className="text-sm sm:text-base text-gray-300 mb-1">
-                {card.regionTime[1].city}
-              </div>
-              <h1 className="text-sm">{card.regionTime[1].time}</h1>
-            </div>
-            <div className="font-semibold">
-              <div className="text-sm sm:text-base text-gray-300 mb-1">
-                {card.regionTime[2].city}
-              </div>
-              <h1 className="text-sm">{card.regionTime[2].time}</h1>
-            </div>
+            ))}
           </div>
           <div className="mb-5">
             <button
@@ -162,7 +223,7 @@ export default function CardPage() {
           <div className="space-y-4 text-gray-800">
             {card.anotherSection.description
               ?.split("\n\n")
-              .map((paragraph, idx) => (
+              .map((paragraph: string, idx: number) => (
                 <p key={idx} className="text-gray-800">
                   {paragraph.trim()}
                 </p>
@@ -174,7 +235,7 @@ export default function CardPage() {
           <div>
             {Array.isArray(card.anotherSection.image) ? (
               card.anotherSection.image.map(
-                (img, idx) =>
+                (img: string, idx: number) =>
                   img && (
                     <Image
                       key={idx}
@@ -200,7 +261,7 @@ export default function CardPage() {
           <div className="space-y-4 text-gray-800">
             {card.anotherSection.description2
               ?.split("\n\n")
-              .map((paragraph, idx) => (
+              .map((paragraph: string, idx: number) => (
                 <p key={idx} className="text-gray-800">
                   {paragraph.trim()}
                 </p>
@@ -212,7 +273,7 @@ export default function CardPage() {
           <div className="space-y-4 text-gray-800">
             {card.anotherSection.description3
               ?.split("\n\n")
-              .map((paragraph, idx) => (
+              .map((paragraph: string, idx: number) => (
                 <p key={idx} className="text-gray-800">
                   {paragraph.trim()}
                 </p>
@@ -221,7 +282,7 @@ export default function CardPage() {
           <div>
             {Array.isArray(card.anotherSection.image2) ? (
               card.anotherSection.image2.map(
-                (img, idx) =>
+                (img: string, idx: number) =>
                   img && (
                     <Image
                       key={idx}
@@ -250,7 +311,7 @@ export default function CardPage() {
           <div className="space-y-4 text-gray-800">
             {card.anotherSection.description4
               ?.split("\n\n")
-              .map((paragraph, idx) => (
+              .map((paragraph: string, idx: number) => (
                 <p key={idx} className="text-gray-800">
                   {paragraph.trim()}
                 </p>
@@ -262,7 +323,7 @@ export default function CardPage() {
           <div className="space-y-4 text-gray-800">
             {card.anotherSection.description5
               ?.split("\n\n")
-              .map((paragraph, idx) => (
+              .map((paragraph: string, idx: number) => (
                 <p key={idx} className="text-gray-800">
                   {paragraph.trim()}
                 </p>
@@ -278,13 +339,11 @@ export default function CardPage() {
               <p className="text-xs sm:text-sm md:text-lg text-gray-600">
                 სანახაობა
               </p>
-              {card.range.slice(0, 1).map((item, index) => {
-                return (
-                  <p key={index} className="text-xs sm:text-sm md:text-sm">
-                    {item.min}
-                  </p>
-                );
-              })}
+              {card.range.slice(0, 1).map((item: RangeItem, index: number) => (
+                <p key={index} className="text-xs sm:text-sm md:text-sm">
+                  {item.min}
+                </p>
+              ))}
             </div>
             <div className="h-20 border-l-2 sm:h-20 md:h-20 border-t-2 sm:border-t-0 sm:border-l-2 border-gray-200" />
             <div className="flex flex-col items-center gap-2">
@@ -294,24 +353,27 @@ export default function CardPage() {
               <p className="text-xs sm:text-sm md:text-lg text-gray-600">
                 აქტივობა
               </p>
-              {card.range.slice(1, 2).map((item, index) => {
-                return (
-                  <p key={index} className="text-xs sm:text-sm md:text-sm">
-                    {item.max}
-                  </p>
-                );
-              })}
+              {card.range.slice(1, 2).map((item: RangeItem, index: number) => (
+                <p key={index} className="text-xs sm:text-sm md:text-sm">
+                  {item.max}
+                </p>
+              ))}
             </div>
           </div>
         </div>
       </section>
       <section className="container mx-auto px-5 sm:pl-8 sm:pr-7 md:pl-8 md:pr-7 lg:pl-11 lg:pr-10 py-8">
+        <h1 className="mb-5 text-md sm:text-lg font-bold">პოპულარული ტურები</h1>
         <div className="grid md:grid-cols-2 gap-8 items-stretch">
-          {card.destinations.map((destination) => (
+          {card.destinations.map((destination: Destination) => (
             <DestinationCard key={destination.id} {...destination} />
           ))}
         </div>
       </section>
+      <section>
+        <RecipeGallery items={card.array} />
+      </section>
+      <section>dfdfdff</section>
     </div>
   );
 }
