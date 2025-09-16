@@ -17,7 +17,7 @@ import GeoCultureCard from "@/components/GeoCultureCard";
 import { Map } from "@/components/Map";
 
 export default function CardPage() {
-  const card: Card = cardSliderImages[0]; // Use the first card for static display
+  const card: Card = cardSliderImages[1]; // Use the first card for static display
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const handleClick = (): void => {

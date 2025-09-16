@@ -285,12 +285,12 @@ export const navItems: NavItem[] = [
         title: "ტოპ ქალაქები",
         items: [
           { text: "ქუთაისი", href: "/places/kutaisi" },
-          { text: "ბათუმი", href: "/places/zugdidi" },
-          { text: "თბილისი", href: "/places/telavi" },
-          { text: "სტეფაწმინდა", href: "/places/poti" },
-          { text: "მესტია", href: "/places/akhaltsikhe" },
-          { text: "მცხეთა", href: "/places/ambrolauri" },
-          { text: "ბორჯომი", href: "/places/ambrolauri" },
+          { text: "ბათუმი", href: "/places/batumi" },
+          { text: "თბილისი", href: "/places/tbilisi" },
+          { text: "სტეფანწმინდა", href: "/places/stepanwminda" },
+          { text: "მესტია", href: "/places/mestia" },
+          { text: "მცხეთა", href: "/places/mcxeta" },
+          { text: "ბორჯომი", href: "/places/borjomi" },
         ],
       },
       {

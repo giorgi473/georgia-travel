@@ -1,7 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Heart, MapPin, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface DestinationCardProps {
   id: string;
@@ -21,18 +25,71 @@ export function DestinationCard({
   activities,
   currency,
 }: DestinationCardProps) {
+  const [isHeartActive, setIsHeartActive] = useState(false);
+  const [showHeartAnimation, setShowHeartAnimation] = useState(false);
+
+  const handleHeartClick = () => {
+    setIsHeartActive((prev) => !prev);
+    setShowHeartAnimation(true);
+    setTimeout(() => {
+      setShowHeartAnimation(false);
+    }, 1000); // Reset scattering animation after duration
+  };
+
+  const scatterHeartVariants = {
+    initial: { opacity: 0, scale: 0, x: 0, y: 0 },
+    animate: (i: number) => ({
+      opacity: [0, 1, 0],
+      scale: [0, Math.random() * 0.5 + 0.3, 0], // Random scale between 0.3 and 0.8
+      x: Math.cos((i * Math.PI * 2) / 10) * (20 + Math.random() * 20), // Random radius
+      y: Math.sin((i * Math.PI * 2) / 10) * (20 + Math.random() * 20), // Random radius
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+        delay: Math.random() * 0.2,
+      }, // Random delay
+    }),
+  };
+
   return (
     <Card className="overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-200 p-0 flex flex-col h-full">
-      <div className="relative h-96 w-full overflow-hidden cursor-pointer group">
+      <div className="relative h-96 w-full overflow-hidden cursor-pointer group select-none">
         <Image
           src={image || "/placeholder.svg"}
           alt={title}
           fill
           className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
-        <button className="absolute top-4 right-4 p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors">
-          <Heart className="w-5 h-5 text-white" />
-        </button>
+        <div className=" absolute inset-0 bg-black/20"></div>
+        <div
+          className="absolute top-4 right-4 p-2 transition-colors"
+          onClick={handleHeartClick}
+        >
+          <Heart
+            className={`w-6 h-6 ${
+              isHeartActive ? "text-red-500" : "text-white"
+            } hover:text-red-500 transition-all duration-200 ease-in-out`}
+            fill={isHeartActive ? "red" : "none"}
+            strokeWidth={2}
+          />
+          {showHeartAnimation &&
+            Array.from({ length: 10 }).map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute top-2 right-2"
+                custom={i}
+                variants={scatterHeartVariants}
+                initial="initial"
+                animate="animate"
+              >
+                <Heart
+                  className="w-4 h-4 text-white"
+                  fill="white"
+                  strokeWidth={1}
+                />
+              </motion.div>
+            ))}
+        </div>
         <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white">
           <MapPin className="w-7 h-7 text-red-500" />
           <span className="text-sm sm:text-sm md:text-md lg:text-lg font-bold">
@@ -44,7 +101,6 @@ export function DestinationCard({
         <h3 className="text-xl font-semibold text-gray-900 mb-3 text-balance">
           {title}
         </h3>
-
         <p className="text-gray-600 text-sm leading-relaxed mb-6 text-pretty flex-1">
           {description}
         </p>
