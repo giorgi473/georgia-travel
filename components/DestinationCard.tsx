@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Heart, MapPin, ArrowRight } from "lucide-react";
-import Image from "next/image";
 import { motion } from "framer-motion";
+import { Heart, MapPin, ArrowRight } from "lucide-react";
 
 interface DestinationCardProps {
   id: string;

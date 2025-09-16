@@ -7,6 +7,7 @@ export interface NavItemDetail {
   items: {
     text: string;
     href: string;
+    image?: string;
     renderComponent?: () => React.ReactNode;
   }[];
 }
@@ -336,8 +337,18 @@ export const navItems: NavItem[] = [
       },
       {
         title: "თვის სანახაობები",
-        images: ["/flags/ph.jpg", "/flags/ph.jpg"],
-        items: [],
+        items: [
+          {
+            text: "",
+            href: "/sdsd",
+            image: "/flags/svetitskhoveli-cathedral-gnta.webp",
+          },
+          {
+            text: "",
+            href: "/dsdsdsdsd",
+            image: "/flags/alaverdi-gnta.webp",
+          },
+        ],
       },
     ],
   },
@@ -369,8 +380,18 @@ export const navItems: NavItem[] = [
       },
       {
         title: "თვის სანახაობები",
-        images: ["/flags/ph.jpg", "/flags/ph.jpg"],
-        items: [],
+        items: [
+          {
+            text: "",
+            href: "/sdsd",
+            image: "/flags/svetitskhoveli-cathedral-gnta.webp",
+          },
+          {
+            text: "",
+            href: "/dsdsdsdsd",
+            image: "/flags/alaverdi-gnta.webp",
+          },
+        ],
       },
     ],
   },
@@ -408,8 +429,18 @@ export const navItems: NavItem[] = [
       },
       {
         title: "პოპულარული სტატიები",
-        images: ["/flags/ph.jpg", "/flags/ph.jpg"],
-        items: [],
+        items: [
+          {
+            text: "",
+            href: "/sdsd",
+            image: "/flags/svetitskhoveli-cathedral-gnta.webp",
+          },
+          {
+            text: "",
+            href: "/dsdsdsdsd",
+            image: "/flags/alaverdi-gnta.webp",
+          },
+        ],
       },
     ],
   },

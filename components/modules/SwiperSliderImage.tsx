@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { sliderImages } from "@/lib/data";
+import { useRouter } from "next/navigation";
 
 interface ThumbnailProps {
   src: string;
@@ -67,6 +68,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
 const SwiperSliderImage = forwardRef(() => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
+  const router = useRouter();
   const swiperRef = useRef<SwiperRef>(null);
 
   const handleThumbnailClick = (index: number, pause: boolean) => {
@@ -111,7 +113,7 @@ const SwiperSliderImage = forwardRef(() => {
                 quality={85}
               />
               <div className="absolute inset-0 bg-black opacity-50"></div>
-              <div className="absolute inset-0 flex flex-col justify-center px-5 sm:px-8 md:px-8 lg:px-10 container mx-auto z-50 text-white">
+              <div className="absolute inset-0 flex flex-col justify-center px-5 sm:px-8 md:px-8 lg:px-11 container mx-auto z-50 text-white">
                 <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl lg:pr-4 font-bold mb-4 sm:mb-6 md:mb-8 lg:mb-10">
                   <div className="space-y-1 sm:space-y-2">
                     {item.title.split("\n\n").map((paragraph, idx) => (
@@ -123,10 +125,16 @@ const SwiperSliderImage = forwardRef(() => {
                   {item.description}
                 </p>
                 <div className="flex flex-row gap-3 sm:gap-4 mt-8 sm:mt-12 md:mt-20 lg:mt-20">
-                  <button className="bg-red-500 text-white px-4 sm:px-5 md:px-6 lg:px-6 py-1.5 sm:py-2 rounded hover:bg-red-600 cursor-pointer text-sm sm:text-base md:text-lg lg:text-lg">
+                  <button
+                    className="bg-red-500 text-white px-4 sm:px-5 md:px-6 lg:px-6 py-1.5 sm:py-2 rounded hover:bg-red-600 cursor-pointer text-sm sm:text-base md:text-lg lg:text-lg"
+                    onClick={() => router.push("/popular-tours")}
+                  >
                     დაგეგმე მოგზაურობა
                   </button>
-                  <button className="bg-gray-800 text-white px-4 sm:px-5 md:px-6 lg:px-6 py-1.5 sm:py-2 rounded hover:bg-gray-600 cursor-pointer text-sm sm:text-base md:text-lg lg:text-lg">
+                  <button
+                    className="bg-gray-800 text-white px-4 sm:px-5 md:px-6 lg:px-6 py-1.5 sm:py-2 rounded hover:bg-gray-600 cursor-pointer text-sm sm:text-base md:text-lg lg:text-lg"
+                    onClick={() => router.push("/why-georgia")}
+                  >
                     გაიგე მეტი
                   </button>
                 </div>
@@ -135,7 +143,7 @@ const SwiperSliderImage = forwardRef(() => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="absolute container inset-0 mx-auto flex items-end justify-end bottom-10 sm:bottom-10 md:bottom-10 lg:bottom-20 px-5 sm:px-7 md:px-7 lg:px-9 z-10 gap-2 sm:gap-2 md:gap-3 lg:gap-3 select-none">
+      <div className="absolute container mx-auto flex items-end justify-end bottom-10 sm:bottom-10 md:bottom-10 lg:bottom-20 px-5 sm:pr-5 md:pr-5 lg:pr-0 z-10 gap-2 sm:gap-2 md:gap-3 lg:gap-3 select-none">
         {sliderImages.map((item, index) => (
           <Thumbnail
             key={index}

@@ -7,13 +7,13 @@ import Link from "next/link";
 import { DestinationCard } from "@/components/DestinationCard";
 import RecipeGallery from "@/components/RecipeGallery";
 import Slider from "@/components/Slider";
+import GeoCultureCard from "@/components/GeoCultureCard";
 import {
   Card,
   cardSliderImages,
   Destination,
   RangeItem,
 } from "@/constants/data/placeData";
-import GeoCultureCard from "@/components/GeoCultureCard";
 import { Map } from "@/components/Map";
 
 export default function CardPage() {

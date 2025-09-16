@@ -20,6 +20,7 @@ export default function RootLayout({
           title="სახარვგებული ინფორმაცია"
           description="სანამ საქართველოში ჩამოხვალ, მნიშვნელოვანია გაეცნო ჩვენი ქვეყნის ცხოვრების სტილსა და ისეთ საჭირო დეტალებს, როგორებიცაა, სავიზო პოლიტიკა, ადგილობრივი და რეგიონული ტრანსპორტი, ამინდი, კლიმატი, სასტუმროთა ქსელები და სხვა."
           overlay="bg-black/30"
+          className={"h-[500px]"}
         />
       </div>
       <div className="flex flex-col lg:flex-row max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">

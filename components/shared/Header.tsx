@@ -25,6 +25,12 @@ function Header() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isPanelHovered, setIsPanelHovered] = useState(false);
   const [activeRegion, setActiveRegion] = useState<string | null>(null);
+  const [heartAnimations, setHeartAnimations] = useState<{
+    [key: number]: boolean;
+  }>({});
+  const [heartActive, setHeartActive] = useState<{ [key: number]: boolean }>(
+    {}
+  );
   const navRefs = useRef<(HTMLLIElement | null)[]>(Array(5).fill(null));
   const [underlineStyle, setUnderlineStyle] = useState<{
     width: number;
@@ -91,7 +97,69 @@ function Header() {
     return details;
   };
 
+  const handleLinkClick = (href: string) => {
+    setTimeout(() => {
+      setIsMenuOpen(false);
+      setIsHovered(false);
+      setHoveredItem(null);
+      setIsPanelHovered(false);
+      setUnderlineStyle({ width: 0, left: 0 });
+      setActiveRegion(null);
+      router.push(href);
+    }, 200);
+  };
+
+  const handleHeartClick = (index: number, e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent link click when heart is clicked
+    setHeartAnimations((prev) => ({ ...prev, [index]: true }));
+    setHeartActive((prev) => ({ ...prev, [index]: !prev[index] }));
+    setTimeout(() => {
+      setHeartAnimations((prev) => ({ ...prev, [index]: false }));
+    }, 1000); // Reset scattering animation after duration
+  };
+
+  const scatterHeartVariants = {
+    initial: { opacity: 0, scale: 0, x: 0, y: 0 },
+    animate: (i: number) => ({
+      opacity: [0, 1, 0],
+      scale: [0, Math.random() * 0.5 + 0.3, 0], // Random scale between 0.3 and 0.8
+      x: Math.cos((i * Math.PI * 2) / 10) * (20 + Math.random() * 20), // Random radius
+      y: Math.sin((i * Math.PI * 2) / 10) * (20 + Math.random() * 20), // Random radius
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+        delay: Math.random() * 0.2,
+      },
+    }),
+  };
+
   const MotionImage = motion(Image);
+
+  const menuVariants = {
+    open: {
+      opacity: 1,
+      height: "auto",
+      transition: { duration: 0.3, ease: "easeInOut" },
+    },
+    closed: {
+      opacity: 0,
+      height: 0,
+      transition: { duration: 0.3, ease: "easeInOut" },
+    },
+  };
+
+  const panelVariants = {
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.2, ease: "easeInOut" },
+    },
+    closed: {
+      opacity: 0,
+      y: -20,
+      transition: { duration: 0.2, ease: "easeInOut" },
+    },
+  };
 
   return (
     <motion.header
@@ -114,7 +182,11 @@ function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4 sm:gap-6">
-            <Link href="/" className="flex-shrink-0">
+            <Link
+              href="/"
+              className="flex-shrink-0"
+              onClick={() => handleLinkClick("/")}
+            >
               <Image
                 src="/logo/logo.svg"
                 alt="Logo"
@@ -169,6 +241,7 @@ function Header() {
                           ? "text-gray-800"
                           : "text-white") + " transition-colors text-md"
                       }
+                      onClick={() => handleLinkClick(item.href)}
                     >
                       {item.name || item.natureName}
                     </Link>
@@ -227,10 +300,10 @@ function Header() {
         </div>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            variants={menuVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
             className="xl:hidden mt-4"
           >
             <Accordion type="single" collapsible className="w-full">
@@ -239,10 +312,15 @@ function Header() {
                   key={item.name || item.natureName || index.toString()}
                   value={item.name || item.natureName || index.toString()}
                 >
-                  <AccordionTrigger className="text-left py-6 rounded flex justify-between items-center">
-                    {item.name || item.natureName}
+                  <AccordionTrigger className="text-left py-5 text-sm font-bold rounded flex justify-between items-center">
+                    <Link
+                      href={item.href}
+                      onClick={() => handleLinkClick(item.href)}
+                    >
+                      {item.name || item.natureName}
+                    </Link>
                   </AccordionTrigger>
-                  <AccordionContent className="pl-4 pt-2 max-h-[300px] overflow-y-auto">
+                  <AccordionContent className="pl-1 max-h-[300px] overflow-y-auto">
                     {(item.name === "რატომ საქართველო" ||
                       item.name === "ადგილები" ||
                       item.name === "სანახაობები" ||
@@ -250,29 +328,36 @@ function Header() {
                       item.name === "სასარგებლო ინფორმაცია") &&
                       item.details.map((column, colIndex) => (
                         <div key={colIndex} className="text-gray-500 mb-4">
-                          <h3 className="text-md font-bold text-black">
+                          <h3 className="text-md font-bold text-black mb-5">
                             {column.title}
                           </h3>
                           {colIndex === 2 &&
-                            column.images &&
-                            column.images.length === 2 &&
+                            column.items &&
+                            column.items.length === 2 &&
                             (item.name === "სანახაობები" ||
                               item.natureName === "ბუნება და თავგადასავლები" ||
                               item.name === "სასარგებლო ინფორმაცია") && (
-                              <div className="flex gap-4">
-                                {column.images.map((image, imgIndex) => (
+                              <div className="flex flex-col sm:flex-row sm:pr-5 gap-4 w-full">
+                                {column.items.map((image, imgIndex) => (
                                   <div
                                     key={imgIndex}
-                                    className="relative flex-1 h-72 overflow-hidden rounded-lg"
+                                    className="relative w-[96%] sm:flex-1 flex-col h-72 overflow-hidden rounded-lg"
                                   >
-                                    <MotionImage
-                                      src={image}
-                                      alt={`${column.title} ${imgIndex + 1}`}
-                                      fill
-                                      className="object-cover"
-                                      whileHover={{ scale: 1.1 }}
-                                      transition={{ duration: 0.3 }}
-                                    />
+                                    <Link
+                                      href={image.href}
+                                      onClick={() =>
+                                        handleLinkClick(image.href)
+                                      }
+                                    >
+                                      <MotionImage
+                                        src={image.image}
+                                        alt={`${column.title} ${imgIndex + 1}`}
+                                        fill
+                                        className="object-cover"
+                                        whileHover={{ scale: 1.1 }}
+                                        transition={{ duration: 0.3 }}
+                                      />
+                                    </Link>
                                     <p className="absolute bottom-5 left-3 font-bold w-[220px] text-white text-md bg-opacity-50 px-2 py-1 rounded">
                                       {item.name === "სანახაობები"
                                         ? imgIndex === 0
@@ -291,11 +376,42 @@ function Header() {
                                       (item.natureName ===
                                         "ბუნება და თავგადასავლები" &&
                                         imgIndex === 1)) && (
-                                      <div className="absolute top-1 right-2">
-                                        <Heart
-                                          className="text-red-500"
-                                          size={20}
-                                        />
+                                      <div className="absolute top-5 right-5">
+                                        <motion.button
+                                          onClick={(e) =>
+                                            handleHeartClick(imgIndex, e)
+                                          }
+                                          className="relative"
+                                        >
+                                          <Heart
+                                            className={`${
+                                              heartActive[imgIndex]
+                                                ? "text-red-500 fill-red-500"
+                                                : "text-white"
+                                            } hover:text-red-500 hover:fill-red-500 transition-all duration-200 ease-in-out`}
+                                            size={20}
+                                          />
+                                          {heartAnimations[imgIndex] &&
+                                            Array.from({ length: 10 }).map(
+                                              (_, i) => (
+                                                <motion.div
+                                                  key={i}
+                                                  className="absolute top-0 right-0"
+                                                  variants={
+                                                    scatterHeartVariants
+                                                  }
+                                                  initial="initial"
+                                                  animate="animate"
+                                                  custom={i}
+                                                >
+                                                  <Heart
+                                                    className="text-white fill-white"
+                                                    size={12}
+                                                  />
+                                                </motion.div>
+                                              )
+                                            )}
+                                        </motion.button>
                                       </div>
                                     )}
                                   </div>
@@ -303,21 +419,13 @@ function Header() {
                               </div>
                             )}
                           {colIndex === 3 && column.image && (
-                            <div className="relative h-60">
-                              <Image
-                                src={column.image}
-                                alt={column.title}
-                                fill
-                                className="object-cover rounded-lg"
-                              />
-                              <p
-                                className="absolute bottom-4 left-4 font-semibold"
-                                style={{ color: "white" }}
-                              >
-                                {column.title.includes("აღმოაჩინე")
-                                  ? "დაგეგმე მოგზაურობა"
-                                  : ""}
-                              </p>
+                            <div
+                              className="flex items-center justify-center mt-4 -ml-5"
+                              onClick={() =>
+                                handleLinkClick(column.items[0].href)
+                              }
+                            >
+                              <EarthCanvas />
                             </div>
                           )}
                           {column.items.map((item, textIndex) => (
@@ -329,7 +437,8 @@ function Header() {
                               ) : (
                                 <Link
                                   href={item.href}
-                                  className="text-sm font-semibold block hover:text-red-500 w-[230px]"
+                                  className="text-md text-black block hover:text-red-500 mb-4 w-[230px]"
+                                  onClick={() => handleLinkClick(item.href)}
                                   onMouseEnter={() => {
                                     if (column.title === "ტოპ რეგიონები") {
                                       setActiveRegion(item.text);
@@ -396,10 +505,10 @@ function Header() {
         <motion.div
           className="absolute w-screen bg-white p-6 shadow"
           style={{ top: "100%", left: 0 }}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.2, ease: "easeInOut" }}
+          variants={panelVariants}
+          initial="closed"
+          animate="open"
+          exit="closed"
           onMouseEnter={() => {
             if (leaveTimeout) {
               clearTimeout(leaveTimeout);
@@ -438,25 +547,30 @@ function Header() {
                   {column.title}
                 </h3>
                 {colIndex === 2 &&
-                  column.images &&
-                  column.images.length === 2 &&
+                  column.items &&
+                  column.items.length === 2 &&
                   (hoveredItem === "სანახაობები" ||
                     hoveredItem === "ბუნება და თავგადასავლები" ||
                     hoveredItem === "სასარგებლო ინფორმაცია") && (
-                    <div className="flex gap-4 w-[570px] select-none cursor-pointer">
-                      {column.images.map((image, imgIndex) => (
+                    <div className="flex gap-4 w-[590px] select-none cursor-pointer mt-6">
+                      {column.items.map((image, imgIndex) => (
                         <div
                           key={imgIndex}
-                          className="relative flex-1 h-60 overflow-hidden rounded-lg"
+                          className="relative flex-1 h-70 overflow-hidden rounded-lg"
                         >
-                          <MotionImage
-                            src={image}
-                            alt={`${column.title} ${imgIndex + 1}`}
-                            fill
-                            className="object-cover"
-                            whileHover={{ scale: 1.1 }}
-                            transition={{ duration: 0.3 }}
-                          />
+                          <Link
+                            href={image.href}
+                            onClick={() => handleLinkClick(image.href)}
+                          >
+                            <MotionImage
+                              src={image.image}
+                              alt={`${column.title} ${imgIndex + 1}`}
+                              fill
+                              className="object-cover"
+                              whileHover={{ scale: 1.1 }}
+                              transition={{ duration: 0.3 }}
+                            />
+                          </Link>
                           <p className="absolute bottom-5 left-3 font-bold w-[220px] text-white text-md bg-opacity-50 px-2 py-1 rounded">
                             {hoveredItem === "სანახაობები"
                               ? imgIndex === 0
@@ -473,38 +587,46 @@ function Header() {
                           {(hoveredItem === "სანახაობები" ||
                             (hoveredItem === "ბუნება და თავგადასავლები" &&
                               imgIndex === 1)) && (
-                            <div className="absolute top-1 right-2">
-                              <Heart className="text-red-500" size={20} />
+                            <div className="absolute top-5 right-5">
+                              <motion.button
+                                onClick={(e) => handleHeartClick(imgIndex, e)}
+                                className="relative"
+                              >
+                                <Heart
+                                  className={`${
+                                    heartActive[imgIndex]
+                                      ? "text-red-500 fill-red-500"
+                                      : "text-white"
+                                  } hover:text-red-500 hover:fill-red-500 transition-all duration-200 ease-in-out`}
+                                  size={20}
+                                />
+                                {heartAnimations[imgIndex] &&
+                                  Array.from({ length: 10 }).map((_, i) => (
+                                    <motion.div
+                                      key={i}
+                                      className="absolute top-0 right-0"
+                                      variants={scatterHeartVariants}
+                                      initial="initial"
+                                      animate="animate"
+                                      custom={i}
+                                    >
+                                      <Heart
+                                        className="text-white fill-white"
+                                        size={12}
+                                      />
+                                    </motion.div>
+                                  ))}
+                              </motion.button>
                             </div>
                           )}
                         </div>
                       ))}
                     </div>
                   )}
-                {/* {colIndex === 3 && column.image && (
-                  <div className="relative h-72 overflow-hidden rounded-lg">
-                    <Link href={column.items[0].href}>
-                      <Image
-                        src={column.image}
-                        alt={column.title}
-                        fill
-                        className="object-cover rounded-lg hover:scale-110 transition-all duration-200 ease-in-out"
-                      />
-                    </Link>
-                    <p
-                      className="absolute bottom-4 left-4 font-semibold"
-                      style={{ color: "white" }}
-                    >
-                      {column.title.includes("აღმოაჩინე")
-                        ? "დაგეგმე მოგზაურობა"
-                        : ""}
-                    </p>
-                  </div>
-                )} */}
                 {colIndex === 3 && column.image && (
                   <div
                     className="-ml-11 cursor-pointer"
-                    onClick={() => router.push(column.items[0].href)}
+                    onClick={() => handleLinkClick(column.items[0].href)}
                   >
                     <EarthCanvas />
                   </div>
@@ -522,7 +644,8 @@ function Header() {
                     ) : (
                       <Link
                         href={item.href}
-                        className="text-sm font-semibold block hover:text-red-500 py-3 w-[230px]"
+                        className="text-sm block hover:text-red-500 py-3 w-[230px]"
+                        onClick={() => handleLinkClick(item.href)}
                         onMouseEnter={() => {
                           if (column.title === "ტოპ რეგიონები") {
                             setActiveRegion(item.text);
