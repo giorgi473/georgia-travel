@@ -10,6 +10,7 @@ interface HeroSectionProps {
   description?: string;
   overlay?: string;
   button?: string;
+  href?: string;
   tours?: string;
   className?: string | null;
 }
@@ -20,6 +21,7 @@ export function HeroSection({
   description,
   overlay = "bg-black/30",
   button,
+  href,
   tours,
   className,
 }: HeroSectionProps) {
@@ -47,7 +49,7 @@ export function HeroSection({
           <div className="flex items-center gap-3">
             <button
               className="text-white cursor-pointer font-bold hover:text-red-500 transition-all duration-200 ease-in-out"
-              onClick={() => router.push("/")}
+              onClick={() => router.push(`${href}`)}
             >
               {button}
             </button>
