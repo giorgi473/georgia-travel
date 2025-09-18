@@ -250,12 +250,13 @@ function Header() {
               </ul>
             </nav>
           </div>
-          <div className="hidden xl:flex items-center gap-3 sm:gap-3 xl:gap-10">
+          <div className="hidden xl:flex items-center gap-3 sm:gap-3 lg:gap-5">
             <motion.button
               onClick={toggleSearch}
               aria-label="Search"
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.2 }}
+              className="cursor-pointer"
             >
               <Search
                 className={
@@ -269,6 +270,8 @@ function Header() {
             <motion.button
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.2 }}
+              className="cursor-pointer relative"
+              onClick={() => router.push(`/itinerary`)}
             >
               <Heart
                 className={
@@ -278,6 +281,9 @@ function Header() {
                 }
                 size={20}
               />
+              <div className="absolute -top-2 -right-2 bg-red-500 font-bold text-md w-fit px-2 scale-50 rounded-md text-white">
+                1
+              </div>
             </motion.button>
           </div>
           <motion.button
