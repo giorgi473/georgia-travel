@@ -4,10 +4,11 @@ import { useState } from "react";
 import { use } from "react";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { Heart } from "lucide-react";
-import { stunningNatureScenes } from "@/constants/data/popularToursData";
+import { ArrowRight, Heart } from "lucide-react";
 import { HeroSection } from "@/components/hero-section";
-import ButtonWrapper from "@/components/ButtonWrapper";
+import Blogs from "@/components/modules/Blogs";
+import { stunningNatureScenes } from "@/constants/data/popularToursData";
+import { Map } from "@/components/Map";
 
 interface Props {
   params: Promise<{ tourTitle: string }>;
@@ -44,10 +45,10 @@ export default function TourPage({ params }: Props) {
       <div className="container mx-auto px-5 sm:px-8 md:px-8 lg:px-10 py-10">
         <div>
           <div>
-            <div className="flex flex-col lg:flex-row gap-10 lg:gap-32 mb-[140px]">
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-32 mb-[120px]">
               <div className="flex-1 flex flex-col justify-between gap-10">
-                <h1 className="text-4xl font-bold">{tour.title}</h1>
-                <p className="text-gray-600">{tour.descriptin}</p>
+                <h1 className="text-xl lg:text-4xl font-bold">{tour.title}</h1>
+                <p className="text-gray-600 text-md">{tour.descriptin}</p>
                 <div className="flex flex-row gap-16">
                   <div>
                     <p className="text-sm text-gray-600">დრო</p>
@@ -106,7 +107,7 @@ export default function TourPage({ params }: Props) {
             {/* Sub-Tours Section */}
             {tour.tours && tour.tours.length > 0 && (
               <div className="mt-10">
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-20">
                   {tour.tours.map((subTour, index) => (
                     <div
                       key={subTour.id}
@@ -126,12 +127,26 @@ export default function TourPage({ params }: Props) {
                         />
                       </div>
                       <div className="lg:w-1/2 flex flex-col justify-center gap-10">
-                        <h3 className="text-4xl font-semibold">
-                          {subTour.title}
-                        </h3>
-                        <p className="text-gray-600">{subTour.description}</p>
+                        <div className="flex items-start gap-3 select-none">
+                          <div className="flex items-center gap-4 group">
+                            <div
+                              className={`w-fit px-4 py-[8px] rounded-full
+                               bg-red-500 text-white transition-all duration-200 ease-in-out`}
+                            >
+                              {subTour.id}
+                            </div>
+                          </div>
+                          <h3 className="text-xl lg:text-4xl font-semibold -mt-1">
+                            {subTour.title}
+                          </h3>
+                        </div>
+                        <p className="text-gray-600 text-md">
+                          {subTour.description}
+                        </p>
                         <div>
-                          <ButtonWrapper />
+                          <button className="text-red-500 flex items-center gap-2 font-bold text-sm cursor-pointer border border-red-500 rounded-lg px-4 py-4 hover:bg-red-500 hover:text-white transition-all duration-200 ease-in-out">
+                            გაიგე მეტი <ArrowRight size={15} />
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -142,6 +157,12 @@ export default function TourPage({ params }: Props) {
           </div>
         </div>
       </div>
+      <section className="my-5 px-5 lg:px-0">
+        <Map />
+      </section>
+      <section>
+        <Blogs />
+      </section>
     </>
   );
 }
