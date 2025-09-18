@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Heart, Menu, Search, X } from "lucide-react";
 import { createSlug } from "@/lib/utils";
+import { useCart } from "@/context/CartContext";
 import ButtonWrapper from "@/components/ButtonWrapper";
 import { HeroSection } from "@/components/hero-section";
 import { stunningNatureScenes } from "@/constants/data/popularToursData";
@@ -27,10 +28,11 @@ function Page() {
     {}
   );
   const [currentPage, setCurrentPage] = useState(1);
-  const [isSearchOpen, setIsSearchOpen] = useState(false); // State for search input
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchId, setSearchId] = useState("");
-  const [activeFilterId, setActiveFilterId] = useState(""); // For actual filtering
+  const [activeFilterId, setActiveFilterId] = useState("");
   const router = useRouter();
+  const { addTour, removeTour, isTourInCart } = useCart();
   const itemsPerPage = 6;
 
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -48,8 +50,17 @@ function Page() {
   );
 
   const handleHeartClick = (index: number) => {
+    const scene = currentItems[index]; // Get the tour based on index
     setHeartAnimations((prev) => ({ ...prev, [index]: true }));
     setHeartActive((prev) => ({ ...prev, [index]: !prev[index] }));
+
+    // Add or remove tour from cart based on heartActive state
+    if (!heartActive[index]) {
+      addTour(scene); // Add to cart if heart is activated
+    } else {
+      removeTour(scene.id); // Remove from cart if heart is deactivated
+    }
+
     setTimeout(() => {
       setHeartAnimations((prev) => ({ ...prev, [index]: false }));
     }, 1000);
@@ -140,7 +151,6 @@ function Page() {
                     }
                   }}
                   onKeyDown={(e) => {
-                    // Block 'e', 'E', '+', '-', '.' characters
                     if (["e", "E", "+", "-", "."].includes(e.key)) {
                       e.preventDefault();
                     }
@@ -150,8 +160,8 @@ function Page() {
                   variant={"destructive"}
                   className="p-2 h-10 cursor-pointer"
                   onClick={() => {
-                    setActiveFilterId(searchId); // Apply the filter
-                    setCurrentPage(1); // Reset to first page when searching
+                    setActiveFilterId(searchId);
+                    setCurrentPage(1);
                   }}
                   aria-label="ძებნა"
                 >
@@ -212,7 +222,7 @@ function Page() {
                     <Heart
                       size={20}
                       className={`${
-                        heartActive[index]
+                        heartActive[index] || isTourInCart(scene.id)
                           ? "fill-red-500 text-red-500"
                           : "hover:text-red-500 text-white transition-all duration-200 ease-in-out"
                       }`}

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { use } from "react";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -8,7 +7,8 @@ import { ArrowRight, Heart } from "lucide-react";
 import { HeroSection } from "@/components/hero-section";
 import Blogs from "@/components/modules/Blogs";
 import { stunningNatureScenes } from "@/constants/data/popularToursData";
-import { Map } from "@/components/Map";
+import { Map } from "@/components/Map"; // დაამატე CartContext
+import { useCart } from "@/context/CartContext";
 
 interface Props {
   params: Promise<{ tourTitle: string }>;
@@ -18,10 +18,19 @@ export default function TourPage({ params }: Props) {
   const { tourTitle } = use(params);
   const id = parseInt(tourTitle.split("-").pop() || "0", 10);
   const tour = stunningNatureScenes.find((scene) => scene.id === id);
-  const [isActive, setIsActive] = useState(false);
+
+  // Cart hooks
+  const { addTour, removeTour, isTourInCart } = useCart();
+  const isInCart = tour ? isTourInCart(tour.id) : false;
 
   const handleButtonClick = () => {
-    setIsActive(!isActive);
+    if (tour) {
+      if (isInCart) {
+        removeTour(tour.id);
+      } else {
+        addTour(tour);
+      }
+    }
   };
 
   if (!tour) {
@@ -75,22 +84,22 @@ export default function TourPage({ params }: Props) {
                 >
                   <div
                     className={`border w-fit p-3 rounded-full ${
-                      isActive ? "bg-red-500" : "border-red-500"
+                      isInCart ? "bg-red-500" : "border-red-500"
                     } group-hover:bg-red-500 group-hover:text-white transition-all duration-200 ease-in-out`}
                   >
                     <Heart
                       size={20}
                       className={`${
-                        isActive ? "text-white" : "text-red-500"
+                        isInCart ? "text-white" : "text-red-500"
                       } group-hover:text-white transition-all duration-200 ease-in-out`}
                     />
                   </div>
                   <div
                     className={`text-md font-bold ${
-                      isActive ? "text-red-500 px-1" : "text-red-500"
+                      isInCart ? "text-red-500 px-1" : "text-red-500"
                     } group-hover:px-1 transition-all duration-200 ease-in-out`}
                   >
-                    მარშრუტებში დამატება
+                    {isInCart ? "მარშრუტიდან ამოღება" : "მარშრუტებში დამატება"}
                   </div>
                 </button>
               </div>

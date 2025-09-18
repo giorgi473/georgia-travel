@@ -13,6 +13,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useCart } from "@/context/CartContext";
 import { NavItemDetail, navItems } from "@/constants/data/data";
 import GeorgianMap from "@/components/GeorgianMap";
 import EarthCanvas from "../modules/EarthCanvas";
@@ -28,9 +29,10 @@ function Header() {
   const [heartAnimations, setHeartAnimations] = useState<{
     [key: number]: boolean;
   }>({});
-  const [heartActive, setHeartActive] = useState<{ [key: number]: boolean }>(
-    {}
-  );
+
+  // Cart hook გამოყენება
+  const { tours } = useCart();
+
   const navRefs = useRef<(HTMLLIElement | null)[]>(Array(5).fill(null));
   const [underlineStyle, setUnderlineStyle] = useState<{
     width: number;
@@ -112,7 +114,6 @@ function Header() {
   const handleHeartClick = (index: number, e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent link click when heart is clicked
     setHeartAnimations((prev) => ({ ...prev, [index]: true }));
-    setHeartActive((prev) => ({ ...prev, [index]: !prev[index] }));
     setTimeout(() => {
       setHeartAnimations((prev) => ({ ...prev, [index]: false }));
     }, 1000); // Reset scattering animation after duration
@@ -274,16 +275,23 @@ function Header() {
               onClick={() => router.push(`/itinerary`)}
             >
               <Heart
-                className={
+                className={`${
                   isHovered || isScrolled || isMenuOpen
                     ? "text-gray-800"
                     : "text-white"
-                }
+                } ${tours.length > 0 ? "fill-white" : ""}`}
                 size={20}
               />
-              <div className="absolute -top-2 -right-2 bg-red-500 font-bold text-md w-fit px-2 scale-50 rounded-md text-white">
-                1
-              </div>
+              {/* Cart რაოდენობის Badge */}
+              {tours.length > 0 && (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute -top-2.5 -right-2.5 bg-red-500 font-bold text-md w-fit px-2 scale-50 rounded-md text-white"
+                >
+                  {tours.length}
+                </motion.div>
+              )}
             </motion.button>
           </div>
           <motion.button
@@ -390,11 +398,7 @@ function Header() {
                                           className="relative"
                                         >
                                           <Heart
-                                            className={`${
-                                              heartActive[imgIndex]
-                                                ? "text-red-500 fill-red-500"
-                                                : "text-white"
-                                            } hover:text-red-500 hover:fill-red-500 transition-all duration-200 ease-in-out`}
+                                            className="text-white hover:text-red-500 hover:fill-red-500 transition-all duration-200 ease-in-out"
                                             size={20}
                                           />
                                           {heartAnimations[imgIndex] &&
@@ -498,6 +502,33 @@ function Header() {
                   />
                 </AccordionContent>
               </AccordionItem>
+              {/* Mobile Cart Button */}
+              <AccordionItem value="cart">
+                <AccordionTrigger className="text-left py-6 rounded flex justify-between items-center">
+                  <div
+                    className="flex items-center gap-2 cursor-pointer"
+                    onClick={() => router.push("/itinerary")}
+                  >
+                    <Heart
+                      className={`${
+                        isHovered || isScrolled || isMenuOpen
+                          ? "text-gray-800"
+                          : "text-white"
+                      } ${tours.length > 0 ? "fill-current text-red-500" : ""}`}
+                      size={20}
+                    />
+                    <span
+                      className={
+                        isHovered || isScrolled || isMenuOpen
+                          ? "text-gray-800"
+                          : "text-white"
+                      }
+                    >
+                      მარშრუტები {tours.length > 0 ? `(${tours.length})` : ""}
+                    </span>
+                  </div>
+                </AccordionTrigger>
+              </AccordionItem>
             </Accordion>
           </motion.div>
         )}
@@ -599,11 +630,7 @@ function Header() {
                                 className="relative"
                               >
                                 <Heart
-                                  className={`${
-                                    heartActive[imgIndex]
-                                      ? "text-red-500 fill-red-500"
-                                      : "text-white"
-                                  } hover:text-red-500 hover:fill-red-500 transition-all duration-200 ease-in-out`}
+                                  className="text-white hover:text-red-500 hover:fill-red-500 transition-all duration-200 ease-in-out"
                                   size={20}
                                 />
                                 {heartAnimations[imgIndex] &&
