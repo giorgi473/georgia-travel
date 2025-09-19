@@ -1,4 +1,3 @@
-// contexts/CartContext.tsx
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
@@ -13,30 +12,52 @@ interface Tour {
   difficulty: string;
 }
 
+interface Sight {
+  id: number;
+  title: string;
+  description: string;
+  src: string; // image URL
+}
+
 interface CartContextType {
   tours: Tour[];
+  sights: Sight[];
   addTour: (tour: Tour) => void;
   removeTour: (tourId: number) => void;
   clearTours: () => void;
   isTourInCart: (tourId: number) => boolean;
+  addSight: (sight: Sight) => void;
+  removeSight: (sightId: number) => void;
+  clearSights: () => void;
+  isSightInCart: (sightId: number) => boolean;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [tours, setTours] = useState<Tour[]>([]);
+  const [sights, setSights] = useState<Sight[]>([]);
 
   // მონაცემების ლოკალური შენახვა
   useEffect(() => {
     const savedTours = localStorage.getItem("cartTours");
+    const savedSights = localStorage.getItem("cartSights");
+
     if (savedTours) {
       setTours(JSON.parse(savedTours));
+    }
+    if (savedSights) {
+      setSights(JSON.parse(savedSights));
     }
   }, []);
 
   useEffect(() => {
     localStorage.setItem("cartTours", JSON.stringify(tours));
   }, [tours]);
+
+  useEffect(() => {
+    localStorage.setItem("cartSights", JSON.stringify(sights));
+  }, [sights]);
 
   const addTour = (tour: Tour) => {
     setTours((prev) => {
@@ -58,14 +79,39 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     return tours.some((tour) => tour.id === tourId);
   };
 
+  const addSight = (sight: Sight) => {
+    setSights((prev) => {
+      const exists = prev.find((s) => s.id === sight.id);
+      if (exists) return prev;
+      return [...prev, sight];
+    });
+  };
+
+  const removeSight = (sightId: number) => {
+    setSights((prev) => prev.filter((sight) => sight.id !== sightId));
+  };
+
+  const clearSights = () => {
+    setSights([]);
+  };
+
+  const isSightInCart = (sightId: number) => {
+    return sights.some((sight) => sight.id === sightId);
+  };
+
   return (
     <CartContext.Provider
       value={{
         tours,
+        sights,
         addTour,
         removeTour,
         clearTours,
         isTourInCart,
+        addSight,
+        removeSight,
+        clearSights,
+        isSightInCart,
       }}
     >
       {children}

@@ -41,6 +41,7 @@ export interface Blogs {
   blogText?: string;
 }
 export interface Card {
+  id: number;
   title: string;
   src: string;
   modalSrc: string;
@@ -60,6 +61,7 @@ export interface Card {
 
 export const cardSliderImages: Card[] = [
   {
+    id: 1,
     title: "მარტვილის კანიონი",
     src: "/home/bla.webp",
     modalSrc: "/home/bla.webp",
@@ -283,6 +285,7 @@ export const cardSliderImages: Card[] = [
     ],
   },
   {
+    id: 2,
     title: "აბუდელაურის ფერადი ტბები",
     src: "/home/abudelauri-lake-georgia.webp",
     modalSrc: "/home/abudelauri-lake-georgia.webp",
@@ -367,6 +370,7 @@ export const cardSliderImages: Card[] = [
     ],
   },
   {
+    id: 3,
     title: "გოგნის წმ. გიორგის ეკლესია",
     src: "/home/gogni-church.webp",
     modalSrc: "/home/gogni-church.webp",
@@ -565,6 +569,7 @@ export const cardSliderImages: Card[] = [
     ],
   },
   {
+    id: 4,
     title: "ვარძია",
     src: "/home/vardzia-gnta.webp",
     modalSrc: "/home/vardzia-gnta.webp",
@@ -788,6 +793,7 @@ export const cardSliderImages: Card[] = [
     ],
   },
   {
+    id: 5,
     title: "სათაფლიის მღვიმე და ნაკრძალი",
     src: "/home/sataplia-cave-and-nature-reserve-gnta.webp",
     modalSrc: "/home/sataplia-cave-and-nature-reserve-gnta.webp",
@@ -990,6 +996,7 @@ export const cardSliderImages: Card[] = [
     ],
   },
   {
+    id: 6,
     title: "სვეტიცხოველი - მსოფლიო ხელოვნების საგანძური",
     src: "/home/svetitskhoveli-cathedral-gnta.webp",
     modalSrc: "/home/svetitskhoveli-cathedral-gnta.webp",
@@ -1191,6 +1198,7 @@ export const cardSliderImages: Card[] = [
     ],
   },
   {
+    id: 7,
     title: "ძამას ხეობა",
     src: "/home/dzama-valley-gnta.webp",
     modalSrc: "/home/dzama-valley-gnta.webp",
@@ -1223,6 +1231,7 @@ export const cardSliderImages: Card[] = [
     ],
   },
   {
+    id: 8,
     title: "ხვამლის მთა",
     src: "/home/khvamli-mountain-gnta.webp",
     modalSrc: "/home/khvamli-mountain-gnta.webp",
@@ -1255,6 +1264,7 @@ export const cardSliderImages: Card[] = [
     ],
   },
   {
+    id: 9,
     title: "თრუსოს ხეობა",
     src: "/home/trusso-valley-gnta.webp",
     modalSrc: "/home/trusso-valley-gnta.webp",
@@ -1287,6 +1297,7 @@ export const cardSliderImages: Card[] = [
     ],
   },
   {
+    id: 10,
     title: "თრიალეთის ყორღავი",
     src: "/home/trialeti-petroglyps.webp",
     modalSrc: "/home/trialeti-petroglyps.webp",
@@ -1319,6 +1330,7 @@ export const cardSliderImages: Card[] = [
     ],
   },
   {
+    id: 11,
     title: "თუშეთი",
     src: "/home/tusheti-georgia.webp",
     modalSrc: "/home/tusheti-georgia.webp",
@@ -1351,6 +1363,7 @@ export const cardSliderImages: Card[] = [
     ],
   },
   {
+    id: 12,
     title: "ლომისის წმინდა გიორგის სახელობის ეკლესია",
     src: "/home/lomisi-church-gnta.webp",
     modalSrc: "/home/lomisi-church-gnta.webp",

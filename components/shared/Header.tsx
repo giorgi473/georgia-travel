@@ -30,10 +30,12 @@ function Header() {
     [key: number]: boolean;
   }>({});
 
-  // Cart hook გამოყენება
-  const { tours } = useCart();
+  // Cart hook გამოყენება - ახლა სანახაობებსაც ვიყენებთ
+  const { tours, sights, addSight, removeSight, isSightInCart } = useCart();
 
-  const navRefs = useRef<(HTMLLIElement | null)[]>(Array(5).fill(null));
+  const navRefs = useRef<(HTMLLIElement | null)[]>(
+    Array(navItems.length).fill(null)
+  );
   const [underlineStyle, setUnderlineStyle] = useState<{
     width: number;
     left: number;
@@ -111,12 +113,71 @@ function Header() {
     }, 200);
   };
 
-  const handleHeartClick = (index: number, e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent link click when heart is clicked
+  // SightData interface განსაზღვრა
+  interface SightData {
+    id: string | number;
+    title: string;
+    description: string;
+    image: string;
+  }
+
+  // განახლებული handleHeartClick ფუნქცია სანახაობების დასამატებლად
+  const handleHeartClick = (
+    index: number,
+    e: React.MouseEvent,
+    itemData?: SightData
+  ) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    // Animation trigger
     setHeartAnimations((prev) => ({ ...prev, [index]: true }));
     setTimeout(() => {
       setHeartAnimations((prev) => ({ ...prev, [index]: false }));
-    }, 1000); // Reset scattering animation after duration
+    }, 1000);
+
+    // თუ itemData გადმოცემულია (navigation panel-იდან)
+    if (itemData) {
+      const sightId =
+        typeof itemData.id === "string"
+          ? parseInt(itemData.id.replace(/\D/g, "")) || Date.now() + index
+          : Number(itemData.id) || Date.now() + index;
+      const sight = {
+        id: sightId,
+        title: itemData.title || `სანახაობა ${index + 1}`,
+        description:
+          itemData.description || "საინტერესო სანახაობა საქართველოში",
+        src: itemData.image || "/placeholder-image.jpg",
+      };
+
+      const isInCart = isSightInCart(sightId);
+
+      if (isInCart) {
+        removeSight(sightId);
+      } else {
+        addSight(sight);
+      }
+    } else {
+      // დეფოლტ სანახაობის მონაცემები თუ itemData არ არის
+      const sight = {
+        id: Date.now() + index,
+        title:
+          hoveredItem === "სანახაობები"
+            ? index === 0
+              ? "სვეტიცხოველი"
+              : "ალავერდი"
+            : `თავგადასავალი ${index + 1}`,
+        description:
+          hoveredItem === "სანახაობები"
+            ? index === 0
+              ? "სვეტიცხოველი მსოპლიო ხელოვნების საგანძური"
+              : "ალავერდის ისტორიული ძეგლი"
+            : `საინტერესო თავგადასავალი ${index + 1}`,
+        src: "/placeholder-image.jpg", // შეცვალეთ რეალური სურათის URL-ით
+      };
+
+      addSight(sight);
+    }
   };
 
   const scatterHeartVariants = {
@@ -161,6 +222,9 @@ function Header() {
       transition: { duration: 0.2, ease: "easeInOut" },
     },
   };
+
+  // სულ ჩატვირთული items-ების რაოდენობა
+  const totalCartItems = tours.length + sights.length;
 
   return (
     <motion.header
@@ -279,17 +343,17 @@ function Header() {
                   isHovered || isScrolled || isMenuOpen
                     ? "text-gray-800"
                     : "text-white"
-                } ${tours.length > 0 ? "fill-white" : ""}`}
+                } ${totalCartItems > 0 ? "" : ""}`}
                 size={20}
               />
-              {/* Cart რაოდენობის Badge */}
-              {tours.length > 0 && (
+              {/* Cart რაოდენობის Badge - ახლა ორივე tours და sights */}
+              {totalCartItems > 0 && (
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   className="absolute -top-2.5 -right-2.5 bg-red-500 font-bold text-md w-fit px-2 scale-50 rounded-md text-white"
                 >
-                  {tours.length}
+                  {totalCartItems}
                 </motion.div>
               )}
             </motion.button>
@@ -393,7 +457,28 @@ function Header() {
                                       <div className="absolute top-5 right-5">
                                         <motion.button
                                           onClick={(e) =>
-                                            handleHeartClick(imgIndex, e)
+                                            handleHeartClick(imgIndex, e, {
+                                              id: `mobile-${imgIndex}`,
+                                              title:
+                                                item.name === "სანახაობები"
+                                                  ? imgIndex === 0
+                                                    ? "სვეტიცხოველი"
+                                                    : "ალავერდი"
+                                                  : `თავგადასავალი ${
+                                                      imgIndex + 1
+                                                    }`,
+                                              description:
+                                                item.name === "სანახაობები"
+                                                  ? imgIndex === 0
+                                                    ? "სვეტიცხოველი მსოპლიო ხელოვნების საგანძური"
+                                                    : "ალავერდის ისტორიული ძეგლი"
+                                                  : `საინტერესო თავგადასავალი ${
+                                                      imgIndex + 1
+                                                    }`,
+                                              image:
+                                                image.image ||
+                                                "/placeholder-image.jpg",
+                                            })
                                           }
                                           className="relative"
                                         >
@@ -507,14 +592,25 @@ function Header() {
                 <AccordionTrigger className="text-left py-6 rounded flex justify-between items-center">
                   <div
                     className="flex items-center gap-2 cursor-pointer"
-                    onClick={() => router.push("/itinerary")}
+                    onClick={() => {
+                      router.push("/itinerary");
+                      // Header menu დახურვა
+                      setIsMenuOpen(false);
+                      setIsHovered(false);
+                      setHoveredItem(null);
+                      setIsPanelHovered(false);
+                      setUnderlineStyle({ width: 0, left: 0 });
+                      setActiveRegion(null);
+                    }}
                   >
                     <Heart
                       className={`${
                         isHovered || isScrolled || isMenuOpen
                           ? "text-gray-800"
                           : "text-white"
-                      } ${tours.length > 0 ? "fill-current text-red-500" : ""}`}
+                      } ${
+                        totalCartItems > 0 ? "fill-current text-red-500" : ""
+                      }`}
                       size={20}
                     />
                     <span
@@ -524,7 +620,8 @@ function Header() {
                           : "text-white"
                       }
                     >
-                      მარშრუტები {tours.length > 0 ? `(${tours.length})` : ""}
+                      მარშრუტები{" "}
+                      {totalCartItems > 0 ? `(${totalCartItems})` : ""}
                     </span>
                   </div>
                 </AccordionTrigger>
@@ -626,7 +723,27 @@ function Header() {
                               imgIndex === 1)) && (
                             <div className="absolute top-5 right-5">
                               <motion.button
-                                onClick={(e) => handleHeartClick(imgIndex, e)}
+                                onClick={(e) =>
+                                  handleHeartClick(imgIndex, e, {
+                                    id: `desktop-${imgIndex}`,
+                                    title:
+                                      hoveredItem === "სანახაობები"
+                                        ? imgIndex === 0
+                                          ? "სვეტიცხოველი"
+                                          : "ალავერდი"
+                                        : `თავგადასავალი ${imgIndex + 1}`,
+                                    description:
+                                      hoveredItem === "სანახაობები"
+                                        ? imgIndex === 0
+                                          ? "სვეტიცხოველი მსოპლიო ხელოვნების საგანძური"
+                                          : "ალავერდის ისტორიული ძეგლი"
+                                        : `საინტერესო თავგადასავალი ${
+                                            imgIndex + 1
+                                          }`,
+                                    image:
+                                      image.image || "/placeholder-image.jpg",
+                                  })
+                                }
                                 className="relative"
                               >
                                 <Heart

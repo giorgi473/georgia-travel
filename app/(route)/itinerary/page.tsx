@@ -16,15 +16,15 @@ interface TabData {
 }
 
 function CartPage() {
-  const [activeTab, setActiveTab] = useState<TabType>("tours");
-  const { tours, removeTour, clearTours } = useCart();
+  const [activeTab, setActiveTab] = useState<TabType>("sights");
+  const { tours, removeTour, clearTours, sights, removeSight, clearSights } =
+    useCart();
 
   const tabs: TabData[] = [
     {
       id: "sights",
-      title: "სანახაობა",
-      content:
-        "აქ იქნება სანახაობების კონტენტი - ისტორიული ძეგლები, მუზეუმები, ტაძრები და სხვა საინტერესო ადგილები.",
+      title: sights.length > 0 ? `სანახაობა (${sights.length})` : "სანახაობა",
+      content: "",
     },
     {
       id: "activities",
@@ -40,7 +40,7 @@ function CartPage() {
     },
     {
       id: "tours",
-      title: `ტურები (${tours.length})`,
+      title: tours.length > 0 ? `ტურები (${tours.length})` : "ტურები",
       content: "",
     },
     {
@@ -50,6 +50,85 @@ function CartPage() {
         "აქ იქნება ბილიკების კონტენტი - ფეხით სიარულის მარშრუტები, სირთულის ხარისხი, ხანგრძლივობა და რეკომენდაციები.",
     },
   ];
+
+  const renderSightsContent = () => {
+    if (sights.length === 0) {
+      return (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center py-12"
+        >
+          <Heart size={64} className="mx-auto text-gray-300 mb-4" />
+          <h3 className="text-2xl font-semibold text-gray-600 mb-2">
+            სანახაობები ცარიელია
+          </h3>
+          <p className="text-gray-500">
+            დაამატეთ თქვენთვის საინტერესო სანახაობები
+          </p>
+        </motion.div>
+      );
+    }
+
+    return (
+      <div className="space-y-4">
+        {/* Clear All Button */}
+        <div className="flex justify-between items-center">
+          <h3 className="text-sm sm:text-lg font-semibold flex items-center gap-2">
+            <span className=" hidden sm:flex items-center">შერჩეული</span>
+            სანახაობები ({sights.length})
+          </h3>
+          <button
+            onClick={clearSights}
+            className="flex items-center cursor-pointer gap-2 px-4 py-2 bg-red-100 text-sm text-red-600 rounded-lg hover:bg-red-200 transition-colors duration-200"
+          >
+            <Trash2 size={15} />
+            <span>ყველას წაშლა</span>
+          </button>
+        </div>
+
+        {/* Sights Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sights.map((sight, index) => (
+            <motion.div
+              key={sight.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+            >
+              {/* Sight Image */}
+              <div className="relative h-48">
+                <Image
+                  src={sight.src}
+                  alt={sight.title}
+                  fill
+                  className="object-cover"
+                />
+                <button
+                  onClick={() => removeSight(sight.id)}
+                  className="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-red-50 hover:text-red-500 transition-colors duration-200"
+                >
+                  <Trash2 size={16} />
+                </button>
+              </div>
+
+              {/* Sight Info */}
+              <div className="p-4">
+                <h4 className="font-semibold text-lg mb-2 line-clamp-2">
+                  {sight.title}
+                </h4>
+                <p className="text-gray-600 text-sm line-clamp-3">
+                  {sight.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    );
+  };
 
   const renderToursContent = () => {
     if (tours.length === 0) {
@@ -71,17 +150,18 @@ function CartPage() {
     }
 
     return (
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Clear All Button */}
         <div className="flex justify-between items-center">
-          <h3 className="text-lg font-semibold">
-            შერჩეული ტურები ({tours.length})
+          <h3 className="text-sm sm:text-lg font-semibold flex items-center gap-2">
+            <span className="hidden sm:flex">შერჩეული</span> ტურები (
+            {tours.length})
           </h3>
           <button
             onClick={clearTours}
-            className="flex items-center gap-2 px-4 py-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors duration-200"
+            className="flex items-center cursor-pointer text-sm gap-2 px-4 py-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors duration-200"
           >
-            <Trash2 size={16} />
+            <Trash2 size={15} />
             ყველას წაშლა
           </button>
         </div>
@@ -150,6 +230,10 @@ function CartPage() {
       return renderToursContent();
     }
 
+    if (activeTab === "sights") {
+      return renderSightsContent();
+    }
+
     // Other tabs content
     const currentTab = tabs.find((tab) => tab.id === activeTab);
     return (
@@ -174,7 +258,7 @@ function CartPage() {
         />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-5 lg:px-11">
+      <div className="container mx-auto px-5 sm:px-8 md:px-8 lg:px-11">
         {/* Tab Navigation */}
         <div className="mb-6 sm:mb-8 -mx-4 sm:mx-0">
           {/* Mobile: Horizontal Scroll */}
