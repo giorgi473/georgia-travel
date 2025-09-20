@@ -4,9 +4,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, Search } from "lucide-react";
+import { Heart, Search, ChevronDown } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Accordion,
   AccordionContent,
@@ -30,12 +30,22 @@ function Header() {
     [key: number]: boolean;
   }>({});
 
+  // Language dropdown states
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState<"ka" | "en">("ka");
+
+  const languageOptions = [
+    { code: "ka", name: "GE", flag: "🇬🇪" },
+    { code: "en", name: "US", flag: "🇺🇸" },
+  ];
+
   // Cart hook გამოყენება - ახლა სანახაობებსაც ვიყენებთ
   const { tours, sights, addSight, removeSight, isSightInCart } = useCart();
 
   const navRefs = useRef<(HTMLLIElement | null)[]>(
     Array(navItems.length).fill(null)
   );
+  const languageDropdownRef = useRef<HTMLDivElement | null>(null);
   const [underlineStyle, setUnderlineStyle] = useState<{
     width: number;
     left: number;
@@ -49,18 +59,47 @@ function Header() {
       setIsScrolled(window.scrollY > 100);
     };
 
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        languageDropdownRef.current &&
+        !languageDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsLanguageDropdownOpen(false);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     setIsSearchOpen(false);
+    setIsLanguageDropdownOpen(false);
   };
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
     setIsMenuOpen(false);
+    setIsLanguageDropdownOpen(false);
+  };
+
+  const toggleLanguageDropdown = () => {
+    setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
+    setIsMenuOpen(false);
+    setIsSearchOpen(false);
+  };
+
+  const handleLanguageChange = (langCode: "ka" | "en") => {
+    setCurrentLanguage(langCode);
+    setIsLanguageDropdownOpen(false);
+    // აქ შეგიძლია დაამატო ენის შეცვლის ლოგიკა
+    console.log(`Language changed to: ${langCode}`);
   };
 
   const handleMouseEnter = (name: string, index: number) => {
@@ -109,6 +148,7 @@ function Header() {
       setIsPanelHovered(false);
       setUnderlineStyle({ width: 0, left: 0 });
       setActiveRegion(null);
+      setIsLanguageDropdownOpen(false);
       router.push(href);
     }, 200);
   };
@@ -223,8 +263,27 @@ function Header() {
     },
   };
 
+  const dropdownVariants = {
+    open: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.2, ease: "easeOut" },
+    },
+    closed: {
+      opacity: 0,
+      y: -10,
+      scale: 0.95,
+      transition: { duration: 0.2, ease: "easeIn" },
+    },
+  };
+
   // სულ ჩატვირთული items-ების რაოდენობა
   const totalCartItems = tours.length + sights.length;
+
+  const getCurrentLanguageData = () => {
+    return languageOptions.find((lang) => lang.code === currentLanguage);
+  };
 
   return (
     <motion.header
@@ -316,6 +375,59 @@ function Header() {
             </nav>
           </div>
           <div className="hidden xl:flex items-center gap-3 sm:gap-3 lg:gap-5">
+            {/* Language Dropdown */}
+            <div ref={languageDropdownRef} className="relative">
+              <motion.button
+                onClick={toggleLanguageDropdown}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+                className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors cursor-pointer ${
+                  isHovered || isScrolled || isMenuOpen
+                    ? "text-gray-800 hover:bg-gray-100"
+                    : "text-white hover:bg-white/10"
+                }`}
+                aria-label="Change Language"
+              >
+                <span className="text-sm font-medium">
+                  {getCurrentLanguageData()?.name}
+                </span>
+                <motion.div
+                  animate={{ rotate: isLanguageDropdownOpen ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown size={14} />
+                </motion.div>
+              </motion.button>
+
+              <AnimatePresence>
+                {isLanguageDropdownOpen && (
+                  <motion.div
+                    variants={dropdownVariants}
+                    initial="closed"
+                    animate="open"
+                    exit="closed"
+                    className="absolute top-full right-0 mt-2 w-16 bg-white rounded-lg cursor-pointer shadow-lg border border-gray-200 py-1 z-50 hover:bg-gray-100"
+                  >
+                    {languageOptions
+                      .filter((language) => language.code !== currentLanguage)
+                      .map((language) => (
+                        <motion.button
+                          key={language.code}
+                          onClick={() =>
+                            handleLanguageChange(language.code as "ka" | "en")
+                          }
+                          className="w-full px-2 py-1 text-center flex items-center justify-center cursor-pointer transition-colors text-gray-700"
+                        >
+                          <span className="text-sm font-medium">
+                            {language.name}
+                          </span>
+                        </motion.button>
+                      ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             <motion.button
               onClick={toggleSearch}
               aria-label="Search"
@@ -555,6 +667,40 @@ function Header() {
                   </AccordionContent>
                 </AccordionItem>
               ))}
+              <AccordionItem value="language">
+                <AccordionTrigger className="text-left py-6 rounded flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={
+                        isHovered || isScrolled || isMenuOpen
+                          ? "text-gray-800"
+                          : "text-white"
+                      }
+                    >
+                      {getCurrentLanguageData()?.name}
+                    </span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-2 pt-2">
+                  <div className="space-y-1">
+                    {languageOptions
+                      .filter((language) => language.code !== currentLanguage)
+                      .map((language) => (
+                        <button
+                          key={language.code}
+                          onClick={() =>
+                            handleLanguageChange(language.code as "ka" | "en")
+                          }
+                          className="w-full px-2 py-1 text-center flex items-center justify-center rounded-md transition-colors text-gray-700 hover:bg-gray-50"
+                        >
+                          <span className="text-sm font-medium">
+                            {language.name}
+                          </span>
+                        </button>
+                      ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
               <AccordionItem value="search">
                 <AccordionTrigger className="text-left py-6 rounded flex justify-between items-center">
                   <div className="flex items-center gap-2">
@@ -601,6 +747,7 @@ function Header() {
                       setIsPanelHovered(false);
                       setUnderlineStyle({ width: 0, left: 0 });
                       setActiveRegion(null);
+                      setIsLanguageDropdownOpen(false);
                     }}
                   >
                     <Heart
