@@ -1,139 +1,97 @@
-import HeroSection from "@/components/HeroSection";
-import Carusel from "./_components/Carusel";
-import GeorgianAttractionsGrid from "./_components/GeorgianAttractionsGrid";
-import HotelGallerySection from "./_components/hottel-gallery-section";
-import TextSection from "./_components/TextSection";
-import SwiperSlideCard from "@/components/SwipwrSlideSights";
-import { GeorgianMap } from "./_components/Georgian-map";
+import TextSection from "@/components/modules/TextSection";
+import GeorgianAttractionsGrid from "@/components/modules/GeorgianAttractionsGrid";
+import HotelGallerySection from "@/components/modules/HotelGallerySection";
+import Carusel from "@/components/modules/Carusel";
+import Gzispar from "@/components/modules/Gzispar";
+import SlideCard from "@/components/modules/SlideCard";
+import { Map } from "@/components/Map";
+import { georgianPlaces } from "@/lib/data";
 
-const georgianPlaces = [
-  {
-    id: 1,
-    title: "თბილისი",
-    description: "საქართველოს დედაქალაქი, ისტორიული და კულტურული ცენტრი",
-    image: "/sights/tbilisi-old-town-with-traditional-architecture.png",
-  },
-  {
-    id: 2,
-    title: "ბათუმი",
-    description: "შავი ზღვის სანაპირო კურორტი და თანამედროვე ქალაქი",
-    image: "/sights/batumi-seaside-resort-with-modern-buildings.png",
-  },
-  {
-    id: 3,
-    title: "მცხეთა",
-    description: "საქართველოს ძველი დედაქალაქი და რელიგიური ცენტრი",
-    image: "/sights/mtskheta-ancient-georgian-city-with-churches.png",
-  },
-  {
-    id: 4,
-    title: "სვანეთი",
-    description: "მთიანი რეგიონი ისტორიული კოშკებით და ალპური პეიზაჟებით",
-    image: "/sights/svaneti-mountain-region-with-ancient-towers.png",
-  },
-  {
-    id: 5,
-    title: "კახეთი",
-    description: "ღვინის რეგიონი ვენახებით და ისტორიული მონასტრებით",
-    image: "/sights/kakheti-wine-region-with-vineyards.png",
-  },
-  {
-    id: 6,
-    title: "გუდაური",
-    description: "მთის სათხილამურო კურორტი კავკასიონის მთებში",
-    image: "/sights/gudauri-ski-resort-in-caucasus-mountains.png",
-  },
-  {
-    id: 7,
-    title: "ვარძია",
-    description: "მღვიმური ქალაქი და მონასტერი მტკვრის ხეობაში",
-    image: "/sights/vardzia-cave-monastery-complex.png",
-  },
-  {
-    id: 8,
-    title: "ბორჯომი",
-    description: "სამკურნალო წყლების კურორტი და ეროვნული პარკი",
-    image: "/sights/borjomi-spa-resort-with-mineral-water-springs.png",
-  },
-  {
-    id: 9,
-    title: "კუტაისი",
-    description: "იმერეთის ცენტრი ისტორიული ძეგლებით",
-    image: "/sights/kutaisi-historical-city-with-ancient-monuments.png",
-  },
-  {
-    id: 10,
-    title: "ახალციხე",
-    description: "სამცხე-ჯავახეთის ცენტრი რაბათის ციხით",
-    image: "/sights/akhaltsikhe-city-with-rabati-fortress.png",
-  },
-  {
-    id: 11,
-    title: "ზუგდიდი",
-    description: "მეგრელეთის ცენტრი დადიანების სასახლით",
-    image: "/sights/zugdidi-city-with-dadiani-palace.png",
-  },
-  {
-    id: 12,
-    title: "ტელავი",
-    description: "კახეთის ცენტრი ღვინის ტრადიციებით",
-    image: "/sights/telavi-city-center-with-wine-traditions.png",
-  },
-];
 function page() {
   const galleryData = [
     {
+      id: "1",
+      title: { ka: "ბორჯომის კურორტი", en: "Borjomi Resort" },
       image: "/space/tb.webp",
-      title: "თბილისის ბალნეოლოგიური კურორტი",
     },
     {
+      id: "2",
+      title: { ka: "საირმის კურორტი", en: "Sairme Resort" },
       image: "/space/wy.webp",
-      title: "წყალტუბო პლაზა",
     },
   ];
-
   return (
     <>
       <section className="mb-[40px]">
         <TextSection
-          title="სანახაობები"
-          description="საქართველო განსაკუთრებული ქვეყანაა, რომელიც განთქმულია გეოგრაფიული და ბიოლოგიური მრავალფეროვნებით, მდიდარია ფლორისა და ფაუნის თვალსაზრისით და მიუხედავად ტერიტორიის სიმცირისა, აქ გავრცელებულია დედამიწის ზედაპირზე არსებული ჰავის თითქმის ყველა ტიპი."
-          buttonText="აღმოაჩინე შენი თავგადასავალი"
+          title={{
+            ka: "სანახაობები",
+            en: "Sights",
+          }}
+          description={{
+            ka: "საქართველო განსაკუთრებული ქვეყანაა, რომელიც განთქმულია გეოგრაფიული და ბიოლოგიური მრავალფეროვნებით, მდიდარია ფლორისა და ფაუნის თვალსაზრისით და მიუხედავად ტერიტორიის სიმცირისა, აქ გავრცელებულია დედამიწის ზედაპირზე არსებული ჰავის თითქმის ყველა ტიპი.",
+            en: "Georgia is a unique country, renowned for its geographical and biological diversity, rich in flora and fauna, and despite its small territory, it hosts nearly every type of climate found on Earth.",
+          }}
+          buttonText={{
+            ka: "აღმოაჩინე შენი თავგადასავალი",
+            en: "Discover Your Adventure",
+          }}
           image="/sights/lake.webp"
         />
       </section>
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-[100px]">
+      <section className="container mx-auto px-5 sm:px-8 md:px-8 lg:px-11 py-8 mb-[100px]">
         <GeorgianAttractionsGrid />
       </section>
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-[70px]">
+      <section className="container mx-auto px-5 sm:px-8 md:px-8 lg:px-11 py-8 mb-[70px]">
         <HotelGallerySection
-          sectionLabel="აღმოაჩინე"
-          mainTitle="კურორტები, რომლებსაც აუცილებლად უნდა ეწვიო"
-          description="სამკურნალო თვისებებით ცნობილი კლიმატური ზონები, ბალნეოლოგიური კურორტები, თერაპიული და გამაჯანსაღებელი პროცედურები."
-          buttonText="გაიგე მეტი →"
+          sectionLabel={{
+            ka: "აღმოაჩინე",
+            en: "Discover",
+          }}
+          mainTitle={{
+            ka: "კურორტები, რომლებსაც აუცილებლად უნდა ეწვიო",
+            en: "Resorts You Must Visit",
+          }}
+          description={{
+            ka: "სამკურნალო თვისებებით ცნობილი კლიმატური ზონები, ბალნეოლოგიური კურორტები, თერაპიული და გამაჯანსაღებელი პროცედურები.",
+            en: "Climatic zones known for their healing properties, balneological resorts, and therapeutic and wellness treatments.",
+          }}
+          buttonText={{
+            ka: "გაიგე მეტი →",
+            en: "Learn More →",
+          }}
           galleryData={galleryData}
         />
       </section>
       <section className="mb-[80px]">
         <Carusel
-          title="აღმოაჩინე საუკეთესო ადგილები საქართველოში"
-          viewAllText="ყველას ნახვა"
+          title={{
+            ka: "აღმოაჩინე საუკეთესო ადგილები საქართველოში",
+            en: "Discover the Best Places in Georgia",
+          }}
+          viewAllText={{
+            ka: "ყველას ნახვა",
+            en: "View All",
+          }}
           places={georgianPlaces}
         />
       </section>
       <section className="mb-[80px]">
-        <HeroSection
-          imageUrl="/sights/lake.webp"
-          title="აი, ამიტომ უნდა ესტუმრო ბათუმს"
-          description="აქაური სუბტროპიკული კლიმატი, ეკოლოგიურად სუფთა ზღვა, მთები და კარგად განვითარებულ ტურისტული ინფრასტრუქტურა წელიწადის ნებისმიერ დროს გამორჩეულად გიმასპინძლებს და ენერგიის სრულ აღდგენაში დაგეხმარება."
-          buttonText="გაიგე მეტი"
+        <Gzispar
+          imageSrc="/sights/lake.webp"
+          titleKa="აი, ამიტომ უნდა ესტუმრო ბათუმს"
+          titleEn="Here's Why You Should Visit Batumi"
+          descriptionKa="აქაური სუბტროპიკული კლიმატი, ეკოლოგიურად სუფთა ზღვა, მთები და კარგად განვითარებულ ტურისტული ინფრასტრუქტურა წელიწადის ნებისმიერ დროს გამორჩეულად გიმასპინძლებს და ენერგიის სრულ აღდგენაში დაგეხმარება."
+          descriptionEn="The local subtropical climate, pristine sea, mountains, and well-developed tourist infrastructure will warmly welcome you any time of the year and help you fully recharge your energy."
+          buttonTextKa="გაიგე მეტი"
+          buttonTextEn="Learn More"
         />
       </section>
       <section className="mb-[100px]">
-        <SwiperSlideCard />
+        <SlideCard />
       </section>
       <section className="mb-[100px]">
-        <GeorgianMap />
+        <Map />
       </section>
     </>
   );

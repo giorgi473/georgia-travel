@@ -9,8 +9,10 @@ import "swiper/css";
 import "./why-georgia.css";
 import { sections } from "@/constants/data/data";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Page: React.FC = () => {
+  const { currentLanguage } = useLanguage();
   const router = useRouter();
   const contentRef = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<SwiperType | null>(null);
@@ -56,7 +58,6 @@ const Page: React.FC = () => {
   return (
     <>
       <div className="relative h-screen overflow-hidden select-none">
-        {/* Start სექციის სურათები */}
         {activeSection === 0 && sections[0].image1 && (
           <motion.img
             src={sections[0].image1}
@@ -87,7 +88,7 @@ const Page: React.FC = () => {
             transition={{ duration: 2, ease: "easeOut" }}
           />
         )}
-        {/* Section 01 სურათები */}
+        {/* Section 01 Images */}
         {activeSection === 1 && sections[1].image1 && (
           <motion.img
             src={sections[1].image1}
@@ -119,14 +120,16 @@ const Page: React.FC = () => {
                     </h3>
                     <span className="text-red-600 absolute top-6 lg:top-14 text-xs lg:text-sm tracking-[4px] lg:tracking-[5px] flex items-center gap-2">
                       <div className="w-10 lg:w-[65px] h-0.5 bg-red-600" />
-                      შენი მოგზაურობის <br /> დასაწყისი
+                      {currentLanguage === "ka"
+                        ? "შენი მოგზაურობის \n დასაწყისი"
+                        : "The Start of \n Your Journey"}
                     </span>
                   </div>
                   <h5 className="text-white text-2xl lg:text-5xl mb-3 lg:mb-8 select-none font-bold whitespace-pre-line">
-                    {sections[1].title}
+                    {sections[1].title?.[currentLanguage]}
                   </h5>
                   <p className="text-white text-xs lg:text-md max-w-sm mb-4 lg:mb-7">
-                    {sections[1].description}
+                    {sections[1].description?.[currentLanguage]}
                   </p>
                   <motion.button
                     className="custom-button text-red-500 text-xs cursor-pointer md:text-sm lg:text-base font-semibold border border-red-400 rounded-lg px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-3 w-fit bg-transparent hover:text-white hover:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-300 transition-all duration-300"
@@ -137,7 +140,7 @@ const Page: React.FC = () => {
                     transition={{ duration: 0.5, ease: "easeOut" }}
                     onClick={() => handleClickRoute()}
                   >
-                    {sections[1].buttonText}
+                    {sections[1].buttonText?.[currentLanguage]}
                   </motion.button>
                 </div>
                 <div className="swiper-container">
@@ -183,7 +186,7 @@ const Page: React.FC = () => {
                       }`}
                       onClick={() => handleSlideChange(0)}
                     >
-                      გეოგრაფია
+                      {currentLanguage === "ka" ? "გეოგრაფია" : "Geography"}
                     </span>
                     <span
                       className={`slide-nav-text text-white ${
@@ -191,7 +194,9 @@ const Page: React.FC = () => {
                       }`}
                       onClick={() => handleSlideChange(1)}
                     >
-                      მთავარი ქალაქები
+                      {currentLanguage === "ka"
+                        ? "მთავარი ქალაქები"
+                        : "Main Cities"}
                     </span>
                   </div>
                 </div>
@@ -249,7 +254,7 @@ const Page: React.FC = () => {
                       >
                         <Image
                           src={image.src}
-                          alt={image.alt}
+                          alt={image.alt[currentLanguage]}
                           fill
                           className="w-[100vw] h-[100vh] object-cover"
                           priority
@@ -260,7 +265,7 @@ const Page: React.FC = () => {
                     ) : (
                       <Image
                         src={image.src}
-                        alt={image.alt}
+                        alt={image.alt[currentLanguage]}
                         fill
                         className="w-[100vw] h-[100vh] object-cover"
                         sizes="100vw"
@@ -287,17 +292,17 @@ const Page: React.FC = () => {
                         }`}
                         onClick={() => handleSection02SlideChange(index)}
                       >
-                        {item.text}
+                        {item.text[currentLanguage]}
                       </span>
                     );
                   }
                   return null;
                 })}
                 <button
-                  onClick={() => router.push(`seasen-georgia`)}
+                  onClick={() => router.push(`season-georgia`)}
                   className="bg-red-400 py-1.5 hidden lg:block rounded-md px-4 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer hover:text-white hover:bg-red-600"
                 >
-                  გაიგე მეტი
+                  {currentLanguage === "ka" ? "გაიგე მეტი" : "Learn More"}
                 </button>
               </div>
             </div>
@@ -314,7 +319,7 @@ const Page: React.FC = () => {
             <div className="mx-4 sm:mx-8 lg:mx-10 lg:px-0 h-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
               {/* Desktop Layout */}
               <div className="hidden lg:flex flex-row items-center justify-between gap-12 w-full">
-                {/* მარცხენა სვეტი - სურათი */}
+                {/* Left Column - Image */}
                 <motion.div
                   className="w-1/3 mb-0"
                   initial={{ y: "100%", opacity: 0 }}
@@ -330,7 +335,7 @@ const Page: React.FC = () => {
                     sizes="(max-width: 767px) 60vw, (max-width: 1023px) 200px, 200px"
                   />
                 </motion.div>
-                {/* შუა სვეტი - ტექსტი */}
+                {/* Middle Column - Text */}
                 <motion.div
                   className="w-1/3 text-white px-4 lg:pl-8"
                   initial={{ opacity: 0 }}
@@ -339,24 +344,30 @@ const Page: React.FC = () => {
                 >
                   <h3 className="flex items-center gap-4 text-3xl mb-8 tracking-widest">
                     <span className="flex w-14 h-0.5 bg-white" />
-                    კულტურული <br /> მემკვიდრეობა
+                    {currentLanguage === "ka"
+                      ? "კულტურული \n მემკვიდრეობა"
+                      : "Cultural \n Heritage"}
                   </h3>
                   <p className="text-md mb-10 leading-7">
-                    ქართული ღვინო 8000 წლისაა
+                    {currentLanguage === "ka"
+                      ? "ქართული ღვინო 8000 წლისაა"
+                      : "Georgian wine is 8,000 years old"}
                   </p>
                   <div className="pl-8">
                     <h4 className="flex items-center gap-4 text-2xl mb-6">
                       <span className="flex w-14 h-0.5 bg-white" />
-                      ქვევრის <br /> ღვინო
+                      {currentLanguage === "ka"
+                        ? "ქვევრის \n ღვინო"
+                        : "Qvevri \n Wine"}
                     </h4>
                     <p className="text-base leading-8 max-w-md">
-                      ქვევრის ღვინის დაყენების უძველესი ქართული ტრადიციული
-                      მეთოდი იუნესკოს არამატერიალური კულტურული მემკვიდრეობის
-                      წარმომადგენლობით სიაშია შეტანილი.
+                      {currentLanguage === "ka"
+                        ? "ქვევრის ღვინის დაყენების უძველესი ქართული ტრადიციული მეთოდი იუნესკოს არამატერიალური კულტურული მემკვიდრეობის წარმომადგენლობით სიაშია შეტანილი."
+                        : "The ancient Georgian traditional method of qvevri winemaking is included in UNESCO’s Representative List of the Intangible Cultural Heritage."}
                     </p>
                   </div>
                 </motion.div>
-                {/* მარჯვენა სვეტი - ტექსტი */}
+                {/* Right Column - Text */}
                 <motion.div
                   className="w-1/3 text-white px-4 lg:pl-8"
                   initial={{ opacity: 0 }}
@@ -370,31 +381,35 @@ const Page: React.FC = () => {
                       </figcaption>
                       <p className="absolute bottom-5 left-14 flex items-center gap-4 text-red-500 text-base tracking-widest">
                         <span className="w-14 h-0.5 bg-red-500" />
-                        აღმოაჩინე საქართველო
+                        {currentLanguage === "ka"
+                          ? "აღმოაჩინე საქართველო"
+                          : "Discover Georgia"}
                       </p>
                     </figure>
                   </div>
                   <div className="pl-8">
-                    <h5 className="text-4xl font-bold mb-6">ღვინის აკვანი</h5>
+                    <h5 className="text-4xl font-bold mb-6">
+                      {currentLanguage === "ka"
+                        ? "ღვინის აკვანი"
+                        : "Cradle of Wine"}
+                    </h5>
                     <p className="text-base mb-8 leading-8 max-w-md">
-                      8000 წლის წინ ქართველებმა უკვე იცოდნენ ქვევრის უნიკალური
-                      ტექნოლოგია, რომელიც დღეს მსოფლიოს ერთ-ერთ მოწინავე მეთოდად
-                      იქცა. თიხისა და ვაზის ასეთი ხანგრძლივი და ჰარომონიული
-                      თანაცხოვრება ადასტურებს თუ რამდენად საინტერესო და
-                      გამორჩეულია ქართული ღვინის გზა.
+                      {currentLanguage === "ka"
+                        ? "8000 წლის წინ ქართველებმა უკვე იცოდნენ ქვევრის უნიკალური ტექნოლოგია, რომელიც დღეს მსოფლიოს ერთ-ერთ მოწინავე მეთოდად იქცა. თიხისა და ვაზის ასეთი ხანგრძლივი და ჰარომონიული თანაცხოვრება ადასტურებს თუ რამდენად საინტერესო და გამორჩეულია ქართული ღვინის გზა."
+                        : "8,000 years ago, Georgians already knew the unique qvevri technology, which has become one of the world’s leading methods today. This long and harmonious coexistence of clay and vine confirms how fascinating and unique the Georgian wine journey is."}
                     </p>
                     <button
                       onClick={() => router.push(`georgia-cradle-wine`)}
                       className="border border-red-500 px-8 py-2 rounded-md text-red-500 text-base transition-all duration-300 ease-in-out hover:text-white hover:border-white cursor-pointer"
                     >
-                      გაიგე მეტი
+                      {currentLanguage === "ka" ? "გაიგე მეტი" : "Learn More"}
                     </button>
                   </div>
                 </motion.div>
               </div>
               {/* Mobile Layout */}
               <div className="flex lg:hidden flex-col items-center gap-6 w-full px-4 sm:px-8">
-                {/* სურათი და მის გვერდით ტექსტი */}
+                {/* Image and Text Side by Side */}
                 <div className="flex flex-col sm:flex-row items-center justify-center sm:items-center gap-4 sm:gap-6 w-full">
                   <motion.div
                     className="w-full sm:w-1/2 max-w-[150px] sm:max-w-[200px]"
@@ -419,14 +434,18 @@ const Page: React.FC = () => {
                   >
                     <h3 className="flex items-center justify-center sm:justify-start gap-4 text-lg sm:text-xl mb-4 tracking-widest">
                       <span className="flex w-10 h-0.5 bg-white" />
-                      კულტურული მემკვიდრეობა
+                      {currentLanguage === "ka"
+                        ? "კულტურული მემკვიდრეობა"
+                        : "Cultural Heritage"}
                     </h3>
                     <p className="text-xs sm:text-sm leading-6">
-                      ქართული ღვინო 8000 წლისაა
+                      {currentLanguage === "ka"
+                        ? "ქართული ღვინო 8000 წლისაა"
+                        : "Georgian wine is 8,000 years old"}
                     </p>
                   </motion.div>
                 </div>
-                {/* ქვევრის ღვინის სექცია */}
+                {/* Qvevri Wine Section */}
                 <motion.div
                   className="w-full text-white text-center sm:text-left flex flex-col items-center"
                   initial={{ opacity: 0 }}
@@ -435,15 +454,15 @@ const Page: React.FC = () => {
                 >
                   <h4 className="flex items-center justify-center sm:justify-start gap-4 text-base sm:text-lg mb-4">
                     <span className="flex w-10 h-0.5 bg-white" />
-                    ქვევრის ღვინო
+                    {currentLanguage === "ka" ? "ქვევრის ღვინო" : "Qvevri Wine"}
                   </h4>
                   <p className="text-xs sm:text-sm leading-6 max-w-[520px] mx-auto sm:mx-0">
-                    ქვევრის ღვინის დაყენების უძველესი ქართული ტრადიციული მეთოდი
-                    იუნესკოს არამატერიალური კულტურული მემკვიდრეობის
-                    წარმომადგენლობით სიაშია შეტანილი.
+                    {currentLanguage === "ka"
+                      ? "ქვევრის ღვინის დაყენების უძველესი ქართული ტრადიციული მეთოდი იუნესკოს არამატერიალური კულტურული მემკვიდრეობის წარმომადგენლობით სიაშია შეტანილი."
+                      : "The ancient Georgian traditional method of qvevri winemaking is included in UNESCO’s Representative List of the Intangible Cultural Heritage."}
                   </p>
                 </motion.div>
-                {/* ღვინის აკვანის სექცია */}
+                {/* Cradle of Wine Section */}
                 <motion.div
                   className="w-full text-white text-center sm:text-left flex flex-col items-center"
                   initial={{ opacity: 0 }}
@@ -456,26 +475,33 @@ const Page: React.FC = () => {
                     </figcaption>
                     <p className="absolute bottom-2 sm:bottom-3 left-0 sm:left-10 flex items-center justify-center sm:justify-start gap-4 text-red-500 text-xs tracking-widest">
                       <span className="w-10 h-0.5 bg-red-500" />
-                      აღმოაჩინე საქართველო
+                      {currentLanguage === "ka"
+                        ? "აღმოაჩინე საქართველო"
+                        : "Discover Georgia"}
                     </p>
                   </div>
                   <h5 className="text-lg sm:text-xl font-bold mb-4">
-                    ღვინის აკვანი
+                    {currentLanguage === "ka"
+                      ? "ღვინის აკვანი"
+                      : "Cradle of Wine"}
                   </h5>
                   <p className="text-xs sm:text-sm leading-6 mb-4 max-w-[520px] mx-auto sm:mx-0">
-                    8000 წლის წინ ცქართველებმა უკვე იცოდნენ ქვევრის უნიკალური
-                    ტექნოლოგია, რომელიც დღეს მსოფლიოს ერთ-ერთ მოწინავე მეთოდად
-                    იქცა. თიხისა და ვაზის.
+                    {currentLanguage === "ka"
+                      ? "8000 წლის წინ ქართველებმა უკვე იცოდნენ ქვევრის უნიკალური ტექნოლოგია, რომელიც დღეს მსოფლიოს ერთ-ერთ მოწინავე მეთოდად იქცა. თიხისა და ვაზის."
+                      : "8,000 years ago, Georgians already knew the unique qvevri technology, which has become one of the world’s leading methods today. The clay and vine..."}
                   </p>
-                  <button className="border border-red-500 px-4 sm:px-6 py-2 rounded-md text-red-500 text-xs transition-all duration-300 ease-in-out hover:text-white hover:border-white cursor-pointer">
-                    გაიგე მეტი
+                  <button
+                    onClick={() => router.push(`georgia-cradle-wine`)}
+                    className="border border-red-500 px-4 sm:px-6 py-2 rounded-md text-red-500 text-xs transition-all duration-300 ease-in-out hover:text-white hover:border-white cursor-pointer"
+                  >
+                    {currentLanguage === "ka" ? "გაიგე მეტი" : "Learn More"}
                   </button>
                 </motion.div>
               </div>
             </div>
           </motion.div>
         )}
-        {/* Start სექციის ცენტრირებული ტექსტი */}
+        {/* Start Section Centered Text */}
         {activeSection === 0 && (
           <motion.div
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 text-white text-4xl lg:text-6xl font-bold text-center leading-tight start-text"
@@ -487,12 +513,16 @@ const Page: React.FC = () => {
               delay: 0.5,
             }}
           >
-            რატომ
-            <br />
-            საქართველო
+            {currentLanguage === "ka" ? (
+              <p>
+                რატომ <br /> საქართველო
+              </p>
+            ) : (
+              <p>Why Georgia</p>
+            )}
           </motion.div>
         )}
-        {/* შავი ფონი Start სექციისთვის */}
+        {/* Black Background for Start Section */}
         {activeSection === 0 && (
           <motion.div
             className="black-fill"
@@ -501,7 +531,7 @@ const Page: React.FC = () => {
             transition={{ duration: 1, ease: "easeOut" }}
           />
         )}
-        {/* ვერტიკალური נסיעות */}
+        {/* Vertical Navigation */}
         <motion.div
           className="absolute top-1/2 transform -translate-y-1/2 flex flex-col justify-center items-center z-40 select-none vertical-nav"
           initial={{ opacity: 0, x: 100 }}
@@ -543,7 +573,7 @@ const Page: React.FC = () => {
                   : {}
               }
             >
-              {section.id !== "section-02" && section.content}
+              {section.id !== "section-02" && section.content[currentLanguage]}
             </div>
           ))}
         </div>

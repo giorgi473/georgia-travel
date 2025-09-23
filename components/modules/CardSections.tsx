@@ -1,42 +1,16 @@
+"use client";
+
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-interface CardSections {
-  id: number;
-  image: string;
-  header: string;
-  description: string;
-}
+import { useLanguage } from "@/context/LanguageContext";
+import { cardDescription, translations } from "@/lib/data";
+
 function CardSections() {
-  const cardDescription: CardSections[] = [
-    {
-      id: 1,
-      image: "/cardImage/spring.webp",
-      header: "გაზაფხული",
-      description: "სიმწვანეში ჩაფლულ სოფლებს სწორედ ახლა...",
-    },
-    {
-      id: 2,
-      image: "/cardImage/summer.webp",
-      header: "ზაფხული",
-      description: "საუკეთესო პერიოდი ალპური მდელოების...",
-    },
-    {
-      id: 3,
-      image: "/cardImage/copy.webp",
-      header: "შემოდგომა",
-      description: "სეზონი როცა ხშირი, ტყეებით დაპარული მთე...",
-    },
-    {
-      id: 4,
-      image: "/cardImage/copy2.webp",
-      header: "ზამთარი",
-      description: "ამ დროს ყველაპერი ფაფუკი თოვლის...",
-    },
-  ];
-  const text = "შენი 365 დღე საქართველოში";
-  const description = `აქ შეძლებ ვარსკვლავებს 4000 მეტრის სიმაღლიდან ახედო, ბაკურიანის
-              იდუმალ მთებში სათხილამურო ტური დაგეგმო ან მდინარე არაგვზე
-              საჯომარდო მარშრუტით დაუვიწყარი გამოცდილება მიიღო.`;
+  const { currentLanguage } = useLanguage();
+
+  const text = translations[currentLanguage].title;
+  const description = translations[currentLanguage].description;
+
   return (
     <div>
       <div className="container mx-auto w-full">
@@ -58,7 +32,7 @@ function CardSections() {
             <CardContent className="overflow-hidden">
               <Image
                 src={itemCard.image}
-                alt={itemCard.header}
+                alt={itemCard.header[currentLanguage]}
                 width={130}
                 height={133}
                 className="w-full object-cover rounded-md hover:scale-110 transition-all duration-300 ease-in-out"
@@ -67,10 +41,10 @@ function CardSections() {
                 <CardHeader className="">
                   <CardTitle className="text-white">
                     <h2 className="text-md sm:text-lg md:text-lg lg:text-2xl mb-2">
-                      {itemCard.header}
+                      {itemCard.header[currentLanguage]}
                     </h2>
                     <p className="text-white text-sm md:text-base">
-                      {itemCard.description}
+                      {itemCard.description[currentLanguage]}
                     </p>
                   </CardTitle>
                 </CardHeader>

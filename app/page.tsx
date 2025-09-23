@@ -32,8 +32,12 @@ export default function Home() {
       <section className="mb-[120px]">
         <Gzispar
           imageSrc="/image/vine.webp"
-          title="გაგისინჯავს ქართული ღვინო?"
-          description="ღვინო პირველად 8000 წლის წინ, საქართველოში დააყენეს. ღვინის დამზადების მსოფლიოში არსებული ორი ტექნოლოგიიდან კი ერთი - ღვინის ქვევრში დაყენების ტექნოლოგია, სწორედ ქართულია."
+          titleKa="გაგისინჯავს ქართული ღვინო?"
+          titleEn="Would you like to taste Georgian wine?"
+          descriptionKa="ღვინო პირველად 8000 წლის წინ, საქართველოში დააყენეს. ღვინის დამზადების მსოფლიოში არსებული ორი ტექნოლოგიიდან კი ერთი - ღვინის ქვევრში დაყენების ტექნოლოგია, სწორედ ქართულია."
+          descriptionEn="Wine was first made 8000 years ago in Georgia. One of the two winemaking technologies existing in the world - the technology of making wine in qvevri, is specifically Georgian."
+          buttonTextKa="გაგიმარჯოს!"
+          buttonTextEn="Cheers!"
         />
       </section>
       <section className="mb-[120px]">
@@ -42,8 +46,12 @@ export default function Home() {
       <section className="mb-[120px]">
         <Gzispar
           imageSrc="/cardImage/gza.jpg"
-          title="გასტრონომიული თავგადასავალი ოჯახურ მასპინძლებთან ერთად"
-          description="მზიკარი - აერთიანებს ქვეყნის მასშტაბით ოჯახურ მასპინძლებს, რომლებიც სთავაზობენ ადგილობრივ/რეგიონისთვის დამახასიათებელ გასტრონომიულ გამოცდილებას. ქართული მასპინძლობის ტრადიცია რომელიც ყველაზე საინტერესო გამოცდილებაა მოგზაურისთვის, არსად იგრძნობა ისე როგორც ოჯახურ გარემოში."
+          titleKa="აღმოაჩინე ქართული კულინარია"
+          titleEn="Discover Georgian Cuisine"
+          descriptionKa="ქართული სამზარეულო წარმოადგენს უნიკალურ სინთეზს ევროპული და აზიური ტრადიციების. თითოეული კერძი ამბავს მოგიყვება საქართველოს მდიდარი კულტურული მემკვიდრეობის შესახებ."
+          descriptionEn="Georgian cuisine represents a unique synthesis of European and Asian traditions. Each dish tells a story about Georgia's rich cultural heritage."
+          buttonTextKa="დააგემოვნე"
+          buttonTextEn="Taste Now"
         />
       </section>
       <section className="mb-[120px]">
@@ -52,8 +60,12 @@ export default function Home() {
       <section className="mb-[120px]">
         <Gzispar
           imageSrc="/cardImage/banner.jpg"
-          title="მსოფლიოში ერთ-ერთი ყველაზე სტუმართმოყვარე ქვეყანა შენ გელოდება."
-          description="აარჩიე შენთვის საინტერესო ადგილი და დაგეგმე დაუვიწყარი მოგზაურობა"
+          titleKa="მსოფლიოში ერთ-ერთი ყველაზე სტუმართმოყვარე ქვეყანა შენ გელოდება."
+          titleEn="One of the most hospitable countries in the world is waiting for you."
+          descriptionKa="აარჩიე შენთვის საინტერესო ადგილი და დაგეგმე დაუვიწყარი მოგზაურობა"
+          descriptionEn="Choose an interesting place for you and plan an unforgettable trip"
+          buttonTextKa="დაგეგმე მოგზაურობა"
+          buttonTextEn="Plan Your Trip"
         />
       </section>
       <section className="mb-[120px]">

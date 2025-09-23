@@ -2,10 +2,12 @@ import GeorgianMap from "@/components/GeorgianMap";
 
 export interface NavItemDetail {
   title: string;
+  titleEn?: string;
   image?: string;
   images?: string[];
   items: {
     text: string;
+    textEn?: string;
     href: string;
     image?: string;
     renderComponent?: () => React.ReactNode;
@@ -13,24 +15,13 @@ export interface NavItemDetail {
 }
 
 export interface NavItem {
+  id: string;
   name?: string;
+  nameEn?: string;
   natureName?: string;
+  natureNameEn?: string;
   href: string;
   details: NavItemDetail[];
-}
-
-export interface Section {
-  id: string;
-  content: string;
-  image?: string;
-  image1?: string;
-  image2?: string;
-  image3?: string;
-  title?: string;
-  description?: string;
-  buttonText?: string;
-  section02Images?: { src: string; alt: string; text: string }[];
-  geographyOfGeorgia?: { image: string; title: string; description: string }[];
 }
 
 export interface ContentItem {
@@ -110,195 +101,294 @@ export const contentItems: ContentItem[] = [
   },
 ];
 
+export interface Section {
+  id: string;
+  content: { ka: string; en: string };
+  image?: string;
+  image1?: string;
+  image2?: string;
+  image3?: string;
+  title?: { ka: string; en: string };
+  description?: { ka: string; en: string };
+  buttonText?: { ka: string; en: string };
+  section02Images?: {
+    src: string;
+    alt: { ka: string; en: string };
+    text: { ka: string; en: string };
+  }[];
+  geographyOfGeorgia?: {
+    image: string;
+    title: { ka: string; en: string };
+    description: { ka: string; en: string };
+  }[];
+}
+
 export const sections: Section[] = [
   {
     id: "start",
-    content: "აქ არის Start სექცია",
+    content: { ka: "აქ არის Start სექცია", en: "This is the Start section" },
     image1: "/flags/image1.webp",
     image2: "/flags/image2.webp",
     image3: "/flags/clouds.webp",
   },
   {
     id: "section-01",
-    content: "აქ არის 01 სექცია",
+    content: { ka: "აქ არის 01 სექცია", en: "This is Section 01" },
     image1: "/flags/image2.webp",
     image2: "/flags/image3.webp",
     image3: "/flags/clouds.webp",
-    title: "საქართველოს \n გეოგრაფია",
-    description:
-      "საქართველო ევროპისა და აზიის გზაგასაყარზე, კავკასიაში, შავი ზღვის სანაპიროზე მდებარეობს. ის საუკუნეების განმავლობაში ასრულებდა ცივილიზაციების დამაკავშირებელ ფუნქციას და სწორედ აქ გადიოდა „აბრეშუმის გზაც“ - მსოფლიოს უმსხვილესი სავაჭრო არტერია.",
-    buttonText: "გაიგე მეტი",
+    title: { ka: "საქართველოს \n გეოგრაფია", en: "Geography of \n Georgia" },
+    description: {
+      ka: "საქართველო ევროპისა და აზიის გზაგასაყარზე, კავკასიაში, შავი ზღვის სანაპიროზე მდებარეობს. ის საუკუნეების განმავლობაში ასრულებდა ცივილიზაციების დამაკავშირებელ ფუნქციას და სწორედ აქ გადიოდა „აბრეშუმის გზაც“ - მსოფლიოს უმსხვილესი სავაჭრო არტერია.",
+      en: "Georgia is located at the crossroads of Europe and Asia, in the Caucasus, on the Black Sea coast. For centuries, it has served as a bridge between civilizations, and the 'Silk Road'—the world's largest trade route—passed through here.",
+    },
+    buttonText: { ka: "გაიგე მეტი", en: "Learn More" },
     geographyOfGeorgia: [
       {
         image: "/flags/blabla.webp",
-        title: "საქართველოს გეოგრაფია",
-        description:
-          "საქართველო პატარა, ლამაზი ქვეყანაა, მრავალფეროვანი ბუნებითა და რბილი კლიმატით, რასაც საინტერესო გეოგრაფიული მდებარეობა განაპირობებს. ჩრდილოეთიდან და სამხრეთიდან ოროგრაფიული საზღვრები იცავს – ჩრდილოეთით დიდი კავკასიონის ქედი თავისი მყინვარებით.",
+        title: { ka: "საქართველოს გეოგრაფია", en: "Geography of Georgia" },
+        description: {
+          ka: "საქართველო პატარა, ლამაზი ქვეყანაა, მრავალფეროვანი ბუნებითა და რბილი კლიმატით, რასაც საინტერესო გეოგრაფიული მდებარეობა განაპირობებს. ჩრდილოეთიდან და სამხრეთიდან ოროგრაფიული საზღვრები იცავს – ჩრდილოეთით დიდი კავკასიონის ქედი თავისი მყინვარებით.",
+          en: "Georgia is a small, beautiful country with diverse nature and a mild climate, shaped by its unique geographical location. It is protected by orographic borders— the Greater Caucasus Range with its glaciers in the north.",
+        },
       },
     ],
   },
   {
     id: "section-02",
-    content: "აქ არის 02 სექცია",
+    content: { ka: "აქ არის 02 სექცია", en: "This is Section 02" },
     section02Images: [
-      { src: "/flags/spring.webp", alt: "Slide 1", text: "გაზაფხული" },
-      { src: "/flags/summer.webp", alt: "Slide 2", text: "ზაფხული" },
-      { src: "/flags/autumn.webp", alt: "Slide 4", text: "შემოდგომა" },
-      { src: "/flags/winter.webp", alt: "Slide 3", text: "ზამთარი" },
+      {
+        src: "/flags/spring.webp",
+        alt: { ka: "გაზაფხული", en: "Spring" },
+        text: { ka: "გაზაფხული", en: "Spring" },
+      },
+      {
+        src: "/flags/summer.webp",
+        alt: { ka: "ზაფხული", en: "Summer" },
+        text: { ka: "ზაფხული", en: "Summer" },
+      },
+      {
+        src: "/flags/autumn.webp",
+        alt: { ka: "შემოდგომა", en: "Autumn" },
+        text: { ka: "შემოდგომა", en: "Autumn" },
+      },
+      {
+        src: "/flags/winter.webp",
+        alt: { ka: "ზამთარი", en: "Winter" },
+        text: { ka: "ზამთარი", en: "Winter" },
+      },
     ],
     geographyOfGeorgia: [
       {
         image: "/flags/bla2.webp",
-        title: "სეზონურობა საქართველოში",
-        description:
-          "უკვე იცი, რომ ევროპისა და აზიის გზაგასაყარზე, კავკასიონის ქედის ქვეშ, შავი ზღვის სანაპიროზე მდებარეობს პატარა ქვეყანა - საქართველო, რომელიც მდიდარი ისტორიის, არაჩვეულებრივი ბუნების, თავგადასავლების დიდი შესაძლებლობებისა და უგემრიელესი სამზარეულოს ქვეყანაა!",
+        title: { ka: "სეზონურობა საქართველოში", en: "Seasonality in Georgia" },
+        description: {
+          ka: "უკვე იცი, რომ ევროპისა და აზიის გზაგასაყარზე, კავკასიონის ქედის ქვეშ, შავი ზღვის სანაპიროზე მდებარეობს პატარა ქვეყანა - საქართველო, რომელიც მდიდარი ისტორიის, არაჩვეულებრივი ბუნების, თავგადასავლების დიდი შესაძლებლობებისა და უგემრიელესი სამზარეულოს ქვეყანაა!",
+          en: "You already know that at the crossroads of Europe and Asia, under the Caucasus Mountains, on the Black Sea coast, lies a small country—Georgia, a land of rich history, extraordinary nature, great adventure opportunities, and delicious cuisine!",
+        },
       },
     ],
   },
   {
     id: "section-03",
-    content: "აქ არის 03 სექცია",
+    content: { ka: "აქ არის 03 სექცია", en: "This is Section 03" },
     image: "/flags/doqi.png",
     geographyOfGeorgia: [
       {
         image: "/flags/image03.webp",
-        title: "საქართველო როგორც ღვინის აკვანი",
-        description:
-          "ქართული ღვინო 8000 წლისაა - იმ დროს უკვე იცოდნენ ქართველებმა ქვევრის უნიკალური ტექნოლოგია, რომელიც დღეს მსოფლიოს ერთ-ერთ მოწინავე მეთოდად იქცა. იცით, ეს ციფრები რას ნიშნავს? თუ გაინტერესებთ, ღვინის გზას გავუდგეთ…",
+        title: {
+          ka: "საქართველო როგორც ღვინის აკვანი",
+          en: "Georgia as the Cradle of Wine",
+        },
+        description: {
+          ka: "ქართული ღვინო 8000 წლისაა - იმ დროს უკვე იცოდნენ ქართველებმა ქვევრის უნიკალური ტექნოლოგია, რომელიც დღეს მსოფლიოს ერთ-ერთ მოწინავე მეთოდად იქცა. იცით, ეს ციფრები რას ნიშნავს? თუ გაინტერესებთ, ღვინის გზას გავუდგეთ…",
+          en: "Georgian wine is 8,000 years old—back then, Georgians already knew the unique qvevri technology, which has become one of the world’s leading methods today. Curious about what these numbers mean? Let’s embark on the wine journey…",
+        },
       },
     ],
   },
 ];
 
+// space page
 export const navItems: NavItem[] = [
   {
+    id: "why-georgia",
     name: "რატომ საქართველო",
+    nameEn: "Why Georgia",
     href: "/why-georgia",
     details: [
       {
-        title: "",
+        title: "ქართული კულტურის მიმოხილვა",
+        titleEn: "Overview of Georgian Culture",
         items: [
           {
             text: "უნიკალური ქართული ფოლკლორი",
+            textEn: "Unique Georgian Folklore",
             href: "/why-georgia/georgian-folklore",
           },
           {
             text: "მსოფლიო მნიშვნელობის მემკვიდრეობა",
+            textEn: "World Heritage Sites",
             href: "/why-georgia/heritage-world-importance",
           },
           {
             text: "უნიკალური ქართული ანბანი",
+            textEn: "Unique Georgian Alphabet",
             href: "/why-georgia/unique-georgian-alphabet",
           },
           {
             text: "შავი ზღვის სანაპიროები",
+            textEn: "Black Sea Coast",
             href: "/why-georgia/black-sea-coast",
           },
           {
             text: "საქართველოს ისტორია",
+            textEn: "History of Georgia",
             href: "/why-georgia/history-of-georgia",
           },
           {
             text: "ტურიზმის სტატისტიკა საქართველოში",
+            textEn: "Tourism Statistics in Georgia",
             href: "/why-georgia/tourism-statistics-in-georgia",
           },
         ],
       },
       {
-        title: "",
+        title: "ქართული ხელოვნება",
+        titleEn: "Georgian Arts",
         items: [
-          { text: "ქართული კულტურა", href: "/why-georgia/georgian-culture" },
+          {
+            text: "ქართული კულტურა",
+            textEn: "Georgian Culture",
+            href: "/why-georgia/georgian-culture",
+          },
           {
             text: "ქართული ლიტერატურა",
+            textEn: "Georgian Literature",
             href: "/why-georgia/georgian-literature",
           },
-          { text: "ქართული ცეკვა", href: "/why-georgia/georgian-dance" },
+          {
+            text: "ქართული ცეკვა",
+            textEn: "Georgian Dance",
+            href: "/why-georgia/georgian-dance",
+          },
           {
             text: "უგემრიელესი ქართული სამზარეულო",
-            href: "/why-georgia/delicious-eorgian-cuisine",
+            textEn: "Delicious Georgian Cuisine",
+            href: "/why-georgia/delicious-georgian-cuisine",
           },
           {
             text: "საქართველოს ბუნება",
+            textEn: "Nature of Georgia",
             href: "/why-georgia/nature-of-georgia",
           },
           {
             text: "საქართველოს მთავარი ქალაქები",
+            textEn: "Georgia's Major Cities",
             href: "/why-georgia/georgias-major-cities",
           },
         ],
       },
       {
-        title: "",
+        title: "საქართველოს უნიკალურობა",
+        titleEn: "Uniqueness of Georgia",
         items: [
           {
             text: "საქართველო როგორც ღვინის აკვანი",
+            textEn: "Georgia as the Cradle of Wine",
             href: "/why-georgia/georgia-as-the-cradle-of-wine",
           },
           {
             text: "პირველი ევროპული ცივილიზაცია",
+            textEn: "First European Civilization",
             href: "/why-georgia/first-european-civilization",
           },
           {
             text: "თავგადასავლები საქართველოში",
+            textEn: "Adventures in Georgia",
             href: "/why-georgia/adventures-in-georgia",
           },
           {
-            text: "ევროპის ყველაზე მაღალი დასახლებული პუნქტი...",
+            text: "ევროპის ყველაზე მაღალი დასახლებული პუნქტი",
+            textEn: "Europe's Highest Inhabited Settlement",
             href: "/why-georgia/high-altitude-settlement",
           },
           {
             text: "სეზონურობა საქართველოში",
+            textEn: "Seasonality in Georgia",
             href: "/why-georgia/seasonality-in-georgia",
           },
           {
             text: "საქართველოს გეოგრაფია",
+            textEn: "Geography of Georgia",
             href: "/why-georgia/geography-of-georgia",
           },
         ],
       },
       {
         title: "აღმოაჩინე საქართველო",
+        titleEn: "Discover Georgia",
         image: "/flags/why-georgia-nature.webp",
         items: [{ text: "", href: "/why-georgia" }],
       },
     ],
   },
   {
+    id: "places",
     name: "ადგილები",
+    nameEn: "Destinations",
     href: "/places",
     details: [
       {
         title: "ტოპ რეგიონები",
+        titleEn: "Top Regions",
         items: [
-          { text: "კახეთი", href: "/region/კახეთი" },
-          { text: "იმერეთი", href: "/region/იმერეთი" },
-          { text: "აჭარა", href: "/region/აჭარა" },
-          { text: "მცხეთა-მთიანეთი", href: "/region/მცხეთა-მთიანეთი" },
-          { text: "რაჭა", href: "/region/რაჭა" },
-          { text: "შიდა ქართლი", href: "/region/შიდა%20ქართლი" },
+          { text: "კახეთი", textEn: "Kakheti", href: "/region/კახეთი" },
+          { text: "იმერეთი", textEn: "Imereti", href: "/region/იმერეთი" },
+          { text: "აჭარა", textEn: "Adjara", href: "/region/აჭარა" },
+          {
+            text: "მცხეთა-მთიანეთი",
+            textEn: "Mtskheta-Mtianeti",
+            href: "/region/მცხეთა-მთიანეთი",
+          },
+          { text: "რაჭა", textEn: "Racha", href: "/region/რაჭა" },
+          {
+            text: "შიდა ქართლი",
+            textEn: "Shida Kartli",
+            href: "/region/შიდა%20ქართლი",
+          },
           {
             text: "სამეგრელო-ზემო სვანეთი",
+            textEn: "Samegrelo-Zemo Svaneti",
             href: "/region/სამეგრელო-ზემო%20სვანეთი",
           },
         ],
       },
       {
         title: "ტოპ ქალაქები",
+        titleEn: "Top Cities",
         items: [
-          { text: "ქუთაისი", href: "/places/kutaisi" },
-          { text: "ბათუმი", href: "/places/batumi" },
-          { text: "თბილისი", href: "/places/tbilisi" },
-          { text: "სტეფანწმინდა", href: "/places/stepanwminda" },
-          { text: "მესტია", href: "/places/mestia" },
-          { text: "მცხეთა", href: "/places/mcxeta" },
-          { text: "ბორჯომი", href: "/places/borjomi" },
+          { text: "ქუთაისი", textEn: "Kutaisi", href: "/places/kutaisi" },
+          { text: "ბათუმი", textEn: "Batumi", href: "/places/batumi" },
+          { text: "თბილისი", textEn: "Tbilisi", href: "/places/tbilisi" },
+          {
+            text: "სტეფანწმინდა",
+            textEn: "Stepantsminda",
+            href: "/places/stepanwminda",
+          },
+          { text: "მესტია", textEn: "Mestia", href: "/places/mestia" },
+          { text: "მცხეთა", textEn: "Mtskheta", href: "/places/mcxeta" },
+          { text: "ბორჯომი", textEn: "Borjomi", href: "/places/borjomi" },
         ],
       },
       {
         title: "რეგიონები",
+        titleEn: "Regions",
         items: [
           {
-            text: "sdsd",
+            text: "",
+            textEn: "",
             href: "",
             renderComponent: () => <GeorgianMap activeRegion={""} />,
           },
@@ -307,44 +397,96 @@ export const navItems: NavItem[] = [
     ],
   },
   {
+    id: "sights",
     name: "სანახაობები",
+    nameEn: "Things To Do",
     href: "/sights",
     details: [
       {
         title: "ტოპ კატეგორიები",
+        titleEn: "Top Categories",
         items: [
-          { text: "ხელოვნება და კულტურა", href: "/sights/jvari" },
-          { text: "კულტურული ძეგლები", href: "/sights/svetitskhoveli" },
-          { text: "სამზარეულო და ღვინო", href: "/sights/ushguli" },
-          { text: "გამაჯანსაღებელი პროცედურები", href: "/sights/gelati" },
-          { text: "საოჯახო სანახაობები", href: "/sights/david-gareji" },
-          { text: "დასვენება ქალაქში", href: "/sights/bridge-of-peace" },
+          {
+            text: "ხელოვნება და კულტურა",
+            textEn: "Art and Culture",
+            href: "/sights/jvari",
+          },
+          {
+            text: "კულტურული ძეგლები",
+            textEn: "Cultural Monuments",
+            href: "/sights/svetitskhoveli",
+          },
+          {
+            text: "სამზარეულო და ღვინო",
+            textEn: "Cuisine and Wine",
+            href: "/sights/ushguli",
+          },
+          {
+            text: "გამაჯანსაღებელი პროცედურები",
+            textEn: "Wellness Activities",
+            href: "/sights/gelati",
+          },
+          {
+            text: "საოჯახო სანახაობები",
+            textEn: "Family Attractions",
+            href: "/sights/david-gareji",
+          },
+          {
+            text: "დასვენება ქალაქში",
+            textEn: "City Leisure",
+            href: "/sights/bridge-of-peace",
+          },
         ],
       },
       {
         title: "ტოპ სანახაობები",
+        titleEn: "Top Sights",
         items: [
-          { text: "გერგეთის სამება", href: "/sights/bagrati" },
-          { text: "ილია ჭავჭავაძის სახლ-მუზეუმი", href: "/sights/samtskhe" },
-          { text: "ხერთვისის ციხე", href: "/sights/paravani" },
+          {
+            text: "გერგეთის სამება",
+            textEn: "Gergeti Trinity",
+            href: "/sights/bagrati",
+          },
+          {
+            text: "ილია ჭავჭავაძის სახლ-მუზეუმი",
+            textEn: "Ilia Chavchavadze House-Museum",
+            href: "/sights/samtskhe",
+          },
+          {
+            text: "ხერთვისის ციხე",
+            textEn: "Khertvisi Fortress",
+            href: "/sights/paravani",
+          },
           {
             text: "საქართველოს ეროვნული მუზეუმი",
+            textEn: "National Museum of Georgia",
             href: "/sights/chkhorotsku",
           },
-          { text: "დავითგარეჯი", href: "/sights/batumi-forest" },
-          { text: "ბოლნისის სიონი", href: "/sights/alaverdi" },
+          {
+            text: "დავითგარეჯი",
+            textEn: "David Gareji",
+            href: "/sights/batumi-forest",
+          },
+          {
+            text: "ბოლნისის სიონი",
+            textEn: "Bolnisi Sioni",
+            href: "/sights/alaverdi",
+          },
         ],
       },
       {
         title: "თვის სანახაობები",
+        titleEn: "Sights of the Month",
         items: [
           {
             text: "",
+            textEn: "",
             href: "/sdsd",
             image: "/flags/svetitskhoveli-cathedral-gnta.webp",
           },
           {
             text: "",
+            textEn: "",
             href: "/dsdsdsdsd",
             image: "/flags/alaverdi-gnta.webp",
           },
@@ -353,41 +495,84 @@ export const navItems: NavItem[] = [
     ],
   },
   {
+    id: "nature-adventures",
     natureName: "ბუნება და თავგადასავლები",
+    natureNameEn: "Nature and Adventures",
     href: "/nature-adventures",
     details: [
       {
         title: "ტოპ კატეგორიები",
+        titleEn: "Top Categories",
         items: [
-          { text: "ზამთრის თავგადასავლები", href: "/nature/svaneti" },
-          { text: "საზაპხულო თავგადასავლები", href: "/nature/truso" },
-          { text: "ეროვნული პარკები", href: "/nature/martvili-canyon" },
-          { text: "მთები", href: "/nature/kinchkha" },
-          { text: "ტბები", href: "/nature/dedoflis-tsqaro" },
-          { text: "ბუნების ძეგლები", href: "/nature/khadi" },
+          {
+            text: "ზამთრის თავგადასავლები",
+            textEn: "Winter Adventures",
+            href: "/nature/svaneti",
+          },
+          {
+            text: "საზაპხულო თავგადასავლები",
+            textEn: "Summer Adventures",
+            href: "/nature/truso",
+          },
+          {
+            text: "ეროვნული პარკები",
+            textEn: "National Parks",
+            href: "/nature/martvili-canyon",
+          },
+          { text: "მთები", textEn: "Mountains", href: "/nature/kinchkha" },
+          { text: "ტბები", textEn: "Lakes", href: "/nature/dedoflis-tsqaro" },
+          {
+            text: "ბუნების ძეგლები",
+            textEn: "Natural Monuments",
+            href: "/nature/khadi",
+          },
         ],
       },
       {
         title: "ტოპ სანახაობები",
+        titleEn: "Top Attractions",
         items: [
-          { text: "პრომეთეს მღვიმე", href: "/nature/borjomi" },
-          { text: "მუსიკოსების პარკი", href: "/nature/lagodekhi" },
-          { text: "ოკაცეს კანიონი", href: "/nature/okace" },
-          { text: "ვარძია", href: "/nature/chkhorotsku" },
-          { text: "ძამას ხეობა", href: "/nature/abastumani" },
-          { text: "შაორის ტბა", href: "/nature/samtskhe" },
+          {
+            text: "პრომეთეს მღვიმე",
+            textEn: "Prometheus Cave",
+            href: "/nature/borjomi",
+          },
+          {
+            text: "მუსიკოსების პარკი",
+            textEn: "Musicians Park",
+            href: "/nature/lagodekhi",
+          },
+          {
+            text: "ოკაცეს კანიონი",
+            textEn: "Okatse Canyon",
+            href: "/nature/okace",
+          },
+          { text: "ვარძია", textEn: "Vardzia", href: "/nature/chkhorotsku" },
+          {
+            text: "ძამას ხეობა",
+            textEn: "Dzama Valley",
+            href: "/nature/abastumani",
+          },
+          {
+            text: "შაორის ტბა",
+            textEn: "Shaori Lake",
+            href: "/nature/samtskhe",
+          },
         ],
       },
       {
         title: "თვის სანახაობები",
+        titleEn: "Attractions of the Month",
         items: [
           {
             text: "",
+            textEn: "",
             href: "/sdsd",
             image: "/flags/svetitskhoveli-cathedral-gnta.webp",
           },
           {
             text: "",
+            textEn: "",
             href: "/dsdsdsdsd",
             image: "/flags/alaverdi-gnta.webp",
           },
@@ -396,47 +581,81 @@ export const navItems: NavItem[] = [
     ],
   },
   {
+    id: "useful-information",
     name: "სასარგებლო ინფორმაცია",
+    nameEn: "Useful Information",
     href: "/info",
     details: [
       {
-        title: "",
+        title: "ძირითადი ინფორმაცია",
+        titleEn: "Basic Information",
         items: [
-          { text: "საქართველოში ვიზიტი", href: "/info" },
-          { text: "ადგილობრივი ტრანსპორტი", href: "/info/local-transport" },
-          { text: "რეგიონალური ტრანსპორტი", href: "/info/regional-transport" },
+          {
+            text: "საქართველოში ვიზიტი",
+            textEn: "Visiting Georgia",
+            href: "/info",
+          },
+          {
+            text: "ადგილობრივი ტრანსპორტი",
+            textEn: "Local Transport",
+            href: "/info/local-transport",
+          },
+          {
+            text: "რეგიონალური ტრანსპორტი",
+            textEn: "Regional Transport",
+            href: "/info/regional-transport",
+          },
           {
             text: "ადგილობრივი ტრანსპორტის გაქირავება",
+            textEn: "Local Vehicle Rental",
             href: "/info/local-vehicle-rental",
           },
           {
             text: "ამინდი და ადგილობრივი კლიმატი",
+            textEn: "Weather and Local Climate",
             href: "/info/weather-local-climate",
           },
           {
             text: "ხშირად დასმული კითხვები",
+            textEn: "Frequently Asked Questions",
             href: "/info/frequently-asked-questions",
           },
         ],
       },
       {
         title: "საჭირო ინფორმაცია საქართველოზე",
+        titleEn: "Essential Information about Georgia",
         items: [
-          { text: "სამედიცინო ინფორმაცია", href: "/info/weather" },
-          { text: "უქმე დღეები საქართველოში", href: "/info/map" },
-          { text: "ამინდი და სეზონურობა", href: "/info/attractions" },
+          {
+            text: "სამედიცინო ინფორმაცია",
+            textEn: "Medical Information",
+            href: "/info/weather",
+          },
+          {
+            text: "უქმე დღეები საქართველოში",
+            textEn: "Public Holidays in Georgia",
+            href: "/info/map",
+          },
+          {
+            text: "ამინდი და სეზონურობა",
+            textEn: "Weather and Seasonality",
+            href: "/info/attractions",
+          },
         ],
       },
       {
         title: "პოპულარული სტატიები",
+        titleEn: "Popular Articles",
         items: [
           {
             text: "",
+            textEn: "",
             href: "/sdsd",
             image: "/flags/svetitskhoveli-cathedral-gnta.webp",
           },
           {
             text: "",
+            textEn: "",
             href: "/dsdsdsdsd",
             image: "/flags/alaverdi-gnta.webp",
           },
@@ -446,90 +665,112 @@ export const navItems: NavItem[] = [
   },
 ];
 
-// space page
-
+// constants/data/data.ts
 export interface ServiceItem {
   id: number;
-  title: string;
-  description: string;
+  title: { ka: string; en: string };
+  description: { ka: string; en: string };
   image: string;
 }
 
 export const servicesData: ServiceItem[] = [
   {
     id: 1,
-    title: "კრაფტ ჰაუსი",
-    description: "ღვინო და გასტრონომია",
+    title: { ka: "კრაფტ ჰაუსი", en: "Craft House" },
+    description: { ka: "ღვინო და გასტრონომია", en: "Wine and Gastronomy" },
     image: "/space/craft.webp",
   },
   {
     id: 2,
-    title: "ტაბერნე გურიაში-აცანა",
-    description: "ღვნო და გასწორისოთნია",
+    title: { ka: "ტაბერნე გურიაში-აცანა", en: "Tavern Gurian-Atsana" },
+    description: { ka: "ღვინო და გასტრონომია", en: "Wine and Gastronomy" },
     image: "/space/acana.webp",
   },
   {
     id: 3,
-    title: "სასტუმრო პანორამა ლისი",
-    description: "განთავსების ობიექტები",
+    title: { ka: "სასტუმრო პანორამა ლისი", en: "Panorama Lisi Hotel" },
+    description: {
+      ka: "განთავსების ობიექტები",
+      en: "Accommodation Facilities",
+    },
     image: "/space/lisi.webp",
   },
   {
     id: 4,
-    title: "ლელო ინნ",
-    description: "განთავსების ობიექტები",
+    title: { ka: "ლელო ინნ", en: "Lelo Inn" },
+    description: {
+      ka: "განთავსების ობიექტები",
+      en: "Accommodation Facilities",
+    },
     image: "/space/inn.webp",
   },
   {
     id: 5,
-    title: "1740 სასტუმრო",
-    description: "განთავსების ობიექტები",
+    title: { ka: "1740 სასტუმრო", en: "1740 Hotel" },
+    description: {
+      ka: "განთავსების ობიექტები",
+      en: "Accommodation Facilities",
+    },
     image: "/space/1740.webp",
   },
   {
     id: 6,
-    title: "იპოდრუმი",
-    description: "განთავსების ობიექტები",
+    title: { ka: "იპოდრუმი", en: "Hippodrome" },
+    description: {
+      ka: "განთავსების ობიექტები",
+      en: "Accommodation Facilities",
+    },
     image: "/space/opodrumi.webp",
   },
   {
     id: 7,
-    title: "ლუხუმიჩის მარანი",
-    description: "ღვინო და გასტრონომია",
+    title: { ka: "ლუხუმიჩის მარანი", en: "Lukhumichis Marani" },
+    description: { ka: "ღვინო და გასტრონომია", en: "Wine and Gastronomy" },
     image: "/space/mariani.webp",
   },
   {
     id: 8,
-    title: "როშე დუდაური",
-    description: "განთავსების ობიექტები",
+    title: { ka: "როშე დუდაური", en: "Roshe Dudaura" },
+    description: {
+      ka: "განთავსების ობიექტები",
+      en: "Accommodation Facilities",
+    },
     image: "/space/rose.webp",
   },
   {
     id: 9,
-    title: "ვინერა კახეთი",
-    description: "ღვინო და გასტრონომია",
+    title: { ka: "ვინერა კახეთი", en: "Vinera Kakheti" },
+    description: { ka: "ღვინო და გასტრონომია", en: "Wine and Gastronomy" },
     image: "/space/vineria.webp",
   },
   {
     id: 10,
-    title: "მარანი ნატურალისტი",
-    description: "ღვინი და გასტრონომია",
+    title: { ka: "მარანი ნატურალისტი", en: "Naturalist Marani" },
+    description: { ka: "ღვინო და გასტრონომია", en: "Wine and Gastronomy" },
     image: "/space/marani.webp",
   },
   {
     id: 11,
-    title: "სასტუმრო ლოპტი ბაკურიანში",
-    description: "განთავსების ობიექტები",
+    title: { ka: "სასტუმრო ლოპტი ბაკურიანში", en: "Lopti Hotel in Bakuriani" },
+    description: {
+      ka: "განთავსების ობიექტები",
+      en: "Accommodation Facilities",
+    },
     image: "/space/sastumro.webp",
   },
   {
     id: 12,
-    title: "სასტუმრო თელა და მეღვინეობა მარელი",
-    description: "განთავსების ობიექტები",
+    title: {
+      ka: "სასტუმრო თელა და მეღვინეობა მარელი",
+      en: "Tela Hotel and Mareli Winery",
+    },
+    description: {
+      ka: "განთავსების ობიექტები",
+      en: "Accommodation Facilities",
+    },
     image: "/space/mareli.webp",
   },
 ];
-
 // info page interface
 
 export interface AdditionalInfo {
@@ -1722,35 +1963,59 @@ export const faqItems: FaqItem[] = [
 
 export interface Props {
   img: string;
-  title: string;
-  desc: string;
+  title: {
+    ka: string;
+    en: string;
+  };
+  desc: {
+    ka: string;
+    en: string;
+  };
 }
+
 export const blogs: Props[] = [
   {
     img: "/cardImage/mta.webp",
-    title: "საქართველოს მთები და მწერვალები",
-    desc: "შეუძლებელია საქართველოზე ილაპარაკო ისე, რომ ერთხელ მაინც არ ახსენო მისი თვალწარმტაცი მთები, რომლებიც სულს აფრთხობს.",
+    title: {
+      ka: "საქართველოს მთები და მწერვალები",
+      en: "Mountains and Peaks of Georgia",
+    },
+    desc: {
+      ka: "შეუძლებელია საქართველოზე ილაპარაკო ისე, რომ ერთხელ მაინც არ ახსენო მისი თვალწარმტაცი მთები, რომლებიც სულს აფრთხობს.",
+      en: "It's impossible to talk about Georgia without mentioning its breathtaking mountains that inspire the soul.",
+    },
   },
   {
     img: "/cardImage/opa.webp",
-    title: "ქართული ღვინის ისტორია",
-    desc: "ღვინო პირველად 8000 წლის წინ საქართველოში დააყენეს, ქვევრში დაყენების უნიკალური ტექნოლოგიით.",
+    title: {
+      ka: "ქართული ღვინის ისტორია",
+      en: "History of Georgian Wine",
+    },
+    desc: {
+      ka: "ღვინო პირველად 8000 წლის წინ საქართველოში დააყენეს, ქვევრში დაყენების უნიკალური ტექნოლოგიით.",
+      en: "Wine was first made 8000 years ago in Georgia, using the unique qvevri winemaking technology.",
+    },
   },
   {
     img: "/cardImage/world.webp",
-    title: "ქართული კულტურის სიმდიდრე",
-    desc: "ქართული ცეკვა, სიმღერა და ტრადიციები მსოფლიოს ერთ-ერთ უძველეს კულტურას წარმოადგენს.",
+    title: {
+      ka: "ქართული კულტურის სიმდიდრე",
+      en: "The Richness of Georgian Culture",
+    },
+    desc: {
+      ka: "ქართული ცეკვა, სიმღერა და ტრადიციები მსოფლიოს ერთ-ერთ უძველეს კულტურას წარმოადგენს.",
+      en: "Georgian dance, song and traditions represent one of the world's oldest cultures.",
+    },
   },
 ];
 
 // ----------
-
 export interface TravelMoment {
   id: number;
   image: string;
-  alt: string;
-  title: string;
-  description: string;
+  alt: { ka: string; en: string };
+  title: { ka: string; en: string };
+  description: { ka: string; en: string };
   link: string;
 }
 
@@ -1758,59 +2023,89 @@ export const travelMoments: TravelMoment[] = [
   {
     id: 1,
     image: "/cardImage/1.webp",
-    alt: "ბახმარო",
-    title: "ბახმარო",
-    description: "ზამთარში სწორედ რომ ბახმაროში უნდა დაისვენო",
+    alt: { ka: "ბახმარო", en: "Bakhmaro" },
+    title: { ka: "ბახმარო", en: "Bakhmaro" },
+    description: {
+      ka: "ზამთარში სწორედ რომ ბახმაროში უნდა დაისვენო",
+      en: "In winter, Bakhmaro is the perfect place to relax",
+    },
     link: "https://www.instagram.com/p/CV3D_3WsRby/",
   },
   {
     id: 2,
     image: "/cardImage/2.webp",
-    alt: "უძირო ტბა",
-    title: "უძირო ტბა",
-    description: "შეიგრძენი საქართველოს ბუნების მშვენიერება",
+    alt: { ka: "უძირო ტბა", en: "Bottomless Lake" },
+    title: { ka: "უძირო ტბა", en: "Bottomless Lake" },
+    description: {
+      ka: "შეიგრძენი საქართველოს ბუნების მშვენიერება",
+      en: "Experience the beauty of Georgia's nature",
+    },
     link: "https://www.instagram.com/p/CeWS5BlMkIh/",
   },
   {
     id: 3,
     image: "/cardImage/3.webp",
-    alt: "რთველი",
-    title: "რთველი",
-    description: "აღმოაჩინე ქართული ვაზის ჯიშები",
+    alt: { ka: "რთველი", en: "Rtveli" },
+    title: { ka: "რთველი", en: "Rtveli" },
+    description: {
+      ka: "აღმოაჩინე ქართული ვაზის ჯიშები",
+      en: "Discover Georgian grape varieties",
+    },
     link: "https://www.instagram.com/p/CiudNVOD1xA/",
   },
   {
     id: 4,
     image: "/cardImage/4.webp",
-    alt: "უშბა",
-    title: "უშბა",
-    description: "იმოგზაურეთ სვანეთში და შეიგრძენით უშბის მაგიური ატმოსფერო",
+    alt: { ka: "უშბა", en: "Ushba" },
+    title: { ka: "უშბა", en: "Ushba" },
+    description: {
+      ka: "იმოგზაურეთ სვანეთში და შეიგრძენით უშბის მაგიური ატმოსფერო",
+      en: "Travel to Svaneti and feel the magical atmosphere of Ushba",
+    },
     link: "https://www.instagram.com/p/CfG3QMtMSWo/",
   },
   {
     id: 5,
     image: "/cardImage/5.webp",
-    alt: "ტაბაწყურის ტბა",
-    title: "ტაბაწყურის ტბა",
-    description: "ბიომრავალფეროვნებით გამორჩეული ადგილი საქართველოში",
+    alt: { ka: "ტაბაწყურის ტბა", en: "Tabatskuri Lake" },
+    title: { ka: "ტაბაწყურის ტბა", en: "Tabatskuri Lake" },
+    description: {
+      ka: "ბიომრავალფეროვნებით გამორჩეული ადგილი საქართველოში",
+      en: "A place distinguished by biodiversity in Georgia",
+    },
     link: "https://www.instagram.com/p/CkikD7gjLUZ/",
   },
   {
     id: 6,
     image: "/cardImage/6.webp",
-    alt: "ხერთვისის ციხე",
-    title: "ხერთვისის ციხე",
-    description: "შუა საუკუნეების ციხესიმაგრე საქართველოში",
+    alt: { ka: "ხერთვისის ციხე", en: "Khertvisi Fortress" },
+    title: { ka: "ხერთვისის ციხე", en: "Khertvisi Fortress" },
+    description: {
+      ka: "შუა საუკუნეების ციხესიმაგრე საქართველოში",
+      en: "A medieval fortress in Georgia",
+    },
     link: "https://www.instagram.com/p/CkxdXoYj52Q/",
   },
 ];
 
 export interface CardItem {
   image: string;
-  header: string;
-  title?: string;
-  text?: string;
-  description?: string;
+  header: {
+    ka: string;
+    en: string;
+  };
+  title?: {
+    ka: string;
+    en: string;
+  };
+  text?: {
+    ka: string;
+    en: string;
+  };
+  description?: {
+    ka: string;
+    en: string;
+  };
 }
 
 export interface Card {
@@ -1818,23 +2113,189 @@ export interface Card {
   title: string;
   array: CardItem[];
 }
+
 export const card1: Card[] = [
   {
-    id: "",
-    title: "",
+    id: "georgian-cuisine",
+    title: "Georgian Cuisine Collection",
     array: [
       {
         image: "/cardImage/ach.webp",
-        header: "აჭარული ხაჭაპური",
-        title: "აღმოაჩინე ქართული გასტრონომია",
-        text: "აქ ყველა კერძს დაუვიწყარი გემო აქვს",
-        description:
-          "ქართული სამზარეულო საუკუნეების განმავლობაში იზიარებდა ევროპისა და ახლო აღმოსავლეთის საუკეთესო ტექნიკებს, ტრადიციებს და ქმნიდა თავის ინდივიდუალურ, დახვეწილ გემოებს. აქაურობა გურმანებს დაუვიწყარ თავგადასავალს ჰპირდება.",
+        header: {
+          ka: "აჭარული ხაჭაპური",
+          en: "Adjarian Khachapuri",
+        },
+        title: {
+          ka: "აღმოაჩინე ქართული გასტრონომია",
+          en: "Discover Georgian Gastronomy",
+        },
+        text: {
+          ka: "აქ ყველა კერძს დაუვიწყარი გემო აქვს",
+          en: "Every dish here has an unforgettable taste",
+        },
+        description: {
+          ka: "ქართული სამზარეულო საუკუნეების განმავლობაში იზიარებდა ევროპისა და ახლო აღმოსავლეთის საუკეთესო ტექნიკებს, ტრადიციებს და ქმნიდა თავის ინდივიდუალურ, დახვეწილ გემოებს. აქაურობა გურმანებს დაუვიწყარ თავგადასავალს ჰპირდება.",
+          en: "Georgian cuisine has been sharing the best techniques and traditions of Europe and the Middle East for centuries, creating its own individual, refined flavors. Local cuisine promises gourmets an unforgettable adventure.",
+        },
       },
       {
         image: "/cardImage/mt.webp",
-        header: "მწვადი",
+        header: {
+          ka: "მწვადი",
+          en: "Mtsvadi (Georgian BBQ)",
+        },
       },
     ],
+  },
+];
+
+export interface SmallImage {
+  src: string;
+  alt: {
+    ka: string;
+    en: string;
+  };
+  title: {
+    ka: string;
+    en: string;
+  };
+}
+
+export interface Place {
+  image: string;
+  title: {
+    ka: string;
+    en: string;
+  };
+  description: {
+    ka: string;
+    en: string;
+  };
+  smallImages: {
+    title: {
+      ka: string;
+      en: string;
+    };
+    description: {
+      ka: string;
+      en: string;
+    };
+    images: SmallImage[];
+  };
+}
+
+export const places: Place[] = [
+  {
+    image: `/space/backImage.webp`,
+    title: {
+      ka: "ადგილმდებარეობები საქართველოში",
+      en: "Locations in Georgia",
+    },
+    description: {
+      ka: "აქ ნახავ თოვლიან მთებს, შავი ზღვის სანაპიროებს, აღმოაჩენ უძველეს არქიტექტურულ ძეგლებსა და თანამედროვე, ურბანულ სანახაობებს - ეს მრავალფეროვანი პეიზაჟები და უდიდესი ისტორიის მქონე კულტურა 11 რეგიონსა და სხვადასხვა უნიკალურ ქალაქშია თავმოყრილი, სადაც უამრავ საინტერესო და განსხვავებულ ადგილს შეგიძლია ესტუმრო.",
+      en: "Here you will see snow-capped mountains, Black Sea coasts, discover ancient architectural monuments and modern urban landscapes - these diverse landscapes and culture with great history are gathered in 11 regions and various unique cities, where you can visit many interesting and different places.",
+    },
+    smallImages: {
+      title: {
+        ka: "მეტი ადგილმდებარეობა",
+        en: "More Locations",
+      },
+      description: {
+        ka: "ჩრდილოეთით - კავკასიონი, დასავლეთით - შავი ზღვა, სამხრეთით - მთები, აღმოსავლეთით კი გაშლილი ველ-მინდვრები, მdinarეები, ჩანჩქერები, ულამაზესი ხეობები, ტბები, მღვიმეები, გამოქვაბულები და იდუმალი ტყეები. ეს საქართველოა, ულამაზესი და უძველესი ქვეყანა დედამიწაზე, სადაც წელიწადის ნებისმიერ დროს შეძლებ შენთვის საინტერესო მოგზაურობა ექსტრემალური ტურებითა თუ მსუბუქი სათავგადასავლო დასვენებით დაგეგმო.",
+        en: "From the north - Caucasus, from the west - Black Sea, from the south - mountains, and from the east - vast plains, rivers, waterfalls, beautiful valleys, lakes, caves, grottoes and mysterious forests. This is Georgia, the most beautiful and ancient country on earth, where you can plan interesting travels at any time of the year with extreme tours or light adventure recreation.",
+      },
+      images: [
+        {
+          src: "/space/gnta.webp",
+          alt: {
+            ka: "ბახმაროს ხედი",
+            en: "Bakhmaro View",
+          },
+          title: {
+            ka: "ბახმარო",
+            en: "Bakhmaro",
+          },
+        },
+        {
+          src: "/space/mestia.webp",
+          alt: {
+            ka: "მესტიის ხედი",
+            en: "Mestia View",
+          },
+          title: {
+            ka: "მესტია",
+            en: "Mestia",
+          },
+        },
+        {
+          src: "/space/gudauri.webp",
+          alt: {
+            ka: "გუდაურის ხედი",
+            en: "Gudauri View",
+          },
+          title: {
+            ka: "გუდაური",
+            en: "Gudauri",
+          },
+        },
+        {
+          src: "/space/bakuriani.webp",
+          alt: {
+            ka: "ბაკურიანის ხედი",
+            en: "Bakuriani View",
+          },
+          title: {
+            ka: "ბაკურიანი",
+            en: "Bakuriani",
+          },
+        },
+      ],
+    },
+  },
+];
+
+export interface Activity {
+  id: number;
+  title: { ka: string; en: string };
+  image: string;
+  imageAlt: { ka: string; en: string };
+}
+
+export const activities: Activity[] = [
+  {
+    id: 1,
+    title: { ka: "მთავალდებულება", en: "Mountaineering" },
+    image: "/mountain-peak-climbing-adventure.png",
+    imageAlt: {
+      ka: "მთის მწვერვალზე ასვლის თავგადასავალი",
+      en: "Mountain peak climbing adventure",
+    },
+  },
+  {
+    id: 2,
+    title: { ka: "ლაშქრობა", en: "Hiking" },
+    image: "/forest-hiking-trail-adventure.png",
+    imageAlt: {
+      ka: "ტყის საფეხმავლო ბილიკის თავგადასავალი",
+      en: "Forest hiking trail adventure",
+    },
+  },
+  {
+    id: 3,
+    title: { ka: "ნულის სპორტი", en: "Water Sports" },
+    image: "/extreme-river-rafting-adventure.png",
+    imageAlt: {
+      ka: "ექსტრემალური მდინარის რაფტინგის თავგადასავალი",
+      en: "Extreme river rafting adventure",
+    },
+  },
+  {
+    id: 4,
+    title: { ka: "ზიპ-ლაინი", en: "Ziplining" },
+    image: "/canopy-zipline-adventure.png",
+    imageAlt: {
+      ka: "ტყის ზიპ-ლაინის თავგადასავალი",
+      en: "Canopy zipline adventure",
+    },
   },
 ];

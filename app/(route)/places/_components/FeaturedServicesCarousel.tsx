@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,8 +8,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { servicesData } from "@/constants/data/data";
+import { useLanguage } from "@/context/LanguageContext";
 
 function FeaturedServicesCarousel() {
+  const { currentLanguage } = useLanguage();
+
   return (
     <div className="py-10 px-5">
       <Swiper
@@ -38,7 +43,7 @@ function FeaturedServicesCarousel() {
             <div className="relative h-72 md:h-80 rounded-2xl select-none overflow-hidden cursor-pointer transition-transform duration-300 group">
               <Image
                 src={service.image}
-                alt={service.title}
+                alt={service.title[currentLanguage]}
                 fill
                 className="object-cover hover:scale-110 transition-all duration-300 ease-in-out"
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -46,9 +51,11 @@ function FeaturedServicesCarousel() {
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-5 text-white z-10">
                 <h3 className="text-lg font-semibold mb-2 leading-tight group-hover:text-red-500 transition-colors duration-300">
-                  {service.title}
+                  {service.title[currentLanguage]}
                 </h3>
-                <p className="text-sm opacity-90">{service.description}</p>
+                <p className="text-sm opacity-90">
+                  {service.description[currentLanguage]}
+                </p>
               </div>
             </div>
           </SwiperSlide>

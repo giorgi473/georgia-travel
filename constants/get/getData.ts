@@ -66,3 +66,164 @@ export const contentItems: ContentItem[] = [
     alt: "Beach",
   },
 ];
+export interface Destination {
+  id: number;
+  title: {
+    ka: string;
+    en: string;
+  };
+  subtitle: {
+    ka: string;
+    en: string;
+  };
+  image: string;
+  isLogo?: boolean;
+}
+
+export const destinations: Destination[] = [
+  {
+    id: 1,
+    title: {
+      ka: "VISIT",
+      en: "VISIT",
+    },
+    subtitle: {
+      ka: "საქართველო",
+      en: "Georgia",
+    },
+    image: "/visit-georgia-logo-green.png",
+    isLogo: true,
+  },
+  {
+    id: 2,
+    title: {
+      ka: "შავერგე ღვინის მარანი და კოტეჯები",
+      en: "Shaverge Winery and Cottages",
+    },
+    subtitle: {
+      ka: "ღვინო და გასტრონომია",
+      en: "Wine and Gastronomy",
+    },
+    image: "/nature-adventures/koteji.webp",
+  },
+  {
+    id: 3,
+    title: {
+      ka: "კომორები",
+      en: "Komorebi",
+    },
+    subtitle: {
+      ka: "განთავსების ობიექტი",
+      en: "Accommodation",
+    },
+    image: "/nature-adventures/komorebi.webp",
+  },
+  {
+    id: 4,
+    title: {
+      ka: "გეთევეი ვანდერს ჯორჯია",
+      en: "Gateway Wonders Georgia",
+    },
+    subtitle: {
+      ka: "ტურისტული მომსახურება",
+      en: "Tourist Services",
+    },
+    image: "/nature-adventures/getevei.webp",
+  },
+  {
+    id: 5,
+    title: {
+      ka: "ჭრებალოს მარანი",
+      en: "Chrebalo Winery",
+    },
+    subtitle: {
+      ka: "ღვინო და გასტრონომია",
+      en: "Wine and Gastronomy",
+    },
+    image: "/nature-adventures/marani.webp",
+  },
+  {
+    id: 6,
+    title: {
+      ka: "კარდანახის მამული",
+      en: "Kardanakhi Estate",
+    },
+    subtitle: {
+      ka: "განთავსების ობიექტები",
+      en: "Accommodation",
+    },
+    image: "/nature-adventures/mamuli.webp",
+  },
+  {
+    id: 7,
+    title: {
+      ka: "ვილა ჯიჯი",
+      en: "Villa Jiji",
+    },
+    subtitle: {
+      ka: "განთავსების ობიექტები",
+      en: "Accommodation",
+    },
+    image: "/nature-adventures/vila.webp",
+  },
+  {
+    id: 8,
+    title: {
+      ka: "საქართველო იწყება აქ",
+      en: "Georgia Starts Here",
+    },
+    subtitle: {
+      ka: "ტურისტული მომსახურება",
+      en: "Tourist Services",
+    },
+    image: "/nature-adventures/aq.webp",
+  },
+  {
+    id: 9,
+    title: {
+      ka: "სადგური",
+      en: "Sadguri",
+    },
+    subtitle: {
+      ka: "ღვინო და გასტრონომია",
+      en: "Wine and Gastronomy",
+    },
+    image: "/nature-adventures/sadguri.webp",
+  },
+  {
+    id: 10,
+    title: {
+      ka: "რუმს ბათუმი",
+      en: "Rooms Batumi",
+    },
+    subtitle: {
+      ka: "განთავსების ობიექტები",
+      en: "Accommodation",
+    },
+    image: "/nature-adventures/rums.webp",
+  },
+  {
+    id: 11,
+    title: {
+      ka: "მელოგრანო",
+      en: "Melograno",
+    },
+    subtitle: {
+      ka: "ღვინო და გასტრონომია",
+      en: "Wine and Gastronomy",
+    },
+    image: "/nature-adventures/melograni.webp",
+  },
+  {
+    id: 12,
+    title: {
+      ka: "ნიკოლაძეების მარანი",
+      en: "Nikoladze Winery",
+    },
+    subtitle: {
+      ka: "ღვინო და გასტრონომია",
+      en: "Wine and Gastronomy",
+    },
+    image: "/nature-adventures/nikolaze.webp",
+  },
+];

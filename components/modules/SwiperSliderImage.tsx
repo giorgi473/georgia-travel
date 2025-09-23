@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useState, useRef, forwardRef } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { sliderImages } from "@/lib/data";
-import { useRouter } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ThumbnailProps {
   src: string;
@@ -70,6 +71,7 @@ const SwiperSliderImage = forwardRef(() => {
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const router = useRouter();
   const swiperRef = useRef<SwiperRef>(null);
+  const { currentLanguage } = useLanguage();
 
   const handleThumbnailClick = (index: number, pause: boolean) => {
     if (swiperRef.current) {
@@ -82,6 +84,18 @@ const SwiperSliderImage = forwardRef(() => {
         swiperRef.current.swiper.autoplay.start();
       }
     }
+  };
+
+  // Translations for buttons
+  const translations = {
+    ka: {
+      planTrip: "დაგეგმე მოგზაურობა",
+      learnMore: "გაიგე მეტი",
+    },
+    en: {
+      planTrip: "Plan Your Trip",
+      learnMore: "Learn More",
+    },
   };
 
   return (
@@ -116,26 +130,30 @@ const SwiperSliderImage = forwardRef(() => {
               <div className="absolute inset-0 flex flex-col justify-center px-5 sm:px-8 md:px-8 lg:px-11 container mx-auto z-50 text-white">
                 <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl lg:pr-4 font-bold mb-4 sm:mb-6 md:mb-8 lg:mb-10">
                   <div className="space-y-1 sm:space-y-2">
-                    {item.title.split("\n\n").map((paragraph, idx) => (
-                      <p key={idx}>{paragraph.trim()}</p>
-                    ))}
+                    {(currentLanguage === "ka" ? item.title : item.titleEn)
+                      .split("\n\n")
+                      .map((paragraph, idx) => (
+                        <p key={idx}>{paragraph.trim()}</p>
+                      ))}
                   </div>
                 </div>
                 <p className="text-sm pr-1.5 sm:text-base sm:pr-5 md:text-lg lg:text-lg mb-5 sm:mb-5 md:mb-5 lg:mb-1 max-w-full sm:max-w-md md:max-w-lg lg:max-w-2xl text-gray-300">
-                  {item.description}
+                  {currentLanguage === "ka"
+                    ? item.description
+                    : item.descriptionEn}
                 </p>
                 <div className="flex flex-row gap-3 sm:gap-4 mt-8 sm:mt-12 md:mt-20 lg:mt-20">
                   <button
                     className="bg-red-500 text-white px-4 sm:px-5 md:px-6 lg:px-6 py-1.5 sm:py-2 rounded hover:bg-red-600 cursor-pointer text-sm sm:text-base md:text-lg lg:text-lg"
                     onClick={() => router.push("/popular-tours")}
                   >
-                    დაგეგმე მოგზაურობა
+                    {translations[currentLanguage].planTrip}
                   </button>
                   <button
                     className="bg-gray-800 text-white px-4 sm:px-5 md:px-6 lg:px-6 py-1.5 sm:py-2 rounded hover:bg-gray-600 cursor-pointer text-sm sm:text-base md:text-lg lg:text-lg"
                     onClick={() => router.push("/why-georgia")}
                   >
-                    გაიგე მეტი
+                    {translations[currentLanguage].learnMore}
                   </button>
                 </div>
               </div>

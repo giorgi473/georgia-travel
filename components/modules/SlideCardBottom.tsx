@@ -1,109 +1,198 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView, useAnimation } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface EventCard {
   id: number;
   image: string;
-  title: string;
-  description: string;
+  title: {
+    ka: string;
+    en: string;
+  };
+  description: {
+    ka: string;
+    en: string;
+  };
   href: string;
 }
 
 function SlideCardBottom() {
+  const { currentLanguage } = useLanguage();
+
   const events: EventCard[] = [
     {
       id: 1,
       image: "/cardImage/kloun.webp",
-      title: "კლოუნის თვალთახედვა",
-      description: "თეატრი",
+      title: {
+        ka: "კლოუნის თვალთახედვა",
+        en: "Clown's Perspective",
+      },
+      description: {
+        ka: "თეატრი",
+        en: "Theatre",
+      },
       href: "https://tkt.ge/show/21191",
     },
     {
       id: 2,
       image: "/cardImage/batumi.webp",
-      title: "SOHO BATUMI ENDORPHINS",
-      description: "კონცერტები",
+      title: {
+        ka: "SOHO BATUMI ENDORPHINS",
+        en: "SOHO BATUMI ENDORPHINS",
+      },
+      description: {
+        ka: "კონცერტები",
+        en: "Concerts",
+      },
       href: "https://tkt.ge/show/23725/soho-batumi-endorphins",
     },
     {
       id: 3,
       image: "/cardImage/sevil.webp",
-      title: "JENNIFER LOPEZ",
-      description: "კონცერტები",
+      title: {
+        ka: "JENNIFER LOPEZ",
+        en: "JENNIFER LOPEZ",
+      },
+      description: {
+        ka: "კონცერტები",
+        en: "Concerts",
+      },
       href: "https://tkt.ge/show/21191",
     },
     {
       id: 4,
       image: "/cardImage/ten.webp",
-      title: "ECHO EVENTS TH;EN",
-      description: "კონცერტები",
+      title: {
+        ka: "ECHO EVENTS TH;EN",
+        en: "ECHO EVENTS TH;EN",
+      },
+      description: {
+        ka: "კონცერტები",
+        en: "Concerts",
+      },
       href: "https://tkt.ge/show/23841/echo-events-then",
     },
     {
       id: 5,
       image: "/cardImage/ero.webp",
-      title: "ეროვნული სიმპონიური ორკესტრი",
-      description: "კონცერტები",
+      title: {
+        ka: "ეროვნული სიმპონიური ორკესტრი",
+        en: "National Symphony Orchestra",
+      },
+      description: {
+        ka: "კონცერტები",
+        en: "Concerts",
+      },
       href: "https://tkt.ge/show/22093/erovnuli-simfoniuri-orkestri",
     },
     {
       id: 6,
       image: "/cardImage/soho.webp",
-      title: "SOHO BATUMI - CHINAU",
-      description: "კონცერტები",
+      title: {
+        ka: "SOHO BATUMI - CHINAU",
+        en: "SOHO BATUMI - CHINAU",
+      },
+      description: {
+        ka: "კონცერტები",
+        en: "Concerts",
+      },
       href: "https://tkt.ge/show/23633/soho-batumi-chinau",
     },
     {
       id: 7,
       image: "/cardImage/mausi.webp",
-      title: "ავი მუსაიფი",
-      description: "თეატრი",
+      title: {
+        ka: "ავი მუსაიფი",
+        en: "Avi Musaifi",
+      },
+      description: {
+        ka: "თეატრი",
+        en: "Theatre",
+      },
       href: "https://tkt.ge/show/13255/avi-musaifi",
     },
     {
       id: 8,
       image: "/cardImage/piano.webp",
-      title: "თბილისი პიანო ფესტი",
-      description: "კონცერტები",
+      title: {
+        ka: "თბილისი პიანო ფესტი",
+        en: "Tbilisi Piano Festival",
+      },
+      description: {
+        ka: "კონცერტები",
+        en: "Concerts",
+      },
       href: "https://tkt.ge/show/23780/tbilisi-piano-festi",
     },
     {
       id: 9,
       image: "/cardImage/sux.webp",
-      title: "სუხიშვილები 80",
-      description: "კონცერტები",
+      title: {
+        ka: "სუხიშვილები 80",
+        en: "Sukhishvili 80",
+      },
+      description: {
+        ka: "კონცერტები",
+        en: "Concerts",
+      },
       href: "https://tkt.ge/show/23806/sukhishvilebi-80",
     },
     {
       id: 10,
       image: "/cardImage/lisi.webp",
-      title: "ლისის სამთო ფესტივალი",
-      description: "სპორტი",
+      title: {
+        ka: "ლისის სამთო ფესტივალი",
+        en: "Lisi Mountain Festival",
+      },
+      description: {
+        ka: "სპორტი",
+        en: "Sports",
+      },
       href: "https://tkt.ge/show/21716/lisis-samto-festivali",
     },
     {
       id: 11,
       image: "/cardImage/teatri.webp",
-      title: "ტკბილი ნოემბერი (პრემიერა)",
-      description: "თეატრი",
+      title: {
+        ka: "ტკბილი ნოემბერი (პრემიერა)",
+        en: "Sweet November (Premiere)",
+      },
+      description: {
+        ka: "თეატრი",
+        en: "Theatre",
+      },
       href: "https://tkt.ge/show/23735/tkbili-noemberi-premiera",
     },
     {
       id: 12,
       image: "/cardImage/magic.webp",
-      title: "ANDREA CASTA - Magical Night",
-      description: "კონცერტები",
+      title: {
+        ka: "ANDREA CASTA - Magical Night",
+        en: "ANDREA CASTA - Magical Night",
+      },
+      description: {
+        ka: "კონცერტები",
+        en: "Concerts",
+      },
       href: "https://tkt.ge/show/23732/andrea-casta-magical-night",
     },
   ];
+
+  // Multilingual texts for UI elements
+  const uiTexts = {
+    sectionTitle: {
+      ka: "მიმდინარე ღონისძიებები",
+      en: "Current Events",
+    },
+  };
 
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -167,8 +256,8 @@ function SlideCardBottom() {
             className="flex items-center gap-3"
             variants={textVariants}
           >
-            <h4 className="text-sm font-semibold sm:text-lg md:text-xl lg:text-xl">
-              აღმოაჩინე საუკეთესო ადგილები საქართველოში
+            <h4 className="text-md font-semibold sm:text-lg md:text-xl lg:text-xl">
+              {uiTexts.sectionTitle[currentLanguage]}
             </h4>
           </motion.div>
           <motion.div
@@ -217,7 +306,7 @@ function SlideCardBottom() {
         <Swiper
           modules={[Navigation]}
           spaceBetween={10}
-          slidesPerView={1.2}
+          slidesPerView={1}
           breakpoints={{
             640: { slidesPerView: 2.2, spaceBetween: 15 },
             768: { slidesPerView: 3.2, spaceBetween: 20 },
@@ -238,16 +327,18 @@ function SlideCardBottom() {
                 >
                   <Image
                     src={event.image}
-                    alt={event.title}
+                    alt={event.title[currentLanguage]}
                     width={300}
                     height={200}
                     className="w-full h-64 object-cover rounded-lg hover:scale-110 transition-all duration-300 ease-in-out"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                     <h4 className="text-white text-lg font-semibold">
-                      {event.title}
+                      {event.title[currentLanguage]}
                     </h4>
-                    <p className="text-white text-sm">{event.description}</p>
+                    <p className="text-white text-sm">
+                      {event.description[currentLanguage]}
+                    </p>
                   </div>
                 </motion.div>
               </Link>

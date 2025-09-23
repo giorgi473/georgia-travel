@@ -1,16 +1,13 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from "react";
-
-interface Tour {
-  id: number;
-  title: string;
-  descriptin: string;
-  image: string;
-  time: string;
-  distance: string;
-  difficulty: string;
-}
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
+import { StunningNatureScene } from "@/constants/data/popularToursData";
 
 interface Sight {
   id: number;
@@ -20,9 +17,9 @@ interface Sight {
 }
 
 interface CartContextType {
-  tours: Tour[];
+  tours: StunningNatureScene[];
   sights: Sight[];
-  addTour: (tour: Tour) => void;
+  addTour: (tour: StunningNatureScene) => void;
   removeTour: (tourId: number) => void;
   clearTours: () => void;
   isTourInCart: (tourId: number) => boolean;
@@ -34,11 +31,11 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [tours, setTours] = useState<Tour[]>([]);
+export function CartProvider({ children }: { children: ReactNode }) {
+  const [tours, setTours] = useState<StunningNatureScene[]>([]);
   const [sights, setSights] = useState<Sight[]>([]);
 
-  // მონაცემების ლოკალური შენახვა
+  // Load data from localStorage
   useEffect(() => {
     const savedTours = localStorage.getItem("cartTours");
     const savedSights = localStorage.getItem("cartSights");
@@ -59,7 +56,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("cartSights", JSON.stringify(sights));
   }, [sights]);
 
-  const addTour = (tour: Tour) => {
+  const addTour = (tour: StunningNatureScene) => {
     setTours((prev) => {
       const exists = prev.find((t) => t.id === tour.id);
       if (exists) return prev;

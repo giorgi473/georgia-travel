@@ -18,6 +18,7 @@ import { Heart, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { cardSliderImages } from "@/lib/data";
 import { Map } from "@/components/Map";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function CardPage({
   params: paramsPromise,
@@ -25,8 +26,13 @@ export default function CardPage({
   params: Promise<{ title: string }>;
 }) {
   const params = use(paramsPromise);
+  const { currentLanguage } = useLanguage();
+
+  // Find card by checking both ka and en titles
   const card = cardSliderImages.find(
-    (item) => item.title === decodeURIComponent(params.title)
+    (item) =>
+      item.title.ka === decodeURIComponent(params.title) ||
+      item.title.en === decodeURIComponent(params.title)
   );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -75,13 +81,34 @@ export default function CardPage({
   };
 
   const workingHoursDisplay = [
-    { day: "ორშაბათი", hours: card.workingHours.monday },
-    { day: "სამშაბათი", hours: card.workingHours.tuesday },
-    { day: "ოთხშაბათი", hours: card.workingHours.wednesday },
-    { day: "ხუთშაბათი", hours: card.workingHours.thursday },
-    { day: "პარასკევი", hours: card.workingHours.friday },
-    { day: "შაბათი", hours: card.workingHours.saturday },
-    { day: "კვირა", hours: card.workingHours.sunday },
+    {
+      day: currentLanguage === "en" ? "Monday" : "ორშაბათი",
+      hours: card.workingHours.Monday,
+    },
+    {
+      day: currentLanguage === "en" ? "Tuesday" : "სამშაბათი",
+      hours: card.workingHours.Tuesday,
+    },
+    {
+      day: currentLanguage === "en" ? "Wednesday" : "ოთხშაბათი",
+      hours: card.workingHours.Wednesday,
+    },
+    {
+      day: currentLanguage === "en" ? "Thursday" : "ხუთშაბათი",
+      hours: card.workingHours.Thursday,
+    },
+    {
+      day: currentLanguage === "en" ? "Friday" : "პარასკევი",
+      hours: card.workingHours.Friday,
+    },
+    {
+      day: currentLanguage === "en" ? "Saturday" : "შაბათი",
+      hours: card.workingHours.Saturday,
+    },
+    {
+      day: currentLanguage === "en" ? "Sunday" : "კვირა",
+      hours: card.workingHours.Sunday,
+    },
   ];
 
   return (
@@ -89,7 +116,7 @@ export default function CardPage({
       <div className="relative w-full h-screen">
         <Image
           src={card.src}
-          alt={card.title}
+          alt={card.title[currentLanguage]}
           fill
           className="object-cover"
           priority={true}
@@ -97,19 +124,25 @@ export default function CardPage({
         <div className="absolute inset-0 bg-black/50 z-10" />
         <div className="absolute inset-0 flex flex-col justify-start p-4 sm:p-6 lg:px-8 container mx-auto z-20">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mt-[150px] sm:mt-[180px] mb-8">
-            {card.title}
+            {card.title[currentLanguage]}
           </h1>
           <p className="text-sm sm:text-base max-w-xl text-gray-300 mt-4 mb-10">
-            {card.additionalDescription}
+            {card.additionalDescription[currentLanguage]}
           </p>
           <div className="text-white flex space-x-14 sm:flex sm:space-x-16 mb-8">
             <div className="font-semibold">
-              <div className="text-sm sm:text-base text-gray-300">რეგიონი</div>
-              {card.region}
+              <div className="text-sm sm:text-base text-gray-300">
+                {currentLanguage === "en" ? "Region" : "რეგიონი"}
+              </div>
+              {card.region[currentLanguage]}
             </div>
             <div className="font-semibold">
-              <div className="text-sm sm:text-base text-gray-300">ქალაქი</div>
-              <h1 className="text-sm sm:text-base">{card.city}</h1>
+              <div className="text-sm sm:text-base text-gray-300">
+                {currentLanguage === "en" ? "City" : "ქალაქი"}
+              </div>
+              <h1 className="text-sm sm:text-base">
+                {card.city[currentLanguage]}
+              </h1>
             </div>
           </div>
           <div className="mb-5">
@@ -129,7 +162,9 @@ export default function CardPage({
                   isActive ? "text-red-500" : "text-white"
                 } group-hover:text-red-500`}
               >
-                მარშრუტებში დამატება
+                {currentLanguage === "en"
+                  ? "Add to Routes"
+                  : "მარშრუტებში დამატება"}
               </h3>
             </button>
           </div>
@@ -138,7 +173,7 @@ export default function CardPage({
               className="cursor-pointer border border-red-500 px-4 py-2 text-white hover:bg-red-500 rounded-lg transition-all duration-200 ease-in-out font-semibold text-sm sm:text-base"
               onClick={toggleModal}
             >
-              ინფორმაცია
+              {currentLanguage === "en" ? "Information" : "ინფორმაცია"}
             </button>
           </div>
         </div>
@@ -160,7 +195,7 @@ export default function CardPage({
               <div className="relative w-full h-64 sm:h-72 mb-6">
                 <Image
                   src={card.modalSrc}
-                  alt={`${card.title} modal`}
+                  alt={`${card.title[currentLanguage]} modal`}
                   fill
                   className="object-cover rounded-tl-sm"
                   quality={100}
@@ -168,23 +203,34 @@ export default function CardPage({
               </div>
               <div className="px-6 sm:px-8">
                 <h2 className="text-xl sm:text-2xl font-bold mb-6">
-                  {card.name}
+                  {card.name[currentLanguage]}
                 </h2>
                 <div className="text-sm sm:text-base mb-4">
                   <p className="mb-2">
-                    <span className="font-semibold mr-1">Nmae:</span>
-                    {card.name}
+                    <span className="font-semibold mr-1">
+                      {currentLanguage === "en" ? "Name" : "სახელი"}:
+                    </span>
+                    {card.name[currentLanguage]}
                   </p>
                   <p className="mb-2">
-                    <span className="font-semibold mr-2">Address:</span>
+                    <span className="font-semibold mr-2">
+                      {currentLanguage === "en" ? "Address" : "მისამართი"}:
+                    </span>
                     {card.address}
                   </p>
                   <p className="mb-2">
-                    <span className="font-semibold mr-2">Phone Number:</span>
+                    <span className="font-semibold mr-2">
+                      {currentLanguage === "en"
+                        ? "Phone Number"
+                        : "ტელეფონის ნომერი"}
+                      :
+                    </span>
                     {card.phone}
                   </p>
                   <p className="mb-2">
-                    <span className="font-semibold mr-2">Web:</span>
+                    <span className="font-semibold mr-2">
+                      {currentLanguage === "en" ? "Web" : "ვებგვერდი"}:
+                    </span>
                     <Link
                       href={card.website}
                       target="_blank"
@@ -194,7 +240,10 @@ export default function CardPage({
                     </Link>
                   </p>
                   <h3 className="mt-3 mb-2 text-center font-bold text-base sm:text-lg">
-                    Working Schedule:
+                    {currentLanguage === "en"
+                      ? "Working Schedule"
+                      : "სამუშაო გრაფიკი"}
+                    :
                   </h3>
                   <div className="list-disc list-inside">
                     {workingHoursDisplay.map(({ day, hours }) => (
@@ -215,10 +264,12 @@ export default function CardPage({
       <section>
         <div className="mx-auto space-y-4 px-5 sm:container sm:px-8 lg:max-w-4xl">
           <div>
-            <h3 className="text-3xl font-bold">{card.anotherSection.name1}</h3>
+            <h3 className="text-3xl font-bold">
+              {card.anotherSection.name1?.[currentLanguage]}
+            </h3>
           </div>
           <div className="space-y-4 text-gray-800">
-            {card.anotherSection.description
+            {card.anotherSection.description?.[currentLanguage]
               ?.split("\n\n")
               .map((paragraph, idx) => (
                 <p key={idx} className="text-gray-800">
@@ -227,7 +278,9 @@ export default function CardPage({
               ))}
           </div>
           <div>
-            <p className="text-3xl font-bold">{card.anotherSection.name2}</p>
+            <p className="text-3xl font-bold">
+              {card.anotherSection.name2?.[currentLanguage]}
+            </p>
           </div>
           <div>
             {Array.isArray(card.anotherSection.image) ? (
@@ -248,7 +301,9 @@ export default function CardPage({
               card.anotherSection.image !== "" ? (
               <Image
                 src={card.anotherSection.image}
-                alt="section image"
+                alt={
+                  currentLanguage === "en" ? "section image" : "სექციის სურათი"
+                }
                 width={1000}
                 height={500}
                 className="rounded-md"
@@ -256,7 +311,7 @@ export default function CardPage({
             ) : null}
           </div>
           <div className="space-y-4 text-gray-800">
-            {card.anotherSection.description2
+            {card.anotherSection.description2?.[currentLanguage]
               ?.split("\n\n")
               .map((paragraph, idx) => (
                 <p key={idx} className="text-gray-800">
@@ -265,10 +320,12 @@ export default function CardPage({
               ))}
           </div>
           <div>
-            <p className="text-3xl font-bold">{card.anotherSection.name3}</p>
+            <p className="text-3xl font-bold">
+              {card.anotherSection.name3?.[currentLanguage]}
+            </p>
           </div>
           <div className="space-y-4 text-gray-800">
-            {card.anotherSection.description3
+            {card.anotherSection.description3?.[currentLanguage]
               ?.split("\n\n")
               .map((paragraph, idx) => (
                 <p key={idx} className="text-gray-800">
@@ -277,10 +334,12 @@ export default function CardPage({
               ))}
           </div>
           <div>
-            <p className="text-3xl font-bold">{card.anotherSection.name4}</p>
+            <p className="text-3xl font-bold">
+              {card.anotherSection.name4?.[currentLanguage]}
+            </p>
           </div>
           <div className="space-y-4 text-gray-800">
-            {card.anotherSection.description4
+            {card.anotherSection.description4?.[currentLanguage]
               ?.split("\n\n")
               .map((paragraph, idx) => (
                 <p key={idx} className="text-gray-800">
@@ -289,10 +348,12 @@ export default function CardPage({
               ))}
           </div>
           <div>
-            <p className="text-3xl font-bold">{card.anotherSection.name5}</p>
+            <p className="text-3xl font-bold">
+              {card.anotherSection.name5?.[currentLanguage]}
+            </p>
           </div>
           <div className="space-y-4 text-gray-800">
-            {card.anotherSection.description5
+            {card.anotherSection.description5?.[currentLanguage]
               ?.split("\n\n")
               .map((paragraph, idx) => (
                 <p key={idx} className="text-gray-800">
@@ -307,9 +368,10 @@ export default function CardPage({
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center">
               <h3 className="text-sm sm:text-lg md:text-xl font-semibold">
-                {card.slideCard.map((item, index) => (
-                  <p key={item.text || index}>{item.text || ""}</p>
-                ))}
+                {card.slideCard[0]?.text?.[currentLanguage] ||
+                  (currentLanguage === "en"
+                    ? "Explore top attractions"
+                    : "აღმოაჩინეთ ტოპ სანახაობები")}
               </h3>
             </div>
             <div className="flex gap-2">
@@ -369,14 +431,16 @@ export default function CardPage({
               return (
                 <SwiperSlide key={index}>
                   <Link
-                    href={`/card/${encodeURIComponent(item.name || "unnamed")}`}
+                    href={`/card/${encodeURIComponent(
+                      item.name[currentLanguage] || "unnamed"
+                    )}`}
                   >
                     <div className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer select-none">
                       <div className="relative w-full h-80 sm:h-96 md:h-96 group">
                         <div className="relative w-full h-full overflow-hidden">
                           <Image
                             src={item.src}
-                            alt={item.title || "Slide image"}
+                            alt={item.title[currentLanguage] || "Slide image"}
                             fill
                             className="object-cover group-hover:scale-110 transition-all duration-300 ease-in-out z-0"
                             quality={75}
@@ -391,7 +455,7 @@ export default function CardPage({
                         </div>
                         <div className="p-4 absolute bottom-2 text-white z-20">
                           <h4 className="text-sm sm:text-lg font-semibold mb-2">
-                            {item.title || "No title"}
+                            {item.title[currentLanguage] || "No title"}
                           </h4>
                         </div>
                       </div>
@@ -412,28 +476,29 @@ export default function CardPage({
         <div className="container mx-auto px-4 sm:px-8 md:px-8 lg:px-10">
           <div className="flex items-center justify-between gap-4 mb-5">
             <h2 className="text-sm sm:text-lg md:text-xl font-semibold text-black pl-1">
-              {card.blogs
-                .filter((blog) => blog.blogText?.trim())
-                .map((blog, blogIndex) => (
-                  <p key={blog.blogText || blogIndex}>{blog.blogText}</p>
-                ))}
+              {card.blogs[0]?.blogText?.[currentLanguage] ||
+                (currentLanguage === "en"
+                  ? "Related Blogs"
+                  : "დაკავშირებული ბლოგები")}
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {card.blogs
               .filter(
                 (blog) =>
-                  blog.title?.trim() && blog.img?.trim() && blog.desc?.trim()
+                  blog.title?.[currentLanguage]?.trim() &&
+                  blog.img?.trim() &&
+                  blog.desc?.[currentLanguage]?.trim()
               )
               .map((blog, index) => (
                 <Card
-                  key={blog.title || index}
+                  key={blog.title[currentLanguage] || index}
                   className="relative bg-white rounded-lg shadow-lg overflow-hidden flex flex-col h-[500px]"
                 >
                   <div className="relative flex-grow">
                     <Image
                       src={blog.img}
-                      alt={blog.title as string}
+                      alt={blog.title[currentLanguage] as string}
                       layout="fill"
                       className="object-cover hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out"
                       priority={index < 3}
@@ -447,10 +512,10 @@ export default function CardPage({
                             textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)",
                           }}
                         >
-                          {blog.title}
+                          {blog.title[currentLanguage]}
                         </CardTitle>
                         <CardDescription className="text-sm sm:text-base text-gray-200 line-clamp-2">
-                          {blog.desc}
+                          {blog.desc[currentLanguage]}
                         </CardDescription>
                       </CardContent>
                     </div>

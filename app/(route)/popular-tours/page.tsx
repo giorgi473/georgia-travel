@@ -16,11 +16,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Heart, Menu, Search, X } from "lucide-react";
 import { createSlug } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
+import { useLanguage } from "@/context/LanguageContext"; // Import LanguageContext
 import ButtonWrapper from "@/components/ButtonWrapper";
 import { HeroSection } from "@/components/hero-section";
 import { stunningNatureScenes } from "@/constants/data/popularToursData";
 
 function Page() {
+  const { currentLanguage } = useLanguage(); // Use LanguageContext
   const [heartAnimations, setHeartAnimations] = useState<{
     [key: number]: boolean;
   }>({});
@@ -34,6 +36,40 @@ function Page() {
   const router = useRouter();
   const { addTour, removeTour, isTourInCart } = useCart();
   const itemsPerPage = 6;
+
+  // Translation object for static text
+  const translations = {
+    ka: {
+      close: "დახურვა",
+      filter: "ფილტრი",
+      search: "ძებნა",
+      noResults: "ვერ მოიძებნა შედეგები",
+      noResultsDesc: (id: string) => `ID ${id} ვერ მოიძებნა. სცადეთ სხვა ID.`,
+      viewAll: "ყველას ნახვა",
+      time: "დრო",
+      distance: "მანძილი",
+      difficulty: "სირთულე",
+      learnMore: "გაითხე მეტი",
+      previous: "წინა",
+      next: "შემდეგი",
+    },
+    en: {
+      close: "Close",
+      filter: "Filter",
+      search: "Search",
+      noResults: "No Results Found",
+      noResultsDesc: (id: string) => `ID ${id} not found. Try another ID.`,
+      viewAll: "View All",
+      time: "Time",
+      distance: "Distance",
+      difficulty: "Difficulty",
+      learnMore: "Learn More",
+      previous: "Previous",
+      next: "Next",
+    },
+  };
+
+  const t = translations[currentLanguage];
 
   const startIndex = (currentPage - 1) * itemsPerPage;
 
@@ -50,15 +86,14 @@ function Page() {
   );
 
   const handleHeartClick = (index: number) => {
-    const scene = currentItems[index]; // Get the tour based on index
+    const scene = currentItems[index];
     setHeartAnimations((prev) => ({ ...prev, [index]: true }));
     setHeartActive((prev) => ({ ...prev, [index]: !prev[index] }));
 
-    // Add or remove tour from cart based on heartActive state
     if (!heartActive[index]) {
-      addTour(scene); // Add to cart if heart is activated
+      addTour(scene);
     } else {
-      removeTour(scene.id); // Remove from cart if heart is deactivated
+      removeTour(scene.id);
     }
 
     setTimeout(() => {
@@ -106,31 +141,37 @@ function Page() {
       <div className="mb-10">
         <HeroSection
           image="/popular-tours/lukhi-okrotskali-lakes-gnta.webp"
-          title="ტურები საქართველოში"
-          description="სანამ საქართველოში ჩამოხვალ, მნიშვნელოვანია გაეცნო ჩვენი ქვეყნის ცხოვრების სტილსა და ისეთ საჭირო დეტალებს, როგორებიცაა, სავიზო პოლიტიკა, ადგილობრივი და რეგიონული ტრანსპორტი, ამინდი, კლიმატი, სასტუმროთა ქსელები და სხვა."
+          title={{
+            ka: "ტურები საქართველოში",
+            en: "Tours in Georgia",
+          }}
+          description={{
+            ka: "სანამ საქართველოში ჩამოხვალ, მნიშვნელოვანია გაეცნო ჩვენი ქვეყნის ცხოვრების სტილსა და ისეთ საჭირო დეტალებს, როგორებიცაა, სავიზო პოლიტიკა, ადგილობრივი და რეგიონული ტრანსპორტი, ამინდი, კლიმატი, სასტუმროთა ქსელები და სხვა.",
+            en: "Before coming to Georgia, it’s important to familiarize yourself with our country’s lifestyle and essential details such as visa policies, local and regional transportation, weather, climate, hotel networks, and more.",
+          }}
           overlay="bg-black/40"
-          button="მთავარი"
+          button={{ ka: "მთავარი", en: "Home" }}
           href="/"
-          tours="ტურები საქართველოში"
+          tours={{ ka: "ტურები საქართველოში", en: "Tours in Georgia" }}
           className="h-[410px] mb-10"
         />
       </div>
       <div className="container mx-auto lg:px-10">
-        <div className="relative flex items-center px-5 sm:px-8 md:px-8 lg:px-0 mb-10">
+        <div className="relative flex items-center px-5 sm:px-8 md:px-8 lg:px-0 mb-10 gap-4">
           <Button
-            variant={"outline"}
+            variant="outline"
             className="px-2 py-5 flex items-center gap-2 cursor-pointer"
             onClick={toggleSearch}
-            aria-label={isSearchOpen ? "დახურვა" : "გახსნა"}
-            size={"lg"}
+            aria-label={isSearchOpen ? t.close : t.filter}
+            size="lg"
           >
             {isSearchOpen ? <X size={30} /> : <Menu size={30} />}
-            {isSearchOpen ? <div>დახურვა</div> : <div>ფილტრი</div>}
+            {isSearchOpen ? t.close : t.filter}
           </Button>
           <AnimatePresence>
             {isSearchOpen && (
               <motion.div
-                className="absolute left-38 sm:left-40 lg:left-33 flex items-center gap-2"
+                className="absolute left-32 sm:left-32 lg:left-32 flex items-center gap-2"
                 variants={searchVariants}
                 initial="hidden"
                 animate="visible"
@@ -157,15 +198,15 @@ function Page() {
                   }}
                 />
                 <Button
-                  variant={"destructive"}
+                  variant="destructive"
                   className="p-2 h-10 cursor-pointer"
                   onClick={() => {
                     setActiveFilterId(searchId);
                     setCurrentPage(1);
                   }}
-                  aria-label="ძებნა"
+                  aria-label={t.search}
                 >
-                  ძებნა <Search className="text-white" />
+                  {t.search} <Search className="text-white" />
                 </Button>
               </motion.div>
             )}
@@ -176,10 +217,10 @@ function Page() {
             <div className="col-span-full flex flex-col items-center justify-center py-16 text-center">
               <div className="text-6xl mb-4">🔍</div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                ვერ მოიძებნა შედეგები
+                {t.noResults}
               </h3>
               <p className="text-gray-600 mb-4">
-                ID {activeFilterId} ვერ მოიძებნა. სცადეთ სხვა ID.
+                {t.noResultsDesc(activeFilterId)}
               </p>
               <Button
                 variant="outline"
@@ -190,7 +231,7 @@ function Page() {
                 }}
                 className="mt-2"
               >
-                ყველას ნახვა
+                {t.viewAll}
               </Button>
             </div>
           ) : (
@@ -200,14 +241,16 @@ function Page() {
                 className="overflow-hidden rounded-lg shadow-lg p-4 cursor-pointer hover:bg-gray-100 transition-all duration-300 ease-in-out group"
                 onClick={() =>
                   router.push(
-                    `/popular-tours/${createSlug(scene.title)}-${scene.id}`
+                    `/popular-tours/${createSlug(
+                      scene.title[currentLanguage]
+                    )}-${scene.id}`
                   )
                 }
               >
                 <CardHeader className="p-0 relative overflow-hidden rounded-lg">
                   <Image
                     src={scene.image}
-                    alt={scene.title}
+                    alt={scene.title[currentLanguage]}
                     width={300}
                     height={292}
                     className="w-full h-72 object-cover rounded-lg group-hover:scale-110 transition-all duration-200 ease-in-out"
@@ -249,44 +292,44 @@ function Page() {
                 </CardHeader>
                 <CardContent className="px-1">
                   <div className="flex justify-start gap-5 text-sm text-black mb-4">
-                    <span>{scene.city}</span>
-                    <span>{scene.sight}</span>
-                    <span>{scene.activity}</span>
+                    <span>{scene.city[currentLanguage]}</span>
+                    <span>{scene.sight[currentLanguage]}</span>
+                    <span>{scene.activity[currentLanguage]}</span>
                   </div>
                   <CardTitle className="text-lg font-semibold mb-4">
-                    {scene.title.substring(0, 25)}...
+                    {scene.title[currentLanguage].substring(0, 25)}...
                   </CardTitle>
                   <CardDescription className="text-sm text-gray-600 mb-5">
-                    {scene.descriptin.substring(0, 230)}...
+                    {scene.descriptin[currentLanguage].substring(0, 230)}...
                   </CardDescription>
                   <div className="flex justify-between">
                     <div className="flex flex-col">
-                      <p className="text-sm text-gray-600">დრო</p>
+                      <p className="text-sm text-gray-600">{t.time}</p>
                       <span className="text-sm text-black font-bold">
-                        {scene.time}
+                        {scene.time[currentLanguage]}
                       </span>
                     </div>
                     <div className="flex flex-col">
-                      <p className="text-sm text-gray-600">მანძილი</p>
+                      <p className="text-sm text-gray-600">{t.distance}</p>
                       <span className="text-sm text-black font-bold">
-                        {scene.distance}
+                        {scene.distance[currentLanguage]}
                       </span>
                     </div>
                     <div className="flex flex-col">
-                      <p className="text-sm text-gray-600">სირთულე</p>
+                      <p className="text-sm text-gray-600">{t.difficulty}</p>
                       <span className="text-sm text-black font-bold">
-                        {scene.difficulty}
+                        {scene.difficulty[currentLanguage]}
                       </span>
                     </div>
                   </div>
                   <div>
                     <Link
-                      href={`/popular-tours/${createSlug(scene.title)}-${
-                        scene.id
-                      }`}
+                      href={`/popular-tours/${createSlug(
+                        scene.title[currentLanguage]
+                      )}-${scene.id}`}
                     >
                       <ButtonWrapper
-                        label="გაითხე მეტი"
+                        label={t.learnMore}
                         icon={<ArrowRight size={15} />}
                         className="mt-6"
                       />
@@ -300,12 +343,12 @@ function Page() {
         {Math.ceil(filteredScenes.length / itemsPerPage) > 1 && (
           <div className="flex justify-between items-center mt-16 gap-4 px-5 sm:px-8 md:px-8 lg:px-0">
             <Button
-              variant={"outline"}
+              variant="outline"
               className="cursor-pointer text-sm"
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
             >
-              <ArrowLeft size={15} /> წინა
+              <ArrowLeft size={15} /> {t.previous}
             </Button>
             <div className="flex items-center gap-2">
               {Array.from(
@@ -324,14 +367,14 @@ function Page() {
               ))}
             </div>
             <Button
-              variant={"outline"}
+              variant="outline"
               className="cursor-pointer text-sm"
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={
                 currentPage === Math.ceil(filteredScenes.length / itemsPerPage)
               }
             >
-              შემდეგი <ArrowRight size={15} />
+              {t.next} <ArrowRight size={15} />
             </Button>
           </div>
         )}

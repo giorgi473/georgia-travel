@@ -6,48 +6,90 @@ import { HeroSection } from "@/components/hero-section";
 import Image from "next/image";
 import { Trash2, Heart, Clock, MapPin, Activity } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { useLanguage } from "@/context/LanguageContext";
 
 type TabType = "sights" | "activities" | "locations" | "tours" | "trails";
 
 interface TabData {
   id: TabType;
-  title: string;
-  content: string;
+  title: { ka: string; en: string };
+  content: { ka: string; en: string };
 }
 
 function CartPage() {
   const [activeTab, setActiveTab] = useState<TabType>("sights");
   const { tours, removeTour, clearTours, sights, removeSight, clearSights } =
     useCart();
+  const { currentLanguage } = useLanguage();
+
+  // Translation object for static text
+  const translations = {
+    ka: {
+      title: "ჩემი მარშრუტები",
+      tours: "ტურები საქართველოში",
+      button: "მთავარი",
+      emptySights: "სანახაობები ცარიელია",
+      addSights: "დაამატეთ თქვენთვის საინტერესო სანახაობები",
+      emptyTours: "მარშრუტი ცარიელია",
+      addTours: "დაამატეთ თქვენთვის საინტერესო ტურები მარშრუტში",
+      selected: "შერჩეული",
+      clearAll: "ყველას წაშლა",
+    },
+    en: {
+      title: "My Routes",
+      tours: "Tours in Georgia",
+      button: "Home",
+      emptySights: "Sights are empty",
+      addSights: "Add sights that interest you",
+      emptyTours: "Cart is empty",
+      addTours: "Add tours that interest you to the cart",
+      selected: "Selected",
+      clearAll: "Clear All",
+    },
+  };
+
+  const t = translations[currentLanguage];
 
   const tabs: TabData[] = [
     {
       id: "sights",
-      title: sights.length > 0 ? `სანახაობა (${sights.length})` : "სანახაობა",
-      content: "",
+      title: {
+        ka: sights.length > 0 ? `სანახაობა (${sights.length})` : "სანახაობა",
+        en: sights.length > 0 ? `Sights (${sights.length})` : "Sights",
+      },
+      content: { ka: "", en: "" },
     },
     {
       id: "activities",
-      title: "აქტივობა",
-      content:
-        "აქ იქნება აქტივობების კონტენტი - ზღვაში ცურვა, ფეხით ლაშქრობა, ველოსიპედით ტური და სხვა სპორტული აქტივობები.",
+      title: { ka: "აქტივობა", en: "Activities" },
+      content: {
+        ka: "აქ იქნება აქტივობების კონტენტი - ზღვაში ცურვა, ფეხით ლაშქრობა, ველოსიპედით ტური და სხვა სპორტული აქტივობები.",
+        en: "This will contain activities content - swimming in the sea, hiking, cycling tours, and other sports activities.",
+      },
     },
     {
       id: "locations",
-      title: "ადგილმდებარეობები",
-      content:
-        "აქ იქნება ადგილმდებარეობების კონტენტი - რეგიონები, ქალაქები, სოფლები და მათი აღწერილობა.",
+      title: { ka: "ადგილმდებარეობები", en: "Locations" },
+      content: {
+        ka: "აქ იქნება ადგილმდებარეობების კონტენტი - რეგიონები, ქალაქები, სოფლები და მათი აღწერილობა.",
+        en: "This will contain locations content - regions, cities, villages, and their descriptions.",
+      },
     },
     {
       id: "tours",
-      title: tours.length > 0 ? `ტურები (${tours.length})` : "ტურები",
-      content: "",
+      title: {
+        ka: tours.length > 0 ? `ტურები (${tours.length})` : "ტურები",
+        en: tours.length > 0 ? `Tours (${tours.length})` : "Tours",
+      },
+      content: { ka: "", en: "" },
     },
     {
       id: "trails",
-      title: "ბილიკები",
-      content:
-        "აქ იქნება ბილიკების კონტენტი - ფეხით სიარულის მარშრუტები, სირთულის ხარისხი, ხანგრძლივობა და რეკომენდაციები.",
+      title: { ka: "ბილიკები", en: "Trails" },
+      content: {
+        ka: "აქ იქნება ბილიკების კონტენტი - ფეხით სიარულის მარშრუტები, სირთულის ხარისხი, ხანგრძლივობა და რეკომენდაციები.",
+        en: "This will contain trails content - walking routes, difficulty levels, duration, and recommendations.",
+      },
     },
   ];
 
@@ -61,11 +103,9 @@ function CartPage() {
         >
           <Heart size={64} className="mx-auto text-gray-300 mb-4" />
           <h3 className="text-2xl font-semibold text-gray-600 mb-2">
-            სანახაობები ცარიელია
+            {t.emptySights}
           </h3>
-          <p className="text-gray-500">
-            დაამატეთ თქვენთვის საინტერესო სანახაობები
-          </p>
+          <p className="text-gray-500">{t.addSights}</p>
         </motion.div>
       );
     }
@@ -75,15 +115,15 @@ function CartPage() {
         {/* Clear All Button */}
         <div className="flex justify-between items-center">
           <h3 className="text-sm sm:text-lg font-semibold flex items-center gap-2">
-            <span className=" hidden sm:flex items-center">შერჩეული</span>
-            სანახაობები ({sights.length})
+            <span className="hidden sm:flex">{t.selected}</span>{" "}
+            {tabs.find((tab) => tab.id === "sights")?.title[currentLanguage]}
           </h3>
           <button
             onClick={clearSights}
             className="flex items-center cursor-pointer gap-2 px-4 py-2 bg-red-100 text-sm text-red-600 rounded-lg hover:bg-red-200 transition-colors duration-200"
           >
             <Trash2 size={15} />
-            <span>ყველას წაშლა</span>
+            <span>{t.clearAll}</span>
           </button>
         </div>
 
@@ -140,11 +180,9 @@ function CartPage() {
         >
           <Heart size={64} className="mx-auto text-gray-300 mb-4" />
           <h3 className="text-2xl font-semibold text-gray-600 mb-2">
-            მარშრუტი ცარიელია
+            {t.emptyTours}
           </h3>
-          <p className="text-gray-500">
-            დაამატეთ თქვენთვის საინტერესო ტურები მარშრუტში
-          </p>
+          <p className="text-gray-500">{t.addTours}</p>
         </motion.div>
       );
     }
@@ -154,15 +192,15 @@ function CartPage() {
         {/* Clear All Button */}
         <div className="flex justify-between items-center">
           <h3 className="text-sm sm:text-lg font-semibold flex items-center gap-2">
-            <span className="hidden sm:flex">შერჩეული</span> ტურები (
-            {tours.length})
+            <span className="hidden sm:flex">{t.selected}</span>{" "}
+            {tabs.find((tab) => tab.id === "tours")?.title[currentLanguage]}
           </h3>
           <button
             onClick={clearTours}
             className="flex items-center cursor-pointer text-sm gap-2 px-4 py-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors duration-200"
           >
             <Trash2 size={15} />
-            ყველას წაშლა
+            {t.clearAll}
           </button>
         </div>
 
@@ -181,7 +219,7 @@ function CartPage() {
               <div className="relative h-48">
                 <Image
                   src={tour.image}
-                  alt={tour.title}
+                  alt={tour.title[currentLanguage]}
                   fill
                   className="object-cover"
                 />
@@ -196,25 +234,25 @@ function CartPage() {
               {/* Tour Info */}
               <div className="p-4">
                 <h4 className="font-semibold text-lg mb-2 line-clamp-2">
-                  {tour.title}
+                  {tour.title[currentLanguage]}
                 </h4>
                 <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                  {tour.descriptin}
+                  {tour.descriptin[currentLanguage]}
                 </p>
 
                 {/* Tour Details */}
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center gap-2 text-gray-600">
                     <Clock size={14} />
-                    <span>{tour.time}</span>
+                    <span>{tour.time[currentLanguage]}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600">
                     <MapPin size={14} />
-                    <span>{tour.distance}</span>
+                    <span>{tour.distance[currentLanguage]}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600">
                     <Activity size={14} />
-                    <span>{tour.difficulty}</span>
+                    <span>{tour.difficulty[currentLanguage]}</span>
                   </div>
                 </div>
               </div>
@@ -238,7 +276,7 @@ function CartPage() {
     const currentTab = tabs.find((tab) => tab.id === activeTab);
     return (
       <div className="py-12 text-center">
-        <p className="text-gray-600">{currentTab?.content}</p>
+        <p className="text-gray-600">{currentTab?.content[currentLanguage]}</p>
       </div>
     );
   };
@@ -248,12 +286,12 @@ function CartPage() {
       <div>
         <HeroSection
           image="/cart/online-shopping-hd.avif"
-          title="ჩემი მარშრუტები"
-          description=""
+          title={{ ka: t.title, en: t.title }}
+          description={{ ka: "", en: "" }}
           overlay="bg-black/40"
-          button="მთავარი"
+          button={{ ka: t.button, en: t.button }}
           href="/"
-          tours="ტურები საქართველოში"
+          tours={{ ka: t.tours, en: t.tours }}
           className="h-[340px] mb-10"
         />
       </div>
@@ -289,7 +327,9 @@ function CartPage() {
                       }}
                     />
                   )}
-                  <span className="relative z-10">{tab.title}</span>
+                  <span className="relative z-10">
+                    {tab.title[currentLanguage]}
+                  </span>
                 </motion.button>
               ))}
             </div>
@@ -321,7 +361,9 @@ function CartPage() {
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   />
                 )}
-                <span className="relative z-10">{tab.title}</span>
+                <span className="relative z-10">
+                  {tab.title[currentLanguage]}
+                </span>
               </motion.button>
             ))}
           </nav>

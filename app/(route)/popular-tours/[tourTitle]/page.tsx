@@ -7,8 +7,9 @@ import { ArrowRight, Heart } from "lucide-react";
 import { HeroSection } from "@/components/hero-section";
 import Blogs from "@/components/modules/Blogs";
 import { stunningNatureScenes } from "@/constants/data/popularToursData";
-import { Map } from "@/components/Map"; // დაამატე CartContext
+import { Map } from "@/components/Map";
 import { useCart } from "@/context/CartContext";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Props {
   params: Promise<{ tourTitle: string }>;
@@ -18,10 +19,37 @@ export default function TourPage({ params }: Props) {
   const { tourTitle } = use(params);
   const id = parseInt(tourTitle.split("-").pop() || "0", 10);
   const tour = stunningNatureScenes.find((scene) => scene.id === id);
+  const { currentLanguage } = useLanguage();
 
   // Cart hooks
   const { addTour, removeTour, isTourInCart } = useCart();
   const isInCart = tour ? isTourInCart(tour.id) : false;
+
+  // Translation object for static text
+  const translations = {
+    ka: {
+      back: "დაბრუნება",
+      tours: "ტურები საქართველოში",
+      time: "დრო",
+      distance: "მანძილი",
+      difficulty: "სირთულე",
+      addToCart: "მარშრუტებში დამატება",
+      removeFromCart: "მარშრუტიდან ამოღება",
+      learnMore: "გაიგე მეტი",
+    },
+    en: {
+      back: "Back",
+      tours: "Tours in Georgia",
+      time: "Time",
+      distance: "Distance",
+      difficulty: "Difficulty",
+      addToCart: "Add to Cart",
+      removeFromCart: "Remove from Cart",
+      learnMore: "Learn More",
+    },
+  };
+
+  const t = translations[currentLanguage];
 
   const handleButtonClick = () => {
     if (tour) {
@@ -42,12 +70,12 @@ export default function TourPage({ params }: Props) {
       <div>
         <HeroSection
           image="/popular-tours/lukhi-okrotskali-lakes-gnta.webp"
-          title={`${tour.title}`}
-          description={`${tour.descriptin}`}
+          title={tour.title}
+          description={tour.descriptin}
           overlay="bg-black/40"
-          button="დაბრუნება"
+          button={{ ka: t.back, en: t.back }}
           href="/popular-tours"
-          tours="ტურები საქართველოში"
+          tours={{ ka: t.tours, en: t.tours }}
           className="h-[410px] mb-10"
         />
       </div>
@@ -56,25 +84,29 @@ export default function TourPage({ params }: Props) {
           <div>
             <div className="flex flex-col lg:flex-row gap-10 lg:gap-32 mb-[120px]">
               <div className="flex-1 flex flex-col justify-between gap-10">
-                <h1 className="text-xl lg:text-4xl font-bold">{tour.title}</h1>
-                <p className="text-gray-600 text-md">{tour.descriptin}</p>
+                <h1 className="text-xl lg:text-4xl font-bold">
+                  {tour.title[currentLanguage]}
+                </h1>
+                <p className="text-gray-600 text-md">
+                  {tour.descriptin[currentLanguage]}
+                </p>
                 <div className="flex flex-row gap-16">
                   <div>
-                    <p className="text-sm text-gray-600">დრო</p>
+                    <p className="text-sm text-gray-600">{t.time}</p>
                     <span className="text-lg text-black font-bold">
-                      {tour.time}
+                      {tour.time[currentLanguage]}
                     </span>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">მანძილი</p>
+                    <p className="text-sm text-gray-600">{t.distance}</p>
                     <span className="text-lg text-black font-bold">
-                      {tour.distance}
+                      {tour.distance[currentLanguage]}
                     </span>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">სირთულე</p>
+                    <p className="text-sm text-gray-600">{t.difficulty}</p>
                     <span className="text-lg text-black font-bold">
-                      {tour.difficulty}
+                      {tour.difficulty[currentLanguage]}
                     </span>
                   </div>
                 </div>
@@ -99,14 +131,14 @@ export default function TourPage({ params }: Props) {
                       isInCart ? "text-red-500 px-1" : "text-red-500"
                     } group-hover:px-1 transition-all duration-200 ease-in-out`}
                   >
-                    {isInCart ? "მარშრუტიდან ამოღება" : "მარშრუტებში დამატება"}
+                    {isInCart ? t.removeFromCart : t.addToCart}
                   </div>
                 </button>
               </div>
               <div className="flex-1">
                 <Image
                   src={tour.image}
-                  alt={tour.title}
+                  alt={tour.title[currentLanguage]}
                   width={600}
                   height={400}
                   className="w-full h-full object-cover rounded-lg"
@@ -129,7 +161,7 @@ export default function TourPage({ params }: Props) {
                           src={
                             subTour.image || "/popular-tours/default-tour.webp"
                           }
-                          alt={subTour.title || "Tour Image"}
+                          alt={subTour.title?.[currentLanguage] || "Tour Image"}
                           width={600}
                           height={400}
                           className="w-full h-full object-cover rounded-lg"
@@ -146,15 +178,15 @@ export default function TourPage({ params }: Props) {
                             </div>
                           </div>
                           <h3 className="text-xl lg:text-4xl font-semibold -mt-1">
-                            {subTour.title}
+                            {subTour.title?.[currentLanguage]}
                           </h3>
                         </div>
                         <p className="text-gray-600 text-md">
-                          {subTour.description}
+                          {subTour.description?.[currentLanguage]}
                         </p>
                         <div>
                           <button className="text-red-500 flex items-center gap-2 font-bold text-sm cursor-pointer border border-red-500 rounded-lg px-4 py-4 hover:bg-red-500 hover:text-white transition-all duration-200 ease-in-out">
-                            გაიგე მეტი <ArrowRight size={15} />
+                            {t.learnMore} <ArrowRight size={15} />
                           </button>
                         </div>
                       </div>

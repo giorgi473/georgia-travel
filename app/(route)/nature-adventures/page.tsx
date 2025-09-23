@@ -1,119 +1,132 @@
-import HeroSection from "@/components/HeroSection";
-import { AdventureActivities } from "./_components/adventure-activities";
-import ImageContent from "./_components/image-content";
-import AdventureHero from "./_components/adventure-hero";
-import DiscoveryCards from "./_components/discovery-cards";
+/* eslint-disable react-hooks/rules-of-hooks */
+"use client";
+
 import CardSwiperSlider from "@/components/CardSwiperSlider";
-import { DestinationCard } from "./_components/destination-card";
 import DestinationsSwiper from "@/components/destinations-swiper";
-
-const activities = [
-  {
-    id: 1,
-    title: "მთავალდებულება",
-    image: "/mountain-peak-climbing-adventure.png",
-    imageAlt: "Mountain peak climbing adventure",
-  },
-  {
-    id: 2,
-    title: "ლაშქრობა",
-    image: "/forest-hiking-trail-adventure.png",
-    imageAlt: "Forest hiking trail adventure",
-  },
-  {
-    id: 3,
-    title: "ნულის სპორტი",
-    image: "/extreme-river-rafting-adventure.png",
-    imageAlt: "Extreme river rafting adventure",
-  },
-  {
-    id: 4,
-    title: "ზიპ-ლაინი",
-    image: "/canopy-zipline-adventure.png",
-    imageAlt: "Canopy zipline adventure",
-  },
-];
-
-const destinations = [
-  {
-    id: "1",
-    title: "კანიონების ერთდღიანი ტური",
-    description:
-      "აღმოაჩინე დასავლეთ საქართველოს გეგრაფიული და ბიოლოგიური მრავალფეროვნება, მოიარე უდამბეს რკალისა და მარტვილის კანიონი და იხილე ქუდაფის კუდები - მარტვილის მონასტერი. ტურის ფარგლებში ასევე შეგვიძლია სანოვნის რეზიდენციას და საუკეთესო მოთხოვნილებით ათხოვნა.",
-    image: "/beautiful-turquoise-cave-pool-with-rocky-walls.png",
-    duration: "8-12სთ",
-    activities: "18 საათამდე • 3 აქტივობა",
-    price: "100",
-    currency: "₾",
-  },
-  {
-    id: "2",
-    title: "ტბების ტური ჯავახეთში",
-    description:
-      "შენი მოგზაურობა ფუდკარ-ბეშეთნიკურ ტბამს ტბიდან დაიწყება, საქართველოში ქრისტიანობის გამავრცელებლები, ნაცია ნინო კაბადოკიელის ხსელობის ფერის მონასტერში გაგრძელდება, გბაძ უდიდესი სადღესასწაულო ხუცესი და სოფელი გონიოკა შეხვდება, დასახსრებს აღ კი შენ ნის ზღაპრული მადლიანი ტბის ტბიდან გადაიღებს.",
-    image: "/aerial-view-of-golden-countryside-with-winding-riv.png",
-    duration: "8-12სთ",
-    activities: "15 საათამდე • 3 აქტივობა",
-    price: "55",
-    currency: "₾",
-  },
-];
+import { activities } from "@/constants/data/data";
+import ImageContent from "@/components/modules/ImageContent";
+import { AdventureActivitie } from "@/components/modules/AdventureActivitie";
+import Gzispar from "@/components/modules/Gzispar";
+import AdventureHero from "@/components/modules/AdventureHero";
+import DiscoveryCards from "@/components/modules/DiscoveryCard";
+import { DestinationCard } from "@/components/modules/DestinationCard";
+import { useLanguage } from "@/context/LanguageContext";
+import {
+  adventureData,
+  destinations,
+  discoveryData,
+} from "@/constants/get/data";
 
 function page() {
+  const { currentLanguage } = useLanguage();
   return (
     <div>
-      <section className="mb-[100px]">
+      <section className="mb-16">
         <ImageContent
           image="/bc.webp"
-          title="ბუნება და თავგადასავლები"
-          description="გაემგზავრე თოვლიანი მთებისკენ, მოინახულე სანაპიროები, დაათვალიერე იდუმალი ტყეები, პირქუში მყინვარები, აღმოაჩინე ურბანული კულტურა და ისტორიული ქალაქების ყოველდღიური ცხოვრება."
+          title={{
+            ka: "ბუნება და თავგადასავლები",
+            en: "Nature and Adventures",
+          }}
+          description={{
+            ka: "გაემგზავრე თოვლიანი მთებისკენ, მოინახულე სანაპიროები, დაათვალიერე იდუმალი ტყეები, პირქუში მყინვარები, აღმოაჩინე ურბანული კულტურა და ისტორიული ქალაქების ყოველდღიური ცხოვრება.",
+            en: "Travel to snowy mountains, visit coastlines, explore mysterious forests and rugged glaciers, and discover urban culture and the daily life of historic cities.",
+          }}
+          buttonText={{
+            ka: "გაიგე მეტი",
+            en: "Learn More",
+          }}
           buttonHref="/"
+          spanText={{
+            ka: "ბუნება და თავგადასავლები",
+            en: "Nature and Adventures",
+          }}
         />
       </section>
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-[80px]">
-        <AdventureActivities
-          badgeText="აღმოჩენა"
-          title="საზაფხულო"
-          subtitle="აქტივობები"
-          description="ზაფხული საქართველოში საკმაოდ დატვირთული სეზონია - ზღვისპირა ქალაქებითა და კურორტებით დაწყებული, ფესტივალებით, ექსტრემალური სპორტული აქტივობებით და სამოყვარული ლაშქრობებით დამთავრებული - ეს პერიოდი საუკეთესო დასვენების ყველა შესაძლებლობას გთავაზობს."
-          buttonText="გაიგე მეტი"
+      <section className="container mx-auto px-5 sm:px-8 md:px-8 lg:px-11 py-8 mb-16">
+        <AdventureActivitie
+          badgeText={{
+            ka: "აღმოჩენა",
+            en: "Discovery",
+          }}
+          title={{
+            ka: "საზაფხულო",
+            en: "Summer",
+          }}
+          subtitle={{
+            ka: "აქტივობები",
+            en: "Activities",
+          }}
+          description={{
+            ka: "ზაფხული საქართველოში საკმაოდ დატვირთული სეზონია - ზღვისპირა ქალაქებითა და კურორტებით დაწყებული, ფესტივალებით, ექსტრემალური სპორტული აქტივობებით და სამოყვარული ლაშქრობებით დამთავრებული - ეს პერიოდი საუკეთესო დასვენების ყველა შესაძლებლობას გთავაზობთ.",
+            en: "Summer in Georgia is a vibrant season - from coastal cities and resorts to festivals, extreme sports activities, and amateur hiking - this period offers every opportunity for an unforgettable vacation.",
+          }}
+          buttonText={{
+            ka: "გაიგე მეტი",
+            en: "Learn More",
+          }}
           activities={activities}
         />
       </section>
-      <section className="mb-[100px]">
-        <HeroSection
-          imageUrl="/natural.webp"
-          title="აი, ამიტომ უნდა ესტუმრო ბათუმს"
-          description="აქაური სუბტროპიკული კლიმატი, ეკოლოგიურად სუფთა ზღვა, მთები და კარგად განვითარებულ ტურისტული ინფრასტრუქტურა წელიწადის ნებისმიერ დროს გამორჩეულად გიმასპინძლებს და ენერგიის სრულ აღდგენაში დაგეხმარება."
-          buttonText="გაიგე მეტი"
+      <section className="mb-16">
+        <Gzispar
+          imageSrc="/natural.webp"
+          titleKa="აი, ამიტომ უნდა ესტუმრო ბათუმს"
+          titleEn="Here's Why You Should Visit Batumi"
+          descriptionKa="აქაური სუბტროპიკული კლიმატი, ეკოლოგიურად სუფთა ზღვა, მთები და კარგად განვითარებულ ტურისტული ინფრასტრუქტურა წელიწადის ნებისმიერ დროს გამორჩეულად გიმასპინძლებს და ენერგიის სრულ აღდგენაში დაგეხმარება."
+          descriptionEn="The local subtropical climate, pristine sea, mountains, and well-developed tourist infrastructure will warmly welcome you any time of the year and help you fully recharge your energy."
+          buttonTextKa="გაიგე მეტი"
+          buttonTextEn="Learn More"
         />
       </section>
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-[80px]">
-        <AdventureHero />
-      </section>
-      <section className="mb-[100px]">
-        <HeroSection
-          imageUrl="/14.webp"
-          title="აი, ამიტომ უნდა ესტუმრო ბათუმს"
-          description="აქაური სუბტროპიკული კლიმატი, ეკოლოგიურად სუფთა ზღვა, მთები და კარგად განვითარებულ ტურისტული ინფრასტრუქტურა წელიწადის ნებისმიერ დროს გამორჩეულად გიმასპინძლებს და ენერგიის სრულ აღდგენაში დაგეხმარება."
-          buttonText="გაიგე მეტი"
+      <section className="container mx-auto px-5 sm:px-8 md:px-8 lg:px-11 py-8 mb-16">
+        <AdventureHero
+          adventures={adventureData}
+          badgeText={{
+            ka: "ავტომობილი",
+            en: "Adventure",
+          }}
         />
       </section>
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-[80px]">
-        <DiscoveryCards />
+      <section className="mb-16">
+        <Gzispar
+          imageSrc="/14.webp"
+          titleKa="აი, ამიტომ უნდა ესტუმრო ბათუმს"
+          titleEn="Here's Why You Should Visit Batumi"
+          descriptionKa="აქაური სუბტროპიკული კლიმატი, ეკოლოგიურად სუფთა ზღვა, მთები და კარგად განვითარებულ ტურისტული ინფრასტრუქტურა წელიწადის ნებისმიერ დროს გამორჩეულად გიმასპინძლებს და ენერგიის სრულ აღდგენაში დაგეხმარება."
+          descriptionEn="The local subtropical climate, pristine sea, mountains, and well-developed tourist infrastructure will warmly welcome you any time of the year and help you fully recharge your energy."
+          buttonTextKa="გაიგე მეტი"
+          buttonTextEn="Learn More"
+        />
       </section>
-      <section className="mb-[80px]">
+      <section className="container mx-auto px-5 sm:px-8 md:px-8 lg:px-11 py-8 mb-16">
+        <DiscoveryCards
+          cards={discoveryData}
+          title={{
+            ka: "გაუცანი ბოლოს",
+            en: "Discover More",
+          }}
+          buttonText={{
+            ka: "ყველას ნახვა",
+            en: "View All",
+          }}
+        />
+      </section>
+      <section className="mb-16">
         <CardSwiperSlider />
       </section>
-      <section className="mb-[80px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4 text-balance">
-              აღმოაჩინე საქართველო
+      <section className="mb-16">
+        <div className="container mx-auto px-5 sm:px-8 md:px-8 lg:px-11 py-8">
+          <div className="mb-10">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4 text-balance">
+              {currentLanguage === "ka"
+                ? "აღმოაჩინე საქართველო"
+                : "Discover Georgia"}
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto text-pretty">
-              უნიკალური ტურები და დაუვიწყარი გამოცდილება საქართველოს ყველაზე
-              ლამაზ ადგილებში
+            <p className="text-md text-gray-600 text-pretty">
+              {currentLanguage === "ka"
+                ? "უნიკალური ტურები და დაუვიწყარი გამოცდილება საქართველოს ყველაზე ლამაზ ადგილებში"
+                : "Unique tours and unforgettable experiences in Georgia's most beautiful places"}
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-8 items-stretch">

@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { travelMoments } from "@/constants/data/data";
+import { useLanguage } from "@/context/LanguageContext";
 
 function GeorgiaTravelMoments() {
+  const { currentLanguage } = useLanguage();
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
   const handleCardClick = (momentId: number) => {
@@ -19,10 +21,12 @@ function GeorgiaTravelMoments() {
   return (
     <div onClick={handleOutsideClick}>
       <div className="py-6 container mx-auto">
-        <div className="flex items-center">
+        <div className="flex items-center justify-between">
           <div className="flex flex-col gap-2 px-4 sm:pl-8 md:pl-8 lg:pl-10 lg:flex-row">
             <h5 className="text-base font-serif sm:text-lg">
-              გამოგვყევი ინსტაგრამზე და გაგვიზიარე თავგადასავალი
+              {currentLanguage === "ka"
+                ? "გამოგვყევი ინსტაგრამზე და გაგვიზიარე თავგადასავალი"
+                : "Follow us on Instagram and share your adventure"}
             </h5>
             <span className="text-md font-semibold lg:pt-0.5">
               #GeorgiaTravelMoments
@@ -72,7 +76,7 @@ function GeorgiaTravelMoments() {
               </div>
               <Image
                 src={moment.image}
-                alt={moment.alt}
+                alt={moment.alt[currentLanguage]}
                 width={200}
                 height={200}
                 className={`w-full h-60 object-cover rounded-md lg:rounded-none transition-transform duration-500
@@ -116,7 +120,7 @@ function GeorgiaTravelMoments() {
                              transform translate-y-2 group-hover:translate-y-0 
                              transition-transform duration-300 delay-100"
                 >
-                  {moment.title}
+                  {moment.title[currentLanguage]}
                 </h6>
                 <p
                   className="text-sm text-white drop-shadow-md
@@ -124,7 +128,7 @@ function GeorgiaTravelMoments() {
                            transform translate-y-2 group-hover:translate-y-0 
                            transition-transform duration-300 delay-150"
                 >
-                  {moment.description}
+                  {moment.description[currentLanguage]}
                 </p>
               </div>
             </div>

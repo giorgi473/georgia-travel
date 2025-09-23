@@ -128,3 +128,194 @@ export const contentItems: ContentItem[] = [
     alt: "Beach",
   },
 ];
+export interface Adventure {
+  id: number;
+  title: { ka: string; en: string };
+  description: { ka: string; en: string };
+  buttonText: { ka: string; en: string };
+  images: {
+    src: string;
+    alt: { ka: string; en: string };
+    caption: { ka: string; en: string };
+  }[];
+}
+
+export const adventureData: Adventure[] = [
+  {
+    id: 1,
+    title: {
+      ka: "ბამორის ექსტრემები",
+      en: "Winter Extremes",
+    },
+    description: {
+      ka: "ზამთარი საქართველოში უნიკალური და სენსაციური ქართია არ გამოიწვევა, ამიტომ, მოგზაურობისთვის ესეც შესანიშნავი პერიოდია. სამაგიეროდ, თოვლი არ აკლია ზამთარის კურორტებს - ენვი ვუდაური, შესტონი, ბაკურიანი და მოგერმის უბრიალო სტანდარტების კურორტებს, სადაც სრიალს ტრასებზე შეძლებ და გაუკვალავ თოვლისძე მონტერო გასეირნებას.",
+      en: "Winter in Georgia is unique and doesn’t cause discomfort, making it an excellent period for travel. On the contrary, snow abounds at winter resorts like Gudauri, Svaneti, Bakuriani, and other top-standard destinations, where you can ski on trails or enjoy off-piste snow adventures.",
+    },
+    buttonText: {
+      ka: "გაიგე მეტი",
+      en: "Learn More",
+    },
+    images: [
+      {
+        src: "/skier-in-yellow-gear-jumping-against-mountain-back.png",
+        alt: {
+          ka: "თხილამოვარდები და სნოუბორდი",
+          en: "Skiing and Snowboarding",
+        },
+        caption: {
+          ka: "თხილამოვარდები და სნოუბორდი",
+          en: "Skiing and Snowboarding",
+        },
+      },
+      {
+        src: "/snow-capped-mountain-peaks-winter-landscape.png",
+        alt: {
+          ka: "ბამორის ექსტრემები",
+          en: "Winter Extremes",
+        },
+        caption: {
+          ka: "ბამორის ექსტრემები",
+          en: "Winter Extremes",
+        },
+      },
+    ],
+  },
+];
+export interface DiscoveryCard {
+  id: number;
+  title: { ka: string; en: string };
+  description: { ka: string; en: string };
+  image: string;
+  imageAlt: { ka: string; en: string };
+}
+
+export const discoveryData: DiscoveryCard[] = [
+  {
+    id: 1,
+    title: {
+      ka: "საქართველოს მთები და ინვენტარები",
+      en: "Georgia’s Mountains and Adventures",
+    },
+    description: {
+      ka: "შეიმეცნეთ საქართველოს უმაღლესი ისტორია, რომ ერთხელ მაინც არ ახსენეს...",
+      en: "Explore Georgia’s rich history, mentioned time and again...",
+    },
+    image: "/snowy-mountain-peaks-dramatic-landscape.png",
+    imageAlt: {
+      ka: "თოვლიანი მთის მწვერვალები დრამატული პეიზაჟით",
+      en: "Snowy mountain peaks with dramatic landscape",
+    },
+  },
+  {
+    id: 2,
+    title: {
+      ka: "საქართველოს გეოგრაფია",
+      en: "Georgia’s Geography",
+    },
+    description: {
+      ka: "საქართველო პატარა, დამამშვიდებელი ქვეყანაა, მრავალფეროვანი ბუნებითა და რბილი...",
+      en: "Georgia is a small, serene country with diverse nature and gentle...",
+    },
+    image: "/mountain-valley-misty-landscape.png",
+    imageAlt: {
+      ka: "მთის ხეობა ნისლიანი პეიზაჟით",
+      en: "Mountain valley with misty landscape",
+    },
+  },
+  {
+    id: 3,
+    title: {
+      ka: "საქართველოს ბუნება",
+      en: "Georgia’s Nature",
+    },
+    description: {
+      ka: "ჩრდილოეთით - აზნდელი დიდი კავკასიონი, დასავლეთით - შავი ზღვა...",
+      en: "To the north - the majestic Greater Caucasus, to the west - the Black Sea...",
+    },
+    image: "/mountain-reflection-in-lake.png",
+    imageAlt: {
+      ka: "მთის ანარეკლი სუფთა ტბაში",
+      en: "Mountain reflection in pristine lake",
+    },
+  },
+];
+
+// destinations.ts
+export interface Destination {
+  id: string;
+  title: {
+    ka: string;
+    en: string;
+  };
+  description: {
+    ka: string;
+    en: string;
+  };
+  image: string;
+  duration: {
+    ka: string;
+    en: string;
+  };
+  activities: {
+    ka: string;
+    en: string;
+  };
+  price: string;
+  currency: {
+    ka: string;
+    en: string;
+  };
+}
+
+export const destinations: Destination[] = [
+  {
+    id: "1",
+    title: {
+      ka: "კანიონების ერთდღიანი ტური",
+      en: "One-Day Canyon Tour",
+    },
+    description: {
+      ka: "აღმოაჩინე დასავლეთ საქართველოს გეგრაფიული და ბიოლოგიური მრავალფეროვნება, მოიარე უდაბნოს რკალისა და მარტვილის კანიონი და იხილე ქუდაფის კუდები - მარტვილის მონასტერი. ტურის ფარგლებში ასევე შეგვიძლია სანოვაგის რეზიდენციასა და საუკეთესო მოთხოვნილებით ათხოვნა.",
+      en: "Discover the geographical and biological diversity of Western Georgia, explore the Okatse and Martvili Canyons, and visit the beautiful Martvili Monastery. The tour also includes a visit to the Sanovagi Residence and tailored experiences upon request.",
+    },
+    image: "/beautiful-turquoise-cave-pool-with-rocky-walls.png",
+    duration: {
+      ka: "8-12 სთ",
+      en: "8-12 hrs",
+    },
+    activities: {
+      ka: "18 საათამდე • 3 აქტივობა",
+      en: "Until 6 PM • 3 activities",
+    },
+    price: "100",
+    currency: {
+      ka: "₾",
+      en: "GEL",
+    },
+  },
+  {
+    id: "2",
+    title: {
+      ka: "ტბების ტური ჯავახეთში",
+      en: "Lake Tour in Javakheti",
+    },
+    description: {
+      ka: "შენი მოგზაურობა ფუდკარ-ბეშეთნიკურ ტბამდე ტბიდან დაიწყება, საქართველოში ქრისტიანობის გამავრცელებლები, ნანა კაბადოკიელის ხსოვნის მონასტერში გაგრძელდება, გაბძან უდიდესი სადღესასწაულო ხუცესი და სოფელი გონიოკა შეხვდება, დასასრულს კი შენ ნის ზღაპრული მადლიანი ტბის ტბიდან გადაიღებს.",
+      en: "Your journey begins at the Phoka-Beshtasheni Lake, continues to the monastery commemorating St. Nino of Cappadocia, the spreader of Christianity in Georgia, visits the grand festive Khutsesi and Gonioka village, and concludes with the magical Madliani Lake.",
+    },
+    image: "/aerial-view-of-golden-countryside-with-winding-riv.png",
+    duration: {
+      ka: "8-12 სთ",
+      en: "8-12 hrs",
+    },
+    activities: {
+      ka: "15 საათამდე • 3 აქტივობა",
+      en: "Until 3 PM • 3 activities",
+    },
+    price: "55",
+    currency: {
+      ka: "₾",
+      en: "GEL",
+    },
+  },
+];

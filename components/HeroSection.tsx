@@ -5,6 +5,7 @@ interface HeroSectionProps {
   imageUrl?: string;
   title?: string;
   description?: string;
+  overlay?: string;
   buttonText?: string;
   onButtonClick?: () => void;
 }
@@ -19,7 +20,7 @@ function HeroSection({
   onButtonClick,
 }: HeroSectionProps) {
   return (
-    <div className="relative w-full h-[70vh] overflow-hidden">
+    <div className="relative w-full h-[50vh] overflow-hidden">
       <div className="absolute inset-0">
         <Image
           src={imageUrl || heroImages[0]}
@@ -31,12 +32,12 @@ function HeroSection({
         />
       </div>
       <div className="absolute inset-0 bg-black/50 bg-opacity-30"></div>
-      <div className="relative z-10 flex items-center justify-center h-full">
-        <div className="text-center text-white">
-          <h1 className="text-4xl md:text-6xl font-bold mb-8 px-4">
+      <div className="relative z-10 container mx-auto flex flex-col justify-center inset-0 h-full px-5 sm:px-8 md:px-8 lg:px-11">
+        <div className="text-white">
+          <h1 className="text-2xl md:text-4xl font-bold mb-5">
             {title || "მთავარი სათაური"}
           </h1>
-          <p className="text-lg md:text-xl mb-8 px-10">
+          <p className="text-md md:text-lg max-w-[700px]">
             {description || "აქ შეგიძლიათ დაამატოთ თქვენი კონტენტი"}
           </p>
           {buttonText && (

@@ -14,6 +14,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useCart } from "@/context/CartContext";
+import { useLanguage } from "@/context/LanguageContext";
 import { NavItemDetail, navItems } from "@/constants/data/data";
 import GeorgianMap from "@/components/GeorgianMap";
 import EarthCanvas from "../modules/EarthCanvas";
@@ -29,19 +30,23 @@ function Header() {
   const [heartAnimations, setHeartAnimations] = useState<{
     [key: number]: boolean;
   }>({});
-
-  // Language dropdown states
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState<"ka" | "en">("ka");
 
+  const { currentLanguage, setCurrentLanguage } = useLanguage();
   const languageOptions = [
-    { code: "ka", name: "GE", flag: "🇬🇪" },
-    { code: "en", name: "US", flag: "🇺🇸" },
+    {
+      code: "ka",
+      name: currentLanguage === "ka" ? "ქართული" : "Georgian",
+      flag: "🇬🇪",
+    },
+    {
+      code: "en",
+      name: currentLanguage === "ka" ? "ინგლისური" : "English",
+      flag: "🇺🇸",
+    },
   ];
 
-  // Cart hook გამოყენება - ახლა სანახაობებსაც ვიყენებთ
   const { tours, sights, addSight, removeSight, isSightInCart } = useCart();
-
   const navRefs = useRef<(HTMLLIElement | null)[]>(
     Array(navItems.length).fill(null)
   );
@@ -53,6 +58,14 @@ function Header() {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
   let leaveTimeout: NodeJS.Timeout | null = null;
+
+  // ენის დამახსოვრება localStorage-ში
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage && (savedLanguage === "ka" || savedLanguage === "en")) {
+      setCurrentLanguage(savedLanguage as "ka" | "en");
+    }
+  }, [setCurrentLanguage]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,26 +102,18 @@ function Header() {
     setIsLanguageDropdownOpen(false);
   };
 
-  const toggleLanguageDropdown = () => {
-    setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
-    setIsMenuOpen(false);
-    setIsSearchOpen(false);
-  };
-
   const handleLanguageChange = (langCode: "ka" | "en") => {
     setCurrentLanguage(langCode);
+    localStorage.setItem("language", langCode); // ენის შენახვა localStorage-ში
     setIsLanguageDropdownOpen(false);
-    // აქ შეგიძლია დაამატო ენის შეცვლის ლოგიკა
     console.log(`Language changed to: ${langCode}`);
   };
 
-  const handleMouseEnter = (name: string, index: number) => {
+  const handleMouseEnter = (id: string, index: number) => {
     if (leaveTimeout) {
       clearTimeout(leaveTimeout);
     }
-    setHoveredItem(
-      name || navItems[index]?.name || navItems[index]?.natureName || null
-    );
+    setHoveredItem(id);
     const element = navRefs.current[index];
     if (element && headerRef.current) {
       const headerRect = headerRef.current.getBoundingClientRect();
@@ -140,7 +145,7 @@ function Header() {
     return details;
   };
 
-  const handleLinkClick = (href: string) => {
+  const handleLinkClick = (href: string, isLogo: boolean = false) => {
     setTimeout(() => {
       setIsMenuOpen(false);
       setIsHovered(false);
@@ -149,19 +154,19 @@ function Header() {
       setUnderlineStyle({ width: 0, left: 0 });
       setActiveRegion(null);
       setIsLanguageDropdownOpen(false);
-      router.push(href);
+      router.push(isLogo ? "/" : href);
     }, 200);
   };
 
-  // SightData interface განსაზღვრა
   interface SightData {
     id: string | number;
     title: string;
+    titleEn?: string;
     description: string;
+    descriptionEn?: string;
     image: string;
   }
 
-  // განახლებული handleHeartClick ფუნქცია სანახაობების დასამატებლად
   const handleHeartClick = (
     index: number,
     e: React.MouseEvent,
@@ -170,13 +175,11 @@ function Header() {
     e.stopPropagation();
     e.preventDefault();
 
-    // Animation trigger
     setHeartAnimations((prev) => ({ ...prev, [index]: true }));
     setTimeout(() => {
       setHeartAnimations((prev) => ({ ...prev, [index]: false }));
     }, 1000);
 
-    // თუ itemData გადმოცემულია (navigation panel-იდან)
     if (itemData) {
       const sightId =
         typeof itemData.id === "string"
@@ -184,9 +187,14 @@ function Header() {
           : Number(itemData.id) || Date.now() + index;
       const sight = {
         id: sightId,
-        title: itemData.title || `სანახაობა ${index + 1}`,
+        title:
+          currentLanguage === "ka"
+            ? itemData.title || `სანახაობა ${index + 1}`
+            : itemData.titleEn || `Sight ${index + 1}`,
         description:
-          itemData.description || "საინტერესო სანახაობა საქართველოში",
+          currentLanguage === "ka"
+            ? itemData.description || "საინტერესო სანახაობა საქართველოში"
+            : itemData.descriptionEn || "Interesting Sight in Georgia",
         src: itemData.image || "/placeholder-image.jpg",
       };
 
@@ -198,22 +206,33 @@ function Header() {
         addSight(sight);
       }
     } else {
-      // დეფოლტ სანახაობის მონაცემები თუ itemData არ არის
       const sight = {
         id: Date.now() + index,
         title:
-          hoveredItem === "სანახაობები"
+          currentLanguage === "ka"
+            ? hoveredItem === "sights"
+              ? index === 0
+                ? "სვეტიცხოველი"
+                : "ალავერდი"
+              : `თავგადასავალი ${index + 1}`
+            : hoveredItem === "sights"
             ? index === 0
-              ? "სვეტიცხოველი"
-              : "ალავერდი"
-            : `თავგადასავალი ${index + 1}`,
+              ? "Svetitskhoveli"
+              : "Alaverdi"
+            : `Adventure ${index + 1}`,
         description:
-          hoveredItem === "სანახაობები"
+          currentLanguage === "ka"
+            ? hoveredItem === "sights"
+              ? index === 0
+                ? "სვეტიცხოველი მსოპლიო ხელოვნების საგანძური"
+                : "ალავერდის ისტორიული ძეგლი"
+              : `საინტერესო თავგადასავალი ${index + 1}`
+            : hoveredItem === "sights"
             ? index === 0
-              ? "სვეტიცხოველი მსოპლიო ხელოვნების საგანძური"
-              : "ალავერდის ისტორიული ძეგლი"
-            : `საინტერესო თავგადასავალი ${index + 1}`,
-        src: "/placeholder-image.jpg", // შეცვალეთ რეალური სურათის URL-ით
+              ? "Svetitskhoveli World Art Treasure"
+              : "Alaverdi Historical Monument"
+            : `Interesting Adventure ${index + 1}`,
+        src: "/placeholder-image.jpg",
       };
 
       addSight(sight);
@@ -224,9 +243,9 @@ function Header() {
     initial: { opacity: 0, scale: 0, x: 0, y: 0 },
     animate: (i: number) => ({
       opacity: [0, 1, 0],
-      scale: [0, Math.random() * 0.5 + 0.3, 0], // Random scale between 0.3 and 0.8
-      x: Math.cos((i * Math.PI * 2) / 10) * (20 + Math.random() * 20), // Random radius
-      y: Math.sin((i * Math.PI * 2) / 10) * (20 + Math.random() * 20), // Random radius
+      scale: [0, Math.random() * 0.5 + 0.3, 0],
+      x: Math.cos((i * Math.PI * 2) / 10) * (20 + Math.random() * 20),
+      y: Math.sin((i * Math.PI * 2) / 10) * (20 + Math.random() * 20),
       transition: {
         duration: 0.8,
         ease: "easeOut",
@@ -278,11 +297,82 @@ function Header() {
     },
   };
 
-  // სულ ჩატვირთული items-ების რაოდენობა
   const totalCartItems = tours.length + sights.length;
 
   const getCurrentLanguageData = () => {
     return languageOptions.find((lang) => lang.code === currentLanguage);
+  };
+
+  // თარგმანი navItems-ისთვის
+  const translatedNavItems = navItems.map((item) => ({
+    ...item,
+    name: currentLanguage === "ka" ? item.name : item.nameEn || item.name,
+    natureName:
+      currentLanguage === "ka"
+        ? item.natureName
+        : item.natureNameEn || item.natureName,
+    details: item.details.map((detail) => ({
+      ...detail,
+      title:
+        currentLanguage === "ka"
+          ? detail.title
+          : detail.titleEn || detail.title,
+      items: detail.items.map((subItem) => ({
+        ...subItem,
+        text:
+          currentLanguage === "ka"
+            ? subItem.text
+            : subItem.textEn || subItem.text,
+      })),
+    })),
+  }));
+
+  // თარგმანი UI ელემენტებისთვის
+  const translations = {
+    ka: {
+      logoAlt: "ლოგო",
+      search: "ძიება",
+      searchPlaceholder: "ძიება...",
+      itineraries: "მარშრუტები",
+      toggleMenu: "მენიუს გახსნა",
+      changeLanguage: "ენის შეცვლა",
+      sights: {
+        svetitskhoveli: {
+          title: "სვეტიცხოველი",
+          description: "სვეტიცხოველი მსოპლიო ხელოვნების საგანძური",
+        },
+        alaverdi: {
+          title: "ალავერდი",
+          description: "ალავერდის ისტორიული ძეგლი",
+        },
+        adventure: (index: number) => ({
+          title: `თავგადასავალი ${index + 1}`,
+          description: `საინტერესო თავგადასავალი ${index + 1}`,
+        }),
+      },
+    },
+    en: {
+      logoAlt: "Logo",
+      search: "Search",
+      searchPlaceholder: "Search...",
+      itineraries: "Itineraries",
+      toggleMenu: "Toggle menu",
+      changeLanguage: "Change Language",
+      sights: {
+        svetitskhoveli: {
+          title: "Svetitskhoveli",
+          description: "Svetitskhoveli World Art Treasure",
+        },
+        alaverdi: {
+          title: "Alaverdi",
+          description: "Alaverdi Historical Monument",
+        },
+        adventure: (index: number) => ({
+          title: `Adventure ${index + 1}`,
+          description: `Interesting Adventure ${index + 1}`,
+        }),
+      },
+    },
   };
 
   return (
@@ -309,11 +399,11 @@ function Header() {
             <Link
               href="/"
               className="flex-shrink-0"
-              onClick={() => handleLinkClick("/")}
+              onClick={() => handleLinkClick("/", true)}
             >
               <Image
                 src="/logo/logo.svg"
-                alt="Logo"
+                alt={translations[currentLanguage].logoAlt}
                 width={80}
                 height={50}
                 priority
@@ -322,36 +412,18 @@ function Header() {
             </Link>
             <nav className="hidden xl:flex">
               <ul className="flex flex-wrap gap-2 sm:gap-4 text-xs sm:text-sm font-medium">
-                {navItems.map((item, index) => (
+                {translatedNavItems.map((item, index) => (
                   <motion.li
-                    key={item.name || item.natureName || index.toString()}
+                    key={item.id}
                     ref={(el) => {
                       navRefs.current[index] = el;
                     }}
                     whileHover={{
                       color: "#3b82f6",
-                      backgroundColor:
-                        (item.name === "რატომ საქართველო" ||
-                          item.natureName === "ბუნება და თავგადასავლები") &&
-                        hoveredItem === (item.name || item.natureName)
-                          ? ""
-                          : "transparent",
-                    }}
-                    animate={{
-                      backgroundColor:
-                        hoveredItem !== (item.name || item.natureName) &&
-                        (item.name === "რატომ საქართველო" ||
-                          item.natureName === "ბუნება და თავგადასავლები")
-                          ? "transparent"
-                          : undefined,
+                      backgroundColor: "transparent",
                     }}
                     transition={{ duration: 0.2 }}
-                    onMouseEnter={() =>
-                      handleMouseEnter(
-                        item.name || item.natureName || index.toString(),
-                        index
-                      )
-                    }
+                    onMouseEnter={() => handleMouseEnter(item.id, index)}
                     onMouseLeave={handleMouseLeave}
                     className="relative px-3 py-2"
                     style={{
@@ -375,10 +447,13 @@ function Header() {
             </nav>
           </div>
           <div className="hidden xl:flex items-center gap-3 sm:gap-3 lg:gap-5">
-            {/* Language Dropdown */}
-            <div ref={languageDropdownRef} className="relative">
+            <div
+              ref={languageDropdownRef}
+              className="relative"
+              onMouseEnter={() => setIsLanguageDropdownOpen(true)}
+              onMouseLeave={() => setIsLanguageDropdownOpen(false)}
+            >
               <motion.button
-                onClick={toggleLanguageDropdown}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
                 className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors cursor-pointer ${
@@ -386,10 +461,10 @@ function Header() {
                     ? "text-gray-800 hover:bg-gray-100"
                     : "text-white hover:bg-white/10"
                 }`}
-                aria-label="Change Language"
+                aria-label={translations[currentLanguage].changeLanguage}
               >
                 <span className="text-sm font-medium">
-                  {getCurrentLanguageData()?.name}
+                  {getCurrentLanguageData()?.flag}
                 </span>
                 <motion.div
                   animate={{ rotate: isLanguageDropdownOpen ? 180 : 0 }}
@@ -406,7 +481,7 @@ function Header() {
                     initial="closed"
                     animate="open"
                     exit="closed"
-                    className="absolute top-full right-0 mt-2 w-16 bg-white rounded-lg cursor-pointer shadow-lg border border-gray-200 py-1 z-50 hover:bg-gray-100"
+                    className="absolute top-full right-0 mt-2 w-15 bg-white rounded-lg cursor-pointer shadow-lg border border-gray-200 py-1 z-50 hover:bg-gray-100"
                   >
                     {languageOptions
                       .filter((language) => language.code !== currentLanguage)
@@ -419,7 +494,7 @@ function Header() {
                           className="w-full px-2 py-1 text-center flex items-center justify-center cursor-pointer transition-colors text-gray-700"
                         >
                           <span className="text-sm font-medium">
-                            {language.name}
+                            {language.flag}
                           </span>
                         </motion.button>
                       ))}
@@ -430,7 +505,7 @@ function Header() {
 
             <motion.button
               onClick={toggleSearch}
-              aria-label="Search"
+              aria-label={translations[currentLanguage].search}
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.2 }}
               className="cursor-pointer"
@@ -458,7 +533,6 @@ function Header() {
                 } ${totalCartItems > 0 ? "" : ""}`}
                 size={20}
               />
-              {/* Cart რაოდენობის Badge - ახლა ორივე tours და sights */}
               {totalCartItems > 0 && (
                 <motion.div
                   initial={{ scale: 0 }}
@@ -473,7 +547,7 @@ function Header() {
           <motion.button
             className="xl:hidden text-xl sm:text-2xl"
             onClick={toggleMenu}
-            aria-label="Toggle menu"
+            aria-label={translations[currentLanguage].toggleMenu}
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.2 }}
           >
@@ -497,11 +571,8 @@ function Header() {
             className="xl:hidden mt-4"
           >
             <Accordion type="single" collapsible className="w-full">
-              {navItems.map((item, index) => (
-                <AccordionItem
-                  key={item.name || item.natureName || index.toString()}
-                  value={item.name || item.natureName || index.toString()}
-                >
+              {translatedNavItems.map((item) => (
+                <AccordionItem key={item.id} value={item.id}>
                   <AccordionTrigger className="text-left py-5 text-sm font-bold rounded flex justify-between items-center">
                     <Link
                       href={item.href}
@@ -511,11 +582,11 @@ function Header() {
                     </Link>
                   </AccordionTrigger>
                   <AccordionContent className="pl-1 max-h-[300px] overflow-y-auto">
-                    {(item.name === "რატომ საქართველო" ||
-                      item.name === "ადგილები" ||
-                      item.name === "სანახაობები" ||
-                      item.natureName === "ბუნება და თავგადასავლები" ||
-                      item.name === "სასარგებლო ინფორმაცია") &&
+                    {(item.id === "why-georgia" ||
+                      item.id === "places" ||
+                      item.id === "sights" ||
+                      item.id === "nature-adventures" ||
+                      item.id === "useful-information") &&
                       item.details.map((column, colIndex) => (
                         <div key={colIndex} className="text-gray-500 mb-4">
                           <h3 className="text-md font-bold text-black mb-5">
@@ -524,9 +595,9 @@ function Header() {
                           {colIndex === 2 &&
                             column.items &&
                             column.items.length === 2 &&
-                            (item.name === "სანახაობები" ||
-                              item.natureName === "ბუნება და თავგადასავლები" ||
-                              item.name === "სასარგებლო ინფორმაცია") && (
+                            (item.id === "sights" ||
+                              item.id === "nature-adventures" ||
+                              item.id === "useful-information") && (
                               <div className="flex flex-col sm:flex-row sm:pr-5 gap-4 w-full">
                                 {column.items.map((image, imgIndex) => (
                                   <div
@@ -549,22 +620,19 @@ function Header() {
                                       />
                                     </Link>
                                     <p className="absolute bottom-5 left-3 font-bold w-[220px] text-white text-md bg-opacity-50 px-2 py-1 rounded">
-                                      {item.name === "სანახაობები"
+                                      {item.id === "sights"
                                         ? imgIndex === 0
-                                          ? "სვეტიცხოველი მსოპლიო ხელოვნების საგანძური"
-                                          : "ალავერდი"
-                                        : item.natureName ===
-                                          "ბუნება და თავგადასავლები"
-                                        ? imgIndex === 0
-                                          ? "აღმოაჩინე თავგადასავალი 1"
-                                          : "აღმოაჩინე თავგადასავალი 2"
-                                        : imgIndex === 0
-                                        ? "აღმოაჩინე ინფორმაცია 1"
-                                        : "აღმოაჩინე ინფორმაცია 2"}
+                                          ? translations[currentLanguage].sights
+                                              .svetitskhoveli.description
+                                          : translations[currentLanguage].sights
+                                              .alaverdi.description
+                                        : translations[
+                                            currentLanguage
+                                          ].sights.adventure(imgIndex)
+                                            .description}
                                     </p>
-                                    {(item.name === "სანახაობები" ||
-                                      (item.natureName ===
-                                        "ბუნება და თავგადასავლები" &&
+                                    {(item.id === "sights" ||
+                                      (item.id === "nature-adventures" &&
                                         imgIndex === 1)) && (
                                       <div className="absolute top-5 right-5">
                                         <motion.button
@@ -572,21 +640,57 @@ function Header() {
                                             handleHeartClick(imgIndex, e, {
                                               id: `mobile-${imgIndex}`,
                                               title:
-                                                item.name === "სანახაობები"
+                                                item.id === "sights"
                                                   ? imgIndex === 0
-                                                    ? "სვეტიცხოველი"
-                                                    : "ალავერდი"
-                                                  : `თავგადასავალი ${
-                                                      imgIndex + 1
-                                                    }`,
+                                                    ? translations[
+                                                        currentLanguage
+                                                      ].sights.svetitskhoveli
+                                                        .title
+                                                    : translations[
+                                                        currentLanguage
+                                                      ].sights.alaverdi.title
+                                                  : translations[
+                                                      currentLanguage
+                                                    ].sights.adventure(imgIndex)
+                                                      .title,
+                                              titleEn:
+                                                item.id === "sights"
+                                                  ? imgIndex === 0
+                                                    ? translations["en"].sights
+                                                        .svetitskhoveli.title
+                                                    : translations["en"].sights
+                                                        .alaverdi.title
+                                                  : translations[
+                                                      "en"
+                                                    ].sights.adventure(imgIndex)
+                                                      .title,
                                               description:
-                                                item.name === "სანახაობები"
+                                                item.id === "sights"
                                                   ? imgIndex === 0
-                                                    ? "სვეტიცხოველი მსოპლიო ხელოვნების საგანძური"
-                                                    : "ალავერდის ისტორიული ძეგლი"
-                                                  : `საინტერესო თავგადასავალი ${
-                                                      imgIndex + 1
-                                                    }`,
+                                                    ? translations[
+                                                        currentLanguage
+                                                      ].sights.svetitskhoveli
+                                                        .description
+                                                    : translations[
+                                                        currentLanguage
+                                                      ].sights.alaverdi
+                                                        .description
+                                                  : translations[
+                                                      currentLanguage
+                                                    ].sights.adventure(imgIndex)
+                                                      .description,
+                                              descriptionEn:
+                                                item.id === "sights"
+                                                  ? imgIndex === 0
+                                                    ? translations["en"].sights
+                                                        .svetitskhoveli
+                                                        .description
+                                                    : translations["en"].sights
+                                                        .alaverdi.description
+                                                  : translations[
+                                                      "en"
+                                                    ].sights.adventure(imgIndex)
+                                                      .description,
                                               image:
                                                 image.image ||
                                                 "/placeholder-image.jpg",
@@ -647,12 +751,22 @@ function Header() {
                                   className="text-md text-black block hover:text-red-500 mb-4 w-[230px]"
                                   onClick={() => handleLinkClick(item.href)}
                                   onMouseEnter={() => {
-                                    if (column.title === "ტოპ რეგიონები") {
+                                    if (
+                                      column.title ===
+                                      (currentLanguage === "ka"
+                                        ? "ტოპ რეგიონები"
+                                        : "Top Regions")
+                                    ) {
                                       setActiveRegion(item.text);
                                     }
                                   }}
                                   onMouseLeave={() => {
-                                    if (column.title === "ტოპ რეგიონები") {
+                                    if (
+                                      column.title ===
+                                      (currentLanguage === "ka"
+                                        ? "ტოპ რეგიონები"
+                                        : "Top Regions")
+                                    ) {
                                       setActiveRegion(null);
                                     }
                                   }}
@@ -677,6 +791,7 @@ function Header() {
                           : "text-white"
                       }
                     >
+                      {getCurrentLanguageData()?.flag}{" "}
                       {getCurrentLanguageData()?.name}
                     </span>
                   </div>
@@ -694,7 +809,7 @@ function Header() {
                           className="w-full px-2 py-1 text-center flex items-center justify-center rounded-md transition-colors text-gray-700 hover:bg-gray-50"
                         >
                           <span className="text-sm font-medium">
-                            {language.name}
+                            {language.flag} {language.name}
                           </span>
                         </button>
                       ))}
@@ -719,28 +834,28 @@ function Header() {
                           : "text-white"
                       }
                     >
-                      ძიება
+                      {translations[currentLanguage].search}
                     </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-2 pt-2">
                   <Input
                     type="text"
-                    placeholder="ძიება..."
+                    placeholder={
+                      translations[currentLanguage].searchPlaceholder
+                    }
                     className="w-full text-sm sm:text-base"
                     autoFocus
                     onFocus={() => setIsSearchOpen(true)}
                   />
                 </AccordionContent>
               </AccordionItem>
-              {/* Mobile Cart Button */}
               <AccordionItem value="cart">
                 <AccordionTrigger className="text-left py-6 rounded flex justify-between items-center">
                   <div
                     className="flex items-center gap-2 cursor-pointer"
                     onClick={() => {
                       router.push("/itinerary");
-                      // Header menu დახურვა
                       setIsMenuOpen(false);
                       setIsHovered(false);
                       setHoveredItem(null);
@@ -767,7 +882,7 @@ function Header() {
                           : "text-white"
                       }
                     >
-                      მარშრუტები{" "}
+                      {translations[currentLanguage].itineraries}{" "}
                       {totalCartItems > 0 ? `(${totalCartItems})` : ""}
                     </span>
                   </div>
@@ -777,11 +892,11 @@ function Header() {
           </motion.div>
         )}
       </div>
-      {(hoveredItem === "რატომ საქართველო" ||
-        hoveredItem === "ადგილები" ||
-        hoveredItem === "სანახაობები" ||
-        hoveredItem === "ბუნება და თავგადასავლები" ||
-        hoveredItem === "სასარგებლო ინფორმაცია" ||
+      {(hoveredItem === "why-georgia" ||
+        hoveredItem === "places" ||
+        hoveredItem === "sights" ||
+        hoveredItem === "nature-adventures" ||
+        hoveredItem === "useful-information" ||
         isPanelHovered) && (
         <motion.div
           className="absolute w-screen bg-white p-6 shadow"
@@ -805,23 +920,19 @@ function Header() {
         >
           <div
             className={`${
-              hoveredItem === "ადგილები"
+              hoveredItem === "places"
                 ? "grid grid-cols-[1fr_1fr_2fr] gap-2"
                 : "grid grid-cols-4 gap-4"
             } container mx-auto w-full px-8`}
           >
             {getColumnTexts(
-              navItems.find(
-                (item) =>
-                  item.name === hoveredItem || item.natureName === hoveredItem
-              )?.details
+              translatedNavItems.find((item) => item.id === hoveredItem)
+                ?.details
             ).map((column, colIndex) => (
               <div
                 key={colIndex}
                 className={`text-gray-500 ${
-                  hoveredItem === "ადგილები" && colIndex === 2
-                    ? "col-span-1"
-                    : ""
+                  hoveredItem === "places" && colIndex === 2 ? "col-span-1" : ""
                 }`}
               >
                 <h3 className="text-md font-bold text-black mb-3">
@@ -830,9 +941,9 @@ function Header() {
                 {colIndex === 2 &&
                   column.items &&
                   column.items.length === 2 &&
-                  (hoveredItem === "სანახაობები" ||
-                    hoveredItem === "ბუნება და თავგადასავლები" ||
-                    hoveredItem === "სასარგებლო ინფორმაცია") && (
+                  (hoveredItem === "sights" ||
+                    hoveredItem === "nature-adventures" ||
+                    hoveredItem === "useful-information") && (
                     <div className="flex gap-4 w-[590px] select-none cursor-pointer mt-6">
                       {column.items.map((image, imgIndex) => (
                         <div
@@ -853,20 +964,18 @@ function Header() {
                             />
                           </Link>
                           <p className="absolute bottom-5 left-3 font-bold w-[220px] text-white text-md bg-opacity-50 px-2 py-1 rounded">
-                            {hoveredItem === "სანახაობები"
+                            {hoveredItem === "sights"
                               ? imgIndex === 0
-                                ? "სვეტიცხოველი მსოპლიო ხელოვნების საგანძური"
-                                : "ალავერდი"
-                              : hoveredItem === "ბუნება და თავგადასავლები"
-                              ? imgIndex === 0
-                                ? "აღმოაჩინე თავგადასავალი 1"
-                                : "აღმოაჩინე თავგადასავალი 2"
-                              : imgIndex === 0
-                              ? "აღმოაჩინე ინფორმაცია 1"
-                              : "აღმოაჩინე ინფორმაცია 2"}
+                                ? translations[currentLanguage].sights
+                                    .svetitskhoveli.description
+                                : translations[currentLanguage].sights.alaverdi
+                                    .description
+                              : translations[currentLanguage].sights.adventure(
+                                  imgIndex
+                                ).description}
                           </p>
-                          {(hoveredItem === "სანახაობები" ||
-                            (hoveredItem === "ბუნება და თავგადასავლები" &&
+                          {(hoveredItem === "sights" ||
+                            (hoveredItem === "nature-adventures" &&
                               imgIndex === 1)) && (
                             <div className="absolute top-5 right-5">
                               <motion.button
@@ -874,19 +983,46 @@ function Header() {
                                   handleHeartClick(imgIndex, e, {
                                     id: `desktop-${imgIndex}`,
                                     title:
-                                      hoveredItem === "სანახაობები"
+                                      hoveredItem === "sights"
                                         ? imgIndex === 0
-                                          ? "სვეტიცხოველი"
-                                          : "ალავერდი"
-                                        : `თავგადასავალი ${imgIndex + 1}`,
+                                          ? translations[currentLanguage].sights
+                                              .svetitskhoveli.title
+                                          : translations[currentLanguage].sights
+                                              .alaverdi.title
+                                        : translations[
+                                            currentLanguage
+                                          ].sights.adventure(imgIndex).title,
+                                    titleEn:
+                                      hoveredItem === "sights"
+                                        ? imgIndex === 0
+                                          ? translations["en"].sights
+                                              .svetitskhoveli.title
+                                          : translations["en"].sights.alaverdi
+                                              .title
+                                        : translations["en"].sights.adventure(
+                                            imgIndex
+                                          ).title,
                                     description:
-                                      hoveredItem === "სანახაობები"
+                                      hoveredItem === "sights"
                                         ? imgIndex === 0
-                                          ? "სვეტიცხოველი მსოპლიო ხელოვნების საგანძური"
-                                          : "ალავერდის ისტორიული ძეგლი"
-                                        : `საინტერესო თავგადასავალი ${
-                                            imgIndex + 1
-                                          }`,
+                                          ? translations[currentLanguage].sights
+                                              .svetitskhoveli.description
+                                          : translations[currentLanguage].sights
+                                              .alaverdi.description
+                                        : translations[
+                                            currentLanguage
+                                          ].sights.adventure(imgIndex)
+                                            .description,
+                                    descriptionEn:
+                                      hoveredItem === "sights"
+                                        ? imgIndex === 0
+                                          ? translations["en"].sights
+                                              .svetitskhoveli.description
+                                          : translations["en"].sights.alaverdi
+                                              .description
+                                        : translations["en"].sights.adventure(
+                                            imgIndex
+                                          ).description,
                                     image:
                                       image.image || "/placeholder-image.jpg",
                                   })
@@ -932,7 +1068,7 @@ function Header() {
                   <div key={textIndex}>
                     {item.renderComponent ? (
                       <div className="mb-2">
-                        {hoveredItem === "ადგილები" && (
+                        {hoveredItem === "places" && (
                           <div className="col-span-1">
                             <GeorgianMap activeRegion={activeRegion} />
                           </div>
@@ -944,12 +1080,22 @@ function Header() {
                         className="text-sm block hover:text-red-500 py-3 w-[230px]"
                         onClick={() => handleLinkClick(item.href)}
                         onMouseEnter={() => {
-                          if (column.title === "ტოპ რეგიონები") {
+                          if (
+                            column.title ===
+                            (currentLanguage === "ka"
+                              ? "ტოპ რეგიონები"
+                              : "Top Regions")
+                          ) {
                             setActiveRegion(item.text);
                           }
                         }}
                         onMouseLeave={() => {
-                          if (column.title === "ტოპ რეგიონები") {
+                          if (
+                            column.title ===
+                            (currentLanguage === "ka"
+                              ? "ტოპ რეგიონები"
+                              : "Top Regions")
+                          ) {
                             setActiveRegion(null);
                           }
                         }}

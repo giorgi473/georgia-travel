@@ -11,22 +11,24 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { cardSliderImages } from "@/lib/data";
 import { useCart } from "@/context/CartContext";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function CardSwiperSlider() {
   const [heartAnimations, setHeartAnimations] = useState<
     Record<number, boolean>
   >({});
   const { addSight, removeSight, isSightInCart } = useCart();
+  const { currentLanguage } = useLanguage();
 
   const handleHeartClick = (index: number, event: React.MouseEvent) => {
-    event.preventDefault(); // Link-ის კლიკს რომ არ გააქტიუროს
+    event.preventDefault();
     event.stopPropagation();
 
     const item = cardSliderImages[index];
     const sight = {
-      id: item.id || index, // id-ისთვის item.id-ს ან index-ს გამოვიყენებთ
-      title: item.title,
-      description: item.description,
+      id: item.id || index,
+      title: item.title[currentLanguage], // Use translated title
+      description: item.description[currentLanguage], // Use translated description
       src: item.src,
     };
 
@@ -38,7 +40,6 @@ export default function CardSwiperSlider() {
       addSight(sight);
     }
 
-    // Animation trigger
     setHeartAnimations((prev) => ({ ...prev, [index]: true }));
     setTimeout(() => {
       setHeartAnimations((prev) => ({ ...prev, [index]: false }));
@@ -66,11 +67,13 @@ export default function CardSwiperSlider() {
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-2">
             <h3 className="text-sm sm:text-lg md:text-xl font-semibold">
-              აღმოაჩინე პოპულარული სანახაობები
+              {currentLanguage === "en"
+                ? "Discover Popular Attractions"
+                : "აღმოაჩინე პოპულარული სანახაობები"}
             </h3>
           </div>
           <div className="flex gap-2">
-            <button className="custom-prev-button cursor-pointer">
+            <button className="custom-next-button cursor-pointer">
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5"
                 fill="none"
@@ -85,7 +88,7 @@ export default function CardSwiperSlider() {
                 />
               </svg>
             </button>
-            <button className="custom-next-button cursor-pointer">
+            <button className="custom-prev-button cursor-pointer">
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5"
                 fill="none"
@@ -114,8 +117,8 @@ export default function CardSwiperSlider() {
             1024: { slidesPerView: 4 },
           }}
           navigation={{
-            nextEl: ".custom-next-button",
-            prevEl: ".custom-prev-button",
+            prevEl: ".custom-next-button",
+            nextEl: ".custom-prev-button",
           }}
           className="w-full"
         >
@@ -126,13 +129,17 @@ export default function CardSwiperSlider() {
             return (
               <SwiperSlide key={sightId}>
                 <div className="bg-white rounded-lg shadow-md overflow-hidden relative">
-                  <Link href={`/card/${encodeURIComponent(item.title)}`}>
+                  <Link
+                    href={`/card/${encodeURIComponent(
+                      item.title[currentLanguage]
+                    )}`}
+                  >
                     <div className="cursor-pointer select-none">
                       <div className="relative w-full h-80 sm:h-96 md:h-96 group">
                         <div className="relative w-full h-full overflow-hidden">
                           <Image
                             src={item.src}
-                            alt={item.title}
+                            alt={item.title[currentLanguage]}
                             fill
                             className="object-cover group-hover:scale-110 transition-all duration-300 ease-in-out z-0"
                             quality={75}
@@ -141,9 +148,11 @@ export default function CardSwiperSlider() {
                         </div>
                         <div className="p-4 absolute bottom-2 text-white z-20">
                           <h4 className="text-sm sm:text-lg font-semibold mb-2">
-                            {item.title}
+                            {item.title[currentLanguage]}
                           </h4>
-                          <div className="text-sm">{item.description}</div>
+                          <div className="text-sm">
+                            {item.description[currentLanguage]}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -166,7 +175,6 @@ export default function CardSwiperSlider() {
                         />
                       </motion.div>
 
-                      {/* Scattered hearts animation */}
                       {heartAnimations[index] && (
                         <div className="absolute top-0 left-0 pointer-events-none">
                           {Array.from({ length: 10 }, (_, i) => (
