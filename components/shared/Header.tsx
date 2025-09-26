@@ -13,11 +13,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import GeorgianMap from "@/components/GeorgianMap";
+import EarthCanvas from "../modules/EarthCanvas";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { NavItemDetail, navItems } from "@/constants/data/data";
-import GeorgianMap from "@/components/GeorgianMap";
-import EarthCanvas from "../modules/EarthCanvas";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,6 +31,7 @@ function Header() {
     [key: number]: boolean;
   }>({});
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const { currentLanguage, setCurrentLanguage } = useLanguage();
   const languageOptions = [
@@ -51,6 +52,7 @@ function Header() {
     Array(navItems.length).fill(null)
   );
   const languageDropdownRef = useRef<HTMLDivElement | null>(null);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
   const [underlineStyle, setUnderlineStyle] = useState<{
     width: number;
     left: number;
@@ -90,6 +92,13 @@ function Header() {
     };
   }, []);
 
+  // Focus search input when opened
+  useEffect(() => {
+    if (isSearchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [isSearchOpen]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     setIsSearchOpen(false);
@@ -100,6 +109,9 @@ function Header() {
     setIsSearchOpen(!isSearchOpen);
     setIsMenuOpen(false);
     setIsLanguageDropdownOpen(false);
+    if (!isSearchOpen) {
+      setSearchQuery("");
+    }
   };
 
   const handleLanguageChange = (langCode: "ka" | "en") => {
@@ -154,6 +166,7 @@ function Header() {
       setUnderlineStyle({ width: 0, left: 0 });
       setActiveRegion(null);
       setIsLanguageDropdownOpen(false);
+      setIsSearchOpen(false);
       router.push(isLogo ? "/" : href);
     }, 200);
   };
@@ -294,6 +307,25 @@ function Header() {
       y: -10,
       scale: 0.95,
       transition: { duration: 0.2, ease: "easeIn" },
+    },
+  };
+
+  const searchVariants = {
+    open: {
+      width: "95px",
+      opacity: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut",
+      },
+    },
+    closed: {
+      width: "0px",
+      opacity: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeIn",
+      },
     },
   };
 
@@ -447,6 +479,63 @@ function Header() {
             </nav>
           </div>
           <div className="hidden xl:flex items-center gap-3 sm:gap-3 lg:gap-5">
+            <div className="flex items-center">
+              <AnimatePresence>
+                {isSearchOpen && (
+                  <motion.div
+                    variants={searchVariants}
+                    initial="closed"
+                    animate="open"
+                    exit="closed"
+                    className="overflow-hidden mr-2"
+                  >
+                    <div
+                      className={`flex items-center rounded-lg border border-gray-200 transition-all duration-200 ${
+                        isHovered || isScrolled || isMenuOpen
+                          ? "bg-white"
+                          : "bg-transparent"
+                      }`}
+                    >
+                      <input
+                        ref={searchInputRef}
+                        type="text"
+                        placeholder={
+                          translations[currentLanguage].searchPlaceholder
+                        }
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className={`border-none focus:ring-0 focus:outline-none text-xs h-8 bg-transparent w-full px-2 transition-colors duration-200 ${
+                          isHovered || isScrolled || isMenuOpen
+                            ? "placeholder-gray-800 text-black"
+                            : "placeholder-white text-white"
+                        }`}
+                        onKeyDown={(e) => {
+                          if (e.key === "Escape") {
+                            toggleSearch();
+                          }
+                        }}
+                      />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              <motion.button
+                onClick={toggleSearch}
+                aria-label={translations[currentLanguage].search}
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2 }}
+                className="cursor-pointer"
+              >
+                <Search
+                  className={
+                    isHovered || isScrolled || isMenuOpen
+                      ? "text-gray-800"
+                      : "text-white"
+                  }
+                  size={20}
+                />
+              </motion.button>
+            </div>
             <div
               ref={languageDropdownRef}
               className="relative"
@@ -473,7 +562,6 @@ function Header() {
                   <ChevronDown size={14} />
                 </motion.div>
               </motion.button>
-
               <AnimatePresence>
                 {isLanguageDropdownOpen && (
                   <motion.div
@@ -502,23 +590,6 @@ function Header() {
                 )}
               </AnimatePresence>
             </div>
-
-            <motion.button
-              onClick={toggleSearch}
-              aria-label={translations[currentLanguage].search}
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.2 }}
-              className="cursor-pointer"
-            >
-              <Search
-                className={
-                  isHovered || isScrolled || isMenuOpen
-                    ? "text-gray-800"
-                    : "text-white"
-                }
-                size={20}
-              />
-            </motion.button>
             <motion.button
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.2 }}
