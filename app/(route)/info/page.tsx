@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ServiceCard } from "@/components/ServiceCard";
 import { services } from "@/constants/data/data";
+import { useLanguage } from "@/context/LanguageContext";
+import { ServiceCard } from "@/components/ServiceCard";
 
 const cardsPerPage = 9;
 const totalPages = Math.ceil(services.length / cardsPerPage);
@@ -11,6 +12,7 @@ const totalPages = Math.ceil(services.length / cardsPerPage);
 function Page() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const router = useRouter();
+  const { currentLanguage } = useLanguage();
 
   const handleDetailsClick = (title: string) => {
     router.push(`/info/${encodeURIComponent(title)}`);
@@ -32,7 +34,7 @@ function Page() {
 
   return (
     <div className="lg:pr-0">
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto">
         <div className="space-y-6 mb-8">
           {Array.from(
             { length: Math.ceil(currentServices.length / 2) },
@@ -47,10 +49,12 @@ function Page() {
                     <ServiceCard
                       key={startIndex + rowIndex * 2 + cardIndex}
                       image={service.image}
-                      title={service.title}
-                      description={service.description}
-                      details={service.details}
-                      onDetailsClick={handleDetailsClick}
+                      title={service.title[currentLanguage]}
+                      description={service.description[currentLanguage]}
+                      details={service.details[currentLanguage]}
+                      onDetailsClick={() =>
+                        handleDetailsClick(service.title.en)
+                      }
                     />
                   ))}
               </div>
@@ -67,7 +71,7 @@ function Page() {
                 : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400"
             }`}
           >
-            ← წინა
+            {currentLanguage === "ka" ? "← წინა" : "← Previous"}
           </button>
           <div className="flex space-x-2">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
@@ -93,7 +97,7 @@ function Page() {
                 : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400"
             }`}
           >
-            შემდეგი →
+            {currentLanguage === "ka" ? "შემდეგი →" : "Next →"}
           </button>
         </div>
       </div>

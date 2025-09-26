@@ -6,7 +6,7 @@ interface ServiceCardProps {
   title: string;
   description: string;
   details: string;
-  onDetailsClick: (title: string) => void;
+  onDetailsClick: () => void;
 }
 
 export const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -36,7 +36,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       <div className="flex justify-between items-center">
         <p
           className="text-black text-sm sm:text-md font-semibold cursor-pointer hover:text-red-500"
-          onClick={() => onDetailsClick(title)}
+          onClick={onDetailsClick}
         >
           {details}
         </p>

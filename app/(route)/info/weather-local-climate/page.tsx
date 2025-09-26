@@ -3,9 +3,11 @@
 import { useRouter } from "next/navigation";
 import { WeatherCard } from "@/components/WeatherCard";
 import { climateData } from "@/constants/data/data";
+import { useLanguage } from "@/context/LanguageContext";
 
-function Page() {
+function WeatherPage() {
   const router = useRouter();
+  const { currentLanguage } = useLanguage();
 
   const handleDetailsClick = (title: string) => {
     router.push(`/info/weather-local-climate/${encodeURIComponent(title)}`);
@@ -14,6 +16,13 @@ function Page() {
   return (
     <div className="lg:pl-2">
       <div className="max-w-7xl mx-auto">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-lg sm:text-xl md:text-2xl lg:text-2xl -mt-3 font-semibold text-gray-800">
+            {currentLanguage === "ka"
+              ? "ამინდი და სეზონურობა"
+              : "Weather and Seasonality"}
+          </h3>
+        </div>
         <div className="space-y-6 mb-8">
           {Array.from(
             { length: Math.ceil(climateData.length / 2) },
@@ -43,4 +52,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default WeatherPage;

@@ -227,3 +227,186 @@ export const destinations: Destination[] = [
     image: "/nature-adventures/nikolaze.webp",
   },
 ];
+export interface FooterItem {
+  text: { ka: string; en: string };
+  href: string;
+}
+
+export interface FooterColumn {
+  title: { ka: string; en: string };
+  titleHref: string;
+  items: FooterItem[];
+}
+
+export const socialLinks: FooterItem[] = [
+  {
+    text: { ka: "Facebook", en: "Facebook" },
+    href: "https://www.facebook.com/GeorgiaTravel",
+  },
+  {
+    text: { ka: "Instagram", en: "Instagram" },
+    href: "https://www.instagram.com/GeorgiaTravel",
+  },
+  {
+    text: { ka: "X.com", en: "X.com" },
+    href: "https://www.x.com/GeorgiaTravel",
+  },
+  {
+    text: { ka: "YouTube", en: "YouTube" },
+    href: "https://www.youtube.com/GeorgiaTravel",
+  },
+  {
+    text: { ka: "LinkedIn", en: "LinkedIn" },
+    href: "https://www.linkedin.com/company/GeorgiaTravel",
+  },
+];
+
+export const footerColumns: FooterColumn[] = [
+  {
+    title: { ka: "სანახაობები", en: "Attractions" },
+    titleHref: "/about",
+    items: [
+      {
+        text: { ka: "ხელოვნება", en: "Art & Culture" },
+        href: "/category/art-culture",
+      },
+      {
+        text: { ka: "სამზარეულო და ღვინო", en: "Cuisine & Wine" },
+        href: "/category/cuisine-wine",
+      },
+      {
+        text: { ka: "კულტურული ძეგლები", en: "Cultural Monuments" },
+        href: "/category/monuments",
+      },
+      {
+        text: { ka: "საოჯახო სანახაობები", en: "Family Attractions" },
+        href: "/category/family",
+      },
+      {
+        text: { ka: "მიმდინარე ღონისძიებები", en: "Current Events" },
+        href: "/category/events",
+      },
+      {
+        text: { ka: "გამაჯანსაღებელი პროცედურები", en: "Wellness" },
+        href: "/category/wellness",
+      },
+      {
+        text: { ka: "დასვენება ქალაქში", en: "City Relaxation" },
+        href: "/category/city-relaxation",
+      },
+      {
+        text: { ka: "ბუნების ძეგლები", en: "Nature Monuments" },
+        href: "/category/nature",
+      },
+      {
+        text: { ka: "ზამთრის თავგადასავლები", en: "Winter Adventures" },
+        href: "/category/winter-adventures",
+      },
+      {
+        text: { ka: "საზაფხულო თავგადასავლები", en: "Summer Adventures" },
+        href: "/category/summer-adventures",
+      },
+    ],
+  },
+  {
+    title: { ka: "სასარგებლო ინფორმაცია", en: "Useful Information" },
+    titleHref: "/tours",
+    items: [
+      {
+        text: { ka: "საქართველოში ჩამოსვლა", en: "Arriving in Georgia" },
+        href: "/info/arrival",
+      },
+      { text: { ka: "რეგიონები", en: "Regions" }, href: "/info/regions" },
+      {
+        text: { ka: "საქართველოს რუკა", en: "Map of Georgia" },
+        href: "/info/map",
+      },
+      {
+        text: { ka: "პრესა და მედია", en: "Press & Media" },
+        href: "/info/media",
+      },
+      { text: { ka: "ბლოგი", en: "Blog" }, href: "/blog" },
+      {
+        text: { ka: "პოპულარული ტურები", en: "Popular Tours" },
+        href: "/tours/popular",
+      },
+      {
+        text: {
+          ka: "ხშირად დასმული კითხვები",
+          en: "Frequently Asked Questions",
+        },
+        href: "/info/faq",
+      },
+    ],
+  },
+  {
+    title: { ka: "საკონტაქტო ინფორმაცია", en: "Contact Information" },
+    titleHref: "/services",
+    items: [
+      {
+        text: {
+          ka: "ცხელი ხაზი: 0 800 80 09 09",
+          en: "Hotline: 0 800 80 09 09",
+        },
+        href: "tel:0800800909",
+      },
+      {
+        text: {
+          ka: "მისამართი: სანაპიროს ქ.4, თბილისი 0105, საქართველო",
+          en: "Address: 4 Sanapiro St., Tbilisi 0105, Georgia",
+        },
+        href: "/contact/address",
+      },
+      {
+        text: {
+          ka: "ელ.ფოსტა: feedback@georgia.travel",
+          en: "Email: feedback@georgia.travel",
+        },
+        href: "mailto:feedback@georgia.travel",
+      },
+      {
+        text: { ka: "სასტუმროს ჯავშანი", en: "Hotel Booking" },
+        href: "/services/hotels",
+      },
+      {
+        text: { ka: "დაზღვევა", en: "Insurance" },
+        href: "/services/insurance",
+      },
+    ],
+  },
+  {
+    title: { ka: "დაგვიკავშირდით", en: "Contact Us" },
+    titleHref: "/contact-us",
+    items: [
+      {
+        text: {
+          ka: "ტელეფონი: +995 555 123 456",
+          en: "Phone: +995 555 123 456",
+        },
+        href: "tel:+995555123456",
+      },
+      {
+        text: { ka: "ელ.ფოსტა: info@travel.ge", en: "Email: info@travel.ge" },
+        href: "mailto:info@travel.ge",
+      },
+      {
+        text: {
+          ka: "მისამართი: თბილისი, რუსთაველის გამზ.",
+          en: "Address: Tbilisi, Rustaveli Ave.",
+        },
+        href: "/contact/address",
+      },
+      {
+        text: {
+          ka: "სამუშაო საათები: 9:00-18:00",
+          en: "Working Hours: 9:00-18:00",
+        },
+        href: "/contact/hours",
+      },
+      {
+        text: { ka: "სოციალური ქსელები", en: "Social Media" },
+        href: "/social",
+      },
+    ],
+  },
+];
