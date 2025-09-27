@@ -9,15 +9,15 @@ import ParagraphText from "@/components/TextContent";
 import SocialList from "@/components/SocialList";
 import { useLanguage } from "@/context/LanguageContext";
 import {
-  contentItems5,
-  sections5,
-  sidebarItems5,
+  contentItems14,
+  sections14,
+  sidebarItems14,
 } from "@/constants/data/whyGeorgiaData";
 
 const Page: React.FC = () => {
   const router = useRouter();
   const { currentLanguage } = useLanguage(); // Access current language
-  const section01 = sections5.find((section) => section.id === "section-01");
+  const section01 = sections14.find((section) => section.id === "section-01");
   const geographyItem = section01?.geographyOfGeorgia?.[0];
 
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -32,11 +32,11 @@ const Page: React.FC = () => {
   };
 
   const contentRefs = useRef<(HTMLDivElement | null)[]>(
-    new Array(contentItems5.length).fill(null)
+    new Array(contentItems14.length).fill(null)
   );
 
   const handleScrollToSection = (title: { ka: string; en: string }) => {
-    const index = contentItems5.findIndex(
+    const index = contentItems14.findIndex(
       (item) => item.title[currentLanguage] === title[currentLanguage]
     );
     if (index !== -1 && contentRefs.current[index]) {
@@ -97,7 +97,7 @@ const Page: React.FC = () => {
           <div className="mb-3 text-black font-bold select-none text-lg sm:text-lg lg:text-2xl">
             {currentLanguage === "ka" ? "სარჩევი" : "Table of Contents"}
           </div>
-          {sidebarItems5.map((item, index) => (
+          {sidebarItems14.map((item, index) => (
             <motion.li
               key={index}
               variants={textVariants}
@@ -115,10 +115,10 @@ const Page: React.FC = () => {
         <div className="col-span-1 sm:col-span-3 mt-6 sm:mt-0">
           <ParagraphText
             anotherDescription={
-              contentItems5[0].anotherDescription?.[currentLanguage]
+              contentItems14[0].anotherDescription?.[currentLanguage]
             }
           />
-          {contentItems5.map((item, index) => (
+          {contentItems14.map((item, index) => (
             <motion.div
               key={index}
               ref={(el) => {
