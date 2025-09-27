@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
-import SocialList from "@/app/(route)/geography-of-georgia/_components/social-list";
 import { cardsData } from "@/constants/get/data";
 import { contentItems, sidebarItems } from "@/constants/get/getData";
 
@@ -201,9 +200,6 @@ const Page: React.FC = () => {
             </motion.div>
           ))}
         </div>
-      </div>
-      <div className="max-w-[1110px] mx-auto px-4 lg:p-6">
-        <SocialList />
       </div>
     </>
   );
