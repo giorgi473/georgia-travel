@@ -5,7 +5,6 @@ import Image from "next/image";
 import { Heart, Layers2, MapIcon } from "lucide-react";
 import Link from "next/link";
 import { DestinationCard } from "@/components/DestinationCard";
-import RecipeGallery from "@/components/RecipeGallery";
 import Slider from "@/components/Slider";
 import {
   Card,
@@ -239,9 +238,6 @@ export default function CardPage() {
             <DestinationCard key={destination.id} {...destination} />
           ))}
         </div>
-      </section>
-      <section>
-        <RecipeGallery items={card.array} />
       </section>
       <section className="mb-[100px]">
         <Slider data={card.slideCard} />
