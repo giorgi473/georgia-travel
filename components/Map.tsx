@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import * as L from "leaflet"; // Import Leaflet with proper types
 
 interface MapMarker {
   id: string;
@@ -94,8 +95,6 @@ export function Map() {
 
   useEffect(() => {
     if (!mapLoaded || typeof window === "undefined") return;
-
-    const L = (window as any).L;
 
     const map = L.map("map", { zoomControl: false }).setView(
       [41.7151, 44.8271],

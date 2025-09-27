@@ -23,6 +23,7 @@
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.15.0",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.511.0",
     "motion": "^12.16.0",
     "next": "15.3.3",
@@ -36,6 +37,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/leaflet": "^1.9.20",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-day-picker": "^5.2.1",
