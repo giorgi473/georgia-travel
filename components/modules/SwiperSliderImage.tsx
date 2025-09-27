@@ -5,9 +5,10 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import { ArrowRight } from "lucide-react";
 import "swiper/css";
-import { sliderImages } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
+import { sliderImages } from "@/lib/data";
 
 interface ThumbnailProps {
   src: string;
@@ -144,16 +145,18 @@ const SwiperSliderImage = forwardRef(() => {
                 </p>
                 <div className="flex flex-row gap-3 sm:gap-4 mt-8 sm:mt-12 md:mt-20 lg:mt-20">
                   <button
-                    className="bg-red-500 text-white px-4 sm:px-5 md:px-6 lg:px-6 py-1.5 sm:py-2 rounded hover:bg-red-600 cursor-pointer text-sm sm:text-base md:text-lg lg:text-lg"
+                    className="bg-red-500 flex items-center gap-2 text-white px-4 sm:px-5 md:px-6 lg:px-6 py-1.5 sm:py-2 rounded hover:bg-red-600 cursor-pointer text-sm sm:text-base md:text-lg lg:text-lg"
                     onClick={() => router.push("/popular-tours")}
                   >
-                    {translations[currentLanguage].planTrip}
+                    {translations[currentLanguage].planTrip}{" "}
+                    <ArrowRight size={18} className="hidden sm:flex" />
                   </button>
                   <button
-                    className="bg-gray-800 text-white px-4 sm:px-5 md:px-6 lg:px-6 py-1.5 sm:py-2 rounded hover:bg-gray-600 cursor-pointer text-sm sm:text-base md:text-lg lg:text-lg"
+                    className="bg-gray-800 flex items-center gap-2 text-white px-4 sm:px-5 md:px-6 lg:px-6 py-1.5 sm:py-2 rounded hover:bg-gray-600 cursor-pointer text-sm sm:text-base md:text-lg lg:text-lg"
                     onClick={() => router.push("/why-georgia")}
                   >
-                    {translations[currentLanguage].learnMore}
+                    {translations[currentLanguage].learnMore}{" "}
+                    <ArrowRight size={18} className="hidden sm:flex" />
                   </button>
                 </div>
               </div>

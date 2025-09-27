@@ -1,15 +1,15 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
-import Image from "next/image";
 import "swiper/css";
 import "./why-georgia.css";
-import { sections } from "@/constants/data/data";
-import { useRouter } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
+import { sections } from "@/constants/data/data";
 
 const Page: React.FC = () => {
   const { currentLanguage } = useLanguage();

@@ -1,9 +1,15 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 
 function SocialList() {
+  const { currentLanguage } = useLanguage();
+  const shareText = currentLanguage === "ka" ? "გაზიარება" : "Share";
+
   return (
     <div>
-      <h2 className="text-black font-bold mb-3">გაზიარება</h2>
+      <h2 className="text-black font-bold mb-3">{shareText}</h2>
       <div className="flex items-center gap-3">
         <Link
           href="https://www.facebook.com/sharer/sharer.php?u=[URL]"
