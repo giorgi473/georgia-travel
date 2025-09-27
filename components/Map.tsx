@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import * as L from "leaflet"; // Import Leaflet with proper types
 
 interface MapMarker {
   id: string;
@@ -68,8 +67,37 @@ const buildingMarkers = [
   { id: "b15", lat: 41.8544, lng: 43.3931 },
 ];
 
+// Leaflet types
+interface LeafletMap {
+  setView: (coords: number[], zoom: number) => LeafletMap;
+  remove: () => void;
+}
+
+interface LeafletLayer {
+  addTo: (map: LeafletMap) => LeafletLayer;
+}
+
+interface LeafletMarker {
+  addTo: (map: LeafletMap) => LeafletMarker;
+}
+
+interface LeafletType {
+  map: (id: string, options?: object) => LeafletMap;
+  tileLayer: (url: string, options?: object) => LeafletLayer;
+  divIcon: (options: object) => object;
+  marker: (coords: number[], options?: object) => LeafletMarker;
+}
+
+// Window interface with Leaflet
+declare global {
+  interface Window {
+    L: LeafletType;
+  }
+}
+
 export function Map() {
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [L, setL] = useState<LeafletType | null>(null);
 
   useEffect(() => {
     const loadLeaflet = async () => {
@@ -84,6 +112,8 @@ export function Map() {
         const script = document.createElement("script");
         script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
         script.onload = () => {
+          // Leaflet ახლა ხელმისაწვდომია window.L-ზე
+          setL(window.L);
           setMapLoaded(true);
         };
         document.head.appendChild(script);
@@ -94,7 +124,7 @@ export function Map() {
   }, []);
 
   useEffect(() => {
-    if (!mapLoaded || typeof window === "undefined") return;
+    if (!mapLoaded || !L || typeof window === "undefined") return;
 
     const map = L.map("map", { zoomControl: false }).setView(
       [41.7151, 44.8271],
@@ -130,7 +160,7 @@ export function Map() {
     return () => {
       map.remove();
     };
-  }, [mapLoaded]);
+  }, [mapLoaded, L]);
 
   return (
     <div className="h-[620px] bg-slate-50">
