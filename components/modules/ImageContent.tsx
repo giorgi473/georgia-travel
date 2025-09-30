@@ -31,7 +31,7 @@ function ImageContent({
           backgroundImage: `url('${image}')`,
         }}
       />
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/50" />
       <div className="relative z-10 flex h-full items-center">
         <div className="container mx-auto px-5 sm:px-8 md:px-8 lg:px-11">
           <div className="max-w-2xl">

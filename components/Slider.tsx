@@ -13,9 +13,10 @@ import { SlideCard } from "@/constants/data/placeData";
 
 interface SliderProps {
   data: SlideCard[];
+  currentLanguage: "ka" | "en";
 }
 
-export default function Slider({ data }: SliderProps) {
+export default function Slider({ data, currentLanguage }: SliderProps) {
   // State to track favorite status for each slide
   const [heartActive, setHeartActive] = useState<boolean[]>(
     new Array(data.length).fill(false)
@@ -25,6 +26,14 @@ export default function Slider({ data }: SliderProps) {
   const [heartAnimations, setHeartAnimations] = useState<{
     [key: number]: boolean;
   }>({});
+
+  // Static text translations
+  const translations = {
+    discoverAttractions: {
+      ka: "აღმოაჩინე პოპულარული სანახაობები",
+      en: "Discover Popular Attractions",
+    },
+  };
 
   // Handle heart click to toggle favorite and trigger animation
   const handleHeartClick = (index: number) => {
@@ -61,7 +70,7 @@ export default function Slider({ data }: SliderProps) {
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-2">
             <h3 className="text-sm sm:text-lg md:text-xl font-semibold">
-              აღმოაჩინე პოპულარული სანახაობები
+              {translations.discoverAttractions[currentLanguage]}
             </h3>
           </div>
           <div className="flex gap-2">
@@ -117,13 +126,17 @@ export default function Slider({ data }: SliderProps) {
           {data.map((item, index) => (
             <SwiperSlide key={index}>
               <div className="relative">
-                <Link href={`/places/${encodeURIComponent(item.title)}`}>
+                <Link
+                  href={`/places/${encodeURIComponent(
+                    item.title[currentLanguage]
+                  )}`}
+                >
                   <div className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer select-none">
                     <div className="relative w-full h-80 sm:h-96 md:h-96 group">
                       <div className="relative w-full h-full overflow-hidden">
                         <Image
                           src={item.src as string}
-                          alt={item.title}
+                          alt={item.title[currentLanguage]}
                           fill
                           className="object-cover group-hover:scale-110 transition-all duration-300 ease-in-out z-0"
                           quality={75}
@@ -132,10 +145,10 @@ export default function Slider({ data }: SliderProps) {
                       </div>
                       <div className="p-4 absolute bottom-2 text-white z-20">
                         <h4 className="text-sm sm:text-lg font-semibold mb-2">
-                          {item.title}
+                          {item.title[currentLanguage]}
                         </h4>
                         <div className="text-sm">
-                          {item.additionalDescription}
+                          {item.additionalDescription[currentLanguage]}
                         </div>
                       </div>
                     </div>

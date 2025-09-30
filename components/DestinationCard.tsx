@@ -9,12 +9,13 @@ import { Heart, MapPin, ArrowRight } from "lucide-react";
 
 interface DestinationCardProps {
   id: string;
-  title: string;
-  description: string;
+  title: { ka: string; en: string };
+  description: { ka: string; en: string };
   image: string;
-  duration: string;
-  activities: string;
-  currency: string;
+  duration: { ka: string; en: string };
+  activities: { ka: string; en: string };
+  currency: { ka: string; en: string };
+  currentLanguage: "ka" | "en";
 }
 
 export function DestinationCard({
@@ -24,9 +25,17 @@ export function DestinationCard({
   duration,
   activities,
   currency,
+  currentLanguage,
 }: DestinationCardProps) {
   const [isHeartActive, setIsHeartActive] = useState(false);
   const [showHeartAnimation, setShowHeartAnimation] = useState(false);
+
+  // Static text translations
+  const translations = {
+    durationLabel: { ka: "დრო", en: "Duration" },
+    distanceLabel: { ka: "მანძილი", en: "Distance" },
+    learnMore: { ka: "გაიგე მეტი", en: "Learn More" },
+  };
 
   const handleHeartClick = () => {
     setIsHeartActive((prev) => !prev);
@@ -56,11 +65,11 @@ export function DestinationCard({
       <div className="relative h-96 w-full overflow-hidden cursor-pointer group select-none">
         <Image
           src={image || "/placeholder.svg"}
-          alt={title}
+          alt={title[currentLanguage]}
           fill
           className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
-        <div className=" absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
         <div
           className="absolute top-4 right-4 p-2 transition-colors"
           onClick={handleHeartClick}
@@ -93,33 +102,33 @@ export function DestinationCard({
         <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white">
           <MapPin className="w-7 h-7 text-red-500" />
           <span className="text-sm sm:text-sm md:text-md lg:text-lg font-bold">
-            • {activities}
+            • {activities[currentLanguage]}
           </span>
         </div>
       </div>
       <div className="p-6 flex flex-col flex-1">
         <h3 className="text-xl font-semibold text-gray-900 mb-3 text-balance">
-          {title}
+          {title[currentLanguage]}
         </h3>
         <p className="text-gray-600 text-sm leading-relaxed mb-6 text-pretty flex-1">
-          {description}
+          {description[currentLanguage]}
         </p>
         <div className="flex items-center justify-between">
           <div className="flex gap-4 sm:gap-5 md:gap-6 lg:gap-8">
             <div>
               <p className="text-xs sm:text-sm md:text-md lg:text-md text-gray-500 mb-1">
-                დრო
+                {translations.durationLabel[currentLanguage]}
               </p>
               <p className="text-sm sm:text-md md:text-md lg:text-lg font-semibold text-gray-900">
-                {duration}
+                {duration[currentLanguage]}
               </p>
             </div>
             <div>
               <p className="text-xs sm:text-sm md:text-md lg:text-md text-gray-500 mb-1">
-                მანძილი
+                {translations.distanceLabel[currentLanguage]}
               </p>
               <p className="text-sm sm:text-md md:text-md lg:text-lg font-semibold text-gray-900">
-                {currency}
+                {currency[currentLanguage]}
               </p>
             </div>
           </div>
@@ -127,7 +136,7 @@ export function DestinationCard({
             variant="outline"
             className="text-red-500 border-red-200 text-xs sm:text-md md:text-md hover:bg-red-50 cursor-pointer hover:border-red-300 bg-transparent"
           >
-            გაიგე მეტი
+            {translations.learnMore[currentLanguage]}
             <ArrowRight className="sm:ml-1 md:ml-2 mt-0.5 md:mt-0" />
           </Button>
         </div>

@@ -409,7 +409,7 @@ export const navItems: NavItem[] = [
           {
             text: "ხელოვნება და კულტურა",
             textEn: "Art and Culture",
-            href: "/sights/jvari",
+            href: "/sights/arts-culture",
           },
           {
             text: "კულტურული ძეგლები",
