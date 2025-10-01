@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { Heart, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { cardSliderImages } from "@/constants/data/placeData";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function CardPage({
   params: paramsPromise,
@@ -14,9 +15,15 @@ export default function CardPage({
   params: Promise<{ title: string }>;
 }) {
   const params = use(paramsPromise);
+  const { currentLanguage } = useLanguage();
+  // Find card by matching the decoded title against either ka or en title
+  const decodedTitle = decodeURIComponent(params.title);
   const card = cardSliderImages
     .flatMap((item) => item.slideCard)
-    .find((slide) => slide.title === decodeURIComponent(params.title));
+    .find(
+      (slide) =>
+        slide.title.ka === decodedTitle || slide.title.en === decodedTitle
+    );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -74,7 +81,7 @@ export default function CardPage({
       <div className="relative w-full h-screen">
         <Image
           src={card.src as string}
-          alt={card.title}
+          alt={card.title[currentLanguage]}
           fill
           className="object-cover"
           priority={true}
@@ -82,19 +89,25 @@ export default function CardPage({
         <div className="absolute inset-0 bg-black/50 z-10" />
         <div className="absolute inset-0 flex flex-col justify-center px-5 sm:px-8 md:px-8 lg:px-10 container mx-auto z-20">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-8">
-            {card.title}
+            {card.title[currentLanguage]}
           </h1>
           <p className="text-sm sm:text-base max-w-xl text-gray-300 sm:mt-3 mb-8">
-            {card.additionalDescription}
+            {card.additionalDescription[currentLanguage]}
           </p>
           <div className="text-white sm:flex sm:space-x-16 mb-8">
             <div className="font-semibold">
-              <div className="text-sm sm:text-base text-gray-300">რეგიონი</div>
-              {card.region}
+              <div className="text-sm sm:text-base text-gray-300">
+                {currentLanguage === "ka" ? "რეგიონი" : "Region"}
+              </div>
+              {card.region[currentLanguage]}
             </div>
             <div className="font-semibold">
-              <div className="text-sm sm:text-base text-gray-300">ქალაქი</div>
-              <h1 className="text-sm sm:text-base">{card.city}</h1>
+              <div className="text-sm sm:text-base text-gray-300">
+                {currentLanguage === "ka" ? "ქალაქი" : "City"}
+              </div>
+              <h1 className="text-sm sm:text-base">
+                {card.city[currentLanguage]}
+              </h1>
             </div>
           </div>
           <div className="mb-5">
@@ -114,7 +127,9 @@ export default function CardPage({
                   isActive ? "text-red-500" : "text-white"
                 }`}
               >
-                მარშრუტებში დამატება
+                {currentLanguage === "ka"
+                  ? "მარშრუტებში დამატება"
+                  : "Add to Routes"}
               </h3>
             </button>
           </div>
@@ -123,7 +138,7 @@ export default function CardPage({
               className="cursor-pointer text-white border border-red-500 rounded-lg px-4 py-2 hover:bg-red-500 transition-all duration-200 ease-in-out"
               onClick={toggleModal}
             >
-              ინფორმაცია
+              {currentLanguage === "ka" ? "ინფორმაცია" : "Information"}
             </button>
           </div>
         </div>
@@ -149,7 +164,7 @@ export default function CardPage({
               <div className="relative w-full h-64 sm:h-72 mb-6">
                 <Image
                   src={card.modalSrc}
-                  alt={`${card.title} modal`}
+                  alt={`${card.title[currentLanguage]} modal`}
                   fill
                   className="object-cover rounded-tl-sm"
                   quality={100}
@@ -157,16 +172,16 @@ export default function CardPage({
               </div>
               <div className="px-6 sm:px-8">
                 <h2 className="text-xl sm:text-2xl font-bold mb-6">
-                  {card.name}
+                  {card.name[currentLanguage]}
                 </h2>
                 <div className="text-sm sm:text-base mb-4">
                   <p className="mb-2">
                     <span className="font-semibold mr-1">Name:</span>
-                    {card.name}
+                    {card.name[currentLanguage]}
                   </p>
                   <p className="mb-2">
                     <span className="font-semibold mr-2">Address:</span>
-                    {card.address}
+                    {card.address[currentLanguage]}
                   </p>
                   <p className="mb-2">
                     <span className="font-semibold mr-2">Phone Number:</span>
@@ -184,7 +199,9 @@ export default function CardPage({
                     </Link>
                   </p>
                   <h3 className="font-bold mt-3 mb-2 text-center text-base sm:text-lg">
-                    Working Schedule:
+                    {currentLanguage === "ka"
+                      ? "სამუშაო განრიგი:"
+                      : "Working Schedule:"}
                   </h3>
                   <div className="list-disc list-inside">
                     {workingHoursDisplay.map(({ day, hours }) => (
@@ -192,7 +209,7 @@ export default function CardPage({
                         <h1 className="text-md tracking-wider sm:text-base font-semibold text-gray-800">
                           {day}:
                         </h1>
-                        {hours}
+                        {hours[currentLanguage]}
                       </div>
                     ))}
                   </div>
