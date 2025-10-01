@@ -497,7 +497,7 @@ export const navItems: NavItem[] = [
           {
             text: "ზამთრის თავგადასავლები",
             textEn: "Winter Adventures",
-            href: "/nature/svaneti",
+            href: "/nature-adventures/winter-adventures",
           },
           {
             text: "საზაპხულო თავგადასავლები",
