@@ -238,20 +238,20 @@ export const componentAttributes: ComponentAttributes[] = [
     events: [
       {
         id: 1,
-        image: "/cardImage/kloun.webp",
+        image: "/sights/76(1).webp",
         title: {
-          ka: "კლოუნის თვალთახედვა",
+          ka: "ქარელის ტურისტული საინფორმაციო ცენტრი ქარელის ტურისტული საინფორმაციო ცენტრი",
           en: "Clown's Perspective",
         },
         description: {
-          ka: "თეატრი",
+          ka: "ტურისტული მომსახურება",
           en: "Theatre",
         },
-        href: "https://tkt.ge/show/21191",
+        href: "https://places.georgia.travel/%E1%83%9D%E1%83%91%E1%83%98%E1%83%94%E1%83%A5%E1%83%A2%E1%83%94%E1%83%91%E1%83%98/%E1%83%A5%E1%83%90%E1%83%A0%E1%83%94%E1%83%9A%E1%83%98%E1%83%A1-%E1%83%A2%E1%83%A3%E1%83%A0%E1%83%98%E1%83%A1%E1%83%A2%E1%83%A3%E1%83%9A%E1%83%98-%E1%83%A1%E1%83%90%E1%83%98%E1%83%9C%E1%83%A4%E1%83%9D%E1%83%A0%E1%83%9B%E1%83%90%E1%83%AA%E1%83%98%E1%83%9D-%E1%83%AA%E1%83%94%E1%83%9C%E1%83%A2%E1%83%A0%E1%83%98",
       },
       {
         id: 2,
-        image: "/cardImage/batumi.webp",
+        image: "/sights/76(1).webp",
         title: {
           ka: "SOHO BATUMI ENDORPHINS",
           en: "SOHO BATUMI ENDORPHINS",
@@ -260,7 +260,1349 @@ export const componentAttributes: ComponentAttributes[] = [
           ka: "კონცერტები",
           en: "Concerts",
         },
-        href: "https://tkt.ge/show/23725/soho-batumi-endorphins",
+        href: "https://places.georgia.travel/%E1%83%9D%E1%83%91%E1%83%98%E1%83%94%E1%83%A5%E1%83%A2%E1%83%94%E1%83%91%E1%83%98/%E1%83%97%E1%83%91%E1%83%98%E1%83%9A%E1%83%98%E1%83%A1%E1%83%98%E1%83%A1-%E1%83%A2%E1%83%A3%E1%83%A0%E1%83%98%E1%83%A1%E1%83%A2%E1%83%A3%E1%83%9A%E1%83%98-%E1%83%A1%E1%83%90%E1%83%98%E1%83%9C%E1%83%A4%E1%83%9D%E1%83%A0%E1%83%9B%E1%83%90%E1%83%AA%E1%83%98%E1%83%9D-%E1%83%AA%E1%83%94%E1%83%9C%E1%83%A2%E1%83%A0%E1%83%98",
+      },
+      {
+        id: 3,
+        image: "/cardImage/sevil.webp",
+        title: {
+          ka: "JENNIFER LOPEZ",
+          en: "JENNIFER LOPEZ",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/21191",
+      },
+      {
+        id: 4,
+        image: "/cardImage/ten.webp",
+        title: {
+          ka: "ECHO EVENTS TH;EN",
+          en: "ECHO EVENTS TH;EN",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23841/echo-events-then",
+      },
+      {
+        id: 5,
+        image: "/cardImage/ero.webp",
+        title: {
+          ka: "ეროვნული სიმპონიური ორკესტრი",
+          en: "National Symphony Orchestra",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/22093/erovnuli-simfoniuri-orkestri",
+      },
+      {
+        id: 6,
+        image: "/cardImage/soho.webp",
+        title: {
+          ka: "SOHO BATUMI - CHINAU",
+          en: "SOHO BATUMI - CHINAU",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23633/soho-batumi-chinau",
+      },
+      {
+        id: 7,
+        image: "/cardImage/mausi.webp",
+        title: {
+          ka: "ავი მუსაიფი",
+          en: "Avi Musaifi",
+        },
+        description: {
+          ka: "თეატრი",
+          en: "Theatre",
+        },
+        href: "https://tkt.ge/show/13255/avi-musaifi",
+      },
+      {
+        id: 8,
+        image: "/cardImage/piano.webp",
+        title: {
+          ka: "თბილისი პიანო ფესტი",
+          en: "Tbilisi Piano Festival",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23780/tbilisi-piano-festi",
+      },
+      {
+        id: 9,
+        image: "/cardImage/sux.webp",
+        title: {
+          ka: "სუხიშვილები 80",
+          en: "Sukhishvili 80",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23806/sukhishvilebi-80",
+      },
+      {
+        id: 10,
+        image: "/cardImage/lisi.webp",
+        title: {
+          ka: "ლისის სამთო ფესტივალი",
+          en: "Lisi Mountain Festival",
+        },
+        description: {
+          ka: "სპორტი",
+          en: "Sports",
+        },
+        href: "https://tkt.ge/show/21716/lisis-samto-festivali",
+      },
+      {
+        id: 11,
+        image: "/cardImage/teatri.webp",
+        title: {
+          ka: "ტკბილი ნოემბერი (პრემიერა)",
+          en: "Sweet November (Premiere)",
+        },
+        description: {
+          ka: "თეატრი",
+          en: "Theatre",
+        },
+        href: "https://tkt.ge/show/23735/tkbili-noemberi-premiera",
+      },
+      {
+        id: 12,
+        image: "/cardImage/magic.webp",
+        title: {
+          ka: "ANDREA CASTA - Magical Night",
+          en: "ANDREA CASTA - Magical Night",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23732/andrea-casta-magical-night",
+      },
+    ],
+    locations: [
+      {
+        title: { ka: "ქუთაისი", en: "Kutaisi" },
+        items: 26,
+        image: "/sights/kutaisi-gnta.webp",
+      },
+      {
+        title: { ka: "ბათუმი", en: "Batumi" },
+        items: 41,
+        image: "/sights/batumi-gnta.webp",
+      },
+      {
+        title: { ka: "თბილისი", en: "Tbilisi" },
+        items: 208,
+        image: "/sights/tbilisi-capital-of-georgia-country.webp",
+      },
+      {
+        title: { ka: "სტეფანწმინდა", en: "Stepantsminda" },
+        items: 19,
+        image: "/sights/stepantsminda-gnta.webp",
+      },
+      {
+        title: { ka: "სიღნაღი", en: "Sighnaghi" },
+        items: 6,
+        image: "/sights/sighnaghi-gnta.webp",
+      },
+      {
+        title: { ka: "მცხეთა", en: "Mtskheta" },
+        items: 23,
+        image: "/sights/mtskheta-gnta.webp",
+      },
+    ],
+  },
+  //  1 index
+  {
+    mainSection: {
+      image: "/sights/tower-of-ushguli.webp",
+      title: { ka: "კულტურული ძეგლები", en: "Cultural Monuments" },
+      description: {
+        ka: "ისტორიითა და კულტურით დაინტერესებულ ადამიანებს საქართველო განუმეორებელ გამოცდილებას სთავაზობს - აქაური კულტურული ძეგლები მოგხიბლავს გასაოცარი არქიტექტურით, დასამახსოვრებელი ფერებითა და უნიკალური სტრუქტურით.",
+        en: "Georgia is a country with a rich architectural heritage, including beautiful churches, castles, and monasteries. Explore the monuments and sculptures that dot the landscape, each with its own unique history and significance. Experience the charm and beauty of Georgia's architecture and discover the country's cultural and historical attractions.",
+      },
+      buttonText: { ka: "მთავარი", en: "Home" },
+      buttonHref: "/",
+      spanText: { ka: "კულტურული ძეგლები", en: "Cultural Monuments" },
+    },
+    descriptionText: {
+      titleKa: "მრავალჯერ გაგონილს ერთხელ ნანახი სჯობს",
+      titleEn: "Better To See Once Than To Hear About It",
+      descriptionKa:
+        "ქართულ კულტურაზე საუბარი დაუსრულებლად შეიძლება, თუმცა გაგონილ ამბებს საკუთარი თვალით ნანახი სჯობს, ამიტომ, ეწვიე ქართულ ქალაქებს, სოფლებს, ტაძრებს, ეზიარე ქართულ ფოლკლორს, ტრადიციებს, დაათვალიერე მუზეუმები, ქუჩაში გამოფენილი ნაკეთობები, დაესწარი სპექტაკლებს, უყურე ქართულ კინოს, დააგემოვნე ქართული კერძები და შენც იამაყე ამ განუმეორებელი ქვეყნის კულტურული მემკვიდრეობით.",
+      descriptionEn:
+        "Equal parts heartrending an heroic, Georgia's history has left both scars and gifts. Thus, they are open to anyone who seeks to learn about these stunning reminders of one of the world's most ancient cultures. \n\n With three properties inscribed in UNESCO's Worlds Heritage List, and fifteen more sites on the tentative list, visiting Georgia is nothing short of a life-changing journey through some of the best historical reminders of a proud nation. \n\n Any Georgia tour package will take you to explore some of the most impressive heritage destinations this country has to offer.",
+    },
+    exploreSnapCard: {
+      labelKa: "გაეცანი ბლოგს",
+      labelEn: "Get Inspired",
+      firstSnap: {
+        img: "/sights/traditsiuli-samosi-qartuli-klasikuri-samosi.webp",
+        titleKa: "ქართული ტრადიციული სამოსი",
+        titleEn: "Traditional Georgian Clothes",
+        descriptionKa:
+          "უნიკალურობა და მრავალფეროვნება ქართული ეროვნული სამოსისა, რომელიც საუკუნეების განმავლობაში იქმნებოდა და დროთა განმავლობაში იცვლებოდა, ქვეყნის გეოგრაფიულმა, სოციალურ-პოლიტიკურმა მდგომარეობამ განაპირობა. მემატიანეების, ჟამთააღმწერლების მიერ მოყოლილი ამბები წარსულის სურათებს აცოცხლებს და წარმოდგენას გვიქმნის იმის შესახებ, როგორ იმოსებოდნენ ჩვენი წინაპრები. მათი სამოსის დეტალები ცხადად ჩანს ძველი ტაძრების ფრესკებიდან, ბარელიეფებიდან და მინიატიურებიდანაც.",
+        descriptionEn:
+          "The geographical and socio-political context of the nation has had an impact on the diversity of Georgian national dress, which has evolved over the centuries. Our understanding of how our ancestors lived or dressed is influenced by the stories that chroniclers have told. Moreover, the precise details of Georgian clothing are depicted on frescoes, bas-reliefs, and miniatures.",
+      },
+      secondSnap: {
+        img: "/sights/why-georgia-georgian-culture.webp",
+        titleKa: "ქართული კულტურა",
+        titleEn: "Georgian Unique Culture",
+        descriptionKa:
+          "ეგზოტიკური, იდუმალი, უნიკალური - თუ ოდესმე გკითხავენ, როგორია ქართული კულტურა, შეგიძლია ამ სამი სიტყვით დაახასიათო. დღეს მსოფლიო საქართველოს ერთ-ერთ ყველაზე სტუმართმოყვარე და თავაზიან ქვეყნად იცნობს.",
+        descriptionEn:
+          "Authentic, ancient, multifaceted - Georgian culture has been evolving for millennia, being a homeland of daring creators and timeless masterpieces. Today Georgia is recognized around the world as one of its most hospitable countries. We love guests, and we are always happy to introduce our culture to people.",
+      },
+      thirdSnap: {
+        img: "/sights/georgian-folklore-dance.webp",
+        titleKa: "გასეირნება ძველ თბილისში",
+        titleEn: "Strolling Through the Tbilisi Old Town",
+        descriptionKa:
+          "ქალაქის ამ უბანს 1936 წლამდე „ტფილისი“ ერქვა, ახლა „ძველი თბილისია“ - ქალაქის ისტორიული ნაწილი და 2007 წლიდან იუნესკოს მსოფლიო მემკვიდრეობის ძეგლთა წევრობის კანდიდატი.",
+        descriptionEn:
+          "Until 1936, this area of ​​the city was called 'Tpilisi.' Today, this historical part of the city is referred to as 'Old Tbilisi' and, what’s more, it has been UNESCO-listed since 2007.",
+      },
+    },
+    museumExhibit: {
+      mainImageSrc: "/sights/museums-in-georgia.webp",
+      detailImage1Src: "/sights/zakaria-paliashvili-museum-gnta.webp",
+      detailImage2Src:
+        "/sights/georgian-national-museum-national-gallery-of-paintings-gnta.webp",
+      heading: { ka: "საქართველოს მუზეუმები", en: "Museums" },
+      description: {
+        ka: "საქართველოს მუზეუმები ინახავს მრავალფეროვან კულტურულ საგანძურს, მათ შორის უძველეს არტეფაქტებს, ხელოვნების ნიმუშებსა და მნიშვნელოვან არქეოლოგიურ აღმოჩენებს. გაეცანით ქვეყნის მდიდარ ისტორიასა და კულტურულ მემკვიდრეობას ამ მომხიბლავი კოლექციების მეშვეობით.",
+        en: "Georgia's museums preserve a variety of cultural treasures, including ancient artifacts, artworks, and significant archaeological discoveries. Explore the country's rich history and cultural heritage through these fascinating collections.",
+      },
+      buttonText: { ka: "გაიგე მეტი", en: "Learn More" },
+      detailText1: {
+        ka: "ზაქარია ფალიაშვილის მუზეუმი",
+        en: "Zakaria Paliashvili Museum",
+      },
+      detailText2: {
+        ka: "საქართველოს ეროვნული გალერეა",
+        en: "National Gallery of Paintings",
+      },
+      topSights: { ka: "აღმოაჩინე", en: "Top Sights" },
+    },
+    destinations: [
+      {
+        id: "1",
+        title: {
+          ka: "ერთდღიანი ტური ქუთ9840აისში",
+          en: "One-Day Tour in Kutaisi",
+        },
+        description: {
+          ka: "ამ ერთდღიანი ტურის ფარგლებში, უდიდესი ისტორიული და კულტურული მნიშვნელობის ხუროთმოძღვრების ძეგლს - გეთალის მონასტერს იხილავ, იმერეთის სიმწვანეში ჩაფლულ ბუნებას დაათვალიერებ და უნიკალური გამოცდილების მისაღებად, მოწამეთას სამონასტრო კომპექსსაც ესტუმრები.",
+          en: "During this one-day tour, you’ll visit the Gelati Monastery, a monument of immense historical and cultural significance, explore the lush nature of Imereti, and visit the Motsameta Monastery Complex for a unique experience.",
+        },
+        image: "/places/kutaisi-view-with-birds.webp",
+        duration: { ka: "30 კმ", en: "30 km" },
+        activities: { ka: "12 სანახაობა", en: "12 attractions" },
+        currency: { ka: "30 კმ", en: "30 km" },
+      },
+      {
+        id: "2",
+        title: { ka: "კანიონების ერთდღიანი ტური", en: "One-Day Canyon Tour" },
+        description: {
+          ka: "აღმოაჩინე დასავლეთ საქართველოს გეოგრაფიური და ბიოლოგიური მრავალფეროვნება, მოიარე ულამაზესი ოკაცესა და მარტვილის კანიონი და იხილე ძირძველი კულტურის მშვენიერი დანატოვარი - მარტვილის მონასტერი. ტურის ფარგლებში ასევე შეხვდები სახლინოს რეზიდენციას და საუკეთესო შთაბეჭდილებებით აივსები.",
+          en: "Discover the geographical and biological diversity of Western Georgia, explore the stunning Okatse and Martvili Canyons, and see the beautiful legacy of ancient culture at the Martvili Monastery. During the tour, you’ll also visit the Salkhino Residence and leave with the best impressions.",
+        },
+        image: "/places/martvili-canyon.webp",
+        duration: { ka: "8-12 სთ", en: "8-12 hours" },
+        activities: {
+          ka: "18 სანახაობა 3 აქტივობა",
+          en: "18 attractions, 3 activities",
+        },
+        currency: { ka: "100 კმ", en: "100 km" },
+      },
+    ],
+    georgianWonders: [
+      {
+        id: "1",
+        name: { ka: "სიღნაღის ხედი", en: "Sighnaghi View" },
+        image: "/sights/georgian-architecture.webp",
+        description: {
+          ka: "სიღნაღი, სადაც ძველი ქართული ხუროთმოძღვრება ბუნებასთან ერთად ქმნის მშვენიერ ხედს.",
+          en: "Sighnaghi, where ancient Georgian architecture blends with stunning natural scenery.",
+        },
+      },
+      {
+        id: "2",
+        name: { ka: "ფერის საიდუმლო", en: "Secret of Colors" },
+        image: "/sights/georgian-arts.webp",
+        description: {
+          ka: "ცნობილი ვიტრაჟები, რომლებიც ქართულ კულტურაში ფერისა და ხელოვნების სიმბოლოა.",
+          en: "Famous stained glass windows symbolizing color and art in Georgian culture.",
+        },
+      },
+      {
+        id: "3",
+        name: { ka: "თბილისის ოპერა", en: "Tbilisi Opera" },
+        image: "/sights/theatre-and-shows-in-georgia.webp",
+        description: {
+          ka: "ისტორიული ნაგებობა, რომელიც ქართულ მუსიკალურ ხელოვნებას აისახავს.",
+          en: "A historic building reflecting Georgian musical artistry.",
+        },
+      },
+      {
+        id: "4",
+        name: { ka: "სვანური მთები", en: "Svaneti Mountains" },
+        image: "/sights/georgian-folklore-dance.webp",
+        description: {
+          ka: "სვანეთის მთები და ტრადიციული სამოსი, რომელიც ქართულ იდენტობას გამოხატავს.",
+          en: "The Svaneti mountains and traditional attire reflecting Georgian identity.",
+        },
+      },
+    ],
+    events: [
+      {
+        id: 1,
+        image: "/sights/76(1).webp",
+        title: {
+          ka: "ქარელის ტურისტული საინფორმაციო ცენტრი ქარელის ტურისტული საინფორმაციო ცენტრი",
+          en: "Clown's Perspective",
+        },
+        description: {
+          ka: "ტურისტული მომსახურება",
+          en: "Theatre",
+        },
+        href: "https://places.georgia.travel/%E1%83%9D%E1%83%91%E1%83%98%E1%83%94%E1%83%A5%E1%83%A2%E1%83%94%E1%83%91%E1%83%98/%E1%83%A5%E1%83%90%E1%83%A0%E1%83%94%E1%83%9A%E1%83%98%E1%83%A1-%E1%83%A2%E1%83%A3%E1%83%A0%E1%83%98%E1%83%A1%E1%83%A2%E1%83%A3%E1%83%9A%E1%83%98-%E1%83%A1%E1%83%90%E1%83%98%E1%83%9C%E1%83%A4%E1%83%9D%E1%83%A0%E1%83%9B%E1%83%90%E1%83%AA%E1%83%98%E1%83%9D-%E1%83%AA%E1%83%94%E1%83%9C%E1%83%A2%E1%83%A0%E1%83%98",
+      },
+      {
+        id: 2,
+        image: "/sights/76(1).webp",
+        title: {
+          ka: "SOHO BATUMI ENDORPHINS",
+          en: "SOHO BATUMI ENDORPHINS",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://places.georgia.travel/%E1%83%9D%E1%83%91%E1%83%98%E1%83%94%E1%83%A5%E1%83%A2%E1%83%94%E1%83%91%E1%83%98/%E1%83%97%E1%83%91%E1%83%98%E1%83%9A%E1%83%98%E1%83%A1%E1%83%98%E1%83%A1-%E1%83%A2%E1%83%A3%E1%83%A0%E1%83%98%E1%83%A1%E1%83%A2%E1%83%A3%E1%83%9A%E1%83%98-%E1%83%A1%E1%83%90%E1%83%98%E1%83%9C%E1%83%A4%E1%83%9D%E1%83%A0%E1%83%9B%E1%83%90%E1%83%AA%E1%83%98%E1%83%9D-%E1%83%AA%E1%83%94%E1%83%9C%E1%83%A2%E1%83%A0%E1%83%98",
+      },
+      {
+        id: 3,
+        image: "/cardImage/sevil.webp",
+        title: {
+          ka: "JENNIFER LOPEZ",
+          en: "JENNIFER LOPEZ",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/21191",
+      },
+      {
+        id: 4,
+        image: "/cardImage/ten.webp",
+        title: {
+          ka: "ECHO EVENTS TH;EN",
+          en: "ECHO EVENTS TH;EN",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23841/echo-events-then",
+      },
+      {
+        id: 5,
+        image: "/cardImage/ero.webp",
+        title: {
+          ka: "ეროვნული სიმპონიური ორკესტრი",
+          en: "National Symphony Orchestra",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/22093/erovnuli-simfoniuri-orkestri",
+      },
+      {
+        id: 6,
+        image: "/cardImage/soho.webp",
+        title: {
+          ka: "SOHO BATUMI - CHINAU",
+          en: "SOHO BATUMI - CHINAU",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23633/soho-batumi-chinau",
+      },
+      {
+        id: 7,
+        image: "/cardImage/mausi.webp",
+        title: {
+          ka: "ავი მუსაიფი",
+          en: "Avi Musaifi",
+        },
+        description: {
+          ka: "თეატრი",
+          en: "Theatre",
+        },
+        href: "https://tkt.ge/show/13255/avi-musaifi",
+      },
+      {
+        id: 8,
+        image: "/cardImage/piano.webp",
+        title: {
+          ka: "თბილისი პიანო ფესტი",
+          en: "Tbilisi Piano Festival",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23780/tbilisi-piano-festi",
+      },
+      {
+        id: 9,
+        image: "/cardImage/sux.webp",
+        title: {
+          ka: "სუხიშვილები 80",
+          en: "Sukhishvili 80",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23806/sukhishvilebi-80",
+      },
+      {
+        id: 10,
+        image: "/cardImage/lisi.webp",
+        title: {
+          ka: "ლისის სამთო ფესტივალი",
+          en: "Lisi Mountain Festival",
+        },
+        description: {
+          ka: "სპორტი",
+          en: "Sports",
+        },
+        href: "https://tkt.ge/show/21716/lisis-samto-festivali",
+      },
+      {
+        id: 11,
+        image: "/cardImage/teatri.webp",
+        title: {
+          ka: "ტკბილი ნოემბერი (პრემიერა)",
+          en: "Sweet November (Premiere)",
+        },
+        description: {
+          ka: "თეატრი",
+          en: "Theatre",
+        },
+        href: "https://tkt.ge/show/23735/tkbili-noemberi-premiera",
+      },
+      {
+        id: 12,
+        image: "/cardImage/magic.webp",
+        title: {
+          ka: "ANDREA CASTA - Magical Night",
+          en: "ANDREA CASTA - Magical Night",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23732/andrea-casta-magical-night",
+      },
+    ],
+    locations: [
+      {
+        title: { ka: "ქუთაისი", en: "Kutaisi" },
+        items: 26,
+        image: "/sights/kutaisi-gnta.webp",
+      },
+      {
+        title: { ka: "ბათუმი", en: "Batumi" },
+        items: 41,
+        image: "/sights/batumi-gnta.webp",
+      },
+      {
+        title: { ka: "თბილისი", en: "Tbilisi" },
+        items: 208,
+        image: "/sights/tbilisi-capital-of-georgia-country.webp",
+      },
+      {
+        title: { ka: "სტეფანწმინდა", en: "Stepantsminda" },
+        items: 19,
+        image: "/sights/stepantsminda-gnta.webp",
+      },
+      {
+        title: { ka: "სიღნაღი", en: "Sighnaghi" },
+        items: 6,
+        image: "/sights/sighnaghi-gnta.webp",
+      },
+      {
+        title: { ka: "მცხეთა", en: "Mtskheta" },
+        items: 23,
+        image: "/sights/mtskheta-gnta.webp",
+      },
+    ],
+  },
+
+  // 2 index
+
+  {
+    mainSection: {
+      image: "/sights/food-and-wine-georgia.webp",
+      title: { ka: "სამზარეულო და ღვინო", en: "Food & Wine" },
+      description: {
+        ka: "ქართული სამზარეულო საუკუნეების განმავლობაში იზიარებდა ევროპისა და ახლო აღმოსავლეთის საუკეთესო ტექნიკებს, ტრადიციებს და ქმნიდა თავის ინდივიდუალურ, დახვეწილ გემოებს. აქაურობა გურმანებს დაუვიწყარ თავგადასავალს ჰპირდება.",
+        en: "Georgia is known for its rich culinary tradition, influenced by the best techniques and traditions of Europe and the East. Its cuisine offers diverse flavors and is a must-taste for foodies and gastronomy enthusiasts. Georgia is also home to the world’s oldest winemaking tradition, offering some of the most unique and authentic wines in the world.",
+      },
+      buttonText: { ka: "მთავარი", en: "Home" },
+      buttonHref: "/",
+      spanText: { ka: "სამზარეულო და ღვინო", en: "Food & Wine" },
+    },
+    descriptionText: {
+      titleKa: "ღვინის დაყენების 8000 წლიანი ტრადიცია",
+      titleEn: "An 8000-Year-Old Winemaking Tradition",
+      descriptionKa:
+        "8000 წლის წინ ქართველებმა უკვე იცოდნენ ქვევრის უნიკალური ტექნოლოგია, რომელიც დღეს მსოფლიოს ერთ-ერთ მოწინავე მეთოდად იქცა. თიხისა და ვაზის ასეთი ხანგრძლივი და ჰარომონიული თანაცხოვრება ადასტურებს თუ რამდენად საინტერესო და გამორჩეულია ქართული ღვინის გზა.",
+      descriptionEn:
+        "The Georgian Qvevri method of wine-making is one of the world’s leading methods and this long and harmonious coexistence of clay and vine has delivered gorgeous results for centuries.",
+    },
+    exploreSnapCard: {
+      labelKa: "გაეცანი ბლოგს",
+      labelEn: "Get Inspired",
+      firstSnap: {
+        img: "/sights/traditsiuli-samosi-qartuli-klasikuri-samosi.webp",
+        titleKa: "ქართული ტრადიციული სამოსი",
+        titleEn: "Traditional Georgian Clothes",
+        descriptionKa:
+          "უნიკალურობა და მრავალფეროვნება ქართული ეროვნული სამოსისა, რომელიც საუკუნეების განმავლობაში იქმნებოდა და დროთა განმავლობაში იცვლებოდა, ქვეყნის გეოგრაფიულმა, სოციალურ-პოლიტიკურმა მდგომარეობამ განაპირობა. მემატიანეების, ჟამთააღმწერლების მიერ მოყოლილი ამბები წარსულის სურათებს აცოცხლებს და წარმოდგენას გვიქმნის იმის შესახებ, როგორ იმოსებოდნენ ჩვენი წინაპრები. მათი სამოსის დეტალები ცხადად ჩანს ძველი ტაძრების ფრესკებიდან, ბარელიეფებიდან და მინიატიურებიდანაც.",
+        descriptionEn:
+          "The geographical and socio-political context of the nation has had an impact on the diversity of Georgian national dress, which has evolved over the centuries. Our understanding of how our ancestors lived or dressed is influenced by the stories that chroniclers have told. Moreover, the precise details of Georgian clothing are depicted on frescoes, bas-reliefs, and miniatures.",
+      },
+      secondSnap: {
+        img: "/sights/why-georgia-georgian-culture.webp",
+        titleKa: "ქართული კულტურა",
+        titleEn: "Georgian Unique Culture",
+        descriptionKa:
+          "ეგზოტიკური, იდუმალი, უნიკალური - თუ ოდესმე გკითხავენ, როგორია ქართული კულტურა, შეგიძლია ამ სამი სიტყვით დაახასიათო. დღეს მსოფლიო საქართველოს ერთ-ერთ ყველაზე სტუმართმოყვარე და თავაზიან ქვეყნად იცნობს.",
+        descriptionEn:
+          "Authentic, ancient, multifaceted - Georgian culture has been evolving for millennia, being a homeland of daring creators and timeless masterpieces. Today Georgia is recognized around the world as one of its most hospitable countries. We love guests, and we are always happy to introduce our culture to people.",
+      },
+      thirdSnap: {
+        img: "/sights/georgian-folklore-dance.webp",
+        titleKa: "გასეირნება ძველ თბილისში",
+        titleEn: "Strolling Through the Tbilisi Old Town",
+        descriptionKa:
+          "ქალაქის ამ უბანს 1936 წლამდე „ტფილისი“ ერქვა, ახლა „ძველი თბილისია“ - ქალაქის ისტორიული ნაწილი და 2007 წლიდან იუნესკოს მსოფლიო მემკვიდრეობის ძეგლთა წევრობის კანდიდატი.",
+        descriptionEn:
+          "Until 1936, this area of ​​the city was called 'Tpilisi.' Today, this historical part of the city is referred to as 'Old Tbilisi' and, what’s more, it has been UNESCO-listed since 2007.",
+      },
+    },
+    museumExhibit: {
+      mainImageSrc: "/sights/museums-in-georgia.webp",
+      detailImage1Src: "/sights/zakaria-paliashvili-museum-gnta.webp",
+      detailImage2Src:
+        "/sights/georgian-national-museum-national-gallery-of-paintings-gnta.webp",
+      heading: { ka: "საქართველოს მუზეუმები", en: "Museums" },
+      description: {
+        ka: "საქართველოს მუზეუმები ინახავს მრავალფეროვან კულტურულ საგანძურს, მათ შორის უძველეს არტეფაქტებს, ხელოვნების ნიმუშებსა და მნიშვნელოვან არქეოლოგიურ აღმოჩენებს. გაეცანით ქვეყნის მდიდარ ისტორიასა და კულტურულ მემკვიდრეობას ამ მომხიბლავი კოლექციების მეშვეობით.",
+        en: "Georgia's museums preserve a variety of cultural treasures, including ancient artifacts, artworks, and significant archaeological discoveries. Explore the country's rich history and cultural heritage through these fascinating collections.",
+      },
+      buttonText: { ka: "გაიგე მეტი", en: "Learn More" },
+      detailText1: {
+        ka: "ზაქარია ფალიაშვილის მუზეუმი",
+        en: "Zakaria Paliashvili Museum",
+      },
+      detailText2: {
+        ka: "საქართველოს ეროვნული გალერეა",
+        en: "National Gallery of Paintings",
+      },
+      topSights: { ka: "აღმოაჩინე", en: "Top Sights" },
+    },
+    destinations: [
+      {
+        id: "1",
+        title: {
+          ka: "ერთდღიანი ტური ქუთ9840აისში",
+          en: "One-Day Tour in Kutaisi",
+        },
+        description: {
+          ka: "ამ ერთდღიანი ტურის ფარგლებში, უდიდესი ისტორიული და კულტურული მნიშვნელობის ხუროთმოძღვრების ძეგლს - გეთალის მონასტერს იხილავ, იმერეთის სიმწვანეში ჩაფლულ ბუნებას დაათვალიერებ და უნიკალური გამოცდილების მისაღებად, მოწამეთას სამონასტრო კომპექსსაც ესტუმრები.",
+          en: "During this one-day tour, you’ll visit the Gelati Monastery, a monument of immense historical and cultural significance, explore the lush nature of Imereti, and visit the Motsameta Monastery Complex for a unique experience.",
+        },
+        image: "/places/kutaisi-view-with-birds.webp",
+        duration: { ka: "30 კმ", en: "30 km" },
+        activities: { ka: "12 სანახაობა", en: "12 attractions" },
+        currency: { ka: "30 კმ", en: "30 km" },
+      },
+      {
+        id: "2",
+        title: { ka: "კანიონების ერთდღიანი ტური", en: "One-Day Canyon Tour" },
+        description: {
+          ka: "აღმოაჩინე დასავლეთ საქართველოს გეოგრაფიური და ბიოლოგიური მრავალფეროვნება, მოიარე ულამაზესი ოკაცესა და მარტვილის კანიონი და იხილე ძირძველი კულტურის მშვენიერი დანატოვარი - მარტვილის მონასტერი. ტურის ფარგლებში ასევე შეხვდები სახლინოს რეზიდენციას და საუკეთესო შთაბეჭდილებებით აივსები.",
+          en: "Discover the geographical and biological diversity of Western Georgia, explore the stunning Okatse and Martvili Canyons, and see the beautiful legacy of ancient culture at the Martvili Monastery. During the tour, you’ll also visit the Salkhino Residence and leave with the best impressions.",
+        },
+        image: "/places/martvili-canyon.webp",
+        duration: { ka: "8-12 სთ", en: "8-12 hours" },
+        activities: {
+          ka: "18 სანახაობა 3 აქტივობა",
+          en: "18 attractions, 3 activities",
+        },
+        currency: { ka: "100 კმ", en: "100 km" },
+      },
+    ],
+    georgianWonders: [
+      {
+        id: "1",
+        name: { ka: "სიღნაღის ხედი", en: "Sighnaghi View" },
+        image: "/sights/georgian-architecture.webp",
+        description: {
+          ka: "სიღნაღი, სადაც ძველი ქართული ხუროთმოძღვრება ბუნებასთან ერთად ქმნის მშვენიერ ხედს.",
+          en: "Sighnaghi, where ancient Georgian architecture blends with stunning natural scenery.",
+        },
+      },
+      {
+        id: "2",
+        name: { ka: "ფერის საიდუმლო", en: "Secret of Colors" },
+        image: "/sights/georgian-arts.webp",
+        description: {
+          ka: "ცნობილი ვიტრაჟები, რომლებიც ქართულ კულტურაში ფერისა და ხელოვნების სიმბოლოა.",
+          en: "Famous stained glass windows symbolizing color and art in Georgian culture.",
+        },
+      },
+      {
+        id: "3",
+        name: { ka: "თბილისის ოპერა", en: "Tbilisi Opera" },
+        image: "/sights/theatre-and-shows-in-georgia.webp",
+        description: {
+          ka: "ისტორიული ნაგებობა, რომელიც ქართულ მუსიკალურ ხელოვნებას აისახავს.",
+          en: "A historic building reflecting Georgian musical artistry.",
+        },
+      },
+      {
+        id: "4",
+        name: { ka: "სვანური მთები", en: "Svaneti Mountains" },
+        image: "/sights/georgian-folklore-dance.webp",
+        description: {
+          ka: "სვანეთის მთები და ტრადიციული სამოსი, რომელიც ქართულ იდენტობას გამოხატავს.",
+          en: "The Svaneti mountains and traditional attire reflecting Georgian identity.",
+        },
+      },
+    ],
+    events: [
+      {
+        id: 1,
+        image: "/sights/76(1).webp",
+        title: {
+          ka: "ქარელის ტურისტული საინფორმაციო ცენტრი ქარელის ტურისტული საინფორმაციო ცენტრი",
+          en: "Clown's Perspective",
+        },
+        description: {
+          ka: "ტურისტული მომსახურება",
+          en: "Theatre",
+        },
+        href: "https://places.georgia.travel/%E1%83%9D%E1%83%91%E1%83%98%E1%83%94%E1%83%A5%E1%83%A2%E1%83%94%E1%83%91%E1%83%98/%E1%83%A5%E1%83%90%E1%83%A0%E1%83%94%E1%83%9A%E1%83%98%E1%83%A1-%E1%83%A2%E1%83%A3%E1%83%A0%E1%83%98%E1%83%A1%E1%83%A2%E1%83%A3%E1%83%9A%E1%83%98-%E1%83%A1%E1%83%90%E1%83%98%E1%83%9C%E1%83%A4%E1%83%9D%E1%83%A0%E1%83%9B%E1%83%90%E1%83%AA%E1%83%98%E1%83%9D-%E1%83%AA%E1%83%94%E1%83%9C%E1%83%A2%E1%83%A0%E1%83%98",
+      },
+      {
+        id: 2,
+        image: "/sights/76(1).webp",
+        title: {
+          ka: "SOHO BATUMI ENDORPHINS",
+          en: "SOHO BATUMI ENDORPHINS",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://places.georgia.travel/%E1%83%9D%E1%83%91%E1%83%98%E1%83%94%E1%83%A5%E1%83%A2%E1%83%94%E1%83%91%E1%83%98/%E1%83%97%E1%83%91%E1%83%98%E1%83%9A%E1%83%98%E1%83%A1%E1%83%98%E1%83%A1-%E1%83%A2%E1%83%A3%E1%83%A0%E1%83%98%E1%83%A1%E1%83%A2%E1%83%A3%E1%83%9A%E1%83%98-%E1%83%A1%E1%83%90%E1%83%98%E1%83%9C%E1%83%A4%E1%83%9D%E1%83%A0%E1%83%9B%E1%83%90%E1%83%AA%E1%83%98%E1%83%9D-%E1%83%AA%E1%83%94%E1%83%9C%E1%83%A2%E1%83%A0%E1%83%98",
+      },
+      {
+        id: 3,
+        image: "/cardImage/sevil.webp",
+        title: {
+          ka: "JENNIFER LOPEZ",
+          en: "JENNIFER LOPEZ",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/21191",
+      },
+      {
+        id: 4,
+        image: "/cardImage/ten.webp",
+        title: {
+          ka: "ECHO EVENTS TH;EN",
+          en: "ECHO EVENTS TH;EN",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23841/echo-events-then",
+      },
+      {
+        id: 5,
+        image: "/cardImage/ero.webp",
+        title: {
+          ka: "ეროვნული სიმპონიური ორკესტრი",
+          en: "National Symphony Orchestra",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/22093/erovnuli-simfoniuri-orkestri",
+      },
+      {
+        id: 6,
+        image: "/cardImage/soho.webp",
+        title: {
+          ka: "SOHO BATUMI - CHINAU",
+          en: "SOHO BATUMI - CHINAU",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23633/soho-batumi-chinau",
+      },
+      {
+        id: 7,
+        image: "/cardImage/mausi.webp",
+        title: {
+          ka: "ავი მუსაიფი",
+          en: "Avi Musaifi",
+        },
+        description: {
+          ka: "თეატრი",
+          en: "Theatre",
+        },
+        href: "https://tkt.ge/show/13255/avi-musaifi",
+      },
+      {
+        id: 8,
+        image: "/cardImage/piano.webp",
+        title: {
+          ka: "თბილისი პიანო ფესტი",
+          en: "Tbilisi Piano Festival",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23780/tbilisi-piano-festi",
+      },
+      {
+        id: 9,
+        image: "/cardImage/sux.webp",
+        title: {
+          ka: "სუხიშვილები 80",
+          en: "Sukhishvili 80",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23806/sukhishvilebi-80",
+      },
+      {
+        id: 10,
+        image: "/cardImage/lisi.webp",
+        title: {
+          ka: "ლისის სამთო ფესტივალი",
+          en: "Lisi Mountain Festival",
+        },
+        description: {
+          ka: "სპორტი",
+          en: "Sports",
+        },
+        href: "https://tkt.ge/show/21716/lisis-samto-festivali",
+      },
+      {
+        id: 11,
+        image: "/cardImage/teatri.webp",
+        title: {
+          ka: "ტკბილი ნოემბერი (პრემიერა)",
+          en: "Sweet November (Premiere)",
+        },
+        description: {
+          ka: "თეატრი",
+          en: "Theatre",
+        },
+        href: "https://tkt.ge/show/23735/tkbili-noemberi-premiera",
+      },
+      {
+        id: 12,
+        image: "/cardImage/magic.webp",
+        title: {
+          ka: "ANDREA CASTA - Magical Night",
+          en: "ANDREA CASTA - Magical Night",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23732/andrea-casta-magical-night",
+      },
+    ],
+    locations: [
+      {
+        title: { ka: "ქუთაისი", en: "Kutaisi" },
+        items: 26,
+        image: "/sights/kutaisi-gnta.webp",
+      },
+      {
+        title: { ka: "ბათუმი", en: "Batumi" },
+        items: 41,
+        image: "/sights/batumi-gnta.webp",
+      },
+      {
+        title: { ka: "თბილისი", en: "Tbilisi" },
+        items: 208,
+        image: "/sights/tbilisi-capital-of-georgia-country.webp",
+      },
+      {
+        title: { ka: "სტეფანწმინდა", en: "Stepantsminda" },
+        items: 19,
+        image: "/sights/stepantsminda-gnta.webp",
+      },
+      {
+        title: { ka: "სიღნაღი", en: "Sighnaghi" },
+        items: 6,
+        image: "/sights/sighnaghi-gnta.webp",
+      },
+      {
+        title: { ka: "მცხეთა", en: "Mtskheta" },
+        items: 23,
+        image: "/sights/mtskheta-gnta.webp",
+      },
+    ],
+  },
+
+  // 3 index
+
+  {
+    mainSection: {
+      image: "/sights/wellness-resorts-georgia.webp",
+      title: { ka: "გამაჯანსაღებელი პროცედურები", en: "Health & Wellness" },
+      description: {
+        ka: "სამკურნალო თვისებებით ცნობილი კლიმატური ზონები, ბალნეოლოგიური კურორტები, თერაპიული და გამაჯანსაღებელი პროცედურები ერთდროულად იქცევა შენი მშვიდი, ჯანმრთელობისთვის სასარგებლო და თავგადასავლებით სავსე დასვენების ადგილად.",
+        en: "Georgia offers a wide range of health and wellness options, including balneological resorts and therapeutic and rejuvenating procedures, all set in stunning natural surroundings. Experience the benefits of Georgia's health and wellness offerings and return home feeling refreshed and revitalized.",
+      },
+      buttonText: { ka: "მთავარი", en: "Home" },
+      buttonHref: "/",
+      spanText: { ka: "გამაჯანსაღებელი პროცედურები", en: "Health & Wellness" },
+    },
+    descriptionText: {
+      titleKa: "ღვინის დაყენების 8000 წლიანი ტრადიცია",
+      titleEn: "An 8000-Year-Old Winemaking Tradition",
+      descriptionKa:
+        "8000 წლის წინ ქართველებმა უკვე იცოდნენ ქვევრის უნიკალური ტექნოლოგია, რომელიც დღეს მსოფლიოს ერთ-ერთ მოწინავე მეთოდად იქცა. თიხისა და ვაზის ასეთი ხანგრძლივი და ჰარომონიული თანაცხოვრება ადასტურებს თუ რამდენად საინტერესო და გამორჩეულია ქართული ღვინის გზა.",
+      descriptionEn:
+        "The Georgian Qvevri method of wine-making is one of the world’s leading methods and this long and harmonious coexistence of clay and vine has delivered gorgeous results for centuries.",
+    },
+    exploreSnapCard: {
+      labelKa: "გაეცანი ბლოგს",
+      labelEn: "Get Inspired",
+      firstSnap: {
+        img: "/sights/traditsiuli-samosi-qartuli-klasikuri-samosi.webp",
+        titleKa: "ქართული ტრადიციული სამოსი",
+        titleEn: "Traditional Georgian Clothes",
+        descriptionKa:
+          "უნიკალურობა და მრავალფეროვნება ქართული ეროვნული სამოსისა, რომელიც საუკუნეების განმავლობაში იქმნებოდა და დროთა განმავლობაში იცვლებოდა, ქვეყნის გეოგრაფიულმა, სოციალურ-პოლიტიკურმა მდგომარეობამ განაპირობა. მემატიანეების, ჟამთააღმწერლების მიერ მოყოლილი ამბები წარსულის სურათებს აცოცხლებს და წარმოდგენას გვიქმნის იმის შესახებ, როგორ იმოსებოდნენ ჩვენი წინაპრები. მათი სამოსის დეტალები ცხადად ჩანს ძველი ტაძრების ფრესკებიდან, ბარელიეფებიდან და მინიატიურებიდანაც.",
+        descriptionEn:
+          "The geographical and socio-political context of the nation has had an impact on the diversity of Georgian national dress, which has evolved over the centuries. Our understanding of how our ancestors lived or dressed is influenced by the stories that chroniclers have told. Moreover, the precise details of Georgian clothing are depicted on frescoes, bas-reliefs, and miniatures.",
+      },
+      secondSnap: {
+        img: "/sights/why-georgia-georgian-culture.webp",
+        titleKa: "ქართული კულტურა",
+        titleEn: "Georgian Unique Culture",
+        descriptionKa:
+          "ეგზოტიკური, იდუმალი, უნიკალური - თუ ოდესმე გკითხავენ, როგორია ქართული კულტურა, შეგიძლია ამ სამი სიტყვით დაახასიათო. დღეს მსოფლიო საქართველოს ერთ-ერთ ყველაზე სტუმართმოყვარე და თავაზიან ქვეყნად იცნობს.",
+        descriptionEn:
+          "Authentic, ancient, multifaceted - Georgian culture has been evolving for millennia, being a homeland of daring creators and timeless masterpieces. Today Georgia is recognized around the world as one of its most hospitable countries. We love guests, and we are always happy to introduce our culture to people.",
+      },
+      thirdSnap: {
+        img: "/sights/georgian-folklore-dance.webp",
+        titleKa: "გასეირნება ძველ თბილისში",
+        titleEn: "Strolling Through the Tbilisi Old Town",
+        descriptionKa:
+          "ქალაქის ამ უბანს 1936 წლამდე „ტფილისი“ ერქვა, ახლა „ძველი თბილისია“ - ქალაქის ისტორიული ნაწილი და 2007 წლიდან იუნესკოს მსოფლიო მემკვიდრეობის ძეგლთა წევრობის კანდიდატი.",
+        descriptionEn:
+          "Until 1936, this area of ​​the city was called 'Tpilisi.' Today, this historical part of the city is referred to as 'Old Tbilisi' and, what’s more, it has been UNESCO-listed since 2007.",
+      },
+    },
+    museumExhibit: {
+      mainImageSrc: "/sights/museums-in-georgia.webp",
+      detailImage1Src: "/sights/zakaria-paliashvili-museum-gnta.webp",
+      detailImage2Src:
+        "/sights/georgian-national-museum-national-gallery-of-paintings-gnta.webp",
+      heading: { ka: "საქართველოს მუზეუმები", en: "Museums" },
+      description: {
+        ka: "საქართველოს მუზეუმები ინახავს მრავალფეროვან კულტურულ საგანძურს, მათ შორის უძველეს არტეფაქტებს, ხელოვნების ნიმუშებსა და მნიშვნელოვან არქეოლოგიურ აღმოჩენებს. გაეცანით ქვეყნის მდიდარ ისტორიასა და კულტურულ მემკვიდრეობას ამ მომხიბლავი კოლექციების მეშვეობით.",
+        en: "Georgia's museums preserve a variety of cultural treasures, including ancient artifacts, artworks, and significant archaeological discoveries. Explore the country's rich history and cultural heritage through these fascinating collections.",
+      },
+      buttonText: { ka: "გაიგე მეტი", en: "Learn More" },
+      detailText1: {
+        ka: "ზაქარია ფალიაშვილის მუზეუმი",
+        en: "Zakaria Paliashvili Museum",
+      },
+      detailText2: {
+        ka: "საქართველოს ეროვნული გალერეა",
+        en: "National Gallery of Paintings",
+      },
+      topSights: { ka: "აღმოაჩინე", en: "Top Sights" },
+    },
+    destinations: [
+      {
+        id: "1",
+        title: {
+          ka: "ერთდღიანი ტური ქუთ9840აისში",
+          en: "One-Day Tour in Kutaisi",
+        },
+        description: {
+          ka: "ამ ერთდღიანი ტურის ფარგლებში, უდიდესი ისტორიული და კულტურული მნიშვნელობის ხუროთმოძღვრების ძეგლს - გეთალის მონასტერს იხილავ, იმერეთის სიმწვანეში ჩაფლულ ბუნებას დაათვალიერებ და უნიკალური გამოცდილების მისაღებად, მოწამეთას სამონასტრო კომპექსსაც ესტუმრები.",
+          en: "During this one-day tour, you’ll visit the Gelati Monastery, a monument of immense historical and cultural significance, explore the lush nature of Imereti, and visit the Motsameta Monastery Complex for a unique experience.",
+        },
+        image: "/places/kutaisi-view-with-birds.webp",
+        duration: { ka: "30 კმ", en: "30 km" },
+        activities: { ka: "12 სანახაობა", en: "12 attractions" },
+        currency: { ka: "30 კმ", en: "30 km" },
+      },
+      {
+        id: "2",
+        title: { ka: "კანიონების ერთდღიანი ტური", en: "One-Day Canyon Tour" },
+        description: {
+          ka: "აღმოაჩინე დასავლეთ საქართველოს გეოგრაფიური და ბიოლოგიური მრავალფეროვნება, მოიარე ულამაზესი ოკაცესა და მარტვილის კანიონი და იხილე ძირძველი კულტურის მშვენიერი დანატოვარი - მარტვილის მონასტერი. ტურის ფარგლებში ასევე შეხვდები სახლინოს რეზიდენციას და საუკეთესო შთაბეჭდილებებით აივსები.",
+          en: "Discover the geographical and biological diversity of Western Georgia, explore the stunning Okatse and Martvili Canyons, and see the beautiful legacy of ancient culture at the Martvili Monastery. During the tour, you’ll also visit the Salkhino Residence and leave with the best impressions.",
+        },
+        image: "/places/martvili-canyon.webp",
+        duration: { ka: "8-12 სთ", en: "8-12 hours" },
+        activities: {
+          ka: "18 სანახაობა 3 აქტივობა",
+          en: "18 attractions, 3 activities",
+        },
+        currency: { ka: "100 კმ", en: "100 km" },
+      },
+    ],
+    georgianWonders: [
+      {
+        id: "1",
+        name: { ka: "სიღნაღის ხედი", en: "Sighnaghi View" },
+        image: "/sights/georgian-architecture.webp",
+        description: {
+          ka: "სიღნაღი, სადაც ძველი ქართული ხუროთმოძღვრება ბუნებასთან ერთად ქმნის მშვენიერ ხედს.",
+          en: "Sighnaghi, where ancient Georgian architecture blends with stunning natural scenery.",
+        },
+      },
+      {
+        id: "2",
+        name: { ka: "ფერის საიდუმლო", en: "Secret of Colors" },
+        image: "/sights/georgian-arts.webp",
+        description: {
+          ka: "ცნობილი ვიტრაჟები, რომლებიც ქართულ კულტურაში ფერისა და ხელოვნების სიმბოლოა.",
+          en: "Famous stained glass windows symbolizing color and art in Georgian culture.",
+        },
+      },
+      {
+        id: "3",
+        name: { ka: "თბილისის ოპერა", en: "Tbilisi Opera" },
+        image: "/sights/theatre-and-shows-in-georgia.webp",
+        description: {
+          ka: "ისტორიული ნაგებობა, რომელიც ქართულ მუსიკალურ ხელოვნებას აისახავს.",
+          en: "A historic building reflecting Georgian musical artistry.",
+        },
+      },
+      {
+        id: "4",
+        name: { ka: "სვანური მთები", en: "Svaneti Mountains" },
+        image: "/sights/georgian-folklore-dance.webp",
+        description: {
+          ka: "სვანეთის მთები და ტრადიციული სამოსი, რომელიც ქართულ იდენტობას გამოხატავს.",
+          en: "The Svaneti mountains and traditional attire reflecting Georgian identity.",
+        },
+      },
+    ],
+    events: [
+      {
+        id: 1,
+        image: "/sights/76(1).webp",
+        title: {
+          ka: "ქარელის ტურისტული საინფორმაციო ცენტრი ქარელის ტურისტული საინფორმაციო ცენტრი",
+          en: "Clown's Perspective",
+        },
+        description: {
+          ka: "ტურისტული მომსახურება",
+          en: "Theatre",
+        },
+        href: "https://places.georgia.travel/%E1%83%9D%E1%83%91%E1%83%98%E1%83%94%E1%83%A5%E1%83%A2%E1%83%94%E1%83%91%E1%83%98/%E1%83%A5%E1%83%90%E1%83%A0%E1%83%94%E1%83%9A%E1%83%98%E1%83%A1-%E1%83%A2%E1%83%A3%E1%83%A0%E1%83%98%E1%83%A1%E1%83%A2%E1%83%A3%E1%83%9A%E1%83%98-%E1%83%A1%E1%83%90%E1%83%98%E1%83%9C%E1%83%A4%E1%83%9D%E1%83%A0%E1%83%9B%E1%83%90%E1%83%AA%E1%83%98%E1%83%9D-%E1%83%AA%E1%83%94%E1%83%9C%E1%83%A2%E1%83%A0%E1%83%98",
+      },
+      {
+        id: 2,
+        image: "/sights/76(1).webp",
+        title: {
+          ka: "SOHO BATUMI ENDORPHINS",
+          en: "SOHO BATUMI ENDORPHINS",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://places.georgia.travel/%E1%83%9D%E1%83%91%E1%83%98%E1%83%94%E1%83%A5%E1%83%A2%E1%83%94%E1%83%91%E1%83%98/%E1%83%97%E1%83%91%E1%83%98%E1%83%9A%E1%83%98%E1%83%A1%E1%83%98%E1%83%A1-%E1%83%A2%E1%83%A3%E1%83%A0%E1%83%98%E1%83%A1%E1%83%A2%E1%83%A3%E1%83%9A%E1%83%98-%E1%83%A1%E1%83%90%E1%83%98%E1%83%9C%E1%83%A4%E1%83%9D%E1%83%A0%E1%83%9B%E1%83%90%E1%83%AA%E1%83%98%E1%83%9D-%E1%83%AA%E1%83%94%E1%83%9C%E1%83%A2%E1%83%A0%E1%83%98",
+      },
+      {
+        id: 3,
+        image: "/cardImage/sevil.webp",
+        title: {
+          ka: "JENNIFER LOPEZ",
+          en: "JENNIFER LOPEZ",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/21191",
+      },
+      {
+        id: 4,
+        image: "/cardImage/ten.webp",
+        title: {
+          ka: "ECHO EVENTS TH;EN",
+          en: "ECHO EVENTS TH;EN",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23841/echo-events-then",
+      },
+      {
+        id: 5,
+        image: "/cardImage/ero.webp",
+        title: {
+          ka: "ეროვნული სიმპონიური ორკესტრი",
+          en: "National Symphony Orchestra",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/22093/erovnuli-simfoniuri-orkestri",
+      },
+      {
+        id: 6,
+        image: "/cardImage/soho.webp",
+        title: {
+          ka: "SOHO BATUMI - CHINAU",
+          en: "SOHO BATUMI - CHINAU",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23633/soho-batumi-chinau",
+      },
+      {
+        id: 7,
+        image: "/cardImage/mausi.webp",
+        title: {
+          ka: "ავი მუსაიფი",
+          en: "Avi Musaifi",
+        },
+        description: {
+          ka: "თეატრი",
+          en: "Theatre",
+        },
+        href: "https://tkt.ge/show/13255/avi-musaifi",
+      },
+      {
+        id: 8,
+        image: "/cardImage/piano.webp",
+        title: {
+          ka: "თბილისი პიანო ფესტი",
+          en: "Tbilisi Piano Festival",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23780/tbilisi-piano-festi",
+      },
+      {
+        id: 9,
+        image: "/cardImage/sux.webp",
+        title: {
+          ka: "სუხიშვილები 80",
+          en: "Sukhishvili 80",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23806/sukhishvilebi-80",
+      },
+      {
+        id: 10,
+        image: "/cardImage/lisi.webp",
+        title: {
+          ka: "ლისის სამთო ფესტივალი",
+          en: "Lisi Mountain Festival",
+        },
+        description: {
+          ka: "სპორტი",
+          en: "Sports",
+        },
+        href: "https://tkt.ge/show/21716/lisis-samto-festivali",
+      },
+      {
+        id: 11,
+        image: "/cardImage/teatri.webp",
+        title: {
+          ka: "ტკბილი ნოემბერი (პრემიერა)",
+          en: "Sweet November (Premiere)",
+        },
+        description: {
+          ka: "თეატრი",
+          en: "Theatre",
+        },
+        href: "https://tkt.ge/show/23735/tkbili-noemberi-premiera",
+      },
+      {
+        id: 12,
+        image: "/cardImage/magic.webp",
+        title: {
+          ka: "ANDREA CASTA - Magical Night",
+          en: "ANDREA CASTA - Magical Night",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://tkt.ge/show/23732/andrea-casta-magical-night",
+      },
+    ],
+    locations: [
+      {
+        title: { ka: "ქუთაისი", en: "Kutaisi" },
+        items: 26,
+        image: "/sights/kutaisi-gnta.webp",
+      },
+      {
+        title: { ka: "ბათუმი", en: "Batumi" },
+        items: 41,
+        image: "/sights/batumi-gnta.webp",
+      },
+      {
+        title: { ka: "თბილისი", en: "Tbilisi" },
+        items: 208,
+        image: "/sights/tbilisi-capital-of-georgia-country.webp",
+      },
+      {
+        title: { ka: "სტეფანწმინდა", en: "Stepantsminda" },
+        items: 19,
+        image: "/sights/stepantsminda-gnta.webp",
+      },
+      {
+        title: { ka: "სიღნაღი", en: "Sighnaghi" },
+        items: 6,
+        image: "/sights/sighnaghi-gnta.webp",
+      },
+      {
+        title: { ka: "მცხეთა", en: "Mtskheta" },
+        items: 23,
+        image: "/sights/mtskheta-gnta.webp",
+      },
+    ],
+  },
+
+  // 4 index
+
+  {
+    mainSection: {
+      image: "/sights/city-breaks-georgia.webp",
+      title: { ka: "ქალაქში დასვენება", en: "City Breaks" },
+      description: {
+        ka: "საქართველოს ქალაქებში თითქოს მთელი სამყაროა მოქცეული - ძველი და ახალი, პირქუშიც და მხიარულიც. ყველა ქალაქს აქ თავისი განსაკუთრებული ხიბლი და ხასიათი აქვს.",
+        en: "Georgia's cities have a unique charm and character, with a wide range of attractions and activities to keep visitors entertained. From the vibrant capital city of Tbilisi to the laid-back coastal city of Batumi, Georgia has something for everyone. Plan a city break in Georgia and discover all that our amazing country has to offer.",
+      },
+      buttonText: { ka: "მთავარი", en: "Home" },
+      buttonHref: "/",
+      spanText: { ka: "ქალაქში დასვენება", en: "City Breaks" },
+    },
+    descriptionText: {
+      titleKa: "ზაფხულის და ზამთრის სეზონი",
+      titleEn: "Summer And Winter",
+      descriptionKa:
+        "ზაფხულში აუცილებლად უნდა ესტუმრო შავი ზღვისპირეთის ქალაქებს, სადაც ყველა გემოვნების დამსვენებლისთვის შესაფერისი კომფორტია შექმნილი. აქ ბავშვებთან ერთადაც დაისვენებ და მეგობრებთან ერთად, არდადეგებსაც მოიწყობ. ზაფხული საქართველოში ფესტივალების ხანაა და დიდი ქალაქები ამითაც გამორჩეულნი არიან. რაც შეეხება ზამთარს, თოვლიან მთებზე სრიალს, ტურნირებს, სკიტურს და პარაპლანით ფრენას ისეთი უნიკალური ქალაქები შემოგთავაზებენ, როგორებიც მესტია და ყაზბეგია.",
+      descriptionEn:
+        "In summer, visit the towns and cities along the shores of the Black Sea, where you can relax with your children or friends. Summer is festival season in Georgia, and the larger towns and cities are packed with partying people. Meanwhile, in winter, skiing, snowboarding, and backcountry tours are the ideal ways to have fun in the snowy mountains around Mestia, Bakuriani, Goderdzi, and Gudauri. If you don’t like winter sports, enjoy the snowy views with a glass of hot tea or mulled wine!",
+    },
+    exploreSnapCard: {
+      labelKa: "გაეცანი ბლოგს",
+      labelEn: "Get Inspired",
+      firstSnap: {
+        img: "/sights/traditsiuli-samosi-qartuli-klasikuri-samosi.webp",
+        titleKa: "ქართული ტრადიციული სამოსი",
+        titleEn: "Traditional Georgian Clothes",
+        descriptionKa:
+          "უნიკალურობა და მრავალფეროვნება ქართული ეროვნული სამოსისა, რომელიც საუკუნეების განმავლობაში იქმნებოდა და დროთა განმავლობაში იცვლებოდა, ქვეყნის გეოგრაფიულმა, სოციალურ-პოლიტიკურმა მდგომარეობამ განაპირობა. მემატიანეების, ჟამთააღმწერლების მიერ მოყოლილი ამბები წარსულის სურათებს აცოცხლებს და წარმოდგენას გვიქმნის იმის შესახებ, როგორ იმოსებოდნენ ჩვენი წინაპრები. მათი სამოსის დეტალები ცხადად ჩანს ძველი ტაძრების ფრესკებიდან, ბარელიეფებიდან და მინიატიურებიდანაც.",
+        descriptionEn:
+          "The geographical and socio-political context of the nation has had an impact on the diversity of Georgian national dress, which has evolved over the centuries. Our understanding of how our ancestors lived or dressed is influenced by the stories that chroniclers have told. Moreover, the precise details of Georgian clothing are depicted on frescoes, bas-reliefs, and miniatures.",
+      },
+      secondSnap: {
+        img: "/sights/why-georgia-georgian-culture.webp",
+        titleKa: "ქართული კულტურა",
+        titleEn: "Georgian Unique Culture",
+        descriptionKa:
+          "ეგზოტიკური, იდუმალი, უნიკალური - თუ ოდესმე გკითხავენ, როგორია ქართული კულტურა, შეგიძლია ამ სამი სიტყვით დაახასიათო. დღეს მსოფლიო საქართველოს ერთ-ერთ ყველაზე სტუმართმოყვარე და თავაზიან ქვეყნად იცნობს.",
+        descriptionEn:
+          "Authentic, ancient, multifaceted - Georgian culture has been evolving for millennia, being a homeland of daring creators and timeless masterpieces. Today Georgia is recognized around the world as one of its most hospitable countries. We love guests, and we are always happy to introduce our culture to people.",
+      },
+      thirdSnap: {
+        img: "/sights/georgian-folklore-dance.webp",
+        titleKa: "გასეირნება ძველ თბილისში",
+        titleEn: "Strolling Through the Tbilisi Old Town",
+        descriptionKa:
+          "ქალაქის ამ უბანს 1936 წლამდე „ტფილისი“ ერქვა, ახლა „ძველი თბილისია“ - ქალაქის ისტორიული ნაწილი და 2007 წლიდან იუნესკოს მსოფლიო მემკვიდრეობის ძეგლთა წევრობის კანდიდატი.",
+        descriptionEn:
+          "Until 1936, this area of ​​the city was called 'Tpilisi.' Today, this historical part of the city is referred to as 'Old Tbilisi' and, what’s more, it has been UNESCO-listed since 2007.",
+      },
+    },
+    museumExhibit: {
+      mainImageSrc: "/sights/museums-in-georgia.webp",
+      detailImage1Src: "/sights/zakaria-paliashvili-museum-gnta.webp",
+      detailImage2Src:
+        "/sights/georgian-national-museum-national-gallery-of-paintings-gnta.webp",
+      heading: { ka: "საქართველოს მუზეუმები", en: "Museums" },
+      description: {
+        ka: "საქართველოს მუზეუმები ინახავს მრავალფეროვან კულტურულ საგანძურს, მათ შორის უძველეს არტეფაქტებს, ხელოვნების ნიმუშებსა და მნიშვნელოვან არქეოლოგიურ აღმოჩენებს. გაეცანით ქვეყნის მდიდარ ისტორიასა და კულტურულ მემკვიდრეობას ამ მომხიბლავი კოლექციების მეშვეობით.",
+        en: "Georgia's museums preserve a variety of cultural treasures, including ancient artifacts, artworks, and significant archaeological discoveries. Explore the country's rich history and cultural heritage through these fascinating collections.",
+      },
+      buttonText: { ka: "გაიგე მეტი", en: "Learn More" },
+      detailText1: {
+        ka: "ზაქარია ფალიაშვილის მუზეუმი",
+        en: "Zakaria Paliashvili Museum",
+      },
+      detailText2: {
+        ka: "საქართველოს ეროვნული გალერეა",
+        en: "National Gallery of Paintings",
+      },
+      topSights: { ka: "აღმოაჩინე", en: "Top Sights" },
+    },
+    destinations: [
+      {
+        id: "1",
+        title: {
+          ka: "ერთდღიანი ტური ქუთ9840აისში",
+          en: "One-Day Tour in Kutaisi",
+        },
+        description: {
+          ka: "ამ ერთდღიანი ტურის ფარგლებში, უდიდესი ისტორიული და კულტურული მნიშვნელობის ხუროთმოძღვრების ძეგლს - გეთალის მონასტერს იხილავ, იმერეთის სიმწვანეში ჩაფლულ ბუნებას დაათვალიერებ და უნიკალური გამოცდილების მისაღებად, მოწამეთას სამონასტრო კომპექსსაც ესტუმრები.",
+          en: "During this one-day tour, you’ll visit the Gelati Monastery, a monument of immense historical and cultural significance, explore the lush nature of Imereti, and visit the Motsameta Monastery Complex for a unique experience.",
+        },
+        image: "/places/kutaisi-view-with-birds.webp",
+        duration: { ka: "30 კმ", en: "30 km" },
+        activities: { ka: "12 სანახაობა", en: "12 attractions" },
+        currency: { ka: "30 კმ", en: "30 km" },
+      },
+      {
+        id: "2",
+        title: { ka: "კანიონების ერთდღიანი ტური", en: "One-Day Canyon Tour" },
+        description: {
+          ka: "აღმოაჩინე დასავლეთ საქართველოს გეოგრაფიური და ბიოლოგიური მრავალფეროვნება, მოიარე ულამაზესი ოკაცესა და მარტვილის კანიონი და იხილე ძირძველი კულტურის მშვენიერი დანატოვარი - მარტვილის მონასტერი. ტურის ფარგლებში ასევე შეხვდები სახლინოს რეზიდენციას და საუკეთესო შთაბეჭდილებებით აივსები.",
+          en: "Discover the geographical and biological diversity of Western Georgia, explore the stunning Okatse and Martvili Canyons, and see the beautiful legacy of ancient culture at the Martvili Monastery. During the tour, you’ll also visit the Salkhino Residence and leave with the best impressions.",
+        },
+        image: "/places/martvili-canyon.webp",
+        duration: { ka: "8-12 სთ", en: "8-12 hours" },
+        activities: {
+          ka: "18 სანახაობა 3 აქტივობა",
+          en: "18 attractions, 3 activities",
+        },
+        currency: { ka: "100 კმ", en: "100 km" },
+      },
+    ],
+    georgianWonders: [
+      {
+        id: "1",
+        name: { ka: "სიღნაღის ხედი", en: "Sighnaghi View" },
+        image: "/sights/georgian-architecture.webp",
+        description: {
+          ka: "სიღნაღი, სადაც ძველი ქართული ხუროთმოძღვრება ბუნებასთან ერთად ქმნის მშვენიერ ხედს.",
+          en: "Sighnaghi, where ancient Georgian architecture blends with stunning natural scenery.",
+        },
+      },
+      {
+        id: "2",
+        name: { ka: "ფერის საიდუმლო", en: "Secret of Colors" },
+        image: "/sights/georgian-arts.webp",
+        description: {
+          ka: "ცნობილი ვიტრაჟები, რომლებიც ქართულ კულტურაში ფერისა და ხელოვნების სიმბოლოა.",
+          en: "Famous stained glass windows symbolizing color and art in Georgian culture.",
+        },
+      },
+      {
+        id: "3",
+        name: { ka: "თბილისის ოპერა", en: "Tbilisi Opera" },
+        image: "/sights/theatre-and-shows-in-georgia.webp",
+        description: {
+          ka: "ისტორიული ნაგებობა, რომელიც ქართულ მუსიკალურ ხელოვნებას აისახავს.",
+          en: "A historic building reflecting Georgian musical artistry.",
+        },
+      },
+      {
+        id: "4",
+        name: { ka: "სვანური მთები", en: "Svaneti Mountains" },
+        image: "/sights/georgian-folklore-dance.webp",
+        description: {
+          ka: "სვანეთის მთები და ტრადიციული სამოსი, რომელიც ქართულ იდენტობას გამოხატავს.",
+          en: "The Svaneti mountains and traditional attire reflecting Georgian identity.",
+        },
+      },
+    ],
+    events: [
+      {
+        id: 1,
+        image: "/sights/76(1).webp",
+        title: {
+          ka: "ქარელის ტურისტული საინფორმაციო ცენტრი ქარელის ტურისტული საინფორმაციო ცენტრი",
+          en: "Clown's Perspective",
+        },
+        description: {
+          ka: "ტურისტული მომსახურება",
+          en: "Theatre",
+        },
+        href: "https://places.georgia.travel/%E1%83%9D%E1%83%91%E1%83%98%E1%83%94%E1%83%A5%E1%83%A2%E1%83%94%E1%83%91%E1%83%98/%E1%83%A5%E1%83%90%E1%83%A0%E1%83%94%E1%83%9A%E1%83%98%E1%83%A1-%E1%83%A2%E1%83%A3%E1%83%A0%E1%83%98%E1%83%A1%E1%83%A2%E1%83%A3%E1%83%9A%E1%83%98-%E1%83%A1%E1%83%90%E1%83%98%E1%83%9C%E1%83%A4%E1%83%9D%E1%83%A0%E1%83%9B%E1%83%90%E1%83%AA%E1%83%98%E1%83%9D-%E1%83%AA%E1%83%94%E1%83%9C%E1%83%A2%E1%83%A0%E1%83%98",
+      },
+      {
+        id: 2,
+        image: "/sights/76(1).webp",
+        title: {
+          ka: "SOHO BATUMI ENDORPHINS",
+          en: "SOHO BATUMI ENDORPHINS",
+        },
+        description: {
+          ka: "კონცერტები",
+          en: "Concerts",
+        },
+        href: "https://places.georgia.travel/%E1%83%9D%E1%83%91%E1%83%98%E1%83%94%E1%83%A5%E1%83%A2%E1%83%94%E1%83%91%E1%83%98/%E1%83%97%E1%83%91%E1%83%98%E1%83%9A%E1%83%98%E1%83%A1%E1%83%98%E1%83%A1-%E1%83%A2%E1%83%A3%E1%83%A0%E1%83%98%E1%83%A1%E1%83%A2%E1%83%A3%E1%83%9A%E1%83%98-%E1%83%A1%E1%83%90%E1%83%98%E1%83%9C%E1%83%A4%E1%83%9D%E1%83%A0%E1%83%9B%E1%83%90%E1%83%AA%E1%83%98%E1%83%9D-%E1%83%AA%E1%83%94%E1%83%9C%E1%83%A2%E1%83%A0%E1%83%98",
       },
       {
         id: 3,

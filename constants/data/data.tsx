@@ -414,17 +414,17 @@ export const navItems: NavItem[] = [
           {
             text: "კულტურული ძეგლები",
             textEn: "Cultural Monuments",
-            href: "/sights/svetitskhoveli",
+            href: "/sights/cultural-monuments",
           },
           {
             text: "სამზარეულო და ღვინო",
             textEn: "Cuisine and Wine",
-            href: "/sights/ushguli",
+            href: "/sights/food-wine",
           },
           {
             text: "გამაჯანსაღებელი პროცედურები",
             textEn: "Wellness Activities",
-            href: "/sights/gelati",
+            href: "/sights/health-and-wellness",
           },
           {
             text: "საოჯახო სანახაობები",
@@ -434,7 +434,7 @@ export const navItems: NavItem[] = [
           {
             text: "დასვენება ქალაქში",
             textEn: "City Leisure",
-            href: "/sights/bridge-of-peace",
+            href: "/sights/city-breaks",
           },
         ],
       },
@@ -461,16 +461,6 @@ export const navItems: NavItem[] = [
             text: "საქართველოს ეროვნული მუზეუმი",
             textEn: "National Museum of Georgia",
             href: "/sights/chkhorotsku",
-          },
-          {
-            text: "დავითგარეჯი",
-            textEn: "David Gareji",
-            href: "/sights/batumi-forest",
-          },
-          {
-            text: "ბოლნისის სიონი",
-            textEn: "Bolnisi Sioni",
-            href: "/sights/alaverdi",
           },
         ],
       },
