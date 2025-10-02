@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-![Next.js georgia travel image](public/georgia-travel-image.png)
+![Next.js georgia travel image](public/georgia-travel-img.png)
 
 ## Getting Started
 
