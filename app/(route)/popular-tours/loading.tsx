@@ -1,7 +1,7 @@
-import { RippleWaveLoader } from "@/components/loaderSpiner/RippleWaveLoader";
+import { LoaderSpinner } from "@/components/loaderSpiner/RippleWaveLoader";
 
 function loading() {
-  return <RippleWaveLoader />;
+  return <LoaderSpinner />;
 }
 
 export default loading;
