@@ -471,7 +471,7 @@ export const navItems: NavItem[] = [
           {
             text: "",
             textEn: "",
-            href: "/sdsd",
+            href: "/card/Svetitskhoveli",
             image: "/flags/svetitskhoveli-cathedral-gnta.webp",
           },
           {
@@ -500,14 +500,14 @@ export const navItems: NavItem[] = [
             href: "/nature-adventures/winter-adventures",
           },
           {
-            text: "საზაპხულო თავგადასავლები",
-            textEn: "Summer Adventures",
-            href: "/nature/truso",
+            text: "ბუნების ძეგლები",
+            textEn: "Natural Wonders",
+            href: "/nature-adventures/natural-wonders",
           },
           {
-            text: "ეროვნული პარკები",
-            textEn: "National Parks",
-            href: "/nature/martvili-canyon",
+            text: "საზაფხულო აქტივობები",
+            textEn: "Summer Adventures",
+            href: "/nature-adventures/summer-adventures",
           },
           { text: "მთები", textEn: "Mountains", href: "/nature/kinchkha" },
           { text: "ტბები", textEn: "Lakes", href: "/nature/dedoflis-tsqaro" },
@@ -523,30 +523,34 @@ export const navItems: NavItem[] = [
         titleEn: "Top Attractions",
         items: [
           {
-            text: "პრომეთეს მღვიმე",
-            textEn: "Prometheus Cave",
-            href: "/nature/borjomi",
-          },
-          {
-            text: "მუსიკოსების პარკი",
-            textEn: "Musicians Park",
-            href: "/nature/lagodekhi",
-          },
-          {
             text: "ოკაცეს კანიონი",
             textEn: "Okatse Canyon",
-            href: "/nature/okace",
-          },
-          { text: "ვარძია", textEn: "Vardzia", href: "/nature/chkhorotsku" },
-          {
-            text: "ძამას ხეობა",
-            textEn: "Dzama Valley",
-            href: "/nature/abastumani",
+            href: "card/Martvili%20Canyon",
           },
           {
-            text: "შაორის ტბა",
-            textEn: "Shaori Lake",
-            href: "/nature/samtskhe",
+            text: "აბუდელაურის ტბები",
+            textEn: "Abudelauri Lakes",
+            href: "/card/Abudelauri%20Colored%20Lakes",
+          },
+          {
+            text: "სათაფლიის მღვიმე და ნაკრძალი",
+            textEn: "Sataplia Cave",
+            href: "/card/Sataplia%20Cave",
+          },
+          {
+            text: "გოგნის წმ. გიორგის ეკლესია",
+            textEn: "St. George's Church in Gogni",
+            href: "/card/St.%20George's%20Church%20in%20Gogni",
+          },
+          {
+            text: "ვარძია",
+            textEn: "Vardzia",
+            href: "/card/Vardzia",
+          },
+          {
+            text: "ხვამლის მთა",
+            textEn: "Khvamli Mountain",
+            href: "/card/Khvamli%20Mountain",
           },
         ],
       },
@@ -617,19 +621,24 @@ export const navItems: NavItem[] = [
         titleEn: "Essential Information about Georgia",
         items: [
           {
-            text: "სამედიცინო ინფორმაცია",
-            textEn: "Medical Information",
-            href: "/info/weather",
+            text: "შიდა ფრენები",
+            textEn: "Domestic Flights",
+            href: "/info/Domestic%20Flights",
           },
           {
-            text: "უქმე დღეები საქართველოში",
-            textEn: "Public Holidays in Georgia",
-            href: "/info/map",
+            text: "საინფორმაციო",
+            textEn: "Information",
+            href: "/info/Information",
           },
           {
-            text: "ამინდი და სეზონურობა",
-            textEn: "Weather and Seasonality",
-            href: "/info/attractions",
+            text: "მგზავრობის დრო და მანძილი",
+            textEn: "Travel Time and Distance",
+            href: "/info/Travel%20Time%20and%20Distance",
+          },
+          {
+            text: "საბაჟო",
+            textEn: "Customs",
+            href: "/info/Customs",
           },
         ],
       },
