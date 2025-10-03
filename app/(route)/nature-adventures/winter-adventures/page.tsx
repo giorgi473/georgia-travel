@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import ImageContent from "@/components/modules/ImageContent";
@@ -14,27 +14,57 @@ import GeorgianWonders from "@/components/GeorgianWonders";
 import { Map } from "@/components/Map";
 import DestinationHighlightCard from "@/components/DestinationHighlightCard";
 import FeaturedLocations from "@/components/modules/FeaturedLocations";
-import { componentAttributes } from "@/constants/data/natureData";
+import { ComponentAttributes } from "@/constants/data/natureData";
+import { LoaderSpinner } from "@/components/loaderSpiner/RippleWaveLoader";
 
 function NaturePage() {
   const { currentLanguage } = useLanguage();
+  const [data, setData] = useState<ComponentAttributes[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const res = await fetch("/api/nature-adventures");
+        const result = await res.json();
+        setTimeout(() => {
+          setData(result.data);
+        }, 1000);
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading || !data.length) {
+    return (
+      <div>
+        <LoaderSpinner />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-24">
       <section>
-        <ImageContent {...componentAttributes[0].mainSection} />
+        <ImageContent {...data[0].mainSection} />
       </section>
       <section>
-        <DescriptionText {...componentAttributes[0].descriptionText} />
+        <DescriptionText {...data[0].descriptionText} />
       </section>
       <section className="container mx-auto px-5 sm:px-8 md:px-8 lg:px-11 py-8">
-        <ExploreSnapCard {...componentAttributes[0].exploreSnapCard} />
+        <ExploreSnapCard {...data[0].exploreSnapCard} />
       </section>
       <section>
         <CardSwiperSlider />
       </section>
       <section>
-        <MuseumExhibit {...componentAttributes[0].museumExhibit} />
+        <MuseumExhibit {...data[0].museumExhibit} />
       </section>
       <section className="container mx-auto px-5 sm:pl-8 sm:pr-7 md:pl-8 md:pr-7 lg:pl-11 lg:pr-10 py-8">
         <h2 className="mb-5 text-md sm:text-lg font-bold flex items-center gap-2">
@@ -42,7 +72,7 @@ function NaturePage() {
           {currentLanguage === "ka" ? "პოპულარული ტურები" : "Popular Tours"}
         </h2>
         <div className="grid md:grid-cols-2 gap-8 items-stretch">
-          {componentAttributes[0].destinations.map((destination) => (
+          {data[0].destinations.map((destination) => (
             <DestinationCard
               key={destination.id}
               {...destination}
@@ -63,16 +93,16 @@ function NaturePage() {
         />
       </section>
       <section>
-        <GeorgianWonders wonders={componentAttributes[0].georgianWonders} />
+        <GeorgianWonders wonders={data[0].georgianWonders} />
       </section>
       <section className="px-5 lg:px-0">
         <Map />
       </section>
       <section>
-        <DestinationHighlightCard events={componentAttributes[0].events} />
+        <DestinationHighlightCard events={data[0].events} />
       </section>
       <section>
-        <FeaturedLocations locations={componentAttributes[0].locations} />
+        <FeaturedLocations locations={data[0].locations} />
       </section>
     </div>
   );
