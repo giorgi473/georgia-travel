@@ -61,7 +61,6 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
         alt={`Thumbnail ${index + 1}`}
         fill
         className="object-cover rounded-md"
-        quality={75}
       />
     </div>
   );
@@ -124,8 +123,6 @@ const SwiperSliderImage = forwardRef(() => {
                 alt={`Slide ${index + 1}`}
                 fill
                 className="object-cover"
-                priority={index === 0}
-                quality={85}
               />
               <div className="absolute inset-0 bg-black opacity-50"></div>
               <div className="absolute inset-0 flex flex-col justify-center px-5 sm:px-8 md:px-8 lg:px-11 container mx-auto z-50 text-white">
