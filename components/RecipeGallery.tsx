@@ -6,6 +6,7 @@ import { motion, useInView, useAnimation } from "framer-motion";
 import { ArrowRight, Heart } from "lucide-react";
 import ButtonWrapper from "@/components/ButtonWrapper";
 import { useLanguage } from "@/context/LanguageContext";
+import { useRouter } from "next/navigation";
 
 export interface CardItem {
   image: string;
@@ -48,6 +49,7 @@ function RecipeGallery({ items }: RecipeGalleryProps) {
   const [heartActive, setHeartActive] = useState<{ [key: number]: boolean }>(
     {}
   );
+  const router = useRouter();
 
   useEffect(() => {
     if (isInView) {
@@ -56,7 +58,7 @@ function RecipeGallery({ items }: RecipeGalleryProps) {
   }, [isInView, controls]);
 
   const handleButtonClick = () => {
-    alert("Button clicked!");
+    router.push(`/kitchen-and-wine`);
   };
 
   const handleHeartClick = (index: number) => {
