@@ -1,14 +1,27 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
 interface ExperienceControlsProps {
   currentLanguage: "ka" | "en";
+  onSortChange?: (isTopStatus: boolean) => void;
+  initialSortState?: boolean;
 }
 
-function ExperienceControls({ currentLanguage }: ExperienceControlsProps) {
+function ExperienceControls({
+  currentLanguage,
+  onSortChange,
+  initialSortState = false,
+}: ExperienceControlsProps) {
+  const [isTopStatus, setIsTopStatus] = useState(initialSortState);
+
+  useEffect(() => {
+    setIsTopStatus(initialSortState);
+  }, [initialSortState]);
+
   const translations = {
     ka: {
       showingResult: "ძიების შედეგი:",
@@ -25,6 +38,13 @@ function ExperienceControls({ currentLanguage }: ExperienceControlsProps) {
   };
 
   const t = translations[currentLanguage];
+
+  const handleSwitchChange = (checked: boolean) => {
+    setIsTopStatus(checked);
+    if (onSortChange) {
+      onSortChange(checked);
+    }
+  };
 
   return (
     <div className="container mx-auto space-y-5 px-5 sm:px-8 md:px-8 lg:px-10">
@@ -43,7 +63,11 @@ function ExperienceControls({ currentLanguage }: ExperienceControlsProps) {
             <p className="text-xs text-gray-600">{t.sortBy}</p>
             <Label htmlFor="top-status">{t.topStatus}</Label>
           </div>
-          <Switch id="top-status" />
+          <Switch
+            id="top-status"
+            checked={isTopStatus}
+            onCheckedChange={handleSwitchChange}
+          />
         </div>
       </div>
       <hr />
