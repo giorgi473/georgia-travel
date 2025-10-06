@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 export interface CardItem {
   image: string;
+  href?: string;
   header: {
     ka: string;
     en: string;
@@ -138,6 +139,7 @@ function RecipeGallery({ items }: RecipeGalleryProps) {
                   width={200}
                   height={120}
                   className="w-full h-full object-cover rounded-lg hover:scale-110 transition-all duration-300 ease-in-out"
+                  onClick={() => router.push(`${item.href}`)}
                 />
                 <div
                   className="absolute top-5 right-5"

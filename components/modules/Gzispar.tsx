@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
+import { useRouter } from "next/navigation";
 
 interface GzisparProps {
   imageSrc: string;
@@ -12,6 +13,7 @@ interface GzisparProps {
   descriptionEn: string;
   buttonTextKa?: string;
   buttonTextEn?: string;
+  href?: string;
 }
 
 function Gzispar({
@@ -22,12 +24,14 @@ function Gzispar({
   descriptionEn,
   buttonTextKa = "გაგიმარჯოს!",
   buttonTextEn = "Cheers!",
+  href,
 }: GzisparProps) {
   const { currentLanguage } = useLanguage();
 
   const title = currentLanguage === "ka" ? titleKa : titleEn;
   const description = currentLanguage === "ka" ? descriptionKa : descriptionEn;
   const buttonText = currentLanguage === "ka" ? buttonTextKa : buttonTextEn;
+  const router = useRouter();
 
   return (
     <div className="relative w-full h-[500px] sm:h-[500px] md:h-[600px] lg:h-[600px] flex items-center justify-center">
@@ -49,7 +53,10 @@ function Gzispar({
           <div className="text-sm w-[95%] sm:w-[90%] md:w-[90%] lg:w-[65%] sm:text-base md:text-lg lg:text-lg py-2 mb-8 sm:mb-8 md:mb-8">
             {description}
           </div>
-          <button className="border-2 rounded-lg cursor-pointer w-fit px-5 py-1 sm:py-2 md:py-3 border-red-500 hover:bg-red-500 transition-all duration-300 ease-in-out">
+          <button
+            onClick={() => router.push(`${href}`)}
+            className="border-2 rounded-lg cursor-pointer w-fit px-5 py-1 sm:py-2 md:py-3 border-red-500 hover:bg-red-500 transition-all duration-300 ease-in-out"
+          >
             {buttonText}
           </button>
         </div>

@@ -38,6 +38,7 @@ export default function Home() {
           descriptionEn="Wine was first made 8000 years ago in Georgia. One of the two winemaking technologies existing in the world - the technology of making wine in qvevri, is specifically Georgian."
           buttonTextKa="გაგიმარჯოს!"
           buttonTextEn="Cheers!"
+          href="/why-georgia/georgia-as-the-cradle-of-wine"
         />
       </section>
       <section className="mb-[120px]">
@@ -52,6 +53,7 @@ export default function Home() {
           descriptionEn="Georgian cuisine represents a unique synthesis of European and Asian traditions. Each dish tells a story about Georgia's rich cultural heritage."
           buttonTextKa="დააგემოვნე"
           buttonTextEn="Taste Now"
+          href="http://mziskari.ge/"
         />
       </section>
       <section className="mb-[120px]">
@@ -66,6 +68,7 @@ export default function Home() {
           descriptionEn="Choose an interesting place for you and plan an unforgettable trip"
           buttonTextKa="დაგეგმე მოგზაურობა"
           buttonTextEn="Plan Your Trip"
+          href="https://www.expedia.com/?siteid=1&langid=1033&clickref=1101lBLNRoJX&affcid=US.DIRECT.PHG.1011l348670.1101l81954&ref_id=1101lBLNRoJX&my_ad=AFF.US.DIRECT.PHG.1011l348670.1101l81954&afflid=1101lBLNRoJX&affdtl=PHG.1101lBLNRoJX.PZJxYnFyQB"
         />
       </section>
       <section className="mb-[120px]">

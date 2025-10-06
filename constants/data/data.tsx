@@ -2763,7 +2763,9 @@ export const travelMoments: TravelMoment[] = [
 ];
 
 export interface CardItem {
+  id: number;
   image: string;
+  href?: string;
   header: {
     ka: string;
     en: string;
@@ -2790,11 +2792,13 @@ export interface Card {
 
 export const card1: Card[] = [
   {
-    id: "georgian-cuisine",
+    id: "Georgian Cuisine",
     title: "Georgian Cuisine Collection",
     array: [
       {
+        id: 1,
         image: "/cardImage/ach.webp",
+        href: "/adjarian-khachapuri",
         header: {
           ka: "აჭარული ხაჭაპური",
           en: "Adjarian Khachapuri",
@@ -2813,7 +2817,9 @@ export const card1: Card[] = [
         },
       },
       {
+        id: 2,
         image: "/cardImage/mt.webp",
+        href: "/mtsvadi",
         header: {
           ka: "მწვადი",
           en: "Mtsvadi (Georgian BBQ)",
