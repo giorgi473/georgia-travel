@@ -2637,6 +2637,7 @@ export const faqItems: FaqItem[] = [
 ];
 export interface Props {
   img: string;
+  href?: string;
   title: {
     ka: string;
     en: string;
@@ -2650,6 +2651,7 @@ export interface Props {
 export const blogs: Props[] = [
   {
     img: "/cardImage/mta.webp",
+    href: "/georgias-mountains-and-peaks",
     title: {
       ka: "საქართველოს მთები და მწერვალები",
       en: "Mountains and Peaks of Georgia",
@@ -2661,6 +2663,7 @@ export const blogs: Props[] = [
   },
   {
     img: "/cardImage/opa.webp",
+    href: "/traditional-georgian-clothes",
     title: {
       ka: "ქართული ღვინის ისტორია",
       en: "History of Georgian Wine",
@@ -2672,6 +2675,7 @@ export const blogs: Props[] = [
   },
   {
     img: "/cardImage/world.webp",
+    href: "/georgia-on-the-great-silk-road",
     title: {
       ka: "ქართული კულტურის სიმდიდრე",
       en: "The Richness of Georgian Culture",

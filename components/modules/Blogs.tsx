@@ -10,9 +10,11 @@ import {
 } from "@/components/ui/card";
 import { useLanguage } from "@/context/LanguageContext";
 import { blogs } from "@/constants/data/data";
+import { useRouter } from "next/navigation";
 
 function Blogs() {
   const { currentLanguage } = useLanguage();
+  const router = useRouter();
   const uiTexts = {
     blogTitle: {
       ka: "გაეცანი ბლოგს",
@@ -68,6 +70,7 @@ function Blogs() {
                 layout="fill"
                 className="object-cover hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out"
                 priority={index < 3}
+                onClick={() => router.push(`${blog.href}`)}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
               <div className="absolute bottom-4 left-4 pointer-events-none">
