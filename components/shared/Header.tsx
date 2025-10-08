@@ -379,7 +379,7 @@ function Header() {
         },
         adventure: (index: number) => ({
           title: `თავგადასავალი ${index + 1}`,
-          description: `საინტერესო თავგადასავალი ${index + 1}`,
+          description: `საინტერესო თავგადასავალი`,
         }),
       },
     },
@@ -401,7 +401,7 @@ function Header() {
         },
         adventure: (index: number) => ({
           title: `Adventure ${index + 1}`,
-          description: `Interesting Adventure ${index + 1}`,
+          description: `Interesting Adventure`,
         }),
       },
     },
