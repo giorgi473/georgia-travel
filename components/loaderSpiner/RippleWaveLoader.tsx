@@ -27,6 +27,7 @@ export function RippleWaveLoader() {
 }
 
 export function SpiralLoader() {
+
   const dots = 8;
   const radius = 20;
 
@@ -127,7 +128,7 @@ export function LoaderSpinner() {
         data-name="Layer 1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 400 202.25"
-        className="w-52 sm:w-52 md:w-72 lg:w-72" // width changes
+        className="w-48 sm:w-52 md:w-72 lg:w-72"
       >
         <defs>
           <linearGradient id="left-to-right">
