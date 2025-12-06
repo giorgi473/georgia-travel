@@ -30,7 +30,6 @@ export function DestinationCard({
   const [isHeartActive, setIsHeartActive] = useState(false);
   const [showHeartAnimation, setShowHeartAnimation] = useState(false);
 
-  // Static text translations
   const translations = {
     durationLabel: { ka: "დრო", en: "Duration" },
     distanceLabel: { ka: "მანძილი", en: "Distance" },

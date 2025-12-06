@@ -7,6 +7,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { footerColumns, socialLinks } from "@/constants/get/getData";
 
 function Footer() {
+  
   const { currentLanguage } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 

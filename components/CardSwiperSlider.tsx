@@ -27,8 +27,8 @@ export default function CardSwiperSlider() {
     const item = cardSliderImages[index];
     const sight = {
       id: item.id || index,
-      title: item.title[currentLanguage], // Use translated title
-      description: item.description[currentLanguage], // Use translated description
+      title: item.title[currentLanguage],
+      description: item.description[currentLanguage],
       src: item.src,
     };
 
