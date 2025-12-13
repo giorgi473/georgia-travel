@@ -128,7 +128,7 @@ export function LoaderSpinner() {
         data-name="Layer 1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 400 202.25"
-        className="w-48 sm:w-52 md:w-72 lg:w-72"
+        className="w-50 sm:w-52 md:w-72 lg:w-72"
       >
         <defs>
           <linearGradient id="left-to-right">
